@@ -59,6 +59,8 @@ item.headcrumbs.donkey.name=Donkey Head
 item.headcrumbs.mule.name=Mule Head
 item.headcrumbs.horseUndead.name=Undead Horse Head
 item.headcrumbs.horseSkeleton.name=Skeleton Horse Head
+item.headcrumbs.snowMan.name=Snow Golem Head
+item.headcrumbs.silverfish.name=Silverfish Head
 
 # Creative Tab
 itemGroup.headcrumbs=Headcrumbs

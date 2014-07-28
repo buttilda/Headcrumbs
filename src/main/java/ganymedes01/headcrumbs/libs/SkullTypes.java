@@ -75,7 +75,9 @@ public enum SkullTypes {
 	donkey(Strings.MC_PREFIX + "horse/donkey"),
 	mule(Strings.MC_PREFIX + "horse/mule"),
 	horseUndead(Strings.MC_PREFIX + "horse/horse_zombie"),
-	horseSkeleton(Strings.MC_PREFIX + "horse/horse_skeleton");
+	horseSkeleton(Strings.MC_PREFIX + "horse/horse_skeleton"),
+	snowMan(Strings.MC_PREFIX + "snowman"),
+	silverfish(Strings.MC_PREFIX + "silverfish");
 
 	private final String mod;
 	private final ResourceLocation texture;

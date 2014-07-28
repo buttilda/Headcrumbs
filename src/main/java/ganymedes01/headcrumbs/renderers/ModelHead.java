@@ -47,7 +47,7 @@ public class ModelHead extends ModelSkeletonHead {
 
 		SkullTypes skull = SkullTypes.values()[type];
 		transform(skull);
-		return new ModelHead().setHeadType(skull);//heads.get(skull);
+		return heads.get(skull);
 	}
 
 	private static void transform(SkullTypes skull) {
@@ -225,6 +225,12 @@ public class ModelHead extends ModelSkeletonHead {
 			case mule:
 				setHorse(true);
 				break;
+			case snowMan:
+				setSnowman();
+				break;
+			case silverfish:
+				setSilverfish();
+				break;
 			case blaze:
 			case blizz:
 			case druid:
@@ -232,6 +238,53 @@ public class ModelHead extends ModelSkeletonHead {
 				break;
 		}
 		return this;
+	}
+
+	private void setSilverfish() {
+		float f = -1.9F;
+		float f1 = -24;
+		head = new ModelRenderer(this, 0, 0);
+
+		ModelRenderer[] silverfishBodyParts = new ModelRenderer[7];
+		ModelRenderer[] silverfishWings;
+		int[][] silverfishBoxLength = new int[][] { { 3, 2, 2 }, { 4, 3, 2 }, { 6, 4, 3 }, { 3, 3, 3 }, { 2, 2, 3 }, { 2, 1, 2 }, { 1, 1, 2 } };
+		int[][] silverfishTexturePositions = new int[][] { { 0, 0 }, { 0, 4 }, { 0, 9 }, { 0, 16 }, { 0, 22 }, { 11, 0 }, { 13, 4 } };
+
+		float[] field_78170_c = new float[7];
+
+		for (int i = 0; i < silverfishBodyParts.length; ++i) {
+			silverfishBodyParts[i] = new ModelRenderer(this, silverfishTexturePositions[i][0], silverfishTexturePositions[i][1]);
+			silverfishBodyParts[i].addBox(silverfishBoxLength[i][0] * -0.5F, 0.0F + f1, silverfishBoxLength[i][2] * -0.5F, silverfishBoxLength[i][0], silverfishBoxLength[i][1], silverfishBoxLength[i][2]);
+			silverfishBodyParts[i].setRotationPoint(0.0F, 24 - silverfishBoxLength[i][1], f);
+			field_78170_c[i] = f;
+
+			if (i < silverfishBodyParts.length - 1)
+				f += (silverfishBoxLength[i][2] + silverfishBoxLength[i + 1][2]) * 0.5F;
+
+			if (i < 3)
+				head.addChild(silverfishBodyParts[i]);
+		}
+
+		silverfishWings = new ModelRenderer[2];
+		silverfishWings[0] = new ModelRenderer(this, 20, 0);
+		silverfishWings[0].addBox(-5.0F, 0.0F + f1, silverfishBoxLength[2][2] * -0.5F, 10, 8, silverfishBoxLength[2][2]);
+		silverfishWings[0].setRotationPoint(0.0F, 16.0F, field_78170_c[2]);
+		silverfishWings[1] = new ModelRenderer(this, 20, 18);
+		silverfishWings[1].addBox(-3.0F, 0.0F + f1, silverfishBoxLength[4][2] * -0.5F, 6, 5, silverfishBoxLength[1][2]);
+		silverfishWings[1].setRotationPoint(0.0F, 19.0F, field_78170_c[1]);
+
+		head.addChild(silverfishWings[0]);
+		head.addChild(silverfishWings[1]);
+		hideOverlay();
+	}
+
+	private void setSnowman() {
+		textureWidth = 64;
+		textureHeight = 64;
+		head = new ModelRenderer(this, 0, 0);
+		head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
+		head.setRotationPoint(0.0F, 0.0F, 0.0F);
+		hideOverlay();
 	}
 
 	private void setHorse(boolean isMule) {

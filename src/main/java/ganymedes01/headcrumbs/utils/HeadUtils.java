@@ -26,8 +26,10 @@ import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityPigZombie;
+import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.entity.monster.EntitySnowman;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.monster.EntityZombie;
@@ -135,6 +137,8 @@ public class HeadUtils {
 				return new ItemStack(ModItems.skull, 1, SkullTypes.witch.ordinal());
 			else if (target instanceof EntityWither)
 				return new ItemStack(ModItems.skull, 1 + (target.worldObj.rand.nextInt(100) == 0 ? 1 + target.worldObj.rand.nextInt(2) : 0), SkullTypes.wither.ordinal());
+			else if (target instanceof EntitySilverfish)
+				return new ItemStack(ModItems.skull, 1, SkullTypes.silverfish.ordinal());
 		} else if (target instanceof EntityPlayer)
 			return createHeadFor((EntityPlayer) target);
 		else if (target instanceof EntityAnimal) {
@@ -207,7 +211,8 @@ public class HeadUtils {
 			if (target instanceof EntityMagmaCube)
 				return new ItemStack(ModItems.skull, 1, SkullTypes.magmaCube.ordinal());
 			return new ItemStack(ModItems.skull, 1, SkullTypes.slime.ordinal());
-		}
+		} else if (target instanceof EntitySnowman)
+			return new ItemStack(ModItems.skull, 1, SkullTypes.snowMan.ordinal());
 
 		return null;
 	}

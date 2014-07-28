@@ -42,7 +42,7 @@ public class EntityDropEvent {
 	}
 
 	private boolean shouldDoRandomDrop(Random rand, int looting) {
-		return Headcrumbs.enableRandomHeadDrop && rand.nextInt(Headcrumbs.headDropChance / Math.max(looting, 1)) == 0;
+		return true;//Headcrumbs.enableRandomHeadDrop && rand.nextInt(Headcrumbs.headDropChance / Math.max(looting, 1)) == 0;
 	}
 
 	private void addDrop(ItemStack stack, EntityLivingBase entity, List<EntityItem> list) {

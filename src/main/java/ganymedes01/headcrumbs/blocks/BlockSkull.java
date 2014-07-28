@@ -27,10 +27,13 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
+import thaumcraft.api.crafting.IInfusionStabiliser;
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockSkull extends BlockContainer {
+@Optional.Interface(iface = "thaumcraft.api.crafting.IInfusionStabiliser", modid = "Thaumcraft")
+public class BlockSkull extends BlockContainer implements IInfusionStabiliser {
 
 	public BlockSkull() {
 		super(Material.circuits);
@@ -38,6 +41,12 @@ public class BlockSkull extends BlockContainer {
 		setBlockTextureName("skull");
 		setStepSound(soundTypeStone);
 		setBlockName(Utils.getUnlocalizedName("betterSkull"));
+	}
+
+	@Override
+	@Optional.Method(modid = "Thaumcraft")
+	public boolean canStabaliseInfusion(World world, int x, int y, int z) {
+		return true;
 	}
 
 	@Override
