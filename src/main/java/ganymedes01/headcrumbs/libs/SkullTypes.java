@@ -64,7 +64,18 @@ public enum SkullTypes {
 	ocelotSiamese(Strings.MC_PREFIX + "cat/siamese"),
 	bat(Strings.MC_PREFIX + "bat"),
 	slime(Strings.MC_PREFIX + "slime/slime"),
-	magmaCube(Strings.MC_PREFIX + "slime/magmacube");
+	magmaCube(Strings.MC_PREFIX + "slime/magmacube"),
+	horseBlack(Strings.MC_PREFIX + "horse/horse_black"),
+	horseBrown(Strings.MC_PREFIX + "horse/horse_brown"),
+	horseChestnut(Strings.MC_PREFIX + "horse/horse_chestnut"),
+	horseCreamy(Strings.MC_PREFIX + "horse/horse_creamy"),
+	horseDarkBrown(Strings.MC_PREFIX + "horse/horse_darkbrown"),
+	horseGrey(Strings.MC_PREFIX + "horse/horse_gray"),
+	horseWhite(Strings.MC_PREFIX + "horse/horse_white"),
+	donkey(Strings.MC_PREFIX + "horse/donkey"),
+	mule(Strings.MC_PREFIX + "horse/mule"),
+	horseUndead(Strings.MC_PREFIX + "horse/horse_zombie"),
+	horseSkeleton(Strings.MC_PREFIX + "horse/horse_skeleton");
 
 	private final String mod;
 	private final ResourceLocation texture;
@@ -87,8 +98,7 @@ public enum SkullTypes {
 	public ResourceLocation getTexture(GameProfile name) {
 		if (this == player)
 			return getPlayerSkin(name);
-		else
-			return texture;
+		return texture;
 	}
 
 	public ResourceLocation getSecondTexture() {

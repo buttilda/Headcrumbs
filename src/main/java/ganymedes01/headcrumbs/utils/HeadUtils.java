@@ -35,6 +35,7 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityMooshroom;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityPig;
@@ -161,6 +162,35 @@ public class HeadUtils {
 					case 3:
 						return new ItemStack(ModItems.skull, 1, SkullTypes.ocelotSiamese.ordinal());
 				}
+			else if (target instanceof EntityHorse) {
+				int type = ((EntityHorse) target).getHorseType();
+
+				if (type == 0)
+					switch (((EntityHorse) target).getHorseVariant() & 255) {
+						case 0:
+							return new ItemStack(ModItems.skull, 1, SkullTypes.horseWhite.ordinal());
+						case 1:
+							return new ItemStack(ModItems.skull, 1, SkullTypes.horseCreamy.ordinal());
+						case 2:
+							return new ItemStack(ModItems.skull, 1, SkullTypes.horseChestnut.ordinal());
+						case 3:
+							return new ItemStack(ModItems.skull, 1, SkullTypes.horseBrown.ordinal());
+						case 4:
+							return new ItemStack(ModItems.skull, 1, SkullTypes.horseBlack.ordinal());
+						case 5:
+							return new ItemStack(ModItems.skull, 1, SkullTypes.horseGrey.ordinal());
+						case 6:
+							return new ItemStack(ModItems.skull, 1, SkullTypes.horseDarkBrown.ordinal());
+					}
+				else if (type == 1)
+					return new ItemStack(ModItems.skull, 1, SkullTypes.donkey.ordinal());
+				else if (type == 2)
+					return new ItemStack(ModItems.skull, 1, SkullTypes.mule.ordinal());
+				else if (type == 3)
+					return new ItemStack(ModItems.skull, 1, SkullTypes.horseUndead.ordinal());
+				else if (type == 4)
+					return new ItemStack(ModItems.skull, 1, SkullTypes.horseSkeleton.ordinal());
+			}
 		} else if (target instanceof EntityVillager)
 			return new ItemStack(ModItems.skull, 1, SkullTypes.villager.ordinal());
 		else if (target instanceof EntityIronGolem)

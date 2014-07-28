@@ -48,6 +48,17 @@ item.headcrumbs.ocelotSiamese.name=Siamese Cat Head
 item.headcrumbs.bat.name=Bat Head
 item.headcrumbs.slime.name=Slime Head
 item.headcrumbs.magmaCube.name=Magma Cube Head
+item.headcrumbs.horseBlack.name=Horse Head (Black)
+item.headcrumbs.horseBrown.name=Horse Head (Brown)
+item.headcrumbs.horseChestnut.name=Horse Head (Chestnut)
+item.headcrumbs.horseCreamy.name=Horse Head (Creamy)
+item.headcrumbs.horseDarkBrown.name=Horse Head (Dark Brown)
+item.headcrumbs.horseGrey.name=Horse Head (Grey)
+item.headcrumbs.horseWhite.name=Horse Head (White)
+item.headcrumbs.donkey.name=Donkey Head
+item.headcrumbs.mule.name=Mule Head
+item.headcrumbs.horseUndead.name=Undead Horse Head
+item.headcrumbs.horseSkeleton.name=Skeleton Horse Head
 
 # Creative Tab
 itemGroup.headcrumbs=Headcrumbs

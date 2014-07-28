@@ -36,30 +36,45 @@ public class ItemSkullRender implements IItemRenderer {
 
 		boolean isVanilla = stack.getItem() == Items.skull;
 		if (!isVanilla)
-			if (skullType == SkullTypes.witch.ordinal() || skullType == SkullTypes.wildDeer.ordinal() || skullType == SkullTypes.witch.ordinal()) {
-				GL11.glScaled(0.75, 0.75, 0.75);
-				GL11.glTranslated(0, -0.45, 0);
-			} else if (skullType == SkullTypes.enderDragon.ordinal() || skullType == SkullTypes.pinchBeetle.ordinal())
-				GL11.glScaled(0.75, 0.75, 0.75);
+			switch (SkullTypes.values()[skullType]) {
+				case witch:
+				case wildDeer:
+				case horseBlack:
+				case horseBrown:
+				case horseChestnut:
+				case horseCreamy:
+				case horseDarkBrown:
+				case horseGrey:
+				case horseWhite:
+				case donkey:
+				case mule:
+				case horseUndead:
+				case horseSkeleton:
+					GL11.glScaled(0.75, 0.75, 0.75);
+					GL11.glTranslated(0, -0.45, 0);
+					break;
+				case enderDragon:
+				case pinchBeetle:
+					GL11.glScaled(0.75, 0.75, 0.75);
+					break;
+				default:
+					break;
+			}
 
 		switch (type) {
-			case ENTITY: {
+			case ENTITY:
 				renderSkull(-0.25F, -0.5F, -0.5F, skullType, name, isVanilla);
 				break;
-			}
-			case EQUIPPED: {
+			case EQUIPPED:
 				renderSkull(0.5F, 0.0F, 0.0F, skullType, name, isVanilla);
 				break;
-			}
-			case EQUIPPED_FIRST_PERSON: {
+			case EQUIPPED_FIRST_PERSON:
 				renderSkull(0.75F, 0.25F, 0.4F, skullType, name, isVanilla);
 				break;
-			}
-			case INVENTORY: {
+			case INVENTORY:
 				GL11.glScaled(1.5, 1.5, 1.5);
 				renderSkull(0.75F, 0.30F, 0.5F, skullType, name, isVanilla);
 				break;
-			}
 			default:
 				break;
 		}
