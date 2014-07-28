@@ -1,0 +1,20 @@
+[
+{
+  "modid": "headcrumbs",
+  "name": "Headcrumbs",
+  "description": "Adds heads!",
+  "version": "1.0.0",
+  "url": "",
+  "updateUrl": "",
+  "authorList": [
+    "ganymedes01"
+  ],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]

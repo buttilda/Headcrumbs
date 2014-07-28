@@ -1,0 +1,806 @@
+package ganymedes01.headcrumbs.renderers;
+
+import ganymedes01.headcrumbs.libs.SkullTypes;
+
+import java.util.HashMap;
+
+import net.minecraft.client.model.ModelEnderman;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.model.ModelSkeletonHead;
+
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+@SideOnly(Side.CLIENT)
+public class ModelHead extends ModelSkeletonHead {
+
+	private static HashMap<SkullTypes, ModelHead> heads;
+
+	private ModelRenderer head;
+	private ModelRenderer overlay;
+	private boolean renderOverlay;
+
+	private ModelHead() {
+		this(32);
+	}
+
+	private ModelHead(int height) {
+		textureWidth = 64;
+		textureHeight = height;
+		renderOverlay = true;
+		head = new ModelRenderer(this, 0, 0);
+		overlay = new ModelRenderer(this, 32, 0);
+		head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
+		head.setRotationPoint(0.0F, 0.0F, 0.0F);
+		overlay.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.5F);
+		overlay.setRotationPoint(0.0F, 0.0F, 0.0F);
+	}
+
+	public static ModelHead getHead(int type) {
+		if (heads == null) {
+			heads = new HashMap<SkullTypes, ModelHead>();
+			for (SkullTypes skull : SkullTypes.values())
+				heads.put(skull, new ModelHead().setHeadType(skull));
+		}
+
+		SkullTypes skull = SkullTypes.values()[type];
+		transform(skull);
+		return heads.get(skull);
+	}
+
+	private static void transform(SkullTypes skull) {
+		switch (skull) {
+			case squid:
+				GL11.glScaled(2F / 3F, 2F / 3F, 2F / 3F);
+				break;
+			case enderDragon:
+				GL11.glScaled(0.5, 0.5, 0.5);
+				break;
+			case mistWolf:
+				GL11.glScaled(1.5, 1.5, 1.5);
+				break;
+			case bat:
+				GL11.glScaled(0.5, 0.5, 0.5);
+				break;
+			case slime:
+				GL11.glEnable(GL11.GL_NORMALIZE);
+				GL11.glEnable(GL11.GL_BLEND);
+				GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+				break;
+			default:
+				break;
+		}
+	}
+
+	private ModelHead hideOverlay() {
+		renderOverlay = false;
+		return this;
+	}
+
+	public void render(float rotationX) {
+		render(rotationX, 0.0F);
+	}
+
+	public void render(float rotationX, float rotationY) {
+		head.rotateAngleY = rotationX / (180F / (float) Math.PI);
+		head.rotateAngleX = rotationY / (180F / (float) Math.PI);
+		head.render(0.0625F);
+		if (renderOverlay)
+			renderOverlay(rotationX, rotationY);
+	}
+
+	public void renderOverlay(float rotationX) {
+		renderOverlay(rotationX, 0.0F);
+	}
+
+	public void renderOverlay(float rotationX, float rotationY) {
+		overlay.rotateAngleY = rotationX / (180F / (float) Math.PI);
+		overlay.rotateAngleX = rotationY / (180F / (float) Math.PI);
+		overlay.render(0.0625F);
+	}
+
+	private ModelHead setHeadType(SkullTypes type) {
+		switch (type) {
+			case enderman:
+				setEnderman();
+				break;
+			case pigman:
+				return new ModelHead(64);
+			case spider:
+			case caveSpider:
+			case hedgeSpider:
+			case kingSpider:
+				setSpider();
+				break;
+			case pig:
+				setPig();
+				break;
+			case mooshroom:
+			case cow:
+				setCow();
+				break;
+			case sheep:
+				setSheep();
+				break;
+			case wolf:
+			case mistWolf:
+			case hostileWolf:
+				setWolf();
+				break;
+			case villager:
+				setVillager(64);
+				break;
+			case chicken:
+				setChicken();
+				break;
+			case witch:
+				setWitch();
+				break;
+			case zombieVillager:
+				setZombieVillager();
+				break;
+			case ironGolem:
+				setVillager(128);
+				break;
+			case squid:
+				setSquid();
+				break;
+			case wither:
+				return new ModelHead(64).hideOverlay();
+			case bunnyDutch:
+			case bunnyBrown:
+			case bunnyWhite:
+				setBunny();
+				break;
+			case penguin:
+				setPenguin();
+				break;
+			case bighorn:
+				setBighorn();
+				break;
+			case wildDeer:
+				setDeer();
+				break;
+			case wildBoar:
+				setBoar();
+				break;
+			case redcap:
+				setRedcap();
+				break;
+			case ghast:
+			case miniGhast:
+			case guardGhast:
+				setGhast();
+				break;
+			case kobold:
+				setKobold();
+				break;
+			case slimeBeetle:
+				setSlimeBeetle();
+				break;
+			case fireBeetle:
+				setFireBeetle();
+				break;
+			case pinchBeetle:
+				setPinchBeetle();
+				break;
+			case towerGolem:
+				setTowerGolem();
+				break;
+			case enderDragon:
+				setEnderDragon();
+				break;
+			case squirrel:
+				setSquirrel();
+				break;
+			case ocelot:
+			case ocelotBlack:
+			case ocelotRed:
+			case ocelotSiamese:
+				setOcelot();
+				break;
+			case bat:
+				setBat();
+				break;
+			case slime:
+				setSlime();
+				break;
+			case magmaCube:
+				setMagmaCube();
+				break;
+			case blaze:
+			case blizz:
+			case druid:
+			case player:
+				break;
+		}
+		return this;
+	}
+
+	private void setMagmaCube() {
+		hideOverlay();
+
+		head = new ModelRenderer(this, 0, 16);
+		head.addBox(-2.0F, 18.0F - 24, -2.0F, 4, 4, 4);
+
+		for (int i = 0; i < 8; i++) {
+			byte x = 0;
+			int y = i;
+
+			if (i == 2) {
+				x = 24;
+				y = 10;
+			} else if (i == 3) {
+				x = 24;
+				y = 19;
+			}
+
+			ModelRenderer segment = new ModelRenderer(this, x, y);
+			segment.addBox(-4.0F, 16 + i - 24, -4.0F, 8, 1, 8);
+			head.addChild(segment);
+		}
+	}
+
+	private void setSlime() {
+		float f1 = -24;
+		head = new ModelRenderer(this, 0, 16);
+		head.addBox(-3.0F, 17.0F + f1, -3.0F, 6, 6, 6);
+		ModelRenderer slimeRightEye = new ModelRenderer(this, 32, 0);
+		slimeRightEye.addBox(-3.25F, 18.0F + f1, -3.5F, 2, 2, 2);
+		ModelRenderer slimeLeftEye = new ModelRenderer(this, 32, 4);
+		slimeLeftEye.addBox(1.25F, 18.0F + f1, -3.5F, 2, 2, 2);
+		ModelRenderer slimeMouth = new ModelRenderer(this, 32, 8);
+		slimeMouth.addBox(0.0F, 21.0F + f1, -3.5F, 1, 1, 1);
+
+		head.addChild(slimeMouth);
+		head.addChild(slimeRightEye);
+		head.addChild(slimeLeftEye);
+
+		overlay = new ModelRenderer(this, 0, 0);
+		overlay.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
+	}
+
+	private void setBat() {
+		textureWidth = 64;
+		textureHeight = 64;
+		hideOverlay();
+		float f1 = -3;
+		float f2 = 5;
+		head = new ModelRenderer(this, 0, 0);
+		head.addBox(-3.0F, -3.0F + f1, -3.0F + f2, 6, 6, 6);
+		ModelRenderer ear1 = new ModelRenderer(this, 24, 0);
+		ear1.addBox(-4.0F, -6.0F + f1, -2.0F + f2, 3, 4, 1);
+		head.addChild(ear1);
+		ModelRenderer ear2 = new ModelRenderer(this, 24, 0);
+		ear2.mirror = true;
+		ear2.addBox(1.0F, -6.0F + f1, -2.0F + f2, 3, 4, 1);
+		head.addChild(ear2);
+	}
+
+	private void setOcelot() {
+		setTextureOffset("head.main", 0, 0);
+		setTextureOffset("head.nose", 0, 24);
+		setTextureOffset("head.ear1", 0, 10);
+		setTextureOffset("head.ear2", 6, 10);
+		hideOverlay();
+		head = new ModelRenderer(this, "head");
+		float f1 = -2;
+		float f2 = 2;
+		head.addBox("main", -2.5F, -2.0F + f1, -3.0F + f2, 5, 4, 5);
+		head.addBox("nose", -1.5F, 0.0F + f1, -4.0F + f2, 3, 2, 2);
+		head.addBox("ear1", -2.0F, -3.0F + f1, 0.0F + f2, 1, 1, 2);
+		head.addBox("ear2", 1.0F, -3.0F + f1, 0.0F + f2, 1, 1, 2);
+	}
+
+	private void setSquirrel() {
+		textureWidth = 32;
+		textureHeight = 32;
+		hideOverlay();
+		setTextureOffset("head.head", 0, 0);
+		setTextureOffset("head.ear2", 16, 0);
+		setTextureOffset("head.ear1", 16, 0);
+
+		head = new ModelRenderer(this, "head");
+		head.setRotationPoint(0.0f, 0.0f, 0.0f);
+		setRotation(head, 0.0f, 0.0f, 0.0f);
+		float f = 3;
+		float f2 = 1;
+		head.addBox("head", -2.0f, -5.0f + f2, -3.0f + f, 4, 4, 4);
+		head.addBox("ear2", -2.0f, -6.0f + f2, -0.5f + f, 1, 1, 1);
+		head.addBox("ear1", 1.0f, -6.0f + f2, -0.5f + f, 1, 1, 1);
+	}
+
+	private void setTowerGolem() {
+		textureWidth = 128;
+		textureHeight = 64;
+		hideOverlay();
+		head = new ModelRenderer(this, 0, 0);
+		head.setRotationPoint(0.0f, 0.0f, 0.0f);
+		float f = 2;
+		head.setTextureOffset(0, 0).addBox(-3.5f, -10.0f + f, -3.0f + f, 7, 8, 6);
+		head.setTextureOffset(0, 14).addBox(-4.0f, -6.0f + f, -3.5f + f, 8, 4, 6);
+	}
+
+	private void setPinchBeetle() {
+		hideOverlay();
+		float f = 4;
+		float f2 = -2;
+		head = new ModelRenderer(this, 0, 0);
+		head.addBox(-4.0f, -4.0f + f2, -6.0f + f, 8, 6, 6);
+		head.setRotationPoint(0.0f, 0.0f, 0.0f);
+		ModelRenderer jaw1a = new ModelRenderer(this, 40, 6);
+		jaw1a.addBox(-1.0f, -1.0f, -1.5f, 8, 2, 3);
+		jaw1a.setRotationPoint(-3.0f, 1.0f + f2, -6.0f + f);
+		setRotation(jaw1a, 0.0f, 2.635447f, 0.0f);
+		ModelRenderer jaw1b = new ModelRenderer(this, 40, 10);
+		jaw1b.addBox(-1.0f, -1.0f, -1.0f, 10, 2, 2);
+		jaw1b.setRotationPoint(7.0f, 0.0f, 0.0f);
+		setRotation(jaw1b, 0.0f, -1.047197f, 0.0f);
+		ModelRenderer jaw2a = new ModelRenderer(this, 40, 6);
+		jaw2a.addBox(-1.0f, -1.0f, -1.5f, 8, 2, 3);
+		jaw2a.setRotationPoint(3.0f, 1.0f + f2, -6.0f + f);
+		setRotation(jaw2a, 0.0f, 0.541052f, 0.0f);
+		ModelRenderer jaw2b = new ModelRenderer(this, 40, 10);
+		jaw2b.addBox(-1.0f, -1.0f, -1.0f, 10, 2, 2);
+		jaw2b.setRotationPoint(7.0f, 0.0f, 0.0f);
+		setRotation(jaw2b, 0.0f, 1.047197f, 0.0f);
+		ModelRenderer antenna1 = new ModelRenderer(this, 42, 4);
+		antenna1.addBox(0.0f, -0.5f, -0.5f, 10, 1, 1);
+		antenna1.setRotationPoint(1.0f, -3.0f + f2, -5.0f + f);
+		setRotation(antenna1, 0.0f, 1.047198f, -0.296706f);
+		ModelRenderer antenna2 = new ModelRenderer(this, 42, 4);
+		antenna2.addBox(0.0f, -0.5f, -0.5f, 10, 1, 1);
+		antenna2.setRotationPoint(-1.0f, -3.0f + f2, -5.0f + f);
+		setRotation(antenna2, 0.0f, 2.094395f, 0.296706f);
+		ModelRenderer eye1 = new ModelRenderer(this, 15, 12);
+		eye1.addBox(-1.5f, -1.5f, -1.5f, 3, 3, 3);
+		eye1.setRotationPoint(-3.0f, -2.0f + f2, -5.0f + f);
+		ModelRenderer eye2 = new ModelRenderer(this, 15, 12);
+		eye2.addBox(-1.5f, -1.5f, -1.5f, 3, 3, 3);
+		eye2.setRotationPoint(3.0f, -2.0f + f2, -5.0f + f);
+		ModelRenderer tooth1a = new ModelRenderer(this, 0, 0);
+		tooth1a.addBox(0.0f, -0.5f, -0.0f, 2, 1, 1);
+		tooth1a.setRotationPoint(9.0f, 0.0f, 0.0f);
+		setRotation(tooth1a, 0.0f, -0.5235987f, 0.0f);
+		ModelRenderer tooth1b = new ModelRenderer(this, 0, 0);
+		tooth1b.addBox(-2.5f, -0.5f, -0.0f, 2, 1, 1);
+		tooth1b.setRotationPoint(6.0f, 0.0f, 0.0f);
+		setRotation(tooth1b, 0.0f, 1.5707963f, 0.0f);
+		ModelRenderer tooth1c = new ModelRenderer(this, 0, 0);
+		tooth1c.addBox(-2.5f, -0.5f, -0.0f, 2, 1, 1);
+		tooth1c.setRotationPoint(3.0f, 0.0f, 0.0f);
+		setRotation(tooth1c, 0.0f, 1.5707963f, 0.0f);
+		ModelRenderer tooth2a = new ModelRenderer(this, 0, 0);
+		tooth2a.addBox(0.0f, -0.5f, -1.0f, 2, 1, 1);
+		tooth2a.setRotationPoint(9.0f, 0.0f, 0.0f);
+		setRotation(tooth2a, 0.0f, 0.5235987f, 0.0f);
+		ModelRenderer tooth2b = new ModelRenderer(this, 0, 0);
+		tooth2b.addBox(-2.5f, -0.5f, -1.0f, 2, 1, 1);
+		tooth2b.setRotationPoint(6.0f, 0.0f, 0.0f);
+		setRotation(tooth2b, 0.0f, -1.5707963f, 0.0f);
+		ModelRenderer tooth2c = new ModelRenderer(this, 0, 0);
+		tooth2c.addBox(-2.5f, -0.5f, -1.0f, 2, 1, 1);
+		tooth2c.setRotationPoint(3.0f, 0.0f, 0.0f);
+		setRotation(tooth2c, 0.0f, -1.5707963f, 0.0f);
+		head.addChild(jaw1a);
+		jaw1a.addChild(jaw1b);
+		jaw1b.addChild(tooth1a);
+		jaw1b.addChild(tooth1b);
+		jaw1b.addChild(tooth1c);
+		jaw2b.addChild(tooth2a);
+		jaw2b.addChild(tooth2b);
+		jaw2b.addChild(tooth2c);
+		head.addChild(jaw2a);
+		jaw2a.addChild(jaw2b);
+		head.addChild(antenna1);
+		head.addChild(antenna2);
+		head.addChild(eye1);
+		head.addChild(eye2);
+	}
+
+	private void setFireBeetle() {
+		hideOverlay();
+		float f = 4;
+		float f2 = -2;
+		head = new ModelRenderer(this, 0, 0);
+		head.addBox(-4.0f, -4.0f + f2, -6.0f + f, 8, 6, 6);
+		head.setRotationPoint(0.0f, 0.0f, 0.0f);
+		ModelRenderer jaw1a = new ModelRenderer(this, 0, 0);
+		jaw1a.addBox(0.0f, 0.0f, -2.0f, 1, 1, 2);
+		jaw1a.setRotationPoint(-3.0f, 0.0f + f2, -6.0f + f);
+		setRotation(jaw1a, 0.3490659f, 0.0f, 0.0f);
+		ModelRenderer jaw1b = new ModelRenderer(this, 0, 0);
+		jaw1b.addBox(0.0f, 0.0f, 0.0f, 1, 1, 2);
+		jaw1b.setRotationPoint(0.0f, 0.0f + f2, -2.0f + f);
+		setRotation(jaw1b, 0.0f, 1.570796f, 0.0f);
+		ModelRenderer jaw2a = new ModelRenderer(this, 0, 0);
+		jaw2a.addBox(-1.0f, 0.0f, -2.0f, 1, 1, 2);
+		jaw2a.setRotationPoint(3.0f, 0.0f + f2, -6.0f + f);
+		setRotation(jaw2a, 0.3490659f, 0.0f, 0.0f);
+		ModelRenderer jaw2b = new ModelRenderer(this, 0, 0);
+		jaw2b.addBox(0.0f, 0.0f, -2.0f, 1, 1, 2);
+		jaw2b.setRotationPoint(0.0f, 0.0f + f2, -2.0f + f);
+		setRotation(jaw2b, 0.0f, 1.570796f, 0.0f);
+		ModelRenderer antenna1 = new ModelRenderer(this, 42, 4);
+		antenna1.addBox(0.0f, -0.5f, -0.5f, 10, 1, 1);
+		antenna1.setRotationPoint(1.0f, -3.0f + f2, -5.0f + f);
+		setRotation(antenna1, 0.0f, 1.047198f, -0.296706f);
+		ModelRenderer antenna2 = new ModelRenderer(this, 42, 4);
+		antenna2.addBox(0.0f, -0.5f, -0.5f, 10, 1, 1);
+		antenna2.setRotationPoint(-1.0f, -3.0f + f2, -5.0f + f);
+		setRotation(antenna2, 0.0f, 2.094395f, 0.296706f);
+		ModelRenderer eye1 = new ModelRenderer(this, 15, 12);
+		eye1.addBox(-1.5f, -1.5f, -1.5f, 3, 3, 3);
+		eye1.setRotationPoint(-3.0f, -2.0f + f2, -5.0f + f);
+		ModelRenderer eye2 = new ModelRenderer(this, 15, 12);
+		eye2.addBox(-1.5f, -1.5f, -1.5f, 3, 3, 3);
+		eye2.setRotationPoint(3.0f, -2.0f + f2, -5.0f + f);
+		head.addChild(jaw1a);
+		jaw1a.addChild(jaw1b);
+		head.addChild(jaw2a);
+		jaw2a.addChild(jaw2b);
+		head.addChild(antenna1);
+		head.addChild(antenna2);
+		head.addChild(eye1);
+		head.addChild(eye2);
+	}
+
+	private void setSlimeBeetle() {
+		textureHeight = 64;
+
+		hideOverlay();
+		float f = 4;
+		float f2 = -2;
+		head = new ModelRenderer(this, 0, 0);
+		head.addBox(-4.0f, -4.0f + f2, -6.0f + f, 8, 6, 6);
+		head.setRotationPoint(0.0f, 0.0f, 0.0f);
+		ModelRenderer antenna1 = new ModelRenderer(this, 38, 4);
+		antenna1.addBox(0.0f, -0.5f, -0.5f, 12, 1, 1);
+		antenna1.setRotationPoint(1.0f, -3.0f + f2, -5.0f + f);
+		antenna1.rotateAngleX = 0.0f;
+		antenna1.rotateAngleY = 1.047198f;
+		antenna1.rotateAngleZ = -0.296706f;
+		ModelRenderer antenna2 = new ModelRenderer(this, 38, 4);
+		antenna2.addBox(0.0f, -0.5f, -0.5f, 12, 1, 1);
+		antenna2.setRotationPoint(-1.0f, -3.0f + f2, -5.0f + f);
+		antenna2.rotateAngleX = 0.0f;
+		antenna2.rotateAngleY = 2.094395f;
+		antenna2.rotateAngleZ = 0.296706f;
+		ModelRenderer eye1 = new ModelRenderer(this, 15, 12);
+		eye1.addBox(-1.5f, -1.5f, -1.5f, 3, 3, 3);
+		eye1.setRotationPoint(-3.0f, -2.0f + f2, -5.0f + f);
+		ModelRenderer eye2 = new ModelRenderer(this, 15, 12);
+		eye2.addBox(-1.5f, -1.5f, -1.5f, 3, 3, 3);
+		eye2.setRotationPoint(3.0f, -2.0f + f2, -5.0f + f);
+		ModelRenderer mouth = new ModelRenderer(this, 17, 12);
+		mouth.addBox(-1.0f, -1.0f, -1.0f, 2, 2, 1);
+		mouth.setRotationPoint(0.0f, 1.0f + f2, -6.0f + f);
+		head.addChild(antenna1);
+		head.addChild(antenna2);
+		head.addChild(eye1);
+		head.addChild(eye2);
+		head.addChild(mouth);
+	}
+
+	private void setPig() {
+		head = new ModelRenderer(this, 0, 0);
+		head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
+		head.setTextureOffset(16, 16).addBox(-2.0F, -4.0F, -5.0F, 4, 3, 1, 0.0F);
+		hideOverlay();
+	}
+
+	private void setCow() {
+		head = new ModelRenderer(this, 0, 0);
+		head.addBox(-4.0F, -8.0F, -2.0F, 8, 8, 6, 0.0F);
+		head.setTextureOffset(22, 0).addBox(-5.0F, -9.0F, 0.0F, 1, 3, 1, 0.0F);
+		head.setTextureOffset(22, 0).addBox(4.0F, -9.0F, 0.0F, 1, 3, 1, 0.0F);
+		hideOverlay();
+	}
+
+	private void setSpider() {
+		head = new ModelRenderer(this, 32, 4);
+		head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
+		hideOverlay();
+	}
+
+	private void setSheep() {
+		head = new ModelRenderer(this, 0, 0);
+		head.addBox(-3.0F, -7.0F, -4.5F, 6, 6, 8, 0.0F);
+		overlay = new ModelRenderer(this, 0, 0);
+		overlay.addBox(-3.0F, -7.0F, -2.5F, 6, 6, 6, 0.6F);
+		hideOverlay();
+	}
+
+	private void setWolf() {
+		head = new ModelRenderer(this, 0, 0);
+		head.addBox(-3.0F, -6.0F, 0.0F, 6, 6, 4, 0.0F);
+
+		head.setTextureOffset(16, 14).addBox(-3.0F, -8.0F, 2.0F, 2, 2, 1, 0.0F);
+		head.setTextureOffset(16, 14).addBox(1.0F, -8.0F, 2.0F, 2, 2, 1, 0.0F);
+		head.setTextureOffset(0, 10).addBox(-1.5F, -3.0F, -3.0F, 3, 3, 4, 0.0F);
+		hideOverlay();
+	}
+
+	private void setEnderman() {
+		ModelEnderman model = new ModelEnderman();
+		head = model.bipedHead;
+		overlay = model.bipedHeadwear;
+		head.setRotationPoint(0F, 0F, 0F);
+		overlay.setRotationPoint(0F, 0F, 0F);
+	}
+
+	private void setVillager(int textureSize) {
+		head = new ModelRenderer(this).setTextureSize(textureSize, textureSize);
+		head.setRotationPoint(0.0F, 0.0F, 0.0F);
+		head.setTextureOffset(0, 0).addBox(-4.0F, -10.0F, -4.0F, 8, 10, 8, 0.0F);
+		overlay = new ModelRenderer(this).setTextureSize(textureSize, textureSize);
+		overlay.setRotationPoint(0.0F, -2.0F, 0.0F);
+		overlay.setTextureOffset(24, 0).addBox(-1.0F, -1.0F, -6.0F, 2, 4, 2, 0.0F);
+	}
+
+	private void setChicken() {
+		head = new ModelRenderer(this, 0, 0);
+		head.addBox(-2.0F, -6.0F, 1.0F, 4, 6, 3, 0.0F);
+		overlay = new ModelRenderer(this, 14, 0);
+		overlay.addBox(-2.0F, -4.0F, -1.0F, 4, 2, 2, 0.0F);
+		ModelRenderer overlay2 = new ModelRenderer(this, 14, 4);
+		overlay2.addBox(-1.0F, -2.0F, 0.0F, 2, 2, 2, 0.0F);
+		overlay.addChild(overlay2);
+	}
+
+	private void setWitch() {
+		head = new ModelRenderer(this).setTextureSize(64, 128);
+		head.setRotationPoint(0.0F, 0.0F, 0.0F);
+		head.setTextureOffset(0, 0).addBox(-4.0F, -10.0F, -4.0F, 8, 10, 8, 0.0F);
+
+		overlay = new ModelRenderer(this).setTextureSize(64, 128);
+		overlay.setRotationPoint(0.0F, -2.0F, 0.0F);
+		overlay.setTextureOffset(24, 0).addBox(-1.0F, -1.0F, -6.0F, 2, 4, 2, 0.0F);
+
+		ModelRenderer wart = new ModelRenderer(this).setTextureSize(64, 128);
+		wart.setRotationPoint(0.0F, -2.0F, 0.0F);
+		wart.setTextureOffset(0, 0).addBox(0.0F, 3.0F, -6.75F, 1, 1, 1, -0.25F);
+		overlay.addChild(wart);
+
+		ModelRenderer hatBase = new ModelRenderer(this).setTextureSize(64, 128);
+		hatBase.setRotationPoint(-5.0F, -10.03125F, -5.0F);
+		hatBase.setTextureOffset(0, 64).addBox(0.0F, 0.0F, 0.0F, 10, 2, 10);
+		hatBase.rotateAngleX = head.rotateAngleX;
+		hatBase.rotateAngleY = head.rotateAngleY;
+		head.addChild(hatBase);
+
+		ModelRenderer hat1 = new ModelRenderer(this).setTextureSize(64, 128);
+		hat1.setRotationPoint(1.75F, -4.0F, 2.0F);
+		hat1.setTextureOffset(0, 76).addBox(0.0F, 0.0F, 0.0F, 7, 4, 7);
+		hat1.rotateAngleX = -0.05235988F;
+		hat1.rotateAngleZ = 0.02617994F;
+		hatBase.addChild(hat1);
+
+		ModelRenderer hat2 = new ModelRenderer(this).setTextureSize(64, 128);
+		hat2.setRotationPoint(1.75F, -4.0F, 2.0F);
+		hat2.setTextureOffset(0, 87).addBox(0.0F, 0.0F, 0.0F, 4, 4, 4);
+		hat2.rotateAngleX = -0.10471976F;
+		hat2.rotateAngleZ = 0.05235988F;
+		hat1.addChild(hat2);
+
+		ModelRenderer hat3 = new ModelRenderer(this).setTextureSize(64, 128);
+		hat3.setRotationPoint(1.75F, -2.0F, 2.0F);
+		hat3.setTextureOffset(0, 95).addBox(0.0F, 0.0F, 0.0F, 1, 2, 1, 0.25F);
+		hat3.rotateAngleX = -0.20943952F;
+		hat3.rotateAngleZ = 0.10471976F;
+		hat2.addChild(hat3);
+	}
+
+	private void setZombieVillager() {
+		head = new ModelRenderer(this).setTextureSize(64, 64);
+		head.setRotationPoint(0.0F, 0.0F, 0.0F);
+		head.setTextureOffset(0, 32).addBox(-4.0F, -10.0F, -4.0F, 8, 10, 8, 0.0F);
+		overlay = new ModelRenderer(this).setTextureSize(64, 64);
+		overlay.setRotationPoint(0.0F, -2.0F, 0.0F);
+		overlay.setTextureOffset(24, 32).addBox(-1.0F, -1.0F, -6.0F, 2, 4, 2, 0.0F);
+	}
+
+	private void setSquid() {
+		head = new ModelRenderer(this).setTextureSize(64, 32);
+		head.setRotationPoint(0.0F, 0.0F, 0.0F);
+		head.addBox(-6.0F, -16F, -6.0F + 0.25F, 12, 16, 12);
+		hideOverlay();
+	}
+
+	private void setBunny() {
+		hideOverlay();
+
+		setTextureOffset("head.head", 0, 0);
+		setTextureOffset("head.ear2", 16, 0);
+		setTextureOffset("head.ear1", 16, 0);
+
+		head = new ModelRenderer(this, "head").setTextureSize(32, 32);
+		head.setRotationPoint(0.0F, 0.0F, 0.0F);
+		head.rotateAngleX = 0.0F;
+		head.rotateAngleY = 0.0F;
+		head.rotateAngleZ = 0.0F;
+		head.mirror = true;
+		head.addBox("head", -2.0F, -4.0F, 0.0F, 4, 4, 4);
+		head.addBox("ear2", -2.5F, -8.0F, 2.5F, 2, 4, 1);
+		head.addBox("ear1", 0.5F, -8.0F, 2.5F, 2, 4, 1);
+	}
+
+	private void setPenguin() {
+		head = new ModelRenderer(this, 0, 0).setTextureSize(64, 32);
+		head.addBox(-3.5F, -5.0F, -3.5F, 7, 5, 7);
+		head.setRotationPoint(0.0F, 0.0F, 0.0F);
+
+		overlay = new ModelRenderer(this, 0, 13);
+		overlay.addBox(-1.0F, -2.0F, -5.0F, 2, 1, 2);
+		overlay.setRotationPoint(0.0F, 0.0F, 0.0F);
+	}
+
+	private void setBighorn() {
+		setSheep();
+		head = new ModelRenderer(this, 0, 0);
+		head.addBox(-3.0F, -7.0F, -4.5F, 6, 6, 7, 0.0F);
+		head.setRotationPoint(0.0F, 0.0F, 0.0F);
+
+		head.setTextureOffset(28, 16).addBox(-5.0F, -7.0F, -1.0F, 2, 2, 2, 0.0F);
+		head.setTextureOffset(16, 13).addBox(-6.0F, -8.0F, 0.0F, 2, 2, 4, 0.0F);
+		head.setTextureOffset(16, 19).addBox(-7.0F, -7.0F, 3.0F, 2, 5, 2, 0.0F);
+		head.setTextureOffset(18, 27).addBox(-8.0F, -3.0F, 1.0F, 2, 2, 3, 0.0F);
+		head.setTextureOffset(28, 27).addBox(-9.0F, -4.0F, 0.0F, 2, 2, 1, 0.0F);
+
+		head.setTextureOffset(28, 16).addBox(3.0F, -7.0F, -1.0F, 2, 2, 2, 0.0F);
+		head.setTextureOffset(16, 13).addBox(4.0F, -8.0F, 0.0F, 2, 2, 4, 0.0F);
+		head.setTextureOffset(16, 19).addBox(5.0F, -7.0F, 3.0F, 2, 5, 2, 0.0F);
+		head.setTextureOffset(18, 27).addBox(6.0F, -3.0F, 1.0F, 2, 2, 3, 0.0F);
+		head.setTextureOffset(28, 27).addBox(7.0F, -4.0F, 0.0F, 2, 2, 1, 0.0F);
+
+		overlay = new ModelRenderer(this, 0, 0);
+		overlay.addBox(-3.0F, -7.0F, -2.5F, 6, 6, 6, 0.6F);
+		hideOverlay();
+	}
+
+	private void setDeer() {
+		hideOverlay();
+
+		head = new ModelRenderer(this, 0, 5);
+		head.addBox(-2.0F, -8.0F, -2.0F, 4, 6, 6, 0.0F);
+		head.setRotationPoint(0.0F, 2.0F, 0.0F);
+
+		head.setTextureOffset(52, 0).addBox(-1.5F, -5.0F, -5.0F, 3, 3, 3, 0.0F);
+
+		head.setTextureOffset(20, 0);
+		head.addBox(-3.0F, -10.0F, 2.0F, 2, 2, 2, 0.0F);
+		head.addBox(-3.0F, -10.0F, 2.0F, 2, 2, 2, 0.0F);
+		head.addBox(-4.0F, -10.0F, 3.0F, 1, 1, 3, 0.0F);
+		head.addBox(-5.0F, -11.0F, 5.0F, 1, 1, 5, 0.0F);
+		head.addBox(-5.0F, -14.0F, 7.0F, 1, 4, 1, 0.0F);
+		head.addBox(-6.0F, -17.0F, 6.0F, 1, 4, 1, 0.0F);
+		head.addBox(-6.0F, -13.0F, 4.0F, 1, 1, 3, 0.0F);
+		head.addBox(-6.0F, -14.0F, 1.0F, 1, 1, 4, 0.0F);
+		head.addBox(-7.0F, -15.0F, -2.0F, 1, 1, 4, 0.0F);
+		head.addBox(-6.0F, -16.0F, -5.0F, 1, 1, 4, 0.0F);
+		head.addBox(-7.0F, -18.0F, 3.0F, 1, 5, 1, 0.0F);
+		head.addBox(-6.0F, -19.0F, -2.0F, 1, 5, 1, 0.0F);
+
+		head.addBox(1.0F, -10.0F, 2.0F, 2, 2, 2, 0.0F);
+		head.addBox(3.0F, -10.0F, 3.0F, 1, 1, 3, 0.0F);
+		head.addBox(4.0F, -11.0F, 5.0F, 1, 1, 5, 0.0F);
+		head.addBox(4.0F, -14.0F, 6.0F, 1, 4, 1, 0.0F);
+		head.addBox(5.0F, -17.0F, 7.0F, 1, 4, 1, 0.0F);
+		head.addBox(5.0F, -13.0F, 4.0F, 1, 1, 3, 0.0F);
+		head.addBox(5.0F, -14.0F, 1.0F, 1, 1, 4, 0.0F);
+		head.addBox(6.0F, -15.0F, -2.0F, 1, 1, 4, 0.0F);
+		head.addBox(5.0F, -16.0F, -5.0F, 1, 1, 4, 0.0F);
+		head.addBox(6.0F, -18.0F, 3.0F, 1, 5, 1, 0.0F);
+		head.addBox(5.0F, -19.0F, -2.0F, 1, 5, 1, 0.0F);
+	}
+
+	private void setBoar() {
+		hideOverlay();
+
+		head = new ModelRenderer(this, 0, 0);
+		head.addBox(-4.0F, -2.0F, -2.0F, 8, 7, 6, 0.0F);
+		head.setRotationPoint(0.0F, -5.0F, 0.0F);
+
+		head.setTextureOffset(28, 0).addBox(-3.0F, 1.0F, -5.0F, 6, 4, 3, 0.0F);
+
+		head.setTextureOffset(17, 17).addBox(3.0F, 2.0F, -5.0F, 1, 2, 1, 0.0F);
+		head.setTextureOffset(17, 17).addBox(-4.0F, 2.0F, -5.0F, 1, 2, 1, 0.0F);
+	}
+
+	private void setRedcap() {
+		head = new ModelRenderer(this, 0, 0);
+		head = new ModelRenderer(this, 0, 0);
+		head.addBox(-3.4F, -7.0F, -4.0F, 7, 7, 7, 0.0F);
+		head.setRotationPoint(0.0F, 0.0F, 0.0F);
+
+		overlay = new ModelRenderer(this, 32, 0);
+		overlay.addBox(-2.0F, -8.0F, -3.0F, 4, 5, 7, 0.0F);
+		overlay.setRotationPoint(0.0F, 0.0F, 0.0F);
+
+		ModelRenderer goblinRightEar = new ModelRenderer(this, 48, 20);
+		goblinRightEar.addBox(3.0F, -7.0F, -1.0F, 2, 3, 1, 0.0F);
+		goblinRightEar.setRotationPoint(0.0F, 0.0F, 0.0F);
+
+		ModelRenderer goblinLeftEar = new ModelRenderer(this, 48, 24);
+		goblinLeftEar.addBox(-5.0F, -7.0F, -1.0F, 2, 3, 1, 0.0F);
+		goblinLeftEar.setRotationPoint(0.0F, 0.0F, 0.0F);
+
+		head.addChild(goblinLeftEar);
+		head.addChild(goblinRightEar);
+	}
+
+	private void setGhast() {
+		hideOverlay();
+		textureWidth = 32;
+		textureHeight = 16;
+
+		head = new ModelRenderer(this, 0, 0);
+		head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
+	}
+
+	private void setEnderDragon() {
+		float f1 = -14.0F;
+		float f2 = -8.0F;
+		textureWidth = 256;
+		textureHeight = 256;
+
+		setTextureOffset("head.upperhead", 112, 30);
+		setTextureOffset("head.upperlip", 176, 44);
+		setTextureOffset("head.scale", 0, 0);
+		setTextureOffset("head.nostril", 112, 0);
+		setTextureOffset("jaw.jaw", 176, 65);
+
+		head = new ModelRenderer(this, "head");
+		head.addBox("upperlip", -6.0F, -1.0F + f2, -8.0F + f1, 12, 5, 16);
+		head.addBox("upperhead", -8.0F, -8.0F + f2, 6.0F + f1, 16, 16, 16);
+		head.mirror = true;
+		head.addBox("scale", -5.0F, -12.0F + f2, 12.0F + f1, 2, 4, 6);
+		head.addBox("nostril", -5.0F, -3.0F + f2, -6.0F + f1, 2, 2, 4);
+		head.mirror = false;
+		head.addBox("scale", 3.0F, -12.0F + f2, 12.0F + f1, 2, 4, 6);
+		head.addBox("nostril", 3.0F, -3.0F + f2, -6.0F + f1, 2, 2, 4);
+		overlay = new ModelRenderer(this, "jaw");
+		overlay.setRotationPoint(0.0F, 4.0F + f2, 8.0F + f1);
+		overlay.addBox("jaw", -6.0F, 0.0F, -16.0F, 12, 4, 16);
+		overlay.rotateAngleX = 0.2F;
+		head.addChild(overlay);
+		hideOverlay();
+	}
+
+	private void setKobold() {
+		float f = 1.0F;
+		hideOverlay();
+		head = new ModelRenderer(this, 0, 0);
+		head.addBox(-3.5f, -7.0f + f, -3.0f + f, 7, 6, 6);
+		head.setRotationPoint(0.0f, 0.0f, 0.0f);
+		ModelRenderer rightear = new ModelRenderer(this, 48, 20);
+		rightear.addBox(0.0f, -4.0f, 0.0f, 4, 4, 1);
+		rightear.setRotationPoint(3.5f, -3.0f + f, -1.0f + f);
+		rightear.rotateAngleY = 0.2617994f;
+		rightear.rotateAngleZ = -0.3490659f;
+		head.addChild(rightear);
+		ModelRenderer leftear = new ModelRenderer(this, 48, 25);
+		leftear.addBox(-4.0f, -4.0f, 0.0f, 4, 4, 1);
+		leftear.setRotationPoint(-3.5f, -3.0f + f, -1.0f + f);
+		leftear.rotateAngleY = -0.2617994f;
+		leftear.rotateAngleZ = 0.3490659f;
+		head.addChild(leftear);
+		ModelRenderer snout = new ModelRenderer(this, 28, 0);
+		snout.addBox(-1.5f, -2.0f, -2.0f, 3, 2, 3);
+		snout.setRotationPoint(0.0f, -2.0f + f, -3.0f + f);
+		head.addChild(snout);
+		ModelRenderer jaw = new ModelRenderer(this, 28, 5);
+		jaw.addBox(-1.5f, 0.0f, -2.0f, 3, 1, 3);
+		jaw.setRotationPoint(0.0f, -2.0f + f, -3.0f + f);
+		jaw.rotateAngleX = 0.20944f;
+		head.addChild(jaw);
+	}
+
+	private void setRotation(ModelRenderer model, float x, float y, float z) {
+		model.rotateAngleX = x;
+		model.rotateAngleY = y;
+		model.rotateAngleZ = z;
+	}
+}
