@@ -127,7 +127,7 @@ public class Skull extends ItemSkull {
 	public String getItemStackDisplayName(ItemStack stack) {
 		if (stack.getItemDamage() == SkullTypes.player.ordinal() && stack.hasTagCompound())
 			if (stack.getTagCompound().hasKey("SkullOwner", 10))
-				return StatCollector.translateToLocalFormatted("item.skull.player.name", new Object[] { NBTUtil.func_152459_a(stack.getTagCompound().getCompoundTag("SkullOwner")).getName() });
+				return StatCollector.translateToLocalFormatted("item.skull.player.name", NBTUtil.func_152459_a(stack.getTagCompound().getCompoundTag("SkullOwner")).getName());
 
 		return super.getItemStackDisplayName(stack);
 	}
