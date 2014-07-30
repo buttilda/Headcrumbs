@@ -30,12 +30,13 @@ public class ItemSkullRender implements IItemRenderer {
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack stack, Object... data) {
 		int skullType = stack.getItemDamage();
-		GameProfile name = null;
-		if (stack.hasTagCompound() && stack.getTagCompound().hasKey("SkullOwner"))
-			name = NBTUtil.func_152459_a(stack.getTagCompound().getCompoundTag("SkullOwner"));
+		GameProfile profile = null;
 
 		boolean isVanilla = stack.getItem() == Items.skull;
-		if (!isVanilla)
+		if (!isVanilla) {
+			if (stack.hasTagCompound() && stack.getTagCompound().hasKey("SkullOwner"))
+				profile = NBTUtil.func_152459_a(stack.getTagCompound().getCompoundTag("SkullOwner"));
+
 			switch (SkullTypes.values()[skullType]) {
 				case witch:
 				case wildDeer:
@@ -60,20 +61,21 @@ public class ItemSkullRender implements IItemRenderer {
 				default:
 					break;
 			}
+		}
 
 		switch (type) {
 			case ENTITY:
-				renderSkull(-0.25F, -0.5F, -0.5F, skullType, name, isVanilla);
+				renderSkull(-0.25F, -0.5F, -0.5F, skullType, profile, isVanilla);
 				break;
 			case EQUIPPED:
-				renderSkull(0.5F, 0.0F, 0.0F, skullType, name, isVanilla);
+				renderSkull(0.5F, 0.0F, 0.0F, skullType, profile, isVanilla);
 				break;
 			case EQUIPPED_FIRST_PERSON:
-				renderSkull(0.75F, 0.25F, 0.4F, skullType, name, isVanilla);
+				renderSkull(0.75F, 0.25F, 0.4F, skullType, profile, isVanilla);
 				break;
 			case INVENTORY:
 				GL11.glScaled(1.5, 1.5, 1.5);
-				renderSkull(0.75F, 0.30F, 0.5F, skullType, name, isVanilla);
+				renderSkull(0.75F, 0.30F, 0.5F, skullType, profile, isVanilla);
 				break;
 			default:
 				break;
