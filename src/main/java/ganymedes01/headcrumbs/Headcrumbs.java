@@ -79,6 +79,14 @@ public class Headcrumbs {
 
 		OreDictionary.registerOre("itemSkull", new ItemStack(ModItems.skull, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("itemSkull", new ItemStack(Items.skull, 1, OreDictionary.WILDCARD_VALUE));
+		for (SkullTypes type : SkullTypes.values())
+			OreDictionary.registerOre("skull" + type.name().substring(0, 1).toUpperCase() + type.name().substring(1), new ItemStack(ModItems.skull, 1, type.ordinal()));
+		OreDictionary.registerOre("skullSkeleton", new ItemStack(Items.skull, 1, 0));
+		OreDictionary.registerOre("skullWitherSkeleton", new ItemStack(Items.skull, 1, 1));
+		OreDictionary.registerOre("skullZombie", new ItemStack(Items.skull, 1, 2));
+		OreDictionary.registerOre("skullPlayer", new ItemStack(Items.skull, 1, 3));
+		OreDictionary.registerOre("skullCreeper", new ItemStack(Items.skull, 1, 4));
+
 	}
 
 	@EventHandler

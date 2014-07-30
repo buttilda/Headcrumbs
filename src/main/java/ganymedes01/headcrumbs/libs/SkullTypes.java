@@ -43,7 +43,7 @@ public enum SkullTypes {
 	druid(Strings.TF_PREFIX + "skeletondruid", "TwilightForest"),
 	hedgeSpider(Strings.TF_PREFIX + "hedgespider", "TwilightForest"),
 	ghast(Strings.MC_PREFIX + "ghast/ghast"),
-	blizz(Strings.TE_PREFIX + "Blizz", "ThermalExpansion"),
+	blizz(Strings.TE_PREFIX + "Blizz", "ThermalFoundation"),
 	mistWolf(Strings.TF_PREFIX + "mistwolf", "TwilightForest"),
 	miniGhast(Strings.TF_PREFIX + "towerghast", "TwilightForest"),
 	guardGhast(Strings.TF_PREFIX + "towerghast_openeyes", "TwilightForest"),
