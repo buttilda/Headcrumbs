@@ -81,10 +81,13 @@ public class HeadUtils {
 		});
 
 		for (String name : allNames) {
-			ItemStack head = createHeadFor(name.trim());
+			name = name.trim();
+			if (name == null || name.isEmpty())
+				continue;
 
+			ItemStack head = createHeadFor(name);
 			if (Headcrumbs.addPlayerHeadsAsDungeonLoot) {
-				rand.setSeed(name.trim().hashCode());
+				rand.setSeed(name.hashCode());
 				Utils.addDungeonLoot(head.copy(), 1, 1, 1 + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
 				Utils.addStrongholdLoot(head.copy(), 1, 1, 2 + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight - 1));
 			}

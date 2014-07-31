@@ -123,14 +123,17 @@ public enum SkullTypes {
 
 	private ResourceLocation getPlayerSkin(GameProfile profile) {
 		if (profile != null) {
-			ResourceLocation texture = map.get(profile.getName());
-			if (texture == null) {
-				texture = AbstractClientPlayer.getLocationSkin(profile.getName());
-				AbstractClientPlayer.getDownloadImageSkin(texture, profile.getName());
-				map.put(profile.getName(), texture);
+			String name = profile.getName();
+			if (name != null && !name.isEmpty()) {
+				ResourceLocation texture = map.get(name);
+				if (texture == null) {
+					texture = AbstractClientPlayer.getLocationSkin(name);
+					AbstractClientPlayer.getDownloadImageSkin(texture, name);
+					map.put(profile.getName(), texture);
+				}
+				return texture;
 			}
-			return texture;
-		} else
-			return AbstractClientPlayer.locationStevePng;
+		}
+		return AbstractClientPlayer.locationStevePng;
 	}
 }
