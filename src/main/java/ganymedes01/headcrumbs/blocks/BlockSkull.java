@@ -11,11 +11,11 @@ import java.util.Random;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemSkull;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
@@ -38,7 +38,6 @@ public class BlockSkull extends BlockContainer implements IInfusionStabiliser {
 	public BlockSkull() {
 		super(Material.circuits);
 		setHardness(1.0F);
-		setBlockTextureName("skull");
 		setStepSound(soundTypeStone);
 		setBlockName(Utils.getUnlocalizedName("betterSkull"));
 	}
@@ -173,7 +172,12 @@ public class BlockSkull extends BlockContainer implements IInfusionStabiliser {
 
 	@Override
 	@SideOnly(Side.CLIENT)
+	public void registerBlockIcons(IIconRegister reg) {
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
 	public String getItemIconName() {
-		return getTextureName() + "_" + ItemSkull.field_94587_a[0];
+		return Blocks.skull.getItemIconName();
 	}
 }
