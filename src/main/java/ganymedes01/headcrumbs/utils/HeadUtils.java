@@ -89,7 +89,7 @@ public class HeadUtils {
 			if (Headcrumbs.addPlayerHeadsAsDungeonLoot) {
 				rand.setSeed(name.hashCode());
 				Utils.addDungeonLoot(head.copy(), 1, 1, 1 + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
-				Utils.addStrongholdLoot(head.copy(), 1, 1, 2 + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight - 1));
+				Utils.addStrongholdLoot(head.copy(), 1, 1, 2 + rand.nextInt(Math.max(1, Headcrumbs.headsDungeonLootMaxWeight - 1)));
 			}
 
 			players.add(head);

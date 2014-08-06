@@ -66,7 +66,7 @@ public class Headcrumbs {
 	public static int headDropChance = 150;
 	public static boolean addPlayerHeadsAsDungeonLoot = true;
 	public static boolean enableMobsAndAnimalHeads = true;
-	public static int headsDungeonLootMaxWeight = 6;
+	public static int headsDungeonLootMaxWeight = 3;
 	public static boolean hidePlayerHeadsFromTab = false;
 	public static boolean enableChargedCreeperKills = true;
 	public static boolean enablePlayerStatues = true;
