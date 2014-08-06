@@ -1,7 +1,7 @@
 package ganymedes01.headcrumbs.renderers;
 
 import ganymedes01.headcrumbs.libs.SkullTypes;
-import ganymedes01.headcrumbs.tileentities.TileEntityBlockNewSkull;
+import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -19,15 +19,15 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class TileEntityBlockSkullRender extends TileEntitySpecialRenderer {
+public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 
 	private ModelHead model;
 	private final RenderBlocks renderer = new RenderBlocks();
-	public static TileEntityBlockSkullRender instance;
+	public static TileEntityBlockSkullRenderer instance;
 
 	@Override
-	public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float angle) {
-		TileEntityBlockNewSkull tileSkull = (TileEntityBlockNewSkull) tile;
+	public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float partialTicks) {
+		TileEntityBlockSkull tileSkull = (TileEntityBlockSkull) tile;
 		renderHead((float) x, (float) y, (float) z, tileSkull.getBlockMetadata() & 7, tileSkull.func_145906_b() * 360 / 16.0F, tileSkull.func_145904_a(), tileSkull.func_152108_a());
 	}
 
@@ -46,7 +46,9 @@ public class TileEntityBlockSkullRender extends TileEntitySpecialRenderer {
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 		GL11.glEnable(GL11.GL_ALPHA_TEST);
 
-		skullRotation = translateHead(x, y, z, meta, skullRotation);
+		translateHead(x, y, z, meta, skullRotation);
+		skullRotation = adjustRotation(meta, skullRotation);
+
 		GL11.glScalef(-1.0F, -1.0F, 1.0F);
 		model = ModelHead.getHead(skullType);
 		model.render(skullRotation);
@@ -83,22 +85,36 @@ public class TileEntityBlockSkullRender extends TileEntitySpecialRenderer {
 		}
 	}
 
-	private float translateHead(float x, float y, float z, int meta, float skullRotation) {
+	private void translateHead(float x, float y, float z, int meta, float skullRotation) {
 		switch (meta) {
 			case 1:
 				GL11.glTranslatef(x + 0.5F, y, z + 0.5F);
-				return skullRotation;
+				break;
 			case 2:
 				GL11.glTranslatef(x + 0.5F, y + 0.25F, z + 0.74F);
-				return skullRotation;
+				break;
 			case 3:
 				GL11.glTranslatef(x + 0.5F, y + 0.25F, z + 0.26F);
-				return 180.0F;
+				break;
 			case 4:
 				GL11.glTranslatef(x + 0.74F, y + 0.25F, z + 0.5F);
-				return 270.0F;
+				break;
 			default:
 				GL11.glTranslatef(x + 0.26F, y + 0.25F, z + 0.5F);
+				break;
+		}
+	}
+
+	protected float adjustRotation(int meta, float rotation) {
+		switch (meta) {
+			case 1:
+			case 2:
+				return rotation;
+			case 3:
+				return 180.0F;
+			case 4:
+				return 270.0F;
+			default:
 				return 90.0F;
 		}
 	}

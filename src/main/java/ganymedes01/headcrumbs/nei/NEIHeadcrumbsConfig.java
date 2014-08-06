@@ -11,6 +11,8 @@ public class NEIHeadcrumbsConfig implements IConfigureNEI {
 	@Override
 	public void loadConfig() {
 		API.hideItem(new ItemStack(ModBlocks.blockSkull));
+		API.hideItem(new ItemStack(ModBlocks.blockPlayer));
+		API.hideItem(new ItemStack(ModBlocks.blockEmpty));
 	}
 
 	@Override

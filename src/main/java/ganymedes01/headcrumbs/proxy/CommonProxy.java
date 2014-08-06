@@ -2,7 +2,8 @@ package ganymedes01.headcrumbs.proxy;
 
 import ganymedes01.headcrumbs.configs.ConfigHandler;
 import ganymedes01.headcrumbs.eventHandlers.EntityDropEvent;
-import ganymedes01.headcrumbs.tileentities.TileEntityBlockNewSkull;
+import ganymedes01.headcrumbs.tileentities.TileEntityBlockPlayer;
+import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
 import ganymedes01.headcrumbs.utils.Utils;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -16,7 +17,8 @@ public class CommonProxy {
 	}
 
 	public void registerTileEntities() {
-		GameRegistry.registerTileEntity(TileEntityBlockNewSkull.class, Utils.getUnlocalizedName("head"));
+		GameRegistry.registerTileEntity(TileEntityBlockSkull.class, Utils.getUnlocalizedName("head"));
+		GameRegistry.registerTileEntity(TileEntityBlockPlayer.class, Utils.getUnlocalizedName("player"));
 	}
 
 	public void registerRenderers() {

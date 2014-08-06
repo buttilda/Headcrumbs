@@ -4,6 +4,7 @@ import ganymedes01.headcrumbs.libs.Reference;
 
 import java.awt.Color;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -74,5 +75,17 @@ public class Utils {
 		ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CORRIDOR, new WeightedRandomChestContent(stack, minChance, maxChance, weight));
 		ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_LIBRARY, new WeightedRandomChestContent(stack, minChance, maxChance, weight));
 		ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CROSSING, new WeightedRandomChestContent(stack, minChance, maxChance, weight));
+	}
+
+	public static final void breakBlockWithParticles(World world, int x, int y, int z, int meta) {
+		Block block = world.getBlock(x, y, z);
+		if (block.isAir(world, x, y, z))
+			return;
+		world.setBlockToAir(x, y, z);
+		doBreakParticles(world, x, y, z, block, meta);
+	}
+
+	public static final void doBreakParticles(World world, int x, int y, int z, Block block, int meta) {
+		world.playAuxSFXAtEntity(null, 2001, x, y, z, Block.getIdFromBlock(block) + (meta << 12));
 	}
 }

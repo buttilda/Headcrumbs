@@ -10,17 +10,10 @@ import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-/**
- * Gany's End
- *
- * @author ganymedes01
- *
- */
+public class TileEntityBlockSkull extends TileEntitySkull {
 
-public class TileEntityBlockNewSkull extends TileEntitySkull {
-
-	private int skullType, skullRotation;
-	private GameProfile profile = null;
+	protected int skullType, skullRotation;
+	protected GameProfile profile = null;
 
 	@Override
 	public void writeToNBT(NBTTagCompound nbt) {

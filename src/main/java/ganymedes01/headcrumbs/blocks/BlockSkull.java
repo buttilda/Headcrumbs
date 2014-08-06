@@ -2,7 +2,7 @@ package ganymedes01.headcrumbs.blocks;
 
 import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.libs.SkullTypes;
-import ganymedes01.headcrumbs.tileentities.TileEntityBlockNewSkull;
+import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.Utils;
 
@@ -36,10 +36,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockSkull extends BlockContainer implements IInfusionStabiliser {
 
 	public BlockSkull() {
-		super(Material.circuits);
-		setHardness(1.0F);
-		setStepSound(soundTypeStone);
+		this(Material.circuits);
 		setBlockName(Utils.getUnlocalizedName("betterSkull"));
+	}
+
+	protected BlockSkull(Material material) {
+		super(material);
+		setHardness(1.0F);
+		setStepSound(soundTypePiston);
 	}
 
 	@Override
@@ -98,7 +102,7 @@ public class BlockSkull extends BlockContainer implements IInfusionStabiliser {
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
-		return new TileEntityBlockNewSkull();
+		return new TileEntityBlockSkull();
 	}
 
 	@Override
@@ -115,7 +119,7 @@ public class BlockSkull extends BlockContainer implements IInfusionStabiliser {
 			return null;
 
 		ItemStack stack = new ItemStack(item, 1, getDamageValue(world, x, y, z));
-		TileEntityBlockNewSkull tile = Utils.getTileEntity(world, x, y, z, TileEntityBlockNewSkull.class);
+		TileEntityBlockSkull tile = Utils.getTileEntity(world, x, y, z, TileEntityBlockSkull.class);
 		if (tile != null)
 			if (tile.func_145904_a() == SkullTypes.player.ordinal() && tile.func_152108_a() != null)
 				stack = HeadUtils.createHeadFor(tile.func_152108_a());
@@ -126,7 +130,7 @@ public class BlockSkull extends BlockContainer implements IInfusionStabiliser {
 	@Override
 	public int getDamageValue(World world, int x, int y, int z) {
 		TileEntity tile = world.getTileEntity(x, y, z);
-		return tile != null && tile instanceof TileEntityBlockNewSkull ? ((TileEntityBlockNewSkull) tile).func_145904_a() : super.getDamageValue(world, x, y, z);
+		return tile != null && tile instanceof TileEntityBlockSkull ? ((TileEntityBlockSkull) tile).func_145904_a() : super.getDamageValue(world, x, y, z);
 	}
 
 	@Override
@@ -143,9 +147,10 @@ public class BlockSkull extends BlockContainer implements IInfusionStabiliser {
 	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int meta, int fortune) {
 		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
 
-		TileEntityBlockNewSkull tile = Utils.getTileEntity(world, x, y, z, TileEntityBlockNewSkull.class);
+		TileEntityBlockSkull tile = Utils.getTileEntity(world, x, y, z, TileEntityBlockSkull.class);
 		if (tile == null)
 			return drops;
+
 		ItemStack stack = new ItemStack(ModItems.skull, 1, tile.func_145904_a());
 
 		if (tile.func_145904_a() == SkullTypes.player.ordinal() && tile.func_152108_a() != null) {

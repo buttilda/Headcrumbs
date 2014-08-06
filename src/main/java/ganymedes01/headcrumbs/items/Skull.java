@@ -3,7 +3,7 @@ package ganymedes01.headcrumbs.items;
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.ModBlocks;
 import ganymedes01.headcrumbs.libs.SkullTypes;
-import ganymedes01.headcrumbs.tileentities.TileEntityBlockNewSkull;
+import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.Utils;
 
@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSkull;
 import net.minecraft.item.ItemStack;
@@ -43,7 +44,30 @@ public class Skull extends ItemSkull {
 			return false;
 		else if (!world.getBlock(x, y, z).getMaterial().isSolid())
 			return false;
-		else {
+		else if (world.getBlock(x, y, z) == Blocks.clay && world.getBlock(x, y - 1, z) == Blocks.clay && stack.getItemDamage() == SkullTypes.player.ordinal()) {
+			world.setBlock(x, y, z, ModBlocks.blockPlayer, 1, 3);
+			Utils.doBreakParticles(world, x, y, z, Blocks.soul_sand, 0);
+			world.setBlock(x, y - 1, z, ModBlocks.blockEmpty);
+			Utils.doBreakParticles(world, x, y - 1, z, Blocks.soul_sand, 0);
+
+			TileEntityBlockSkull tile = Utils.getTileEntity(world, x, y, z, TileEntityBlockSkull.class);
+			if (tile != null) {
+				GameProfile profile = null;
+
+				if (stack.hasTagCompound()) {
+					NBTTagCompound nbt = stack.getTagCompound();
+					if (nbt.hasKey("SkullOwner", 10))
+						profile = NBTUtil.func_152459_a(nbt.getCompoundTag("SkullOwner"));
+				}
+
+				tile.setType(stack.getItemDamage(), profile);
+				tile.func_145903_a(MathHelper.floor_double(player.rotationYaw * 16.0F / 360.0F + 0.5D) & 15);
+				world.notifyBlockChange(x, y, z, ModBlocks.blockPlayer);
+			}
+
+			stack.stackSize--;
+			return true;
+		} else {
 			if (side == 1)
 				y++;
 			if (side == 2)
@@ -66,7 +90,7 @@ public class Skull extends ItemSkull {
 				if (side == 1)
 					angle = MathHelper.floor_double(player.rotationYaw * 16.0F / 360.0F + 0.5D) & 15;
 
-				TileEntityBlockNewSkull tile = Utils.getTileEntity(world, x, y, z, TileEntityBlockNewSkull.class);
+				TileEntityBlockSkull tile = Utils.getTileEntity(world, x, y, z, TileEntityBlockSkull.class);
 
 				if (tile != null) {
 					GameProfile profile = null;
@@ -107,8 +131,9 @@ public class Skull extends ItemSkull {
 			if (skull.canShow()) {
 				list.add(new ItemStack(item, 1, skull.ordinal()));
 
-				if (skull == SkullTypes.player)
-					list.addAll(HeadUtils.players);
+				if (!Headcrumbs.hidePlayerHeadsFromTab)
+					if (skull == SkullTypes.player)
+						list.addAll(HeadUtils.players);
 			}
 	}
 

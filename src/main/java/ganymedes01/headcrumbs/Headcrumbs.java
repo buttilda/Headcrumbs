@@ -67,6 +67,7 @@ public class Headcrumbs {
 	public static boolean addPlayerHeadsAsDungeonLoot = true;
 	public static boolean enableMobsAndAnimalHeads = true;
 	public static int headsDungeonLootMaxWeight = 6;
+	public static boolean hidePlayerHeadsFromTab = false;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {

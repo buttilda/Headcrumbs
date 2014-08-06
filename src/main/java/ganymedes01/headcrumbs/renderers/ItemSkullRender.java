@@ -88,7 +88,7 @@ public class ItemSkullRender implements IItemRenderer {
 		if (isVanilla)
 			TileEntitySkullRenderer.field_147536_b.func_152674_a(0, 0, 0, 0, 0, type, name);
 		else
-			TileEntityBlockSkullRender.instance.renderHead(0, 0, 0, 0, 0, type, name);
+			TileEntityBlockSkullRenderer.instance.renderHead(0, 0, 0, 0, 0, type, name);
 		GL11.glPopMatrix();
 	}
 }
