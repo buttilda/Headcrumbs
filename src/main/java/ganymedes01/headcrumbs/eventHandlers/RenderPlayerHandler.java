@@ -73,6 +73,8 @@ public class RenderPlayerHandler {
 					case ocelotSiamese:
 					case silverfish:
 					case mistWolf:
+					case winterWolf:
+					case towerwoodBorer:
 						offset = 2.0F;
 						break;
 					case bunnyDutch:

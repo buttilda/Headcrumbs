@@ -53,10 +53,9 @@ import net.minecraft.nbt.NBTUtil;
 
 import com.mojang.authlib.GameProfile;
 
-public class HeadUtils {
+import cpw.mods.fml.common.Loader;
 
-	public static boolean useTwilightForrestMobs = false;
-	public static boolean useThermalExpansionMobs = false;
+public class HeadUtils {
 
 	public static final List<ItemStack> players = new LinkedList<ItemStack>();
 
@@ -100,13 +99,13 @@ public class HeadUtils {
 		if (target.isChild())
 			return null;
 
-		if (useTwilightForrestMobs) {
+		if (Loader.isModLoaded("TwilightForest")) {
 			ItemStack head = getTFMobHead(target);
 			if (head != null)
 				return head;
 		}
 
-		if (useThermalExpansionMobs) {
+		if (Loader.isModLoaded("ThermalExpansion")) {
 			ItemStack head = getTEMobHead(EntityList.getEntityString(target));
 			if (head != null)
 				return head;
@@ -210,7 +209,7 @@ public class HeadUtils {
 			return new ItemStack(ModItems.skull, 1, SkullTypes.enderDragon.ordinal());
 		else if (target instanceof EntityBat)
 			return new ItemStack(ModItems.skull, 1, SkullTypes.bat.ordinal());
-		else if (target instanceof EntitySlime) {
+		else if (target instanceof EntitySlime && ((EntitySlime) target).getSlimeSize() == 1) {
 			if (target instanceof EntityMagmaCube)
 				return new ItemStack(ModItems.skull, 1, SkullTypes.magmaCube.ordinal());
 			return new ItemStack(ModItems.skull, 1, SkullTypes.slime.ordinal());
@@ -300,6 +299,16 @@ public class HeadUtils {
 			return new ItemStack(ModItems.skull, 1, SkullTypes.hostileWolf.ordinal());
 		else if (mobName.equals("TwilightForest.Forest Squirrel"))
 			return new ItemStack(ModItems.skull, 1, SkullTypes.hostileWolf.ordinal());
+		else if (mobName.equals("TwilightForest.Swarm Spider"))
+			return new ItemStack(ModItems.skull, 1, SkullTypes.swarmSpider.ordinal());
+		else if (mobName.equals("TwilightForest.Redscale Broodling"))
+			return new ItemStack(ModItems.skull, 1, SkullTypes.towerBroodling.ordinal());
+		else if (mobName.equals("TwilightForest.WinterWolf"))
+			return new ItemStack(ModItems.skull, 1, SkullTypes.winterWolf.ordinal());
+		else if (mobName.equals("TwilightForest.Maze Slime") && ((EntitySlime) entity).getSlimeSize() == 1)
+			return new ItemStack(ModItems.skull, 1, SkullTypes.mazeSlime.ordinal());
+		else if (mobName.equals("TwilightForest.Tower Termite"))
+			return new ItemStack(ModItems.skull, 1, SkullTypes.towerwoodBorer.ordinal());
 		else
 			return null;
 	}
