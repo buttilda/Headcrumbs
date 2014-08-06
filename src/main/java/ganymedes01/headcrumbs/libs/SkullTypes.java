@@ -89,7 +89,10 @@ public enum SkullTypes {
 	towerBroodling(Strings.TF_PREFIX + "towerbroodling", "TwilightForest"),
 	winterWolf(Strings.TF_PREFIX + "winterwolf", "TwilightForest"),
 	mazeSlime(Strings.TF_PREFIX + "mazeslime", "TwilightForest"),
-	towerwoodBorer(Strings.TF_PREFIX + "towertermite", "TwilightForest");
+	towerwoodBorer(Strings.TF_PREFIX + "towertermite", "TwilightForest"),
+	imp(Strings.NA_PREFIX + "imp", "Natura"),
+	nitroCreeper(Strings.NA_PREFIX + "creeperunstable", "Natura"),
+	heatscarSpider(Strings.NA_PREFIX + "flamespider", "Natura");
 
 	private final String mod;
 	private final ResourceLocation texture;
@@ -134,6 +137,7 @@ public enum SkullTypes {
 			case kingSpider:
 			case swarmSpider:
 			case towerBroodling:
+			case heatscarSpider:
 				return SPIDER_EYES;
 			default:
 				return null;

@@ -95,7 +95,7 @@ public class HeadUtils {
 		}
 	}
 
-	public static final ItemStack getHeadfromEntity(EntityLivingBase target) {
+	public static ItemStack getHeadfromEntity(EntityLivingBase target) {
 		if (target.isChild())
 			return null;
 
@@ -106,7 +106,13 @@ public class HeadUtils {
 		}
 
 		if (Loader.isModLoaded("ThermalExpansion")) {
-			ItemStack head = getTEMobHead(EntityList.getEntityString(target));
+			ItemStack head = getTEMobHead(target);
+			if (head != null)
+				return head;
+		}
+
+		if (Loader.isModLoaded("Natura")) {
+			ItemStack head = getNaturaHead(target);
 			if (head != null)
 				return head;
 		}
@@ -313,10 +319,29 @@ public class HeadUtils {
 			return null;
 	}
 
-	private static ItemStack getTEMobHead(String mobName) {
-		if (mobName != null)
-			if (mobName.equals("Blizz"))
-				return new ItemStack(ModItems.skull, 1, SkullTypes.blizz.ordinal());
-		return null;
+	private static ItemStack getTEMobHead(Entity entity) {
+		String mobName = EntityList.getEntityString(entity);
+
+		if (mobName == null)
+			return null;
+		if (mobName.equals("Blizz"))
+			return new ItemStack(ModItems.skull, 1, SkullTypes.blizz.ordinal());
+		else
+			return null;
+	}
+
+	private static ItemStack getNaturaHead(Entity entity) {
+		String mobName = EntityList.getEntityString(entity);
+
+		if (mobName == null)
+			return null;
+		else if (mobName.equals("Natura.Imp"))
+			return new ItemStack(ModItems.skull, 1, SkullTypes.imp.ordinal());
+		else if (mobName.equals("Natura.NitroCreeper"))
+			return new ItemStack(ModItems.skull, 1, SkullTypes.nitroCreeper.ordinal());
+		else if (mobName.equals("Natura.FlameSpiderBaby"))
+			return new ItemStack(ModItems.skull, 1, SkullTypes.heatscarSpider.ordinal());
+		else
+			return null;
 	}
 }

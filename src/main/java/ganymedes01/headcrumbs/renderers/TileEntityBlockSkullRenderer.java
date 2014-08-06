@@ -88,6 +88,7 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 				case enderman:
 				case swarmSpider:
 				case towerBroodling:
+				case heatscarSpider:
 					GL11.glEnable(GL11.GL_BLEND);
 					GL11.glDisable(GL11.GL_ALPHA_TEST);
 					GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);

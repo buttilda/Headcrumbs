@@ -66,6 +66,9 @@ item.headcrumbs.towerBroodling.name=Carminite Broodling Head
 item.headcrumbs.winterWolf.name=Winter Wolf Head
 item.headcrumbs.mazeSlime.name=Maze Slime Head
 item.headcrumbs.towerTermite.name=Towerwood Borer Head
+item.headcrumbs.imp.name=Imp Head
+item.headcrumbs.nitroCreeper.name=Nitro Creeper Head
+item.headcrumbs.heatscarSpider.name=Heatscar Spider Head
 
 # Creative Tab
 itemGroup.headcrumbs=Headcrumbs

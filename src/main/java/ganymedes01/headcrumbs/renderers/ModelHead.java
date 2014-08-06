@@ -116,6 +116,7 @@ public class ModelHead extends ModelSkeletonHead {
 			case kingSpider:
 			case swarmSpider:
 			case towerBroodling:
+			case heatscarSpider:
 				setSpider();
 				break;
 			case pig:
@@ -238,13 +239,26 @@ public class ModelHead extends ModelSkeletonHead {
 			case towerwoodBorer:
 				setSilverfish();
 				break;
+			case imp:
+				setImp();
+				break;
+			case nitroCreeper:
+				hideOverlay();
+				break;
 			case blaze:
 			case blizz:
 			case druid:
 			case player:
+			default:
 				break;
 		}
 		return this;
+	}
+
+	private void setImp() {
+		head = new ModelRenderer(this, 0, 0);
+		head.addBox(-5F, -8F, -4F, 10, 8, 8, 0.0F);
+		hideOverlay();
 	}
 
 	private void setSilverfish() {
