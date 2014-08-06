@@ -27,23 +27,24 @@ public class EntityDropEvent {
 		if (event.entityLiving.getHealth() > 0.0F)
 			return;
 
-		if (shouldDoRandomDrop(event.entityLiving.worldObj.rand, event.lootingLevel) || isPoweredCreeper(event.source)) {
+		boolean isPoweredCreeper = Headcrumbs.enableChargedCreeperKills && isPoweredCreeper(event.source);
+
+		if (isPoweredCreeper || shouldDoRandomDrop(event.entityLiving.worldObj.rand, event.lootingLevel)) {
 			ItemStack stack = HeadUtils.getHeadfromEntity(event.entityLiving);
-			if (stack != null && canDropThisHead(stack)) {
-				if (!isPlayerHead(stack) && !Headcrumbs.enableMobsAndAnimalHeads)
-					return;
-				addDrop(stack, event.entityLiving, event.drops);
-			}
+			if (stack == null)
+				return;
+
+			if (isPoweredCreeper || canDropThisHead(stack))
+				if (isPlayerHead(stack) || Headcrumbs.enableMobsAndAnimalHeads)
+					addDrop(stack, event.entityLiving, event.drops);
 		}
 	}
 
 	private boolean isPoweredCreeper(DamageSource source) {
 		if (source.isExplosion() && source instanceof EntityDamageSource) {
 			Entity entity = ((EntityDamageSource) source).getEntity();
-			if (entity != null && entity instanceof EntityCreeper) {
-				EntityCreeper creeper = (EntityCreeper) entity;
-				return creeper.getPowered();
-			}
+			if (entity != null && entity instanceof EntityCreeper)
+				return ((EntityCreeper) entity).getPowered();
 		}
 
 		return false;
