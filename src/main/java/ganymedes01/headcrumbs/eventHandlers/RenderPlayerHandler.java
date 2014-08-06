@@ -1,8 +1,11 @@
 package ganymedes01.headcrumbs.eventHandlers;
 
+import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.ModItems;
+import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.renderers.TileEntityBlockSkullRenderer;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraftforge.client.event.RenderPlayerEvent;
@@ -26,9 +29,13 @@ public class RenderPlayerHandler {
 			ItemStack head = event.entityPlayer.inventory.armorItemInSlot(3);
 			if (head != null && head.getItem() == ModItems.skull)
 				setHiddenState(model, true);
-			else
+			else if (head == null || !isGanysEndHead(head.getItem()))
 				setHiddenState(model, false);
 		}
+	}
+
+	private boolean isGanysEndHead(Item item) {
+		return Headcrumbs.ganysEndSkull != null && Headcrumbs.ganysEndSkull == item;
 	}
 
 	@SubscribeEvent
@@ -47,24 +54,40 @@ public class RenderPlayerHandler {
 				GL11.glPushMatrix();
 				GL11.glScalef(1.0F, -1.0F, -1.0F);
 
-				float offset = 0.0F;
-				switch (head.getItemDamage()) {
-					case 7:
+				float offset;
+				switch (SkullTypes.values()[head.getItemDamage()]) {
+					case cow:
+					case mooshroom:
+					case slimeBeetle:
+					case fireBeetle:
+					case pinchBeetle:
+					case towerGolem:
 						offset = 1.0F;
 						break;
-					case 10:
-					case 12:
+					case wolf:
+					case chicken:
+					case wildDeer:
+					case ocelot:
+					case ocelotBlack:
+					case ocelotRed:
+					case ocelotSiamese:
+					case silverfish:
+					case mistWolf:
 						offset = 2.0F;
 						break;
-					case 18:
+					case bunnyDutch:
+					case bunnyBrown:
+					case bunnyWhite:
+					case bat:
+					case squirrel:
 						offset = 3.0F;
 						break;
-					case 21:
-						offset = 2.0f;
+					default:
+						offset = 0.0F;
 						break;
 				}
 
-				TileEntityBlockSkullRenderer.instance.renderHead(-0.5F, 0.0F, -0.5F + offset * 0.0625F, 1, 180.0F, head.getItemDamage(), head.hasTagCompound() ? NBTUtil.func_152459_a(head.getTagCompound().getCompoundTag("Owner")) : null);
+				TileEntityBlockSkullRenderer.instance.renderHead(-0.5F, 0.0F, -0.5F + offset * 0.0625F, 1, 180.0F, head.getItemDamage(), head.hasTagCompound() ? NBTUtil.func_152459_a(head.getTagCompound().getCompoundTag("SkullOwner")) : null);
 				GL11.glPopMatrix();
 			}
 		}
