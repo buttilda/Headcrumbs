@@ -69,6 +69,7 @@ public class Headcrumbs {
 	public static int headsDungeonLootMaxWeight = 6;
 	public static boolean hidePlayerHeadsFromTab = false;
 	public static boolean enableChargedCreeperKills = true;
+	public static boolean enablePlayerStatues = true;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {

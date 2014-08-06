@@ -44,13 +44,58 @@ public class Skull extends ItemSkull {
 			return false;
 		else if (!world.getBlock(x, y, z).getMaterial().isSolid())
 			return false;
-		else if (world.getBlock(x, y, z) == Blocks.clay && world.getBlock(x, y - 1, z) == Blocks.clay && stack.getItemDamage() == SkullTypes.player.ordinal()) {
-			world.setBlock(x, y, z, ModBlocks.blockPlayer, 1, 3);
-			Utils.doBreakParticles(world, x, y, z, Blocks.soul_sand, 0);
-			world.setBlock(x, y - 1, z, ModBlocks.blockEmpty);
-			Utils.doBreakParticles(world, x, y - 1, z, Blocks.soul_sand, 0);
+		else if (Headcrumbs.enablePlayerStatues && world.getBlock(x, y, z) == Blocks.clay && world.getBlock(x, y - 1, z) == Blocks.clay && stack.getItemDamage() == SkullTypes.player.ordinal()) {
+			GameProfile profile = null;
+
+			if (stack.hasTagCompound()) {
+				NBTTagCompound nbt = stack.getTagCompound();
+				if (nbt.hasKey("SkullOwner", 10))
+					profile = NBTUtil.func_152459_a(nbt.getCompoundTag("SkullOwner"));
+			}
+
+			if (profile != null) {
+				world.setBlock(x, y, z, ModBlocks.blockPlayer, 1, 3);
+				Utils.doBreakParticles(world, x, y, z, Blocks.soul_sand, 0);
+				world.setBlock(x, y - 1, z, ModBlocks.blockEmpty);
+				Utils.doBreakParticles(world, x, y - 1, z, Blocks.soul_sand, 0);
+
+				TileEntityBlockSkull tile = Utils.getTileEntity(world, x, y, z, TileEntityBlockSkull.class);
+				if (tile != null) {
+
+					tile.setType(stack.getItemDamage(), profile);
+					tile.func_145903_a(MathHelper.floor_double(player.rotationYaw * 16.0F / 360.0F + 0.5D) & 15);
+					world.notifyBlockChange(x, y, z, ModBlocks.blockPlayer);
+				}
+
+				stack.stackSize--;
+				return true;
+			}
+		}
+
+		if (side == 1)
+			y++;
+		if (side == 2)
+			z--;
+		if (side == 3)
+			z++;
+		if (side == 4)
+			x--;
+		if (side == 5)
+			x++;
+
+		if (!player.canPlayerEdit(x, y, z, side, stack))
+			return false;
+		else if (!ModBlocks.blockSkull.canPlaceBlockAt(world, x, y, z))
+			return false;
+		else if (!world.isRemote) {
+			world.setBlock(x, y, z, ModBlocks.blockSkull, side, 2);
+
+			int angle = 0;
+			if (side == 1)
+				angle = MathHelper.floor_double(player.rotationYaw * 16.0F / 360.0F + 0.5D) & 15;
 
 			TileEntityBlockSkull tile = Utils.getTileEntity(world, x, y, z, TileEntityBlockSkull.class);
+
 			if (tile != null) {
 				GameProfile profile = null;
 
@@ -61,55 +106,13 @@ public class Skull extends ItemSkull {
 				}
 
 				tile.setType(stack.getItemDamage(), profile);
-				tile.func_145903_a(MathHelper.floor_double(player.rotationYaw * 16.0F / 360.0F + 0.5D) & 15);
-				world.notifyBlockChange(x, y, z, ModBlocks.blockPlayer);
+				tile.func_145903_a(angle);
+				world.notifyBlockChange(x, y, z, ModBlocks.blockSkull);
 			}
 
 			stack.stackSize--;
-			return true;
-		} else {
-			if (side == 1)
-				y++;
-			if (side == 2)
-				z--;
-			if (side == 3)
-				z++;
-			if (side == 4)
-				x--;
-			if (side == 5)
-				x++;
-
-			if (!player.canPlayerEdit(x, y, z, side, stack))
-				return false;
-			else if (!ModBlocks.blockSkull.canPlaceBlockAt(world, x, y, z))
-				return false;
-			else if (!world.isRemote) {
-				world.setBlock(x, y, z, ModBlocks.blockSkull, side, 2);
-
-				int angle = 0;
-				if (side == 1)
-					angle = MathHelper.floor_double(player.rotationYaw * 16.0F / 360.0F + 0.5D) & 15;
-
-				TileEntityBlockSkull tile = Utils.getTileEntity(world, x, y, z, TileEntityBlockSkull.class);
-
-				if (tile != null) {
-					GameProfile profile = null;
-
-					if (stack.hasTagCompound()) {
-						NBTTagCompound nbt = stack.getTagCompound();
-						if (nbt.hasKey("SkullOwner", 10))
-							profile = NBTUtil.func_152459_a(nbt.getCompoundTag("SkullOwner"));
-					}
-
-					tile.setType(stack.getItemDamage(), profile);
-					tile.func_145903_a(angle);
-					world.notifyBlockChange(x, y, z, ModBlocks.blockSkull);
-				}
-
-				stack.stackSize--;
-			}
-			return true;
 		}
+		return true;
 	}
 
 	@Override
