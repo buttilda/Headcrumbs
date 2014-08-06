@@ -65,6 +65,7 @@ public class ItemSkullRender implements IItemRenderer {
 
 		switch (type) {
 			case ENTITY:
+				GL11.glScaled(0.5, 0.5, 0.5);
 				renderSkull(-0.25F, -0.5F, -0.5F, skullType, profile, isVanilla);
 				break;
 			case EQUIPPED:
