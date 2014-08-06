@@ -2,6 +2,7 @@ package ganymedes01.headcrumbs.renderers;
 
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -79,8 +80,26 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 					renderer.renderBlockAsItem(Blocks.red_mushroom, 0, 1.0F);
 					GL11.glDisable(GL11.GL_CULL_FACE);
 					return;
-				default:
+				case spider:
+				case caveSpider:
+				case hedgeSpider:
+				case kingSpider:
+				case enderDragon:
+				case enderman:
+					GL11.glEnable(GL11.GL_BLEND);
+					GL11.glDisable(GL11.GL_ALPHA_TEST);
+					GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
+					GL11.glDepthMask(true);
+					char c0 = 61680;
+					int j = c0 % 65536;
+					int k = c0 / 65536;
+					OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, j / 1.0F, k / 1.0F);
 					model.render(skullRotation);
+					GL11.glDisable(GL11.GL_BLEND);
+					GL11.glEnable(GL11.GL_ALPHA_TEST);
+					return;
+				default:
+					return;
 			}
 		}
 	}

@@ -90,6 +90,8 @@ public enum SkullTypes {
 	private final ResourceLocation texture;
 	private static final ResourceLocation ENDERMAN_EYES = Utils.getResource(Strings.MC_PREFIX + "enderman/enderman_eyes.png");
 	private static final ResourceLocation SHEEP_FUR_HEAD = Utils.getResource(Strings.MC_PREFIX + "sheep/sheep_fur.png");
+	private static final ResourceLocation ENDER_DRAGON_EYES = Utils.getResource(Strings.MC_PREFIX + "enderdragon/dragon_eyes.png");
+	private static final ResourceLocation SPIDER_EYES = Utils.getResource(Strings.MC_PREFIX + "spider_eyes.png");
 
 	SkullTypes(String texture, String mod) {
 		this.mod = mod;
@@ -118,9 +120,14 @@ public enum SkullTypes {
 			case bighorn:
 				return SHEEP_FUR_HEAD;
 			case enderDragon:
-				return Utils.getResource(Strings.MC_PREFIX + "enderdragon/dragon_eyes.png");
+				return ENDER_DRAGON_EYES;
 			case mooshroom:
 				return TextureMap.locationBlocksTexture;
+			case spider:
+			case caveSpider:
+			case hedgeSpider:
+			case kingSpider:
+				return SPIDER_EYES;
 			default:
 				return null;
 		}
