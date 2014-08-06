@@ -63,7 +63,7 @@ public class Headcrumbs {
 
 	public static boolean enableVanillaHeadsDrop = true;
 	public static boolean enableRandomHeadDrop = true;
-	public static int headDropChance = 10;
+	public static int headDropChance = 150;
 	public static boolean addPlayerHeadsAsDungeonLoot = true;
 	public static boolean enableMobsAndAnimalHeads = true;
 	public static int headsDungeonLootMaxWeight = 6;

@@ -7,10 +7,14 @@ import ganymedes01.headcrumbs.utils.HeadUtils;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSource;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -23,7 +27,7 @@ public class EntityDropEvent {
 		if (event.entityLiving.getHealth() > 0.0F)
 			return;
 
-		if (shouldDoRandomDrop(event.entityLiving.worldObj.rand, event.lootingLevel)) {
+		if (shouldDoRandomDrop(event.entityLiving.worldObj.rand, event.lootingLevel) || isPoweredCreeper(event.source)) {
 			ItemStack stack = HeadUtils.getHeadfromEntity(event.entityLiving);
 			if (stack != null && canDropThisHead(stack)) {
 				if (!isPlayerHead(stack) && !Headcrumbs.enableMobsAndAnimalHeads)
@@ -31,6 +35,18 @@ public class EntityDropEvent {
 				addDrop(stack, event.entityLiving, event.drops);
 			}
 		}
+	}
+
+	private boolean isPoweredCreeper(DamageSource source) {
+		if (source.isExplosion() && source instanceof EntityDamageSource) {
+			Entity entity = ((EntityDamageSource) source).getEntity();
+			if (entity != null && entity instanceof EntityCreeper) {
+				EntityCreeper creeper = (EntityCreeper) entity;
+				return creeper.getPowered();
+			}
+		}
+
+		return false;
 	}
 
 	private boolean canDropThisHead(ItemStack stack) {
