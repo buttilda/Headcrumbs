@@ -1,5 +1,6 @@
 package ganymedes01.headcrumbs;
 
+import ganymedes01.headcrumbs.command.HeadcrumbsCommand;
 import ganymedes01.headcrumbs.configs.ConfigHandler;
 import ganymedes01.headcrumbs.libs.Reference;
 import ganymedes01.headcrumbs.libs.SkullTypes;
@@ -24,6 +25,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -60,7 +62,7 @@ public class Headcrumbs {
 	public static String[] youtubers = { "CyaNideEPiC", "PurpleMentat", "Jarrenitis", "direwolf20", "Sjin", "Xephos", "LividCoffee", "Rythian", "Zoeya", "TheStrippin", "inthelittlewood", "Quetzz", "Blorph", "xbony2", "CaptainSparklez", "AntVenom", "CavemanFilms", "Fosler", "BevoLJ", "Sips_", "Honeydew", "TobyTurner", "corjaantje" };
 	public static String[] mojang = { "Notch", "jeb_", "C418", "Dinnerbone", "Grumm", "Searge_DP", "EvilSeph", "TheMogMiner" };
 	public static String[] mindCrack = { "adlingtont", "AnderZEL", "Arkas", "Aureylian", "AvidyaZEN", "BdoubleO100", "BlameTC", "Coestar", "Docm77", "Etho", "generikb", "Guude", "jsano19", "kurtmac", "mcgamer", "Mhykol", "Millbee", "Nebris", "Pakratt0013", "paulsoaresjr", "PauseUnpause", "Pyro_0", "SethBling", "sevadus", "Vechs_", "VintageBeef", "W92Baj", "Zisteau" };
-	public static String[] forgeCraft = { "Minalien", "fuj1n", "Mithion", "RWTema", "WayofFlowingTime", "TTFTCUTS", "bspkrs", "futureamnet", "azanor", "chicken_bones", "Cloudhunter", "CovertJaguar", "cpw11", "dan200", "Eloraam", "florastar", "ohaiiChun", "KingLemmingCoFH", "Krapht", "LexManos", "TheMattaBase", "mDiyo", "Myrathi", "Morvelaira", "Pahimar", "sfPlayer1", "ProfMobius", "Rorax", "Sacheverell", "sirsengir", "Soaryn", "x3n0ph0b3", "XCompWiz", "Vswe", "Vazkii", "ZeldoKavira", "neptunepink", "EddieRuckus" };
+	public static String[] forgeCraft = { "Calclavia", "Minalien", "fuj1n", "Mithion", "RWTema", "WayofFlowingTime", "TTFTCUTS", "bspkrs", "futureamnet", "azanor", "chicken_bones", "Cloudhunter", "CovertJaguar", "cpw11", "dan200", "Eloraam", "florastar", "ohaiiChun", "KingLemmingCoFH", "Krapht", "LexManos", "TheMattaBase", "mDiyo", "Myrathi", "Morvelaira", "Pahimar", "sfPlayer1", "ProfMobius", "Rorax", "Sacheverell", "sirsengir", "Soaryn", "x3n0ph0b3", "XCompWiz", "Vswe", "Vazkii", "ZeldoKavira", "neptunepink", "EddieRuckus" };
 	public static String[] ftb = { "eyamaz", "jadedcat", "slowpoke101", "progwml6" };
 
 	public static boolean enableVanillaHeadsDrop = true;
@@ -115,5 +117,10 @@ public class Headcrumbs {
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
+	}
+
+	@EventHandler
+	public void serverStarting(FMLServerStartingEvent event) {
+		event.registerServerCommand(new HeadcrumbsCommand());
 	}
 }
