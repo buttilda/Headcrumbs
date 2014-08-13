@@ -152,7 +152,7 @@ public enum SkullTypes {
 			if (name != null && !name.isEmpty()) {
 				ResourceLocation texture = skins.get(name);
 				if (texture == null) {
-					texture = AbstractClientPlayer.getLocationSkin(name);
+					texture = new ResourceLocation(Reference.MOD_ID + ":skins/" + StringUtils.stripControlCodes(name));
 					AbstractClientPlayer.getDownloadImageSkin(texture, name);
 					skins.put(profile.getName(), texture);
 				}
@@ -170,7 +170,7 @@ public enum SkullTypes {
 			if (name != null && !name.isEmpty()) {
 				ResourceLocation texture = capes.get(name);
 				if (texture == null) {
-					texture = new ResourceLocation("cloaks/" + StringUtils.stripControlCodes(name));
+					texture = new ResourceLocation(Reference.MOD_ID + ":cloaks/" + StringUtils.stripControlCodes(name));
 					getDownloadImageCape(texture, name);
 					capes.put(profile.getName(), texture);
 				}
