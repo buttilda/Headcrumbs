@@ -44,7 +44,7 @@ public class Skull extends ItemSkull {
 			return false;
 		else if (!world.getBlock(x, y, z).getMaterial().isSolid())
 			return false;
-		else if (Headcrumbs.enablePlayerStatues && world.getBlock(x, y, z) == Blocks.clay && world.getBlock(x, y - 1, z) == Blocks.clay && stack.getItemDamage() == SkullTypes.player.ordinal()) {
+		else if (Headcrumbs.enablePlayerStatues && stack.getItemDamage() == SkullTypes.player.ordinal() && isValidStructure(world, x, y, z)) {
 			GameProfile profile = null;
 
 			if (stack.hasTagCompound()) {
@@ -113,6 +113,10 @@ public class Skull extends ItemSkull {
 			stack.stackSize--;
 		}
 		return true;
+	}
+
+	private boolean isValidStructure(World world, int x, int y, int z) {
+		return world.getBlock(x, y, z) == Headcrumbs.clay && world.getBlock(x, y - 1, z) == Headcrumbs.clay;
 	}
 
 	@Override

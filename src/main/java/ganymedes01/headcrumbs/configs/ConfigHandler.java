@@ -5,6 +5,8 @@ import ganymedes01.headcrumbs.libs.Reference;
 
 import java.io.File;
 
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -40,6 +42,11 @@ public class ConfigHandler {
 		Headcrumbs.mindCrack = configFile.get("heads", "mindCrack", Headcrumbs.mindCrack).setRequiresMcRestart(true).getStringList();
 		Headcrumbs.forgeCraft = configFile.get("heads", "forgeCraft", Headcrumbs.forgeCraft).setRequiresMcRestart(true).getStringList();
 		Headcrumbs.ftb = configFile.get("heads", "ftb", Headcrumbs.ftb).setRequiresMcRestart(true).getStringList();
+
+		String block = configFile.get(Configuration.CATEGORY_GENERAL, "Statue block material", Block.blockRegistry.getNameForObject(Blocks.clay), "modId:name. Whatever block is set here will be the block used to make player statues (2 tall and right-click the top one with a player head)").getString();
+		Headcrumbs.clay = (Block) Block.blockRegistry.getObject(block);
+		if (Headcrumbs.clay == null)
+			Headcrumbs.clay = Blocks.clay;
 
 		if (configFile.hasChanged())
 			configFile.save();

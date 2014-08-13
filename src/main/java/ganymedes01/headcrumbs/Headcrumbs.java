@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -76,6 +77,8 @@ public class Headcrumbs {
 	public static boolean enablePlayerStatues = true;
 
 	public static Item ganysEndSkull = null;
+
+	public static Block clay;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
