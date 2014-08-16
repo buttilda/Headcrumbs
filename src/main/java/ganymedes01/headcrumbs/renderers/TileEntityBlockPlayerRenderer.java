@@ -2,6 +2,7 @@ package ganymedes01.headcrumbs.renderers;
 
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockPlayer;
+import ganymedes01.headcrumbs.utils.TextureUtils;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.tileentity.TileEntity;
@@ -55,7 +56,7 @@ public class TileEntityBlockPlayerRenderer extends TileEntityBlockSkullRenderer 
 		public PlayerForRendering(World world, GameProfile profile) {
 			super(world, profile);
 			skin = SkullTypes.player.getTexture(getGameProfile());
-			cape = SkullTypes.player.getPlayerCape(getGameProfile());
+			cape = TextureUtils.getPlayerCape(getGameProfile());
 		}
 
 		@Override
