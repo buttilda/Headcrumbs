@@ -34,9 +34,9 @@ public class TileEntityBlockPlayerRenderer extends TileEntityBlockSkullRenderer 
 		if (player == null)
 			return;
 
-		RenderManager.renderPosX = player.posX = player.prevPosX = player.field_71091_bM = player.field_71094_bP = x;
-		RenderManager.renderPosY = player.posY = player.prevPosY = player.field_71096_bN = player.field_71095_bQ = y;
-		RenderManager.renderPosZ = player.posZ = player.prevPosZ = player.field_71097_bO = player.field_71085_bR = z;
+		RenderManager.renderPosX = player.posX = player.lastTickPosX = player.prevPosX = player.field_71091_bM = player.field_71094_bP = x;
+		RenderManager.renderPosY = player.posY = player.lastTickPosY = player.prevPosY = player.field_71096_bN = player.field_71095_bQ = y;
+		RenderManager.renderPosZ = player.posZ = player.lastTickPosZ = player.prevPosZ = player.field_71097_bO = player.field_71085_bR = z;
 
 		GL11.glPushMatrix();
 		GL11.glTranslated(x + 0.5, y + 0.63, z + 0.5);
@@ -76,7 +76,7 @@ public class TileEntityBlockPlayerRenderer extends TileEntityBlockSkullRenderer 
 		@Override
 		@SideOnly(Side.CLIENT)
 		public int getBrightnessForRender(float partialTicks) {
-			return 15728880;
+			return 15728640;
 		}
 
 		@Override

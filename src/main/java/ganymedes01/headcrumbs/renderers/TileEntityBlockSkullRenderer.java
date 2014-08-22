@@ -68,6 +68,7 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 			switch (skullType) {
 				case sheep:
 				case bighorn:
+				case taintedSheep:
 					int c = 12;
 					if (skullType == SkullTypes.bighorn)
 						GL11.glColor3f(EntitySheep.fleeceColorTable[c][0], EntitySheep.fleeceColorTable[c][1], EntitySheep.fleeceColorTable[c][2]);

@@ -63,10 +63,12 @@ public class ModelHead extends ModelSkeletonHead {
 				GL11.glScaled(1.5, 1.5, 1.5);
 				break;
 			case bat:
+			case fireBat:
 				GL11.glScaled(0.5, 0.5, 0.5);
 				break;
 			case slime:
 			case mazeSlime:
+			case thaumicSlime:
 				GL11.glEnable(GL11.GL_NORMALIZE);
 				GL11.glEnable(GL11.GL_BLEND);
 				GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
@@ -120,13 +122,16 @@ public class ModelHead extends ModelSkeletonHead {
 				setSpider();
 				break;
 			case pig:
+			case taintedPig:
 				setPig();
 				break;
 			case mooshroom:
 			case cow:
+			case taintedCow:
 				setCow();
 				break;
 			case sheep:
+			case taintedSheep:
 				setSheep();
 				break;
 			case wolf:
@@ -136,9 +141,11 @@ public class ModelHead extends ModelSkeletonHead {
 				setWolf();
 				break;
 			case villager:
+			case taintedVillager:
 				setVillager(64);
 				break;
 			case chicken:
+			case taintedChicken:
 				setChicken();
 				break;
 			case witch:
@@ -154,6 +161,7 @@ public class ModelHead extends ModelSkeletonHead {
 				setSquid();
 				break;
 			case wither:
+			case angryZombie:
 				return new ModelHead(64).hideOverlay();
 			case bunnyDutch:
 			case bunnyBrown:
@@ -208,10 +216,12 @@ public class ModelHead extends ModelSkeletonHead {
 				setOcelot();
 				break;
 			case bat:
+			case fireBat:
 				setBat();
 				break;
 			case slime:
 			case mazeSlime:
+			case thaumicSlime:
 				setSlime();
 				break;
 			case magmaCube:
@@ -245,14 +255,29 @@ public class ModelHead extends ModelSkeletonHead {
 			case nitroCreeper:
 				hideOverlay();
 				break;
+			case pech:
+				pech();
+				break;
 			case blaze:
 			case blizz:
 			case druid:
 			case player:
+			case taintedCreeper:
 			default:
 				break;
 		}
 		return this;
+	}
+
+	private void pech() {
+		textureWidth = 128;
+		textureHeight = 64;
+		float f1 = -2.0F;
+		float f2 = 4.0F;
+		head = new ModelRenderer(this, 2, 11);
+		head.addBox(-3.5F, -5.0F + f1, -5.0F + f2, 7, 5, 5);
+		overlay = new ModelRenderer(this, 1, 21);
+		overlay.addBox(-4.0F, -1.0F + f1, -6.0F + f2, 8, 3, 5);
 	}
 
 	private void setImp() {

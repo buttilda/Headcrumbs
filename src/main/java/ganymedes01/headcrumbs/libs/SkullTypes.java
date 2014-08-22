@@ -81,7 +81,17 @@ public enum SkullTypes {
 	towerwoodBorer(Strings.TF_PREFIX + "towertermite", "TwilightForest"),
 	imp(Strings.NA_PREFIX + "imp", "Natura"),
 	nitroCreeper(Strings.NA_PREFIX + "creeperunstable", "Natura"),
-	heatscarSpider(Strings.NA_PREFIX + "flamespider", "Natura");
+	heatscarSpider(Strings.NA_PREFIX + "flamespider", "Natura"),
+	angryZombie(Strings.TC_PREFIX + "bzombievil", "Thaumcraft"),
+	fireBat(Strings.TC_PREFIX + "firebat", "Thaumcraft"),
+	thaumicSlime(Strings.TC_PREFIX + "tslime", "Thaumcraft"),
+	taintedChicken(Strings.TC_PREFIX + "chicken", "Thaumcraft"),
+	taintedCow(Strings.TC_PREFIX + "cow", "Thaumcraft"),
+	taintedPig(Strings.TC_PREFIX + "pig", "Thaumcraft"),
+	taintedCreeper(Strings.TC_PREFIX + "creeper", "Thaumcraft"),
+	taintedVillager(Strings.TC_PREFIX + "villager", "Thaumcraft"),
+	taintedSheep(Strings.TC_PREFIX + "sheep", "Thaumcraft"),
+	pech(Strings.TC_PREFIX + "pech_forage", "Thaumcraft");
 
 	private final String mod;
 	private final ResourceLocation texture;
@@ -89,6 +99,8 @@ public enum SkullTypes {
 	private static final ResourceLocation SHEEP_FUR_HEAD = Utils.getResource(Strings.MC_PREFIX + "sheep/sheep_fur.png");
 	private static final ResourceLocation ENDER_DRAGON_EYES = Utils.getResource(Strings.MC_PREFIX + "enderdragon/dragon_eyes.png");
 	private static final ResourceLocation SPIDER_EYES = Utils.getResource(Strings.MC_PREFIX + "spider_eyes.png");
+
+	private static final ResourceLocation TAINTED_SHEEP_FUR_HEAD = Utils.getResource(Strings.TC_PREFIX + "sheep_fur.png");
 
 	SkullTypes(String texture, String mod) {
 		this.mod = mod;
@@ -128,6 +140,8 @@ public enum SkullTypes {
 			case towerBroodling:
 			case heatscarSpider:
 				return SPIDER_EYES;
+			case taintedSheep:
+				return TAINTED_SHEEP_FUR_HEAD;
 			default:
 				return null;
 		}

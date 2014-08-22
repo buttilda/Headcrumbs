@@ -29,13 +29,13 @@ public class TileEntityBlockSkull extends TileEntitySkull {
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound data) {
-		super.readFromNBT(data);
-		skullType = data.getInteger("skullType");
-		skullRotation = data.getInteger("skullRotation");
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+		skullType = nbt.getInteger("skullType");
+		skullRotation = nbt.getInteger("skullRotation");
 
-		if (data.hasKey("Owner", 10))
-			profile = NBTUtil.func_152459_a(data.getCompoundTag("Owner"));
+		if (nbt.hasKey("Owner", 10))
+			profile = NBTUtil.func_152459_a(nbt.getCompoundTag("Owner"));
 	}
 
 	public void setType(int type, GameProfile profile) {

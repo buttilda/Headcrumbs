@@ -88,6 +88,11 @@ public class BlockEmpty extends Block {
 	}
 
 	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+		return world.getBlock(x, y + 1, z).onBlockActivated(world, x, y + 1, z, player, side, hitX, hitY - 1.0F, hitZ);
+	}
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
 		return Blocks.soul_sand.getBlockTextureFromSide(side);

@@ -62,6 +62,8 @@ public class RenderPlayerHandler {
 					case fireBeetle:
 					case pinchBeetle:
 					case towerGolem:
+					case taintedCow:
+					case pech:
 						offset = 1.0F;
 						break;
 					case wolf:
@@ -75,6 +77,7 @@ public class RenderPlayerHandler {
 					case mistWolf:
 					case winterWolf:
 					case towerwoodBorer:
+					case taintedChicken:
 						offset = 2.0F;
 						break;
 					case bunnyDutch:
@@ -82,6 +85,7 @@ public class RenderPlayerHandler {
 					case bunnyWhite:
 					case bat:
 					case squirrel:
+					case fireBat:
 						offset = 3.0F;
 						break;
 					default:
