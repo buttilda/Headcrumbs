@@ -377,6 +377,8 @@ public class HeadUtils {
 			return new ItemStack(ModItems.skull, 1, SkullTypes.taintedVillager.ordinal());
 		else if (mobName.equals("Thaumcraft.Pech"))
 			return new ItemStack(ModItems.skull, 1, SkullTypes.pech.ordinal());
+		else if (mobName.equals("Thaumcraft.EldritchGuardian"))
+			return new ItemStack(ModItems.skull, 1, SkullTypes.eldrichGuardian.ordinal());
 
 		return null;
 	}
