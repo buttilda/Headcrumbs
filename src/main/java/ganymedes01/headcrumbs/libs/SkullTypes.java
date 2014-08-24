@@ -92,7 +92,7 @@ public enum SkullTypes {
 	taintedVillager(Strings.TC_PREFIX + "villager", "Thaumcraft"),
 	taintedSheep(Strings.TC_PREFIX + "sheep", "Thaumcraft"),
 	pech(Strings.TC_PREFIX + "pech_forage", "Thaumcraft"),
-	eldrichGuardian(Strings.TC_PREFIX + "eldritch_guardian", "Thaumcraft");
+	eldritchGuardian(Strings.TC_PREFIX + "eldritch_guardian", "Thaumcraft");
 
 	private final String mod;
 	private final ResourceLocation texture;

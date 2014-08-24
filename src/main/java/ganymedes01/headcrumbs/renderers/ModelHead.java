@@ -258,7 +258,7 @@ public class ModelHead extends ModelSkeletonHead {
 			case pech:
 				setPech();
 				break;
-			case eldrichGuardian:
+			case eldritchGuardian:
 				setEldrichGuardian();
 				break;
 			case blaze:

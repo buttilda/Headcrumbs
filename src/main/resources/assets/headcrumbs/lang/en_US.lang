@@ -69,6 +69,17 @@ item.headcrumbs.towerTermite.name=Towerwood Borer Head
 item.headcrumbs.imp.name=Imp Head
 item.headcrumbs.nitroCreeper.name=Nitro Creeper Head
 item.headcrumbs.heatscarSpider.name=Heatscar Spider Head
+item.headcrumbs.angryZombie.name=Angry Zombie Head
+item.headcrumbs.fireBat.name=Firebat Head
+item.headcrumbs.thaumicSlime.name=Thaumic Slime Head
+item.headcrumbs.taintedChicken.name=Tainted Chicken Head
+item.headcrumbs.taintedCow.name=Tainted Cow Head
+item.headcrumbs.taintedPig.name=Tainted Pig Head
+item.headcrumbs.taintedCreeper.name=Tainted Creeper Head
+item.headcrumbs.taintedVillager.name=Tainted Villager Head
+item.headcrumbs.taintedSheep.name=Tainted Sheep Head
+item.headcrumbs.pech.name=Pech Head
+item.headcrumbs.eldritchGuardian.name=Eldritch Guardian Head
 
 # Creative Tab
 itemGroup.headcrumbs=Headcrumbs
