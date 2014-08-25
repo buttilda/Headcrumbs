@@ -6,19 +6,24 @@ import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -26,23 +31,43 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 public class EntityDropEvent {
 
 	@SubscribeEvent
+	public void playerDrop(LivingDeathEvent event) {
+		EntityLivingBase entity = event.entityLiving;
+		if (entity.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory") && entity instanceof EntityPlayerMP) {
+			ArrayList<EntityItem> drops = new ArrayList<EntityItem>();
+
+			ItemStack weapon = getWeapon(event.source);
+			int looting = EnchantmentHelper.getEnchantmentLevel(Enchantment.looting.effectId, weapon);
+			drop(event.entityLiving, event.source, looting, drops);
+
+			if (!drops.isEmpty())
+				for (EntityItem item : drops)
+					((EntityPlayerMP) entity).joinEntityItemWithWorld(item);
+		}
+	}
+
+	@SubscribeEvent
 	public void dropEvent(LivingDropsEvent event) {
-		if (event.entityLiving.worldObj.isRemote)
+		drop(event.entityLiving, event.source, event.lootingLevel, event.drops);
+	}
+
+	private void drop(EntityLivingBase entity, DamageSource source, int looting, List<EntityItem> drops) {
+		if (entity.worldObj.isRemote)
 			return;
-		if (event.entityLiving.getHealth() > 0.0F)
+		if (entity.getHealth() > 0.0F)
 			return;
 
-		boolean isPoweredCreeper = Headcrumbs.enableChargedCreeperKills && isPoweredCreeper(event.source);
-		int beheading = getBeaheadingLevel(getWeapon(event.source));
+		boolean isPoweredCreeper = Headcrumbs.enableChargedCreeperKills && isPoweredCreeper(source);
+		int beheading = getBeaheadingLevel(getWeapon(source));
 
-		if (isPoweredCreeper || shouldDoRandomDrop(event.entityLiving.worldObj.rand, beheading, event.lootingLevel)) {
-			ItemStack stack = HeadUtils.getHeadfromEntity(event.entityLiving);
+		if (isPoweredCreeper || shouldDoRandomDrop(entity.worldObj.rand, beheading, looting)) {
+			ItemStack stack = HeadUtils.getHeadfromEntity(entity);
 			if (stack == null)
 				return;
 
 			if (isPoweredCreeper || canDropThisHead(stack, beheading))
 				if (isPlayerHead(stack) || Headcrumbs.enableMobsAndAnimalHeads)
-					addDrop(stack, event.entityLiving, event.drops);
+					addDrop(stack, entity, drops);
 		}
 	}
 
