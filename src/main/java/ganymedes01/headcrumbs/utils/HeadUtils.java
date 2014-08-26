@@ -386,7 +386,7 @@ public class HeadUtils {
 	private static int getThaumicSlimeSize(Entity entity) {
 		try {
 			Method m = entity.getClass().getMethod("getSlimeSize");
-			return (int) m.invoke(entity);
+			return (Integer) m.invoke(entity);
 		} catch (Exception e) {
 			return 0;
 		}
