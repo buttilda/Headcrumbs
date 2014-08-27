@@ -6,6 +6,7 @@ import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.Utils;
+import ganymedes01.headcrumbs.utils.helpers.LycanitesHelper;
 
 import java.util.List;
 
@@ -135,13 +136,15 @@ public class Skull extends ItemSkull {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void getSubItems(Item item, CreativeTabs tab, List list) {
 		for (SkullTypes skull : SkullTypes.values())
-			if (skull.canShow()) {
+			if (skull.canShow() && skull != SkullTypes.lycanites) {
 				list.add(new ItemStack(item, 1, skull.ordinal()));
 
 				if (!Headcrumbs.hidePlayerHeadsFromTab)
 					if (skull == SkullTypes.player)
 						list.addAll(HeadUtils.players);
 			}
+		if (HeadUtils.lycanites)
+			list.addAll(LycanitesHelper.getStacks());
 	}
 
 	@Override
@@ -157,10 +160,13 @@ public class Skull extends ItemSkull {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		if (stack.getItemDamage() == SkullTypes.player.ordinal() && stack.hasTagCompound())
-			if (stack.getTagCompound().hasKey("SkullOwner", 10))
-				return StatCollector.translateToLocalFormatted("item.skull.player.name", NBTUtil.func_152459_a(stack.getTagCompound().getCompoundTag("SkullOwner")).getName());
-
+		if (stack.hasTagCompound() && stack.getTagCompound().hasKey("SkullOwner", 10)) {
+			String name = NBTUtil.func_152459_a(stack.getTagCompound().getCompoundTag("SkullOwner")).getName();
+			boolean isLycanites = stack.getItemDamage() == SkullTypes.lycanites.ordinal();
+			boolean isPlayer = stack.getItemDamage() == SkullTypes.player.ordinal();
+			if (isLycanites || isPlayer)
+				return StatCollector.translateToLocalFormatted("item.skull.player.name", isLycanites ? LycanitesHelper.capitaliseString(name) : name);
+		}
 		return super.getItemStackDisplayName(stack);
 	}
 }

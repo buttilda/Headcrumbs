@@ -38,16 +38,15 @@ public class ModelHead extends ModelSkeletonHead {
 		overlay.setRotationPoint(0.0F, 0.0F, 0.0F);
 	}
 
-	public static ModelHead getHead(int type) {
+	public static ModelHead getHead(SkullTypes type) {
 		if (heads == null) {
 			heads = new HashMap<SkullTypes, ModelHead>();
 			for (SkullTypes skull : SkullTypes.values())
 				heads.put(skull, new ModelHead().setHeadType(skull));
 		}
 
-		SkullTypes skull = SkullTypes.values()[type];
-		transform(skull);
-		return heads.get(skull);
+		transform(type);
+		return heads.get(type);
 	}
 
 	private static void transform(SkullTypes skull) {

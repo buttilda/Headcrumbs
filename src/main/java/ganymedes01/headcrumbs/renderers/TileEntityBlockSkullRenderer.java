@@ -2,10 +2,15 @@ package ganymedes01.headcrumbs.renderers;
 
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
+import ganymedes01.headcrumbs.utils.HeadUtils;
+import lycanite.lycanitesmobs.AssetManager;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
@@ -26,6 +31,8 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 	private final RenderBlocks renderer = new RenderBlocks();
 	public static TileEntityBlockSkullRenderer instance;
 
+	private static EntityLiving entity;
+
 	@Override
 	public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float partialTicks) {
 		TileEntityBlockSkull tileSkull = (TileEntityBlockSkull) tile;
@@ -38,8 +45,47 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 		instance = this;
 	}
 
+	private EntityLiving getEntity() {
+		if (entity == null)
+			entity = new EntityLiving(Minecraft.getMinecraft().theWorld) {
+		};
+
+		return entity;
+	}
+
 	public void renderHead(float x, float y, float z, int meta, float skullRotation, int skullType, GameProfile playerName) {
+		if (skullType < 0 || skullType >= SkullTypes.values().length)
+			return;
+
 		SkullTypes type = SkullTypes.values()[skullType];
+		if (type == SkullTypes.lycanites)
+			renderOBJ(x, y, z, meta, skullRotation, type, playerName);
+		else
+			renderNormal(x, y, z, meta, skullRotation, type, playerName);
+	}
+
+	private void renderOBJ(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile playerName) {
+		if (playerName == null || !HeadUtils.lycanites)
+			return;
+
+		ModelBase model = AssetManager.getModel(playerName.getName());
+		ResourceLocation tex = type.getTexture(playerName);
+		if (model != null && tex != null) {
+			GL11.glPushMatrix();
+			GL11.glDisable(GL11.GL_CULL_FACE);
+
+			translateHead(x, y + 1.75F, z, meta);
+			skullRotation = adjustRotation(meta, skullRotation);
+			GL11.glScaled(-1, -1, 1);
+			GL11.glRotated(skullRotation, 0, 1, 0);
+			bindTexture(tex);
+			model.render(getEntity(), 0, 0, 0, 0, 0, -1F);
+
+			GL11.glPopMatrix();
+		}
+	}
+
+	private void renderNormal(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile playerName) {
 		bindTexture(type.getTexture(playerName));
 
 		GL11.glPushMatrix();
@@ -47,11 +93,11 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 		GL11.glEnable(GL11.GL_ALPHA_TEST);
 
-		translateHead(x, y, z, meta, skullRotation);
+		translateHead(x, y, z, meta);
 		skullRotation = adjustRotation(meta, skullRotation);
 
 		GL11.glScalef(-1.0F, -1.0F, 1.0F);
-		model = ModelHead.getHead(skullType);
+		model = ModelHead.getHead(type);
 		model.render(skullRotation);
 		renderSpecial(type, skullRotation);
 
@@ -108,7 +154,7 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 		}
 	}
 
-	private void translateHead(float x, float y, float z, int meta, float skullRotation) {
+	private void translateHead(float x, float y, float z, int meta) {
 		switch (meta) {
 			case 1:
 				GL11.glTranslatef(x + 0.5F, y, z + 0.5F);

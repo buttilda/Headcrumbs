@@ -3,8 +3,12 @@ package ganymedes01.headcrumbs.utils;
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.libs.SkullTypes;
+import ganymedes01.headcrumbs.utils.helpers.LycanitesHelper;
+import ganymedes01.headcrumbs.utils.helpers.NaturaHelper;
+import ganymedes01.headcrumbs.utils.helpers.TEHelper;
+import ganymedes01.headcrumbs.utils.helpers.ThaumcraftHelper;
+import ganymedes01.headcrumbs.utils.helpers.TwilightForestHelper;
 
-import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -13,8 +17,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
@@ -54,11 +56,15 @@ import net.minecraft.nbt.NBTUtil;
 
 import com.mojang.authlib.GameProfile;
 
-import cpw.mods.fml.common.Loader;
-
 public class HeadUtils {
 
 	public static final List<ItemStack> players = new LinkedList<ItemStack>();
+
+	public static boolean twilightForest = false;
+	public static boolean thermalExpansion = false;
+	public static boolean natura = false;
+	public static boolean thaumcraft = false;
+	public static boolean lycanites = false;
 
 	public static void loadPlayerHeads() {
 		Random rand = new Random();
@@ -100,26 +106,32 @@ public class HeadUtils {
 		if (target.isChild())
 			return null;
 
-		if (Loader.isModLoaded("TwilightForest")) {
-			ItemStack head = getTFMobHead(target);
+		if (twilightForest) {
+			ItemStack head = TwilightForestHelper.getHead(target);
 			if (head != null)
 				return head;
 		}
 
-		if (Loader.isModLoaded("ThermalExpansion")) {
-			ItemStack head = getTEMobHead(target);
+		if (thermalExpansion) {
+			ItemStack head = TEHelper.getHead(target);
 			if (head != null)
 				return head;
 		}
 
-		if (Loader.isModLoaded("Natura")) {
-			ItemStack head = getNaturaHead(target);
+		if (natura) {
+			ItemStack head = NaturaHelper.getHead(target);
 			if (head != null)
 				return head;
 		}
 
-		if (Loader.isModLoaded("Thaumcraft")) {
-			ItemStack head = getThaumcraftHead(target);
+		if (thaumcraft) {
+			ItemStack head = ThaumcraftHelper.getHead(target);
+			if (head != null)
+				return head;
+		}
+
+		if (lycanites) {
+			ItemStack head = LycanitesHelper.getHead(target);
 			if (head != null)
 				return head;
 		}
@@ -248,147 +260,5 @@ public class HeadUtils {
 		stack.getTagCompound().setTag("SkullOwner", profileData);
 
 		return stack;
-	}
-
-	private static ItemStack getTFMobHead(Entity entity) {
-		String mobName = EntityList.getEntityString(entity);
-
-		if (mobName == null)
-			return null;
-		if (mobName.equals("TwilightForest.Forest Bunny")) {
-			Integer type;
-			try {
-				type = (Integer) entity.getClass().getMethod("getBunnyType").invoke(entity);
-			} catch (Exception e) {
-				type = 0;
-			}
-			int meta = 0;
-			switch (type) {
-				case 0:
-				case 1:
-					meta = SkullTypes.bunnyDutch.ordinal();
-					break;
-				case 3:
-					meta = SkullTypes.bunnyBrown.ordinal();
-					break;
-				case 2:
-					meta = SkullTypes.bunnyWhite.ordinal();
-					break;
-			}
-			return new ItemStack(ModItems.skull, 1, meta);
-		} else if (mobName.equals("TwilightForest.Penguin"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.penguin.ordinal());
-		else if (mobName.equals("TwilightForest.Bighorn Sheep"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.bighorn.ordinal());
-		else if (mobName.equals("TwilightForest.Wild Deer"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.wildDeer.ordinal());
-		else if (mobName.equals("TwilightForest.Wild Boar"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.wildBoar.ordinal());
-		else if (mobName.equals("TwilightForest.Redcap") || mobName.equals("TwilightForest.Redcap Sapper"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.redcap.ordinal());
-		else if (mobName.equals("TwilightForest.Skeleton Druid"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.druid.ordinal());
-		else if (mobName.equals("TwilightForest.Hedge Spider"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.hedgeSpider.ordinal());
-		else if (mobName.equals("TwilightForest.Mist Wolf"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.mistWolf.ordinal());
-		else if (mobName.equals("TwilightForest.Mini Ghast"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.miniGhast.ordinal());
-		else if (mobName.equals("TwilightForest.Tower Ghast"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.guardGhast.ordinal());
-		else if (mobName.equals("TwilightForest.King Spider"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.kingSpider.ordinal());
-		else if (mobName.equals("TwilightForest.Kobold"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.kobold.ordinal());
-		else if (mobName.equals("TwilightForest.Fire Beetle"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.fireBeetle.ordinal());
-		else if (mobName.equals("TwilightForest.Slime Beetle"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.slimeBeetle.ordinal());
-		else if (mobName.equals("TwilightForest.Pinch Beetle"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.pinchBeetle.ordinal());
-		else if (mobName.equals("TwilightForest.Tower Golem"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.towerGolem.ordinal());
-		else if (mobName.equals("TwilightForest.Hostile Wolf"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.hostileWolf.ordinal());
-		else if (mobName.equals("TwilightForest.Forest Squirrel"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.hostileWolf.ordinal());
-		else if (mobName.equals("TwilightForest.Swarm Spider"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.swarmSpider.ordinal());
-		else if (mobName.equals("TwilightForest.Redscale Broodling"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.towerBroodling.ordinal());
-		else if (mobName.equals("TwilightForest.WinterWolf"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.winterWolf.ordinal());
-		else if (mobName.equals("TwilightForest.Maze Slime") && ((EntitySlime) entity).getSlimeSize() == 1)
-			return new ItemStack(ModItems.skull, 1, SkullTypes.mazeSlime.ordinal());
-		else if (mobName.equals("TwilightForest.Tower Termite"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.towerwoodBorer.ordinal());
-		else
-			return null;
-	}
-
-	private static ItemStack getTEMobHead(Entity entity) {
-		String mobName = EntityList.getEntityString(entity);
-
-		if (mobName == null)
-			return null;
-		if (mobName.equals("Blizz"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.blizz.ordinal());
-		else
-			return null;
-	}
-
-	private static ItemStack getNaturaHead(Entity entity) {
-		String mobName = EntityList.getEntityString(entity);
-
-		if (mobName == null)
-			return null;
-		else if (mobName.equals("Natura.Imp"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.imp.ordinal());
-		else if (mobName.equals("Natura.NitroCreeper"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.nitroCreeper.ordinal());
-		else if (mobName.equals("Natura.FlameSpiderBaby"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.heatscarSpider.ordinal());
-		else
-			return null;
-	}
-
-	private static ItemStack getThaumcraftHead(Entity entity) {
-		String mobName = EntityList.getEntityString(entity);
-
-		if (mobName == null)
-			return null;
-		else if (mobName.equals("Thaumcraft.BrainyZombie") || mobName.equals("Thaumcraft.GiantBrainyZombie"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.angryZombie.ordinal());
-		else if (mobName.equals("Thaumcraft.Firebat"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.fireBat.ordinal());
-		else if (mobName.equals("Thaumcraft.ThaumSlime") && getThaumicSlimeSize(entity) == 1)
-			return new ItemStack(ModItems.skull, 1, SkullTypes.thaumicSlime.ordinal());
-		else if (mobName.equals("Thaumcraft.TaintedChicken"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.taintedChicken.ordinal());
-		else if (mobName.equals("Thaumcraft.TaintedCow"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.taintedCow.ordinal());
-		else if (mobName.equals("Thaumcraft.TaintedPig"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.taintedPig.ordinal());
-		else if (mobName.equals("Thaumcraft.TaintedCreeper"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.taintedCreeper.ordinal());
-		else if (mobName.equals("Thaumcraft.TaintedVillager"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.taintedVillager.ordinal());
-		else if (mobName.equals("Thaumcraft.TaintedSheep"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.taintedVillager.ordinal());
-		else if (mobName.equals("Thaumcraft.Pech"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.pech.ordinal());
-		else if (mobName.equals("Thaumcraft.EldritchGuardian"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.eldritchGuardian.ordinal());
-
-		return null;
-	}
-
-	private static int getThaumicSlimeSize(Entity entity) {
-		try {
-			Method m = entity.getClass().getMethod("getSlimeSize");
-			return (Integer) m.invoke(entity);
-		} catch (Exception e) {
-			return 0;
-		}
 	}
 }

@@ -6,5 +6,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/forge17"/>
 	<classpathentry kind="lib" path="libs/NEI.jar"/>
 	<classpathentry kind="lib" path="libs/Thaumcraft.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/LycanitesMobs"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -3,6 +3,7 @@ package ganymedes01.headcrumbs.libs;
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.utils.TextureUtils;
 import ganymedes01.headcrumbs.utils.Utils;
+import ganymedes01.headcrumbs.utils.helpers.LycanitesHelper;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.ResourceLocation;
 
@@ -92,7 +93,8 @@ public enum SkullTypes {
 	taintedVillager(Strings.TC_PREFIX + "villager", "Thaumcraft"),
 	taintedSheep(Strings.TC_PREFIX + "sheep", "Thaumcraft"),
 	pech(Strings.TC_PREFIX + "pech_forage", "Thaumcraft"),
-	eldritchGuardian(Strings.TC_PREFIX + "eldritch_guardian", "Thaumcraft");
+	eldritchGuardian(Strings.TC_PREFIX + "eldritch_guardian", "Thaumcraft"),
+	lycanites("");
 
 	private final String mod;
 	private final ResourceLocation texture;
@@ -119,6 +121,8 @@ public enum SkullTypes {
 	public ResourceLocation getTexture(GameProfile name) {
 		if (this == player)
 			return TextureUtils.getPlayerSkin(name);
+		if (this == lycanites)
+			return LycanitesHelper.getTexture(name.getName());
 		return texture;
 	}
 
