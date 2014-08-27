@@ -27,6 +27,7 @@ public class LycanitesHelper {
 	@SideOnly(Side.CLIENT)
 	private static final Map<String, ResourceLocation> map = new HashMap<String, ResourceLocation>();
 	private static final List<String> blacklist = Arrays.asList("pinky", "behemoth", "belph");
+	private static final List<String> prefixes = Arrays.asList("arcticmobs", "demonmobs", "desertmobs", "forestmobs", "freshwatermobs", "infernomobs", "junglemobs", "mountainmobs", "plainsmobs", "saltwatermobs", "swampmobs");
 
 	@SideOnly(Side.CLIENT)
 	public static ResourceLocation getTexture(String name) {
@@ -66,9 +67,11 @@ public class LycanitesHelper {
 		String mobName = EntityList.getEntityString(entity);
 		if (mobName != null) {
 			int dot = mobName.indexOf('.') + 1;
-			if (dot >= 0)
-				mobName = mobName.substring(dot).toLowerCase();
-
+			if (dot > 1) {
+				String prefix = mobName.substring(0, dot - 1);
+				if (prefixes.contains(prefix))
+					mobName = mobName.substring(dot).toLowerCase();
+			}
 			return !blacklist.contains(mobName) ? getStackFor(mobName) : null;
 		}
 		return null;

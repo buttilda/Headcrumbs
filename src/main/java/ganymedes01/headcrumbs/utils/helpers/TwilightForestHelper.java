@@ -2,6 +2,10 @@ package ganymedes01.headcrumbs.utils.helpers;
 
 import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.libs.SkullTypes;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.monster.EntitySlime;
@@ -9,12 +13,44 @@ import net.minecraft.item.ItemStack;
 
 public class TwilightForestHelper {
 
+	private static final Map<String, SkullTypes> map = new HashMap<String, SkullTypes>();
+	static {
+		map.put("Penguin", SkullTypes.penguin);
+		map.put("Bighorn Sheep", SkullTypes.bighorn);
+		map.put("Wild Deer", SkullTypes.wildDeer);
+		map.put("Wild Boar", SkullTypes.wildBoar);
+		map.put("Redcap", SkullTypes.redcap);
+		map.put("Redcap Sapper", SkullTypes.redcap);
+		map.put("Skeleton Druid", SkullTypes.druid);
+		map.put("Hedge Spider", SkullTypes.hedgeSpider);
+		map.put("Mist Wolf", SkullTypes.mistWolf);
+		map.put("Mini Ghast", SkullTypes.miniGhast);
+		map.put("Tower Ghast", SkullTypes.guardGhast);
+		map.put("King Spider", SkullTypes.kingSpider);
+		map.put("Twilight Kobold", SkullTypes.kobold);
+		map.put("Fire Beetle", SkullTypes.fireBeetle);
+		map.put("Slime Beetle", SkullTypes.slimeBeetle);
+		map.put("Pinch Beetle", SkullTypes.pinchBeetle);
+		map.put("Tower Golem", SkullTypes.towerGolem);
+		map.put("Hostile Wolf", SkullTypes.hostileWolf);
+		map.put("Forest Squirrel", SkullTypes.squirrel);
+		map.put("Swarm Spider", SkullTypes.swarmSpider);
+		map.put("Redscale Broodling", SkullTypes.towerBroodling);
+		map.put("WinterWolf", SkullTypes.winterWolf);
+		map.put("Tower Termite", SkullTypes.towerwoodBorer);
+	}
+
 	public static ItemStack getHead(Entity entity) {
 		String mobName = EntityList.getEntityString(entity);
 
 		if (mobName == null)
 			return null;
-		if (mobName.equals("TwilightForest.Forest Bunny")) {
+
+		int dot = mobName.indexOf('.') + 1;
+		if (dot >= 0)
+			mobName = mobName.substring(dot);
+
+		if (mobName.equals("Forest Bunny")) {
 			Integer type;
 			try {
 				type = (Integer) entity.getClass().getMethod("getBunnyType").invoke(entity);
@@ -35,54 +71,15 @@ public class TwilightForestHelper {
 					break;
 			}
 			return new ItemStack(ModItems.skull, 1, meta);
-		} else if (mobName.equals("TwilightForest.Penguin"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.penguin.ordinal());
-		else if (mobName.equals("TwilightForest.Bighorn Sheep"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.bighorn.ordinal());
-		else if (mobName.equals("TwilightForest.Wild Deer"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.wildDeer.ordinal());
-		else if (mobName.equals("TwilightForest.Wild Boar"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.wildBoar.ordinal());
-		else if (mobName.equals("TwilightForest.Redcap") || mobName.equals("TwilightForest.Redcap Sapper"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.redcap.ordinal());
-		else if (mobName.equals("TwilightForest.Skeleton Druid"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.druid.ordinal());
-		else if (mobName.equals("TwilightForest.Hedge Spider"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.hedgeSpider.ordinal());
-		else if (mobName.equals("TwilightForest.Mist Wolf"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.mistWolf.ordinal());
-		else if (mobName.equals("TwilightForest.Mini Ghast"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.miniGhast.ordinal());
-		else if (mobName.equals("TwilightForest.Tower Ghast"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.guardGhast.ordinal());
-		else if (mobName.equals("TwilightForest.King Spider"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.kingSpider.ordinal());
-		else if (mobName.equals("TwilightForest.Kobold"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.kobold.ordinal());
-		else if (mobName.equals("TwilightForest.Fire Beetle"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.fireBeetle.ordinal());
-		else if (mobName.equals("TwilightForest.Slime Beetle"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.slimeBeetle.ordinal());
-		else if (mobName.equals("TwilightForest.Pinch Beetle"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.pinchBeetle.ordinal());
-		else if (mobName.equals("TwilightForest.Tower Golem"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.towerGolem.ordinal());
-		else if (mobName.equals("TwilightForest.Hostile Wolf"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.hostileWolf.ordinal());
-		else if (mobName.equals("TwilightForest.Forest Squirrel"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.hostileWolf.ordinal());
-		else if (mobName.equals("TwilightForest.Swarm Spider"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.swarmSpider.ordinal());
-		else if (mobName.equals("TwilightForest.Redscale Broodling"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.towerBroodling.ordinal());
-		else if (mobName.equals("TwilightForest.WinterWolf"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.winterWolf.ordinal());
-		else if (mobName.equals("TwilightForest.Maze Slime") && ((EntitySlime) entity).getSlimeSize() == 1)
+		} else if (mobName.equals("Maze Slime") && ((EntitySlime) entity).getSlimeSize() == 1)
 			return new ItemStack(ModItems.skull, 1, SkullTypes.mazeSlime.ordinal());
-		else if (mobName.equals("TwilightForest.Tower Termite"))
-			return new ItemStack(ModItems.skull, 1, SkullTypes.towerwoodBorer.ordinal());
-		else
-			return null;
+		else {
+			SkullTypes type = map.get(mobName);
+			if (type != null)
+				return new ItemStack(ModItems.skull, 1, type.ordinal());
+		}
+
+		return null;
 	}
 
 }
