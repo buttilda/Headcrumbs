@@ -47,36 +47,37 @@ public class TwilightForestHelper {
 			return null;
 
 		int dot = mobName.indexOf('.') + 1;
-		if (dot >= 0)
+		if (dot >= 0) {
 			mobName = mobName.substring(dot);
 
-		if (mobName.equals("Forest Bunny")) {
-			Integer type;
-			try {
-				type = (Integer) entity.getClass().getMethod("getBunnyType").invoke(entity);
-			} catch (Exception e) {
-				type = 0;
+			if (mobName.equals("Forest Bunny")) {
+				Integer type;
+				try {
+					type = (Integer) entity.getClass().getMethod("getBunnyType").invoke(entity);
+				} catch (Exception e) {
+					type = 0;
+				}
+				int meta = 0;
+				switch (type) {
+					case 0:
+					case 1:
+						meta = SkullTypes.bunnyDutch.ordinal();
+						break;
+					case 3:
+						meta = SkullTypes.bunnyBrown.ordinal();
+						break;
+					case 2:
+						meta = SkullTypes.bunnyWhite.ordinal();
+						break;
+				}
+				return new ItemStack(ModItems.skull, 1, meta);
+			} else if (mobName.equals("Maze Slime") && ((EntitySlime) entity).getSlimeSize() == 1)
+				return new ItemStack(ModItems.skull, 1, SkullTypes.mazeSlime.ordinal());
+			else {
+				SkullTypes type = map.get(mobName);
+				if (type != null)
+					return new ItemStack(ModItems.skull, 1, type.ordinal());
 			}
-			int meta = 0;
-			switch (type) {
-				case 0:
-				case 1:
-					meta = SkullTypes.bunnyDutch.ordinal();
-					break;
-				case 3:
-					meta = SkullTypes.bunnyBrown.ordinal();
-					break;
-				case 2:
-					meta = SkullTypes.bunnyWhite.ordinal();
-					break;
-			}
-			return new ItemStack(ModItems.skull, 1, meta);
-		} else if (mobName.equals("Maze Slime") && ((EntitySlime) entity).getSlimeSize() == 1)
-			return new ItemStack(ModItems.skull, 1, SkullTypes.mazeSlime.ordinal());
-		else {
-			SkullTypes type = map.get(mobName);
-			if (type != null)
-				return new ItemStack(ModItems.skull, 1, type.ordinal());
 		}
 
 		return null;
