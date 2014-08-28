@@ -3,13 +3,13 @@ package ganymedes01.headcrumbs.utils.helpers;
 import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.item.ItemStack;
+import thaumcraft.common.entities.monster.EntityThaumicSlime;
 
 public class ThaumcraftHelper {
 
@@ -50,11 +50,8 @@ public class ThaumcraftHelper {
 	}
 
 	private static int getThaumicSlimeSize(Entity entity) {
-		try {
-			Method m = entity.getClass().getMethod("getSlimeSize");
-			return (Integer) m.invoke(entity);
-		} catch (Exception e) {
-			return 0;
-		}
+		if (entity instanceof EntityThaumicSlime)
+			return ((EntityThaumicSlime) entity).getSlimeSize();
+		return 0;
 	}
 }

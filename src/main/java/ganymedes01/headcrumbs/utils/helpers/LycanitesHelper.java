@@ -9,9 +9,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lycanite.lycanitesmobs.AssetManager;
 import lycanite.lycanitesmobs.ObjectManager;
 import lycanite.lycanitesmobs.api.info.GroupInfo;
 import lycanite.lycanitesmobs.api.info.MobInfo;
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.item.ItemStack;
@@ -28,6 +30,11 @@ public class LycanitesHelper {
 	private static final Map<String, ResourceLocation> map = new HashMap<String, ResourceLocation>();
 	private static final List<String> blacklist = Arrays.asList("pinky", "behemoth", "belph");
 	private static final List<String> prefixes = Arrays.asList("arcticmobs", "demonmobs", "desertmobs", "forestmobs", "freshwatermobs", "infernomobs", "junglemobs", "mountainmobs", "plainsmobs", "saltwatermobs", "swampmobs");
+
+	@SideOnly(Side.CLIENT)
+	public static ModelBase getModel(String name) {
+		return AssetManager.getModel(name);
+	}
 
 	@SideOnly(Side.CLIENT)
 	public static ResourceLocation getTexture(String name) {

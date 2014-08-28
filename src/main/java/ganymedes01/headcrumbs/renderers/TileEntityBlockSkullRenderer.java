@@ -3,7 +3,7 @@ package ganymedes01.headcrumbs.renderers;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
 import ganymedes01.headcrumbs.utils.HeadUtils;
-import lycanite.lycanitesmobs.AssetManager;
+import ganymedes01.headcrumbs.utils.helpers.LycanitesHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -48,7 +48,7 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 	private EntityLiving getEntity() {
 		if (entity == null)
 			entity = new EntityLiving(Minecraft.getMinecraft().theWorld) {
-		};
+			};
 
 		return entity;
 	}
@@ -59,16 +59,16 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 
 		SkullTypes type = SkullTypes.values()[skullType];
 		if (type == SkullTypes.lycanites)
-			renderOBJ(x, y, z, meta, skullRotation, type, playerName);
+			renderLycanites(x, y, z, meta, skullRotation, type, playerName);
 		else
 			renderNormal(x, y, z, meta, skullRotation, type, playerName);
 	}
 
-	private void renderOBJ(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile playerName) {
+	private void renderLycanites(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile playerName) {
 		if (playerName == null || !HeadUtils.lycanites)
 			return;
 
-		ModelBase model = AssetManager.getModel(playerName.getName());
+		ModelBase model = LycanitesHelper.getModel(playerName.getName());
 		ResourceLocation tex = type.getTexture(playerName);
 		if (model != null && tex != null) {
 			GL11.glPushMatrix();
