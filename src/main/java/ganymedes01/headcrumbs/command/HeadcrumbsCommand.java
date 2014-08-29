@@ -5,6 +5,7 @@ import ganymedes01.headcrumbs.libs.Reference;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.command.CommandBase;
@@ -14,7 +15,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
-import scala.actors.threadpool.Arrays;
 
 public class HeadcrumbsCommand extends CommandBase {
 
@@ -34,7 +34,7 @@ public class HeadcrumbsCommand extends CommandBase {
 	}
 
 	@Override
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({ "rawtypes" })
 	public List addTabCompletionOptions(ICommandSender sender, String[] args) {
 		ArrayList<String> list = new ArrayList<String>();
 		list.addAll(Arrays.asList(Headcrumbs.others));

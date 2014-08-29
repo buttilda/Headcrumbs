@@ -48,7 +48,7 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 	private EntityLiving getEntity() {
 		if (entity == null)
 			entity = new EntityLiving(Minecraft.getMinecraft().theWorld) {
-			};
+		};
 
 		return entity;
 	}

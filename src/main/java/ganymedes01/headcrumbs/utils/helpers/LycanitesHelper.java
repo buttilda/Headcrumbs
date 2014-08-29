@@ -1,5 +1,6 @@
 package ganymedes01.headcrumbs.utils.helpers;
 
+import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 
@@ -13,6 +14,9 @@ import lycanite.lycanitesmobs.AssetManager;
 import lycanite.lycanitesmobs.ObjectManager;
 import lycanite.lycanitesmobs.api.info.GroupInfo;
 import lycanite.lycanitesmobs.api.info.MobInfo;
+import lycanite.lycanitesmobs.demonmobs.entity.EntityBehemoth;
+import lycanite.lycanitesmobs.demonmobs.entity.EntityBelph;
+import lycanite.lycanitesmobs.demonmobs.entity.EntityPinky;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -72,14 +76,24 @@ public class LycanitesHelper {
 
 	public static ItemStack getHead(Entity entity) {
 		String mobName = EntityList.getEntityString(entity);
-		if (mobName != null) {
+		if (mobName == null)
+			return null;
+
+		if (entity instanceof EntityPinky)
+			return new ItemStack(ModItems.skull, 1, SkullTypes.pinky.ordinal());
+		else if (entity instanceof EntityBehemoth)
+			return new ItemStack(ModItems.skull, 1, SkullTypes.behemoth.ordinal());
+		else if (entity instanceof EntityBelph)
+			return new ItemStack(ModItems.skull, 1, SkullTypes.belph.ordinal());
+		else {
 			int dot = mobName.indexOf('.') + 1;
 			if (dot > 1) {
 				String prefix = mobName.substring(0, dot - 1);
-				if (prefixes.contains(prefix))
+				if (prefixes.contains(prefix)) {
 					mobName = mobName.substring(dot).toLowerCase();
+					return !blacklist.contains(mobName) ? getStackFor(mobName) : null;
+				}
 			}
-			return !blacklist.contains(mobName) ? getStackFor(mobName) : null;
 		}
 		return null;
 	}

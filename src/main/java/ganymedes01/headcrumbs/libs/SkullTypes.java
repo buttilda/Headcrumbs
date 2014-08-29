@@ -94,7 +94,10 @@ public enum SkullTypes {
 	taintedSheep(Strings.TC_PREFIX + "sheep", "Thaumcraft"),
 	pech(Strings.TC_PREFIX + "pech_forage", "Thaumcraft"),
 	eldritchGuardian(Strings.TC_PREFIX + "eldritch_guardian", "Thaumcraft"),
-	lycanites("");
+	lycanites(""),
+	pinky(Strings.LY_PREFIX + "pinky", "lycanitesmobs"),
+	behemoth(Strings.LY_PREFIX + "behemoth", "lycanitesmobs"),
+	belph(Strings.LY_PREFIX + "belph", "lycanitesmobs");
 
 	private final String mod;
 	private final ResourceLocation texture;
