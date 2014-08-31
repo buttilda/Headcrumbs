@@ -154,5 +154,4 @@ public enum SkullTypes {
 				return null;
 		}
 	}
-
 }

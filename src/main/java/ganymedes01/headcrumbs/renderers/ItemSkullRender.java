@@ -33,10 +33,18 @@ public class ItemSkullRender implements IItemRenderer {
 		GameProfile profile = null;
 
 		boolean isVanilla = stack.getItem() == Items.skull;
-		if (!isVanilla) {
-			if (stack.hasTagCompound() && stack.getTagCompound().hasKey("SkullOwner"))
+		if (stack.hasTagCompound())
+			if (stack.getTagCompound().hasKey("SkullOwner", 10))
 				profile = NBTUtil.func_152459_a(stack.getTagCompound().getCompoundTag("SkullOwner"));
+			else if (stack.getTagCompound().hasKey("SkullOwner", 8)) {
+				profile = new GameProfile(null, stack.getTagCompound().getString("SkullOwner"));
+				if (isVanilla) {
+					skullType = SkullTypes.player.ordinal();
+					isVanilla = false;
+				}
+			}
 
+		if (!isVanilla)
 			switch (SkullTypes.values()[skullType]) {
 				case witch:
 				case wildDeer:
@@ -61,7 +69,6 @@ public class ItemSkullRender implements IItemRenderer {
 				default:
 					break;
 			}
-		}
 
 		switch (type) {
 			case ENTITY:
