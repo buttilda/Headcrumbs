@@ -14,9 +14,13 @@ import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
 import com.mojang.authlib.properties.Property;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+@SideOnly(Side.CLIENT)
 public class TextureUtils {
 
-	private static final Map<String, GameProfile> profiles = new HashMap<String, GameProfile>();
+	public static final Map<String, GameProfile> profiles = new HashMap<String, GameProfile>();
 
 	public static ResourceLocation getPlayerSkin(GameProfile profile) {
 		return getPlayerImage(profile, MinecraftProfileTexture.Type.SKIN);

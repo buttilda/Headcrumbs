@@ -1,6 +1,7 @@
 package ganymedes01.headcrumbs.renderers;
 
 import ganymedes01.headcrumbs.libs.SkullTypes;
+import ganymedes01.headcrumbs.utils.TextureUtils;
 import net.minecraft.client.renderer.tileentity.TileEntitySkullRenderer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -31,13 +32,17 @@ public class ItemSkullRender implements IItemRenderer {
 	public void renderItem(ItemRenderType type, ItemStack stack, Object... data) {
 		int skullType = stack.getItemDamage();
 		GameProfile profile = null;
-
 		boolean isVanilla = stack.getItem() == Items.skull;
+
 		if (stack.hasTagCompound())
 			if (stack.getTagCompound().hasKey("SkullOwner", 10))
 				profile = NBTUtil.func_152459_a(stack.getTagCompound().getCompoundTag("SkullOwner"));
 			else if (stack.getTagCompound().hasKey("SkullOwner", 8)) {
-				profile = new GameProfile(null, stack.getTagCompound().getString("SkullOwner"));
+				String username = stack.getTagCompound().getString("SkullOwner");
+				if (TextureUtils.profiles.containsKey(username))
+					profile = TextureUtils.profiles.get(username);
+				else
+					profile = new GameProfile(null, username);
 				if (isVanilla) {
 					skullType = SkullTypes.player.ordinal();
 					isVanilla = false;

@@ -52,6 +52,8 @@ public class Skull extends ItemSkull {
 				NBTTagCompound nbt = stack.getTagCompound();
 				if (nbt.hasKey("SkullOwner", 10))
 					profile = NBTUtil.func_152459_a(nbt.getCompoundTag("SkullOwner"));
+				else if (nbt.hasKey("SkullOwner", 8))
+					profile = new GameProfile(null, nbt.getString("SkullOwner"));
 			}
 
 			if (profile != null) {
@@ -104,6 +106,8 @@ public class Skull extends ItemSkull {
 					NBTTagCompound nbt = stack.getTagCompound();
 					if (nbt.hasKey("SkullOwner", 10))
 						profile = NBTUtil.func_152459_a(nbt.getCompoundTag("SkullOwner"));
+					else if (nbt.hasKey("SkullOwner", 8))
+						profile = new GameProfile(null, nbt.getString("SkullOwner"));
 				}
 
 				tile.setType(stack.getItemDamage(), profile);
@@ -160,8 +164,13 @@ public class Skull extends ItemSkull {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		if (stack.hasTagCompound() && stack.getTagCompound().hasKey("SkullOwner", 10)) {
-			String name = NBTUtil.func_152459_a(stack.getTagCompound().getCompoundTag("SkullOwner")).getName();
+		if (stack.hasTagCompound()) {
+			String name = null;
+			if (stack.getTagCompound().hasKey("SkullOwner", 10))
+				name = NBTUtil.func_152459_a(stack.getTagCompound().getCompoundTag("SkullOwner")).getName();
+			else if (stack.getTagCompound().hasKey("SkullOwner", 8))
+				name = stack.getTagCompound().getString("SkullOwner");
+
 			boolean isLycanites = stack.getItemDamage() == SkullTypes.lycanites.ordinal();
 			boolean isPlayer = stack.getItemDamage() == SkullTypes.player.ordinal();
 			if (isLycanites || isPlayer)
