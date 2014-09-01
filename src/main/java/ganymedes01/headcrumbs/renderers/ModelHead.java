@@ -46,7 +46,7 @@ public class ModelHead extends ModelSkeletonHead {
 		}
 
 		transform(type);
-		return new ModelHead().setHeadType(type);//heads.get(type);
+		return heads.get(type);
 	}
 
 	private static void transform(SkullTypes skull) {
