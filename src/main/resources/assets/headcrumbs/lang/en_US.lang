@@ -80,6 +80,9 @@ item.headcrumbs.taintedVillager.name=Tainted Villager Head
 item.headcrumbs.taintedSheep.name=Tainted Sheep Head
 item.headcrumbs.pech.name=Pech Head
 item.headcrumbs.eldritchGuardian.name=Eldritch Guardian Head
+item.headcrumbs.pinky.name=Pinky Head
+item.headcrumbs.behemoth.name=Behemoth Head
+item.headcrumbs.belph.name=Belph Head
 
 # Creative Tab
 itemGroup.headcrumbs=Headcrumbs

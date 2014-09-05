@@ -121,8 +121,10 @@ public class BlockSkull extends BlockContainer implements IInfusionStabiliser {
 		ItemStack stack = new ItemStack(item, 1, getDamageValue(world, x, y, z));
 		TileEntityBlockSkull tile = Utils.getTileEntity(world, x, y, z, TileEntityBlockSkull.class);
 		if (tile != null)
-			if (tile.func_145904_a() == SkullTypes.player.ordinal() && tile.func_152108_a() != null)
+			if ((tile.func_145904_a() == SkullTypes.player.ordinal() || tile.func_145904_a() == SkullTypes.lycanites.ordinal()) && tile.func_152108_a() != null) {
 				stack = HeadUtils.createHeadFor(tile.func_152108_a());
+				stack.setItemDamage(tile.func_145904_a());
+			}
 
 		return stack;
 	}
