@@ -17,8 +17,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
@@ -155,12 +153,11 @@ public class BlockSkull extends BlockContainer implements IInfusionStabiliser {
 
 		ItemStack stack = new ItemStack(ModItems.skull, 1, tile.func_145904_a());
 
-		if (tile.func_145904_a() == SkullTypes.player.ordinal() && tile.func_152108_a() != null) {
-			stack.setTagCompound(new NBTTagCompound());
-			NBTTagCompound profileData = new NBTTagCompound();
-			NBTUtil.func_152460_a(profileData, tile.func_152108_a());
-			stack.getTagCompound().setTag("SkullOwner", profileData);
+		if ((tile.func_145904_a() == SkullTypes.player.ordinal() || tile.func_145904_a() == SkullTypes.lycanites.ordinal()) && tile.func_152108_a() != null) {
+			stack = HeadUtils.createHeadFor(tile.func_152108_a());
+			stack.setItemDamage(tile.func_145904_a());
 		}
+
 		drops.add(stack);
 
 		return drops;
