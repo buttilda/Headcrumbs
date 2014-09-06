@@ -71,6 +71,10 @@ public class ItemSkullRender implements IItemRenderer {
 				case pinchBeetle:
 					GL11.glScaled(0.75, 0.75, 0.75);
 					break;
+				case mistWolf:
+				case winterWolf:
+					GL11.glTranslated(0, -0.25, 0);
+					break;
 				default:
 					break;
 			}

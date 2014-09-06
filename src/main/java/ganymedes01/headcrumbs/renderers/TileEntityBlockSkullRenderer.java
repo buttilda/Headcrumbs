@@ -73,6 +73,7 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 		if (model != null && tex != null) {
 			GL11.glPushMatrix();
 			GL11.glDisable(GL11.GL_CULL_FACE);
+			GL11.glEnable(GL11.GL_ALPHA_TEST);
 
 			translateHead(x, y + 1.75F, z, meta);
 			skullRotation = adjustRotation(meta, skullRotation);
