@@ -80,6 +80,9 @@ item.headcrumbs.taintedVillager.name=腐化村民头颅
 item.headcrumbs.taintedSheep.name=腐化羊头颅
 item.headcrumbs.pech.name=岩精头颅
 item.headcrumbs.eldritchGuardian.name=邪术守卫头颅
+item.headcrumbs.pinky.name=牲畜消灭者头颅
+item.headcrumbs.behemoth.name=巨兽头颅
+item.headcrumbs.belph.name=红炎战士头颅
 
 # Creative Tab
 itemGroup.headcrumbs=Headcrumbs
