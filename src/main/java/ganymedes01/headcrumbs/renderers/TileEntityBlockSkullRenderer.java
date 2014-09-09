@@ -3,7 +3,7 @@ package ganymedes01.headcrumbs.renderers;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
 import ganymedes01.headcrumbs.utils.HeadUtils;
-import ganymedes01.headcrumbs.utils.helpers.LycanitesHelper;
+import ganymedes01.headcrumbs.utils.helpers.LycanitesHelperClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -47,8 +47,7 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 
 	private EntityLiving getEntity() {
 		if (entity == null)
-			entity = new EntityLiving(Minecraft.getMinecraft().theWorld) {
-		};
+			entity = new EntityLiving(Minecraft.getMinecraft().theWorld) {};
 
 		return entity;
 	}
@@ -68,7 +67,7 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 		if (playerName == null || !HeadUtils.lycanites)
 			return;
 
-		ModelBase model = LycanitesHelper.getModel(playerName.getName());
+		ModelBase model = LycanitesHelperClient.getModel(playerName.getName());
 		ResourceLocation tex = type.getTexture(playerName);
 		if (model != null && tex != null) {
 			GL11.glPushMatrix();

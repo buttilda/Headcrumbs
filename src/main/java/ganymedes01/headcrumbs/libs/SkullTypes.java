@@ -3,7 +3,7 @@ package ganymedes01.headcrumbs.libs;
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.utils.TextureUtils;
 import ganymedes01.headcrumbs.utils.Utils;
-import ganymedes01.headcrumbs.utils.helpers.LycanitesHelper;
+import ganymedes01.headcrumbs.utils.helpers.LycanitesHelperClient;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.ResourceLocation;
 
@@ -125,7 +125,7 @@ public enum SkullTypes {
 		if (this == player)
 			return TextureUtils.getPlayerSkin(name);
 		if (this == lycanites)
-			return LycanitesHelper.getTexture(name.getName());
+			return LycanitesHelperClient.getTexture(name.getName());
 		return texture;
 	}
 

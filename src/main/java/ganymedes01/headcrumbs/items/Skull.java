@@ -7,6 +7,7 @@ import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.Utils;
 import ganymedes01.headcrumbs.utils.helpers.LycanitesHelper;
+import ganymedes01.headcrumbs.utils.helpers.LycanitesHelperClient;
 
 import java.util.List;
 
@@ -148,7 +149,7 @@ public class Skull extends ItemSkull {
 						list.addAll(HeadUtils.players);
 			}
 		if (HeadUtils.lycanites)
-			list.addAll(LycanitesHelper.getStacks());
+			list.addAll(LycanitesHelperClient.getStacks());
 	}
 
 	@Override
