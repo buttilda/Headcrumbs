@@ -1,18 +1,18 @@
 package ganymedes01.headcrumbs.utils;
 
+import ganymedes01.headcrumbs.network.PacketHandler;
+import ganymedes01.headcrumbs.network.packet.TextureRequestPacket;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 
-import com.google.common.collect.Iterables;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
-import com.mojang.authlib.properties.Property;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -46,26 +46,7 @@ public class TextureUtils {
 				// Store profile with self to avoid thread spam
 				profiles.put(profile.getName(), profile);
 
-				// Start thread to download image
-				new Thread(new Runnable() {
-
-					@Override
-					public void run() {
-						GameProfile gp = profile;
-						GameProfile gameprofile = MinecraftServer.getServer().func_152358_ax().func_152655_a(gp.getName());
-
-						if (gameprofile != null) {
-							Property property = (Property) Iterables.getFirst(gameprofile.getProperties().get("textures"), (Object) null);
-
-							if (property == null)
-								gameprofile = MinecraftServer.getServer().func_147130_as().fillProfileProperties(gameprofile, true);
-
-							gp = gameprofile;
-							profiles.put(gp.getName(), gp);
-						}
-					}
-
-				}, profile.getName()).start();
+				PacketHandler.sendToServer(new TextureRequestPacket(profile.getName()));
 			}
 		}
 

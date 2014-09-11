@@ -4,6 +4,7 @@ import ganymedes01.headcrumbs.command.HeadcrumbsCommand;
 import ganymedes01.headcrumbs.configs.ConfigHandler;
 import ganymedes01.headcrumbs.libs.Reference;
 import ganymedes01.headcrumbs.libs.SkullTypes;
+import ganymedes01.headcrumbs.network.PacketHandler;
 import ganymedes01.headcrumbs.proxy.CommonProxy;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 
@@ -102,6 +103,7 @@ public class Headcrumbs {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
+		PacketHandler.init();
 		proxy.registerEvents();
 		proxy.registerTileEntities();
 		proxy.registerRenderers();
