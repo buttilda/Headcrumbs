@@ -32,7 +32,10 @@ public class TextureUtils {
 
 	@SuppressWarnings("unchecked")
 	private static ResourceLocation getPlayerImage(final GameProfile profile, MinecraftProfileTexture.Type type) {
-		if (profile != null)
+		if (profile != null) {
+			if (profile.getName().equals(Minecraft.getMinecraft().thePlayer.getGameProfile().getName()))
+				return Minecraft.getMinecraft().thePlayer.getLocationSkin();
+
 			if (profiles.containsKey(profile.getName())) {
 				Minecraft minecraft = Minecraft.getMinecraft();
 				Map<MinecraftProfileTexture.Type, MinecraftProfileTexture> map = minecraft.func_152342_ad().func_152788_a(profiles.get(profile.getName()));
@@ -40,12 +43,6 @@ public class TextureUtils {
 				if (map.containsKey(type))
 					return minecraft.func_152342_ad().func_152792_a(map.get(type), type);
 			} else {
-				// If it's the same as the client player, store client player's profile
-				if (profile.getName().equals(Minecraft.getMinecraft().thePlayer.getGameProfile().getName())) {
-					profiles.put(profile.getName(), Minecraft.getMinecraft().thePlayer.getGameProfile());
-					return AbstractClientPlayer.locationStevePng;
-				}
-
 				// Store profile with self to avoid thread spam
 				profiles.put(profile.getName(), profile);
 
@@ -70,6 +67,7 @@ public class TextureUtils {
 
 				}, profile.getName()).start();
 			}
+		}
 
 		return type == Type.CAPE ? null : AbstractClientPlayer.locationStevePng;
 	}
