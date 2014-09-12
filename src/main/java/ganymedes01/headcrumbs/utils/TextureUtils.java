@@ -46,6 +46,7 @@ public class TextureUtils {
 				// Store profile with self to avoid thread spam
 				profiles.put(profile.getName(), profile);
 
+				// Request texture from server
 				PacketHandler.sendToServer(new TextureRequestPacket(profile.getName()));
 			}
 		}
