@@ -59,7 +59,7 @@ public class Headcrumbs {
 		}
 	};
 
-	public static String[] others = { "Jeb_Jeb", "KingPurpleRaptor", "DylanGK" };
+	public static String[] others = { "vasili02", "Jeb_Jeb", "KingPurpleRaptor", "DylanGK" };
 	public static String[] modders = { "MatrexsVigil", "ganymedes01", "Pokefenn", "chylex", "vadis365", "CrazyPants", "Kihira", "Country_Gamer", "jakimfett", "mats000", "kris545545" };
 	public static String[] youtubers = { "ChimneySwift11", "FuriousDestroyer", "SuperGirlyGamer", "CyaNideEPiC", "Jarrenitis", "direwolf20", "Sjin", "Xephos", "LividCoffee", "Rythian", "Zoeya", "TheStrippin", "inthelittlewood", "Quetzz", "Blorph", "xbony2", "CaptainSparklez", "AntVenom", "CavemanFilms", "Fosler", "BevoLJ", "Sips_", "Honeydew", "TobyTurner", "corjaantje" };
 	public static String[] mojang = { "Notch", "jeb_", "C418", "Dinnerbone", "Grumm", "Searge_DP", "EvilSeph", "TheMogMiner" };
