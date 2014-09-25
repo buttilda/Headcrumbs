@@ -4,9 +4,9 @@ import ganymedes01.headcrumbs.libs.SkullTypes;
 
 import java.util.HashMap;
 
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelEnderman;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.client.model.ModelSkeletonHead;
 
 import org.lwjgl.opengl.GL11;
 
@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class ModelHead extends ModelSkeletonHead {
+public class ModelHead extends ModelBase {
 
 	private static HashMap<SkullTypes, ModelHead> heads;
 
