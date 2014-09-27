@@ -96,7 +96,7 @@ public class EntityDropEvent {
 		if (beheading > 0)
 			return rand.nextInt(100) < beheading * 10;
 
-		return Headcrumbs.enableRandomHeadDrop && rand.nextInt(Headcrumbs.headDropChance / Math.max(looting, 1)) == 0;
+		return Headcrumbs.enableRandomHeadDrop && rand.nextInt(Headcrumbs.headDropChance / Math.max(looting + 1, 1)) == 0;
 	}
 
 	private int getBeaheadingLevel(ItemStack weapon) {

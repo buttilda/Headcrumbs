@@ -32,7 +32,7 @@ public class ConfigHandler {
 		Headcrumbs.enableChargedCreeperKills = configFile.get(Configuration.CATEGORY_GENERAL, "Enable charged creeper kills", Headcrumbs.enableChargedCreeperKills, "Setting this to true will cause heads to drop 100% of the time when an entity is killed by a charged creeper").setRequiresMcRestart(true).getBoolean();
 		Headcrumbs.enablePlayerStatues = configFile.get(Configuration.CATEGORY_GENERAL, "Enable player statues", Headcrumbs.enablePlayerStatues, "Setting this to true allow statues to be built (Turning this off won't destroy existing statues)").setRequiresMcRestart(false).getBoolean();
 
-		Headcrumbs.headDropChance = configFile.get(Configuration.CATEGORY_GENERAL, "Chance of random head drop", Headcrumbs.headDropChance, "Random.nextInt(X / fortune) == 0").setRequiresMcRestart(false).getInt();
+		Headcrumbs.headDropChance = configFile.get(Configuration.CATEGORY_GENERAL, "Chance of random head drop", Headcrumbs.headDropChance, "Random.nextInt(X / (fortune+1)) == 0").setRequiresMcRestart(false).getInt();
 		Headcrumbs.headsDungeonLootMaxWeight = configFile.get(Configuration.CATEGORY_GENERAL, "Player heads loot weight", Headcrumbs.headsDungeonLootMaxWeight, "The bigger this number the easier it will be to find heads in dungeons.\nSome heads will be rarer than others.\nExamples: Diamond is 1, Redstone is 10").setRequiresMcRestart(true).getInt();
 
 		Headcrumbs.others = configFile.get("heads", "others", Headcrumbs.others).setRequiresMcRestart(true).getStringList();
