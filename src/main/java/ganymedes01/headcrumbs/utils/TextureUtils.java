@@ -34,7 +34,7 @@ public class TextureUtils {
 	private static ResourceLocation getPlayerImage(final GameProfile profile, MinecraftProfileTexture.Type type) {
 		if (profile != null) {
 			if (profile.getName().equals(Minecraft.getMinecraft().thePlayer.getGameProfile().getName()))
-				return Minecraft.getMinecraft().thePlayer.getLocationSkin();
+				return type == Type.CAPE ? Minecraft.getMinecraft().thePlayer.getLocationCape() : Minecraft.getMinecraft().thePlayer.getLocationSkin();
 
 			if (profiles.containsKey(profile.getName())) {
 				Minecraft minecraft = Minecraft.getMinecraft();
