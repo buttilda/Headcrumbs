@@ -60,7 +60,7 @@ public class Headcrumbs {
 	};
 
 	public static String[] others = { "vasili02", "Jeb_Jeb", "KingPurpleRaptor", "DylanGK" };
-	public static String[] modders = { "Emasher", "joshiejack", "Reika_Kalseki", "MatrexsVigil", "ganymedes01", "Pokefenn", "chylex", "vadis365", "CrazyPants", "Kihira", "Country_Gamer", "jakimfett", "mats000", "kris545545" };
+	public static String[] modders = { "Emasher", "joshiejack", "Reika_Kalseki", "MatrexsVigil", "ganymedes01", "Pokefenn", "chylex", "vadis365", "CrazyPants", "Kihira", "Country_Gamer", "jakimfett", "mats000", "kris545545", "TheCricket26" };
 	public static String[] youtubers = { "ChimneySwift", "FuriousDestroyer", "SuperGirlyGamer", "CyaNideEPiC", "Jarrenitis", "direwolf20", "Sjin", "Xephos", "LividCoffee", "Rythian", "Zoeya", "TheStrippin", "inthelittlewood", "Quetzz", "Blorph", "xbony2", "CaptainSparklez", "AntVenom", "CavemanFilms", "Fosler", "BevoLJ", "Sips_", "Honeydew", "TobyTurner", "corjaantje" };
 	public static String[] mojang = { "Notch", "jeb_", "C418", "Dinnerbone", "Grumm", "Searge_DP", "EvilSeph", "TheMogMiner" };
 	public static String[] mindCrack = { "adlingtont", "AnderZEL", "Arkas", "Aureylian", "AvidyaZEN", "BdoubleO100", "BlameTC", "Coestar", "Docm77", "Etho", "generikb", "Guude", "jsano19", "kurtmac", "mcgamer", "Mhykol", "Millbee", "Nebris", "Pakratt0013", "paulsoaresjr", "PauseUnpause", "Pyro_0", "SethBling", "thejims", "sevadus", "Vechs_", "VintageBeef", "W92Baj", "Zisteau" };
