@@ -7,6 +7,7 @@ import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.network.PacketHandler;
 import ganymedes01.headcrumbs.proxy.CommonProxy;
 import ganymedes01.headcrumbs.utils.HeadUtils;
+import ganymedes01.headcrumbs.utils.UsercacheChecker;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -126,6 +127,8 @@ public class Headcrumbs {
 		HeadUtils.natura = Loader.isModLoaded("Natura");
 		HeadUtils.thaumcraft = Loader.isModLoaded("Thaumcraft");
 		HeadUtils.lycanites = Loader.isModLoaded("lycanitesmobs");
+
+		UsercacheChecker.check();
 	}
 
 	@EventHandler
