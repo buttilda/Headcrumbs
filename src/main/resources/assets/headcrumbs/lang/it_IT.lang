@@ -1,0 +1,94 @@
+
+# Items
+item.headcrumbs.pigman.name=Testa di zombi suino
+item.headcrumbs.blaze.name=Testa di Vampo
+item.headcrumbs.enderman.name=Testa di Enderman
+item.headcrumbs.player.name=Testa di 
+item.headcrumbs.spider.name=Testa di ragno
+item.headcrumbs.caveSpider.name=Testa di ragno delle caverne
+item.headcrumbs.pig.name=Testa di maiale
+item.headcrumbs.cow.name=Testa di mucca
+item.headcrumbs.mooshroom.name=Testa di Muucelio
+item.headcrumbs.sheep.name=Testa di pecorea
+item.headcrumbs.wolf.name=Testa di lupo
+item.headcrumbs.villager.name=Testa di villico
+item.headcrumbs.chicken.name=Testa di pollo
+item.headcrumbs.witch.name=Testa di strega
+item.headcrumbs.zombieVillager.name=Testa di villico zombi
+item.headcrumbs.ironGolem.name=Testa di golem di ferro
+item.headcrumbs.squid.name=Testa di calamaro
+item.headcrumbs.wither.name=Teschio di Wither
+item.headcrumbs.ghast.name=Testa di Spettro
+--
+item.headcrumbs.mistWolf.name=Testa di Mist Wolf
+item.headcrumbs.miniGhast.name=Testa di Carminite Ghastling
+item.headcrumbs.guardGhast.name=Testa di Carminite Ghastguard
+item.headcrumbs.kingSpider.name=Testa di King Spider
+item.headcrumbs.kobold.name=Testa di Kobold
+item.headcrumbs.slimeBeetle.name=Testa di Slime Beetle
+item.headcrumbs.fireBeetle.name=Testa di Fire Beetle
+item.headcrumbs.pinchBeetle.name=Testa di Pinch Beetle
+item.headcrumbs.towerGolem.name=Testa di Carminite Golem
+item.headcrumbs.bunnyDutch.name=Testa di Dutch Bunny
+item.headcrumbs.bunnyBrown.name=Testa di Brown Bunny
+item.headcrumbs.bunnyWhite.name=Testa di White Bunny
+item.headcrumbs.penguin.name=Testa di Penguin
+item.headcrumbs.bighorn.name=Testa di Bighorn Sheep
+item.headcrumbs.wildDeer.name=Testa di Wild Deer
+item.headcrumbs.wildBoar.name=Testa di Wild Boar
+item.headcrumbs.redcap.name=Testa di Redcap
+item.headcrumbs.druid.name=Testa di Skeleton Druid
+item.headcrumbs.hedgeSpider.name=Testa di Hedge Spider
+-
+item.headcrumbs.blizz.name=Testa di Folata
+item.headcrumbs.enderDragon.name=Drago d'omega
+item.headcrumbs.hostileWolf.name=Lupo ostile
+item.headcrumbs.squirrel.name=Scoiattolo della forestra
+item.headcrumbs.ocelot.name=Gattopardo
+item.headcrumbs.ocelotBlack.name=Gatto nero
+item.headcrumbs.ocelotRed.name=Gatto rosso
+item.headcrumbs.ocelotSiamese.name=Gatto siamese
+item.headcrumbs.bat.name=Pipistrello
+item.headcrumbs.slime.name=Gelatina
+item.headcrumbs.magmaCube.name=Cubo di magma
+item.headcrumbs.horseBlack.name=Cavallo (Nerio)
+item.headcrumbs.horseBrown.name=Cavallo (Marrone)
+item.headcrumbs.horseChestnut.name=Cavallo (Nocciola)
+item.headcrumbs.horseCreamy.name=Cavallo (Crema)
+item.headcrumbs.horseDarkBrown.name=Cavallo (Marrone scuro)
+item.headcrumbs.horseGrey.name=Cavallo (Grigio)
+item.headcrumbs.horseWhite.name=Cavallo (Bianco)
+item.headcrumbs.donkey.name=Asino
+item.headcrumbs.mule.name=Mulo
+item.headcrumbs.horseUndead.name=Cavallo zombi
+item.headcrumbs.horseSkeleton.name=Cavallo scheletro
+item.headcrumbs.snowMan.name=Golem di neve
+item.headcrumbs.silverfish.name=Pesciolino d'argento
+-
+item.headcrumbs.swarmSpider.name=Swarm Spider
+item.headcrumbs.towerBroodling.name=Carminite Broodling
+item.headcrumbs.winterWolf.name=Winter Wolf
+item.headcrumbs.mazeSlime.name=Maze Slime
+item.headcrumbs.towerwoodBorer.name=Towerwood Borer
+-
+item.headcrumbs.imp.name=Imp
+item.headcrumbs.nitroCreeper.name=Nitro Creeper
+item.headcrumbs.heatscarSpider.name=Ragno fiammeggiante
+item.headcrumbs.angryZombie.name=Zombi arrabbiato
+item.headcrumbs.fireBat.name=Pirostrello
+item.headcrumbs.thaumicSlime.name=Slime taumico
+item.headcrumbs.taintedChicken.name=Pollo corrotto
+item.headcrumbs.taintedCow.name=Mucca corrotta
+item.headcrumbs.taintedPig.name=Maiale corrotto
+item.headcrumbs.taintedCreeper.name=Creeper corrotto
+item.headcrumbs.taintedVillager.name=Villico corrotto
+item.headcrumbs.taintedSheep.name=Pecora corrotta
+item.headcrumbs.pech.name=Nano
+item.headcrumbs.eldritchGuardian.name=Guardiano innaturale
+-
+item.headcrumbs.pinky.name=Pinky
+item.headcrumbs.behemoth.name=Behemoth
+item.headcrumbs.belph.name=Belph
+
+# Creative Tab
+itemGroup.headcrumbs=Headcrumbs
