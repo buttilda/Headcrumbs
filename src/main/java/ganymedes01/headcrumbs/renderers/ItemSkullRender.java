@@ -31,6 +31,9 @@ public class ItemSkullRender implements IItemRenderer {
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack stack, Object... data) {
 		int skullType = stack.getItemDamage();
+		if (skullType < 0 || skullType >= SkullTypes.values().length)
+			return;
+
 		GameProfile profile = null;
 		boolean isVanilla = stack.getItem() == Items.skull;
 
