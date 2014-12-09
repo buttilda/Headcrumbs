@@ -63,8 +63,8 @@ public class BlockEmpty extends Block {
 	}
 
 	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
-		return world.getBlock(x, y + 1, z).getPickBlock(target, world, x, y + 1, z);
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
+		return world.getBlock(x, y + 1, z).getPickBlock(target, world, x, y + 1, z, player);
 	}
 
 	@Override
