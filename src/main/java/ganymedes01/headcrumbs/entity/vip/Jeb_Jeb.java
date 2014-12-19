@@ -15,7 +15,7 @@ public class Jeb_Jeb extends VIPHandler {
 	}
 
 	@Override
-	protected int maxDropAmount() {
+	protected int maxBaseDropAmount() {
 		return 5;
 	}
 

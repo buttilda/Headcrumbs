@@ -31,7 +31,6 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
@@ -118,7 +117,6 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
 		setUsername(getRandomUsername());
-		//		setUsername("Jeb_Jeb");
 		addRandomArmor();
 		enchantEquipment();
 		setCombatAI();
@@ -152,21 +150,11 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 		return result;
 	}
 
-	@Override
-	protected boolean canDespawn() {
-		return hasCustomNameTag();
-	}
-
 	/* RENDERING */
 
 	@Override
 	public double getYOffset() {
 		return -0.3;
-	}
-
-	@Override
-	public boolean getAlwaysRenderNameTag() {
-		return true;
 	}
 
 	/* SAVE AND LOAD */
@@ -233,7 +221,21 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 
 	@Override
 	public String getCommandSenderName() {
-		return EnumChatFormatting.UNDERLINE + getUsername();
+		return getUsername();
+	}
+
+	@Override
+	public String getCustomNameTag() {
+		return getCommandSenderName();
+	}
+
+	@Override
+	public boolean hasCustomNameTag() {
+		return true;
+	}
+
+	@Override
+	public void setCustomNameTag(String name) {
 	}
 
 	private void setUsername(String name) {

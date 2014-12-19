@@ -13,7 +13,7 @@ public class Myrathi extends VIPHandler {
 	}
 
 	@Override
-	protected int maxDropAmount() {
+	protected int maxBaseDropAmount() {
 		return 5;
 	}
 

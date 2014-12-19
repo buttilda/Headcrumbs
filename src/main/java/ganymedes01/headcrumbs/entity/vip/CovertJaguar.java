@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 public class CovertJaguar extends VIPHandler {
 
 	@Override
-	protected int maxDropAmount() {
+	protected int maxBaseDropAmount() {
 		return 2;
 	}
 

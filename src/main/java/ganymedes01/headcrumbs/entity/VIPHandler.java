@@ -29,11 +29,12 @@ public class VIPHandler {
 	}
 
 	public void dropItems(EntityCelebrity entity, int looting) {
-		int amount = minDropAmount() + entity.getRNG().nextInt(maxDropAmount());
+		int amount = minDropAmount() + entity.getRNG().nextInt(maxBaseDropAmount());
 
 		if (looting > 0)
 			amount += entity.getRNG().nextInt(looting + 1);
 
+		amount = Math.min(maxDropAmount(), amount);
 		for (int i = 0; i < amount; i++) {
 			ItemStack stack = getItem(entity);
 			if (stack != null)
@@ -46,6 +47,10 @@ public class VIPHandler {
 	}
 
 	protected int maxDropAmount() {
+		return Integer.MAX_VALUE;
+	}
+
+	protected int maxBaseDropAmount() {
 		return 3;
 	}
 
