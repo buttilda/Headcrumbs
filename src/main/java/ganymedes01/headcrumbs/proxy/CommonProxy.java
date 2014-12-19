@@ -1,7 +1,7 @@
 package ganymedes01.headcrumbs.proxy;
 
 import ganymedes01.headcrumbs.configs.ConfigHandler;
-import ganymedes01.headcrumbs.eventHandlers.EntityDropEvent;
+import ganymedes01.headcrumbs.eventHandlers.HandlerEvents;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockPlayer;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
 import ganymedes01.headcrumbs.utils.Utils;
@@ -13,7 +13,7 @@ public class CommonProxy {
 
 	public void registerEvents() {
 		FMLCommonHandler.instance().bus().register(ConfigHandler.INSTANCE);
-		MinecraftForge.EVENT_BUS.register(new EntityDropEvent());
+		MinecraftForge.EVENT_BUS.register(new HandlerEvents());
 	}
 
 	public void registerTileEntities() {

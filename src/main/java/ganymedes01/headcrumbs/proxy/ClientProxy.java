@@ -1,8 +1,10 @@
 package ganymedes01.headcrumbs.proxy;
 
 import ganymedes01.headcrumbs.ModItems;
+import ganymedes01.headcrumbs.entity.EntityCelebrity;
 import ganymedes01.headcrumbs.eventHandlers.RenderPlayerHandler;
 import ganymedes01.headcrumbs.renderers.ItemSkullRender;
+import ganymedes01.headcrumbs.renderers.RenderCelebrity;
 import ganymedes01.headcrumbs.renderers.TileEntityBlockPlayerRenderer;
 import ganymedes01.headcrumbs.renderers.TileEntityBlockSkullRenderer;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockPlayer;
@@ -11,6 +13,7 @@ import net.minecraft.init.Items;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy {
 
@@ -32,5 +35,7 @@ public class ClientProxy extends CommonProxy {
 	public void registerRenderers() {
 		MinecraftForgeClient.registerItemRenderer(ModItems.skull, new ItemSkullRender());
 		MinecraftForgeClient.registerItemRenderer(Items.skull, new ItemSkullRender());
+
+		RenderingRegistry.registerEntityRenderingHandler(EntityCelebrity.class, new RenderCelebrity());
 	}
 }

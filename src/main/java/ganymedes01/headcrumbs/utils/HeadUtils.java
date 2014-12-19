@@ -2,6 +2,7 @@ package ganymedes01.headcrumbs.utils;
 
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.ModItems;
+import ganymedes01.headcrumbs.entity.EntityCelebrity;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.utils.helpers.LycanitesHelper;
 import ganymedes01.headcrumbs.utils.helpers.NaturaHelper;
@@ -135,6 +136,9 @@ public class HeadUtils {
 			if (head != null)
 				return head;
 		}
+
+		if (target instanceof EntityCelebrity)
+			return createHeadFor(((EntityCelebrity) target).getUsername());
 
 		if (target instanceof EntityMob) {
 			if (target instanceof EntityCreeper)

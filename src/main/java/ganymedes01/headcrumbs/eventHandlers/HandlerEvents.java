@@ -2,6 +2,7 @@ package ganymedes01.headcrumbs.eventHandlers;
 
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.ModItems;
+import ganymedes01.headcrumbs.entity.EntityCelebrity;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 
@@ -25,10 +26,21 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class EntityDropEvent {
+public class HandlerEvents {
+
+	@SubscribeEvent
+	public void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
+		if (event.entityLiving instanceof EntityCelebrity) {
+			String name = event.world.provider.getDimensionName();
+			if (name.equals("Twilight Forest") || name.equals("Erebus"))
+				event.setResult(Result.DENY);
+		}
+	}
 
 	@SubscribeEvent
 	public void playerDrop(LivingDeathEvent event) {

@@ -2,6 +2,8 @@ package ganymedes01.headcrumbs;
 
 import ganymedes01.headcrumbs.command.HeadcrumbsCommand;
 import ganymedes01.headcrumbs.configs.ConfigHandler;
+import ganymedes01.headcrumbs.entity.EntityCelebrity;
+import ganymedes01.headcrumbs.entity.VIPHandler;
 import ganymedes01.headcrumbs.libs.Reference;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.network.PacketHandler;
@@ -11,14 +13,18 @@ import ganymedes01.headcrumbs.utils.UsercacheChecker;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
@@ -29,6 +35,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -61,8 +68,8 @@ public class Headcrumbs {
 	};
 
 	public static String[] others = { "vasili02", "Jeb_Jeb", "KingPurpleRaptor", "DylanGK" };
-	public static String[] modders = { "GregoriusT", "skyboy026", "Flaxbeard", "Emasher", "joshiejack", "Reika_Kalseki", "MatrexsVigil", "ganymedes01", "Pokefenn", "chylex", "vadis365", "CrazyPants", "Kihira", "Country_Gamer", "jakimfett", "mats000", "kris545545", "TheCricket26" };
-	public static String[] youtubers = { "ChimneySwift", "FuriousDestroyer", "SuperGirlyGamer", "CyaNideEPiC", "Jarrenitis", "direwolf20", "Sjin", "Xephos", "LividCoffee", "Rythian", "Zoeya", "TheStrippin", "inthelittlewood", "Quetzz", "Blorph", "xbony2", "CaptainSparklez", "AntVenom", "CavemanFilms", "Fosler", "BevoLJ", "Sips_", "Honeydew", "TobyTurner", "corjaantje" };
+	public static String[] modders = { "asiekierka", "GregoriusT", "skyboy026", "Flaxbeard", "Emasher", "joshiejack", "Reika_Kalseki", "MatrexsVigil", "ganymedes01", "Pokefenn", "chylex", "vadis365", "CrazyPants", "Kihira", "Country_Gamer", "jakimfett", "mats000", "kris545545", "TheCricket26" };
+	public static String[] youtubers = { "hephinator", "ChimneySwift", "FuriousDestroyer", "SuperGirlyGamer", "CyaNideEPiC", "Jarrenitis", "direwolf20", "Sjin", "Xephos", "LividCoffee", "Rythian", "Zoeya", "TheStrippin", "inthelittlewood", "Quetzz", "Blorph", "xbony2", "CaptainSparklez", "AntVenom", "CavemanFilms", "Fosler", "BevoLJ", "Sips_", "Honeydew", "TobyTurner", "corjaantje" };
 	public static String[] mojang = { "Notch", "jeb_", "C418", "Dinnerbone", "Grumm", "Searge_DP", "EvilSeph", "TheMogMiner" };
 	public static String[] mindCrack = { "adlingtont", "AnderZEL", "Arkas", "Aureylian", "AvidyaZEN", "BdoubleO100", "BlameTC", "Coestar", "Docm77", "Etho", "generikb", "Guude", "jsano19", "kurtmac", "mcgamer", "Mhykol", "Millbee", "Nebris", "Pakratt0013", "paulsoaresjr", "PauseUnpause", "Pyro_0", "SethBling", "thejims", "sevadus", "Vechs_", "VintageBeef", "W92Baj", "Zisteau" };
 	public static String[] forgeCraft = { "damien95", "nekosune", "tlovetech", "FireBall1725", "PurpleMentat", "Calclavia", "Minalien", "fuj1n", "Mithion", "RWTema", "WayofFlowingTime", "TTFTCUTS", "bspkrs", "futureamnet", "azanor", "chicken_bones", "Cloudhunter", "CovertJaguar", "cpw11", "dan200", "Eloraam", "florastar", "ohaiiChun", "KingLemmingCoFH", "Krapht", "LexManos", "TheMattaBase", "mDiyo", "Myrathi", "Morvelaira", "Pahimar", "sfPlayer1", "ProfMobius", "Rorax", "Sacheverell", "sirsengir", "Soaryn", "x3n0ph0b3", "XCompWiz", "Vswe", "Vazkii", "ZeldoKavira", "neptunepink", "EddieRuckus" };
@@ -118,6 +125,8 @@ public class Headcrumbs {
 				ganysEndSkull = (Item) f.get(null);
 			} catch (Exception e) {
 			}
+
+		EntityRegistry.registerGlobalEntityID(EntityCelebrity.class, "celebrity", 69, 0xFFFFFF, 0x000000);
 	}
 
 	@EventHandler
@@ -129,6 +138,23 @@ public class Headcrumbs {
 		HeadUtils.lycanites = Loader.isModLoaded("lycanitesmobs");
 
 		UsercacheChecker.check();
+
+		List<BiomeDictionary.Type> blacklistedBiomes = new LinkedList<BiomeDictionary.Type>();
+		blacklistedBiomes.add(BiomeDictionary.Type.NETHER);
+		blacklistedBiomes.add(BiomeDictionary.Type.END);
+		blacklistedBiomes.add(BiomeDictionary.Type.MUSHROOM);
+
+		List<BiomeGenBase> biomes = new ArrayList<BiomeGenBase>();
+		for (BiomeDictionary.Type type : BiomeDictionary.Type.values()) {
+			if (blacklistedBiomes.contains(type))
+				continue;
+			for (BiomeGenBase biome : BiomeDictionary.getBiomesForType(type))
+				if (biome != null)
+					biomes.add(biome);
+		}
+		EntityRegistry.addSpawn(EntityCelebrity.class, 100, 4, 4, EnumCreatureType.monster, biomes.toArray(new BiomeGenBase[biomes.size()]));
+
+		VIPHandler.init();
 	}
 
 	@EventHandler
