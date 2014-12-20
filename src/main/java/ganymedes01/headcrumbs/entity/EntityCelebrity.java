@@ -65,6 +65,11 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 		return true;
 	}
 
+	@Override
+	public boolean canPickUpLoot() {
+		return true;
+	}
+
 	/* ENTITY INIT */
 
 	@Override
@@ -78,7 +83,7 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 	@Override
 	protected void entityInit() {
 		super.entityInit();
-		getDataWatcher().addObject(NAME, getRandomUsername());
+		getDataWatcher().addObject(NAME, "");
 	}
 
 	/* DROPS */
