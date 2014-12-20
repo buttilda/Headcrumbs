@@ -31,6 +31,7 @@ public class Jeb_Jeb extends VIPHandler {
 		sheep.onSpawnWithEgg(null);
 		sheep.setFleeceColor(BlockColored.func_150032_b(5));
 
+		sheep.setCustomNameTag("Baabara");
 		entity.worldObj.spawnEntityInWorld(sheep);
 		sheep.playLivingSound();
 		entity.mountEntity(sheep);
