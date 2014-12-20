@@ -72,7 +72,7 @@ public class Headcrumbs {
 	public static String[] youtubers = { "hephinator", "ChimneySwift", "FuriousDestroyer", "SuperGirlyGamer", "CyaNideEPiC", "Jarrenitis", "direwolf20", "Sjin", "Xephos", "LividCoffee", "Rythian", "Zoeya", "TheStrippin", "inthelittlewood", "Quetzz", "Blorph", "xbony2", "CaptainSparklez", "AntVenom", "CavemanFilms", "Fosler", "BevoLJ", "Sips_", "Honeydew", "TobyTurner", "corjaantje" };
 	public static String[] mojang = { "Notch", "jeb_", "C418", "Dinnerbone", "Grumm", "Searge_DP", "EvilSeph", "TheMogMiner" };
 	public static String[] mindCrack = { "adlingtont", "AnderZEL", "Arkas", "Aureylian", "AvidyaZEN", "BdoubleO100", "BlameTC", "Coestar", "Docm77", "Etho", "generikb", "Guude", "jsano19", "kurtmac", "mcgamer", "Mhykol", "Millbee", "Nebris", "Pakratt0013", "paulsoaresjr", "PauseUnpause", "Pyro_0", "SethBling", "thejims", "sevadus", "Vechs_", "VintageBeef", "W92Baj", "Zisteau" };
-	public static String[] forgeCraft = { "MysteriousAges", "MineMaarten", "damien95", "nekosune", "tlovetech", "FireBall1725", "PurpleMentat", "Calclavia", "Minalien", "fuj1n", "Mithion", "RWTema", "WayofFlowingTime", "TTFTCUTS", "bspkrs", "futureamnet", "azanor", "chicken_bones", "Cloudhunter", "CovertJaguar", "cpw11", "dan200", "Eloraam", "florastar", "ohaiiChun", "KingLemmingCoFH", "Krapht", "LexManos", "TheMattaBase", "mDiyo", "Myrathi", "Morvelaira", "Pahimar", "sfPlayer1", "ProfMobius", "Rorax", "Sacheverell", "sirsengir", "Soaryn", "x3n0ph0b3", "XCompWiz", "Vswe", "Vazkii", "ZeldoKavira", "neptunepink", "EddieRuckus" };
+	public static String[] forgeCraft = { "_CrazyP_", "MysteriousAges", "MineMaarten", "damien95", "nekosune", "tlovetech", "FireBall1725", "PurpleMentat", "Calclavia", "Minalien", "fuj1n", "Mithion", "RWTema", "WayofFlowingTime", "TTFTCUTS", "bspkrs", "futureamnet", "azanor", "chicken_bones", "Cloudhunter", "CovertJaguar", "cpw11", "dan200", "Eloraam", "florastar", "ohaiiChun", "KingLemmingCoFH", "Krapht", "LexManos", "TheMattaBase", "mDiyo", "Myrathi", "Morvelaira", "Pahimar", "sfPlayer1", "ProfMobius", "Rorax", "Sacheverell", "sirsengir", "Soaryn", "x3n0ph0b3", "XCompWiz", "Vswe", "Vazkii", "ZeldoKavira", "neptunepink", "EddieRuckus" };
 	public static String[] ftb = { "eyamaz", "jadedcat", "slowpoke101", "progwml6" };
 
 	public static boolean enableVanillaHeadsDrop = true;
@@ -84,6 +84,9 @@ public class Headcrumbs {
 	public static boolean hidePlayerHeadsFromTab = false;
 	public static boolean enableChargedCreeperKills = true;
 	public static boolean enablePlayerStatues = true;
+
+	public static boolean enableCelebrityMobs = true;
+	public static int celebrityProb = 80, celebrityMin = 4, celebrityMax = 4, celebrityID = 67;
 
 	public static Item ganysEndSkull = null;
 
@@ -126,7 +129,10 @@ public class Headcrumbs {
 			} catch (Exception e) {
 			}
 
-		EntityRegistry.registerGlobalEntityID(EntityCelebrity.class, "celebrity", 69, 0xFFFFFF, 0x000000);
+		if (enableCelebrityMobs) {
+			EntityRegistry.registerGlobalEntityID(EntityCelebrity.class, "Celebrity", celebrityID, 0xFFF144, 0x69DFDA);
+			VIPHandler.init();
+		}
 	}
 
 	@EventHandler
@@ -139,22 +145,22 @@ public class Headcrumbs {
 
 		UsercacheChecker.check();
 
-		List<BiomeDictionary.Type> blacklistedBiomes = new LinkedList<BiomeDictionary.Type>();
-		blacklistedBiomes.add(BiomeDictionary.Type.NETHER);
-		blacklistedBiomes.add(BiomeDictionary.Type.END);
-		blacklistedBiomes.add(BiomeDictionary.Type.MUSHROOM);
+		if (enableCelebrityMobs) {
+			List<BiomeDictionary.Type> blacklistedBiomes = new LinkedList<BiomeDictionary.Type>();
+			blacklistedBiomes.add(BiomeDictionary.Type.NETHER);
+			blacklistedBiomes.add(BiomeDictionary.Type.END);
+			blacklistedBiomes.add(BiomeDictionary.Type.MUSHROOM);
 
-		List<BiomeGenBase> biomes = new ArrayList<BiomeGenBase>();
-		for (BiomeDictionary.Type type : BiomeDictionary.Type.values()) {
-			if (blacklistedBiomes.contains(type))
-				continue;
-			for (BiomeGenBase biome : BiomeDictionary.getBiomesForType(type))
-				if (biome != null)
-					biomes.add(biome);
+			List<BiomeGenBase> biomes = new ArrayList<BiomeGenBase>();
+			for (BiomeDictionary.Type type : BiomeDictionary.Type.values()) {
+				if (blacklistedBiomes.contains(type))
+					continue;
+				for (BiomeGenBase biome : BiomeDictionary.getBiomesForType(type))
+					if (biome != null)
+						biomes.add(biome);
+			}
+			EntityRegistry.addSpawn(EntityCelebrity.class, celebrityProb, celebrityMin, celebrityMax, EnumCreatureType.monster, biomes.toArray(new BiomeGenBase[biomes.size()]));
 		}
-		EntityRegistry.addSpawn(EntityCelebrity.class, 100, 4, 4, EnumCreatureType.monster, biomes.toArray(new BiomeGenBase[biomes.size()]));
-
-		VIPHandler.init();
 	}
 
 	@EventHandler

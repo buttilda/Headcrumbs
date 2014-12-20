@@ -84,5 +84,8 @@ item.headcrumbs.pinky.name=Pinky Head
 item.headcrumbs.behemoth.name=Behemoth Head
 item.headcrumbs.belph.name=Belph Head
 
+# Entity
+entity.Celebrity.name=Celebrity
+
 # Creative Tab
 itemGroup.headcrumbs=Headcrumbs

@@ -15,7 +15,7 @@ public class ConfigHandler {
 
 	public static ConfigHandler INSTANCE = new ConfigHandler();
 	public Configuration configFile;
-	public String[] usedCategories = { Configuration.CATEGORY_GENERAL, "heads" };
+	public String[] usedCategories = { Configuration.CATEGORY_GENERAL, "heads", "mob" };
 
 	public void init(File file) {
 		configFile = new Configuration(file);
@@ -42,6 +42,12 @@ public class ConfigHandler {
 		Headcrumbs.mindCrack = configFile.get("heads", "mindCrack", Headcrumbs.mindCrack).setRequiresMcRestart(true).getStringList();
 		Headcrumbs.forgeCraft = configFile.get("heads", "forgeCraft", Headcrumbs.forgeCraft).setRequiresMcRestart(true).getStringList();
 		Headcrumbs.ftb = configFile.get("heads", "ftb", Headcrumbs.ftb).setRequiresMcRestart(true).getStringList();
+
+		Headcrumbs.enableCelebrityMobs = configFile.get("mob", "Enable celebrity mobs", Headcrumbs.enableCelebrityMobs).setRequiresMcRestart(true).getBoolean();
+		Headcrumbs.celebrityID = configFile.get("mob", "Mob ID", Headcrumbs.celebrityID, "WARNING: CHANGING THIS WILL CAUSE EXISTING CELEBRITIES TO VANISH FROM EXISTING WORLDS!").setRequiresMcRestart(true).getInt();
+		Headcrumbs.celebrityProb = configFile.get("mob", "Spawn probability", Headcrumbs.celebrityProb, "The change the mob will spawn. Base values: zombies, skeletons, spider, creepers = 100, endermen = 10, witches = 5").setRequiresMcRestart(true).getInt();
+		Headcrumbs.celebrityMin = configFile.get("mob", "Minimum group size", Headcrumbs.celebrityMin, "The minimum size of the group of mobs that will spawn at once").setRequiresMcRestart(true).getInt();
+		Headcrumbs.celebrityMax = configFile.get("mob", "Maximum group size", Headcrumbs.celebrityMax, "The maximum size of the group of mobs that will spawn at once").setRequiresMcRestart(true).getInt();
 
 		String block = configFile.get(Configuration.CATEGORY_GENERAL, "Statue block material", Block.blockRegistry.getNameForObject(Blocks.clay), "modId:name. Whatever block is set here will be the block used to make player statues (2 tall and right-click the top one with a player head)").getString();
 		Headcrumbs.clay = (Block) Block.blockRegistry.getObject(block);

@@ -43,6 +43,15 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 
+	// Cape related variables. Copied from EntityPlayer
+	public double field_71091_bM;
+	public double field_71096_bN;
+	public double field_71097_bO;
+	public double field_71094_bP;
+	public double field_71095_bQ;
+	public double field_71085_bR;
+
+	private final EntityAIArrowAttack arrowAI = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F);
 	private static final int NAME = 13;
 
 	public EntityCelebrity(World world) {
@@ -68,6 +77,36 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 	@Override
 	public boolean canPickUpLoot() {
 		return true;
+	}
+
+	@Override
+	public void onUpdate() {
+		field_71091_bM = field_71094_bP;
+		field_71096_bN = field_71095_bQ;
+		field_71097_bO = field_71085_bR;
+		double d3 = posX - field_71094_bP;
+		double d0 = posY - field_71095_bQ;
+		double d1 = posZ - field_71085_bR;
+		double d2 = 10.0D;
+
+		if (d3 > d2)
+			field_71091_bM = field_71094_bP = posX;
+		if (d1 > d2)
+			field_71097_bO = field_71085_bR = posZ;
+		if (d0 > d2)
+			field_71096_bN = field_71095_bQ = posY;
+		if (d3 < -d2)
+			field_71091_bM = field_71094_bP = posX;
+		if (d1 < -d2)
+			field_71097_bO = field_71085_bR = posZ;
+		if (d0 < -d2)
+			field_71096_bN = field_71095_bQ = posY;
+
+		field_71094_bP += d3 * 0.25D;
+		field_71085_bR += d1 * 0.25D;
+		field_71095_bQ += d0 * 0.25D;
+
+		super.onUpdate();
 	}
 
 	/* ENTITY INIT */
@@ -219,7 +258,9 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 
 	private void setCombatAI() {
 		if (hasBow())
-			tasks.addTask(1, new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));
+			tasks.addTask(1, arrowAI);
+		else
+			tasks.removeTask(arrowAI);
 	}
 
 	/* USERNAME */

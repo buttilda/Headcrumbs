@@ -10,6 +10,9 @@ public class joshiejack extends VIPHandler {
 
 	@Override
 	public void onSpawn(EntityCelebrity entity) {
+		if (entity.getHeldItem() != null)
+			return;
+
 		ItemStack rod = new ItemStack(Items.fishing_rod);
 		if (entity.getRNG().nextFloat() < 0.25F)
 			EnchantmentHelper.addRandomEnchantment(entity.getRNG(), rod, 5 + entity.getRNG().nextInt(18));
