@@ -42,6 +42,9 @@ public class VIPHandler {
 		}
 	}
 
+	public void dropRare(EntityCelebrity entity, int looting) {
+	}
+
 	protected int minDropAmount() {
 		return 0;
 	}
@@ -55,10 +58,22 @@ public class VIPHandler {
 	}
 
 	protected ItemStack getItem(EntityCelebrity entity) {
-		return new ItemStack(Items.rotten_flesh);
+		return entity.getRNG().nextBoolean() ? new ItemStack(Items.bone) : new ItemStack(Items.rotten_flesh);
 	}
 
 	public void onSpawn(EntityCelebrity entity) {
+	}
+
+	public String livingSound() {
+		return null;
+	}
+
+	protected String hurtSound() {
+		return "game.hostile.hurt";
+	}
+
+	protected String deathSound() {
+		return "game.hostile.die";
 	}
 
 	public static void init() {

@@ -15,4 +15,19 @@ public class jadedcat extends VIPHandler {
 		List<ItemStack> list = OreDictionary.getOres("dyePurple");
 		return !list.isEmpty() ? list.get(entity.getRNG().nextInt(list.size())) : super.getItem(entity);
 	}
+
+	@Override
+	public String livingSound() {
+		return "mob.cat.meow";
+	}
+
+	@Override
+	protected String hurtSound() {
+		return "mob.cat.hitt";
+	}
+
+	@Override
+	protected String deathSound() {
+		return "mob.cat.hitt";
+	}
 }

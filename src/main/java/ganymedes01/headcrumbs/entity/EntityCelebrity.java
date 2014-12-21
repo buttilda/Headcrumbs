@@ -125,11 +125,33 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 		getDataWatcher().addObject(NAME, "");
 	}
 
+	/* SOUNDS */
+
+	@Override
+	protected String getLivingSound() {
+		return getVIPHandler().livingSound();
+	}
+
+	@Override
+	protected String getHurtSound() {
+		return getVIPHandler().hurtSound();
+	}
+
+	@Override
+	protected String getDeathSound() {
+		return getVIPHandler().deathSound();
+	}
+
 	/* DROPS */
 
 	@Override
 	protected void dropFewItems(boolean recentHit, int looting) {
-		VIPHandler.getHandler(getUsername()).dropItems(this, looting);
+		getVIPHandler().dropItems(this, looting);
+	}
+
+	@Override
+	protected void dropRareDrop(int looting) {
+		getVIPHandler().dropRare(this, looting);
 	}
 
 	/* EQUIPAMENT AND ITEMS */
@@ -181,7 +203,7 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 		if (rand.nextFloat() < f * 0.2F)
 			getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(new AttributeModifier("Speed Bonus", rand.nextDouble() * 2.0 * 0.24 + 0.01, 2));
 
-		VIPHandler.getHandler(getUsername()).onSpawn(this);
+		getVIPHandler().onSpawn(this);
 
 		return null;
 	}
@@ -264,6 +286,10 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 	}
 
 	/* USERNAME */
+
+	private VIPHandler getVIPHandler() {
+		return VIPHandler.getHandler(getUsername());
+	}
 
 	@Override
 	public String getCommandSenderName() {
