@@ -49,7 +49,7 @@ public class TextureRequestPacket extends CustomPacket {
 				GameProfile profile = MinecraftServer.getServer().func_152358_ax().func_152655_a(name);
 
 				if (profile != null) {
-					Property property = (Property) Iterables.getFirst(profile.getProperties().get("textures"), (Object) null);
+					Property property = Iterables.getFirst(profile.getProperties().get("textures"), null);
 
 					if (property == null)
 						profile = MinecraftServer.getServer().func_147130_as().fillProfileProperties(profile, true);

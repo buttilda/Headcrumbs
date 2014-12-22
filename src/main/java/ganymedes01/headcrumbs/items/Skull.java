@@ -2,6 +2,7 @@ package ganymedes01.headcrumbs.items;
 
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.ModBlocks;
+import ganymedes01.headcrumbs.libs.CelebrityMap;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
 import ganymedes01.headcrumbs.utils.HeadUtils;
@@ -38,6 +39,26 @@ public class Skull extends ItemSkull {
 		setHasSubtypes(true);
 		setCreativeTab(Headcrumbs.tab);
 		setUnlocalizedName(Utils.getUnlocalizedName("head"));
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean isComplex) {
+		if (!Headcrumbs.enableTooltips)
+			return;
+
+		if (stack.hasTagCompound()) {
+			String name = null;
+			if (stack.getTagCompound().hasKey("SkullOwner", 10))
+				name = NBTUtil.func_152459_a(stack.getTagCompound().getCompoundTag("SkullOwner")).getName();
+			else if (stack.getTagCompound().hasKey("SkullOwner", 8))
+				name = stack.getTagCompound().getString("SkullOwner");
+
+			String tip = CelebrityMap.getTooltip(name);
+			if (tip != null)
+				list.add(tip);
+		}
 	}
 
 	@Override

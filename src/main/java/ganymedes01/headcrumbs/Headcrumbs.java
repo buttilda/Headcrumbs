@@ -68,8 +68,8 @@ public class Headcrumbs {
 	};
 
 	public static String[] others = { "Kyrinon", "vasili02", "Jeb_Jeb", "KingPurpleRaptor", "DylanGK" };
-	public static String[] modders = { "FatherToast", "Erasmus_Crowley", "Alblaka", "Emoniph", "Nuchaz", "Kobata", "powercrystals", "AbrarSyed", "sdkillen", "Taelnia", "Lycanite", "asiekierka", "GregoriusT", "skyboy026", "Flaxbeard", "Emasher", "joshiejack", "Reika_Kalseki", "MatrexsVigil", "ganymedes01", "Pokefenn", "chylex", "vadis365", "CrazyPants", "Kihira", "Country_Gamer", "jakimfett", "mats000", "kris545545", "TheCricket26" };
-	public static String[] youtubers = { "hephinator", "ChimneySwift", "FuriousDestroyer", "SuperGirlyGamer", "CyaNideEPiC", "Jarrenitis", "direwolf20", "Sjin", "Xephos", "LividCoffee", "Rythian", "Zoeya", "TheStrippin", "inthelittlewood", "Quetzz", "Blorph", "xbony2", "CaptainSparklez", "AntVenom", "CavemanFilms", "Fosler", "BevoLJ", "Sips_", "Honeydew", "TobyTurner", "corjaantje" };
+	public static String[] modders = { "Vexatos", "Mineshopper", "AUTOMATIC_MAIDEN", "sanandreasMC", "FatherToast", "Erasmus_Crowley", "Alblaka", "Emoniph", "Nuchaz", "Kobata", "powercrystals", "AbrarSyed", "sdkillen", "Taelnia", "Lycanite", "asiekierka", "GregoriusT", "skyboy026", "Flaxbeard", "Emasher", "joshiejack", "Reika_Kalseki", "MatrexsVigil", "ganymedes01", "Pokefenn", "chylex", "vadis365", "Kihira", "Country_Gamer", "jakimfett", "mats000", "kris545545", "TheCricket26" };
+	public static String[] youtubers = { "Vaygrim", "hephinator", "ChimneySwift", "FuriousDestroyer", "SuperGirlyGamer", "CyaNideEPiC", "Jarrenitis", "direwolf20", "Sjin", "Xephos", "LividCoffee", "Rythian", "Zoeya", "TheStrippin", "inthelittlewood", "Quetzz", "Blorph", "xbony2", "CaptainSparklez", "AntVenom", "CavemanFilms", "Fosler", "BevoLJ", "Sips_", "Honeydew", "TobyTurner", "corjaantje" };
 	public static String[] mojang = { "Notch", "jeb_", "C418", "Dinnerbone", "Grumm", "Searge_DP", "EvilSeph", "TheMogMiner" };
 	public static String[] mindCrack = { "adlingtont", "AnderZEL", "Arkas", "Aureylian", "AvidyaZEN", "BdoubleO100", "BlameTC", "Coestar", "Docm77", "Etho", "generikb", "Guude", "jsano19", "kurtmac", "mcgamer", "Mhykol", "Millbee", "Nebris", "Pakratt0013", "paulsoaresjr", "PauseUnpause", "Pyro_0", "SethBling", "thejims", "sevadus", "Vechs_", "VintageBeef", "W92Baj", "Zisteau" };
 	public static String[] forgeCraft = { "boni", "Mr_okushama", "AlgorithmX2", "Mikeemoo", "_CrazyP_", "MysteriousAges", "MineMaarten", "damien95", "nekosune", "tlovetech", "FireBall1725", "PurpleMentat", "calclavia", "Minalien", "fuj1n", "Mithion", "RWTema", "WayofFlowingTime", "TTFTCUTS", "bspkrs", "futureamnet", "azanor", "chicken_bones", "Cloudhunter", "CovertJaguar", "cpw11", "dan200", "Eloraam", "florastar", "ohaiiChun", "KingLemmingCoFH", "Krapht", "LexManos", "TheMattaBase", "mDiyo", "Myrathi", "Morvelaira", "Pahimar", "sfPlayer1", "ProfMobius", "Rorax", "Sacheverell", "sirsengir", "Soaryn", "x3n0ph0b3", "XCompWiz", "Vswe", "Vazkii", "ZeldoKavira", "neptunepink", "EddieRuckus" };
@@ -84,6 +84,7 @@ public class Headcrumbs {
 	public static boolean hidePlayerHeadsFromTab = false;
 	public static boolean enableChargedCreeperKills = true;
 	public static boolean enablePlayerStatues = true;
+	public static boolean enableTooltips = true;
 
 	public static boolean enableCelebrityMobs = true;
 	public static int celebrityProb = 80, celebrityMin = 4, celebrityMax = 4, celebrityID = 67;
