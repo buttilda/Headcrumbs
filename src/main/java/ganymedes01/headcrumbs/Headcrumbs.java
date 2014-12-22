@@ -87,7 +87,7 @@ public class Headcrumbs {
 	public static boolean enableTooltips = true;
 
 	public static boolean enableCelebrityMobs = true;
-	public static int celebrityProb = 80, celebrityMin = 4, celebrityMax = 4, celebrityID = 67;
+	public static int celebrityProb = 80, celebrityMin = 4, celebrityMax = 4, celebrityID = 89;
 
 	public static Item ganysEndSkull = null;
 
