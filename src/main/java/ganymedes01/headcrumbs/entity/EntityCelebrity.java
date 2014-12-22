@@ -31,6 +31,7 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
@@ -221,6 +222,13 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 	@Override
 	public double getYOffset() {
 		return -0.3;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	// This is so NBT sensible tools (a.k.a. TiC tools) render when being held by the celebrity
+	public IIcon getItemIcon(ItemStack stack, int pass) {
+		return stack.getItem().requiresMultipleRenderPasses() ? stack.getItem().getIcon(stack, pass) : stack.getIconIndex();
 	}
 
 	/* SAVE AND LOAD */
