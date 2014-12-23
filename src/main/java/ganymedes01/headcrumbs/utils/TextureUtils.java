@@ -30,18 +30,17 @@ public class TextureUtils {
 		return getPlayerImage(profile, MinecraftProfileTexture.Type.CAPE);
 	}
 
-	@SuppressWarnings("unchecked")
 	private static ResourceLocation getPlayerImage(final GameProfile profile, MinecraftProfileTexture.Type type) {
+		Minecraft minecraft = Minecraft.getMinecraft();
 		if (profile != null) {
-			if (profile.getName().equals(Minecraft.getMinecraft().thePlayer.getGameProfile().getName()))
-				return type == Type.CAPE ? Minecraft.getMinecraft().thePlayer.getLocationCape() : Minecraft.getMinecraft().thePlayer.getLocationSkin();
+			if (profile.getName().equals(minecraft.thePlayer.getGameProfile().getName()))
+				return type == Type.CAPE ? minecraft.thePlayer.getLocationCape() : minecraft.thePlayer.getLocationSkin();
 
 			if (profiles.containsKey(profile.getName())) {
-				Minecraft minecraft = Minecraft.getMinecraft();
-				Map<MinecraftProfileTexture.Type, MinecraftProfileTexture> map = minecraft.func_152342_ad().func_152788_a(profiles.get(profile.getName()));
+				Map<?, ?> map = minecraft.func_152342_ad().func_152788_a(profiles.get(profile.getName()));
 
 				if (map.containsKey(type))
-					return minecraft.func_152342_ad().func_152792_a(map.get(type), type);
+					return minecraft.func_152342_ad().func_152792_a((MinecraftProfileTexture) map.get(type), type);
 			} else {
 				// Store profile with self to avoid thread spam
 				profiles.put(profile.getName(), profile);
