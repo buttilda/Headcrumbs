@@ -83,6 +83,7 @@ public class CelebrityMap {
 		map.put("asiekierka", "Computronics");
 		map.put("fuj1n", "Tinker's Construct");
 		map.put("boni", "Tinker's Construct");
+		map.put("FyberOptic", "Hopper Ducts");
 
 		map.put("ganymedes01", "Gany's Mods");
 	}
