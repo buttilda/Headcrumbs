@@ -117,7 +117,7 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 		super.applyEntityAttributes();
 		getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(40.0);
 		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.24);
-		getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(3.0);
+		getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0);
 	}
 
 	@Override
@@ -161,14 +161,12 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 	protected void addRandomArmor() {
 		super.addRandomArmor();
 
-		if (rand.nextFloat() < (worldObj.difficultySetting == EnumDifficulty.HARD ? 0.05F : 0.01F)) {
+		if (rand.nextFloat() < (worldObj.difficultySetting == EnumDifficulty.HARD ? 0.1F : 0.05F)) {
 			int i = rand.nextInt(3);
 
 			if (i == 0)
 				setCurrentItemOrArmor(0, new ItemStack(Items.stone_sword));
 			else if (i == 1)
-				setCurrentItemOrArmor(0, new ItemStack(Items.iron_axe));
-			else
 				setCurrentItemOrArmor(0, new ItemStack(Items.bow));
 		}
 	}
