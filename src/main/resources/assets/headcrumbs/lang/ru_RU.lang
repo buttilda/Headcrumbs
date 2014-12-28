@@ -84,5 +84,8 @@ item.headcrumbs.pinky.name=Голова пинки
 item.headcrumbs.behemoth.name=Голова бегемота
 item.headcrumbs.belph.name=Голова бельфа
 
+# Entity
+entity.Celebrity.name=Знаменитость
+
 # Creative Tab
 itemGroup.headcrumbs=Headcrumbs
