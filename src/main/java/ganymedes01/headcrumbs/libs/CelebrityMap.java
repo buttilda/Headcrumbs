@@ -67,7 +67,7 @@ public class CelebrityMap {
 		map.put("sfPlayer1", "IndustrialCraft 2");
 		map.put("sirsengir", "Forestry");
 		map.put("skyboy026", "MineFactory Reloaded");
-		map.put("Soaryn", "Xycraft");
+		map.put("Soaryn", "XyCraft");
 		map.put("Taelnia", "JABBA");
 		map.put("TheCricket26", "Chisel 2");
 		map.put("TTFTCUTS", "Alternate Terrain Generation");
