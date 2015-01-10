@@ -71,6 +71,9 @@ public class ModelHead extends ModelBase {
 				GL11.glEnable(GL11.GL_BLEND);
 				GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 				break;
+			case enderminy:
+				GL11.glScalef(1, 0.5F, 1);
+				break;
 			default:
 				break;
 		}
@@ -106,6 +109,7 @@ public class ModelHead extends ModelBase {
 	private ModelHead setHeadType(SkullTypes type) {
 		switch (type) {
 			case enderman:
+			case enderminy:
 				setEnderman();
 				break;
 			case pigman:
@@ -138,6 +142,9 @@ public class ModelHead extends ModelBase {
 			case winterWolf:
 				setWolf();
 				break;
+			case direWolf:
+				setDireWolf();
+				break;
 			case villager:
 			case taintedVillager:
 				setVillager(64);
@@ -147,6 +154,7 @@ public class ModelHead extends ModelBase {
 				setChicken();
 				break;
 			case witch:
+			case witherWitch:
 				setWitch();
 				break;
 			case zombieVillager:
@@ -211,6 +219,7 @@ public class ModelHead extends ModelBase {
 			case ocelotBlack:
 			case ocelotRed:
 			case ocelotSiamese:
+			case witherCat:
 				setOcelot();
 				break;
 			case bat:
@@ -251,6 +260,8 @@ public class ModelHead extends ModelBase {
 				setImp();
 				break;
 			case nitroCreeper:
+			case concussionCreeper:
+			case fallenKnight:
 				hideOverlay();
 				break;
 			case pech:
@@ -277,6 +288,16 @@ public class ModelHead extends ModelBase {
 				break;
 		}
 		return this;
+	}
+
+	private void setDireWolf() {
+		head = new ModelRenderer(this, 0, 0);
+		head.addBox(-3.0F, -3.0F, -4.0F, 6, 6, 6, 0);
+		head.setRotationPoint(0, -3F, -2);
+		head.setTextureOffset(16, 18).addBox(-2.5F, -5.0F, -1.5F, 1, 2, 2, 0);
+		head.setTextureOffset(16, 18).addBox(1.5F, -5.0F, -1.5F, 1, 2, 2, 0);
+		head.setTextureOffset(0, 14).addBox(-1.5F, 0.0F, -7.0F, 3, 3, 4, 0);
+		hideOverlay();
 	}
 
 	private void setPinky() {

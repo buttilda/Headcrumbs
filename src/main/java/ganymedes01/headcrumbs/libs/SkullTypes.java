@@ -97,16 +97,25 @@ public enum SkullTypes {
 	lycanites(""),
 	pinky(Strings.LY_PREFIX + "pinky", "lycanitesmobs"),
 	behemoth(Strings.LY_PREFIX + "behemoth", "lycanitesmobs"),
-	belph(Strings.LY_PREFIX + "belph", "lycanitesmobs");
+	belph(Strings.LY_PREFIX + "belph", "lycanitesmobs"),
+	concussionCreeper(Strings.EZ_PREFIX + "concussionCreeper", "EnderZoo"),
+	enderminy(Strings.EZ_PREFIX + "enderminy", "EnderZoo"),
+	fallenKnight(Strings.EZ_PREFIX + "fallen_knight", "EnderZoo"),
+	witherWitch(Strings.EZ_PREFIX + "wither_witch", "EnderZoo"),
+	direWolf(Strings.EZ_PREFIX + "dire_wolf", "EnderZoo"),
+	witherCat(Strings.EZ_PREFIX + "wither_cat_angry", "EnderZoo");
 
 	private final String mod;
 	private final ResourceLocation texture;
+
 	private static final ResourceLocation ENDERMAN_EYES = Utils.getResource(Strings.MC_PREFIX + "enderman/enderman_eyes.png");
 	private static final ResourceLocation SHEEP_FUR_HEAD = Utils.getResource(Strings.MC_PREFIX + "sheep/sheep_fur.png");
 	private static final ResourceLocation ENDER_DRAGON_EYES = Utils.getResource(Strings.MC_PREFIX + "enderdragon/dragon_eyes.png");
 	private static final ResourceLocation SPIDER_EYES = Utils.getResource(Strings.MC_PREFIX + "spider_eyes.png");
 
 	private static final ResourceLocation TAINTED_SHEEP_FUR_HEAD = Utils.getResource(Strings.TC_PREFIX + "sheep_fur.png");
+
+	private static final ResourceLocation ENDERMINY_EYES = Utils.getResource(Strings.EZ_PREFIX + "enderminy_eyes.png");
 
 	SkullTypes(String texture, String mod) {
 		this.mod = mod;
@@ -150,6 +159,8 @@ public enum SkullTypes {
 				return SPIDER_EYES;
 			case taintedSheep:
 				return TAINTED_SHEEP_FUR_HEAD;
+			case enderminy:
+				return ENDERMINY_EYES;
 			default:
 				return null;
 		}

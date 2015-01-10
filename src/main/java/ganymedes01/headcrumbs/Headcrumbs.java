@@ -61,7 +61,7 @@ public class Headcrumbs {
 			Random rand = new Random();
 			List<SkullTypes> types = new ArrayList<SkullTypes>();
 			for (SkullTypes type : SkullTypes.values())
-				if (type.canShow())
+				if (type.canShow() && type != SkullTypes.lycanites)
 					types.add(type);
 			return types.get(rand.nextInt(types.size())).ordinal();
 		}

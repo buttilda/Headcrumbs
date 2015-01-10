@@ -67,6 +67,7 @@ public class ItemSkullRender implements IItemRenderer {
 				case mule:
 				case horseUndead:
 				case horseSkeleton:
+				case witherWitch:
 					GL11.glScaled(0.75, 0.75, 0.75);
 					GL11.glTranslated(0, -0.45, 0);
 					break;
