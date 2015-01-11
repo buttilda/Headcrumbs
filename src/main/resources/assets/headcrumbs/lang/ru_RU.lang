@@ -83,6 +83,12 @@ item.headcrumbs.eldritchGuardian.name=Голова древнего стража
 item.headcrumbs.pinky.name=Голова пинки
 item.headcrumbs.behemoth.name=Голова бегемота
 item.headcrumbs.belph.name=Голова бельфа
+item.headcrumbs.concussionCreeper.name=Голова оглушающего крипера
+item.headcrumbs.enderminy.name=Голова карлика Края
+item.headcrumbs.fallenKnight.name=Голова падшего рыцаря
+item.headcrumbs.witherWitch.name=Голова ведьмы-иссушителя
+item.headcrumbs.witherCat.name=Голова кота-иссушителя
+item.headcrumbs.direWolf.name=Голова ужасного волка
 
 # Entity
 entity.Celebrity.name=Знаменитость
