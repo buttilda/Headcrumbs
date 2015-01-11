@@ -83,12 +83,12 @@ item.headcrumbs.eldritchGuardian.name=Eldritch Guardian Head
 item.headcrumbs.pinky.name=Pinky Head
 item.headcrumbs.behemoth.name=Behemoth Head
 item.headcrumbs.belph.name=Belph Head
-item.headcrumbs.concussionCreeper.name=Concussion Creeper
-item.headcrumbs.enderminy.name=Enderminy
-item.headcrumbs.fallenKnight.name=Fallen Knight
-item.headcrumbs.witherWitch.name=Wither Witch
-item.headcrumbs.witherCat.name=Wither Cat
-item.headcrumbs.direWolf.name=Dire Wolf
+item.headcrumbs.concussionCreeper.name=Concussion Creeper Head
+item.headcrumbs.enderminy.name=Enderminy Head
+item.headcrumbs.fallenKnight.name=Fallen Knight Head
+item.headcrumbs.witherWitch.name=Wither Witch Head
+item.headcrumbs.witherCat.name=Wither Cat Head
+item.headcrumbs.direWolf.name=Dire Wolf Head
 
 # Entity
 entity.Celebrity.name=Celebrity
