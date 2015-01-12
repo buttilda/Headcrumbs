@@ -45,6 +45,7 @@ public class ConfigHandler {
 		Headcrumbs.ftb = configFile.get("heads", "ftb", Headcrumbs.ftb).setRequiresMcRestart(true).getStringList();
 
 		Headcrumbs.enableCelebrityMobs = configFile.get("mob", "Enable celebrity mobs", Headcrumbs.enableCelebrityMobs).setRequiresMcRestart(true).getBoolean();
+		Headcrumbs.enableVIPs = configFile.get("mob", "Enable VIP drops", Headcrumbs.enableVIPs, "Setting this to false will disable special drops/wheapons for certain celebrities. Existing mobs will still hold the wheapons they spawned with.").setRequiresMcRestart(true).getBoolean();
 		Headcrumbs.celebrityID = configFile.get("mob", "Mob ID", Headcrumbs.celebrityID, "WARNING: CHANGING THIS WILL CAUSE EXISTING CELEBRITIES TO VANISH FROM EXISTING WORLDS!").setRequiresMcRestart(true).getInt();
 		Headcrumbs.celebrityProb = configFile.get("mob", "Spawn probability", Headcrumbs.celebrityProb, "The change the mob will spawn. Base values: zombies, skeletons, spider, creepers = 100, endermen = 10, witches = 5").setRequiresMcRestart(true).getInt();
 		Headcrumbs.celebrityMin = configFile.get("mob", "Minimum group size", Headcrumbs.celebrityMin, "The minimum size of the group of mobs that will spawn at once").setRequiresMcRestart(true).getInt();

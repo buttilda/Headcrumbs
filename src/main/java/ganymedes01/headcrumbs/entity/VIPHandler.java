@@ -1,5 +1,7 @@
 package ganymedes01.headcrumbs.entity;
 
+import ganymedes01.headcrumbs.Headcrumbs;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +17,7 @@ public class VIPHandler {
 	private static final Map<String, VIPHandler> handlers = new HashMap<String, VIPHandler>();
 
 	public static VIPHandler getHandler(String name) {
-		if (handlers.containsKey(name))
+		if (Headcrumbs.enableVIPs && handlers.containsKey(name))
 			return handlers.get(name);
 
 		return DEFAULT;

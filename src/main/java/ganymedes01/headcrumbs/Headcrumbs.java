@@ -85,6 +85,7 @@ public class Headcrumbs {
 	public static boolean enableChargedCreeperKills = true;
 	public static boolean enablePlayerStatues = true;
 	public static boolean enableTooltips = true;
+	public static boolean enableVIPs = true;
 
 	public static boolean enableCelebrityMobs = true;
 	public static int celebrityProb = 80, celebrityMin = 4, celebrityMax = 4, celebrityID = 89;
