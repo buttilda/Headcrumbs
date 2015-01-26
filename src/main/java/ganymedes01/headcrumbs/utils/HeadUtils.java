@@ -4,6 +4,7 @@ import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.entity.EntityCelebrity;
 import ganymedes01.headcrumbs.libs.SkullTypes;
+import ganymedes01.headcrumbs.utils.helpers.EnderZooHelper;
 import ganymedes01.headcrumbs.utils.helpers.LycanitesHelper;
 import ganymedes01.headcrumbs.utils.helpers.NaturaHelper;
 import ganymedes01.headcrumbs.utils.helpers.TEHelper;
@@ -66,6 +67,7 @@ public class HeadUtils {
 	public static boolean natura = false;
 	public static boolean thaumcraft = false;
 	public static boolean lycanites = false;
+	public static boolean enderzoo = false;
 
 	public static void loadPlayerHeads() {
 		Random rand = new Random();
@@ -133,6 +135,12 @@ public class HeadUtils {
 
 		if (lycanites) {
 			ItemStack head = LycanitesHelper.getHead(target);
+			if (head != null)
+				return head;
+		}
+
+		if (enderzoo) {
+			ItemStack head = EnderZooHelper.getHead(target);
 			if (head != null)
 				return head;
 		}

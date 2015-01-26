@@ -293,7 +293,7 @@ public class ModelHead extends ModelBase {
 	private void setDireWolf() {
 		head = new ModelRenderer(this, 0, 0);
 		head.addBox(-3.0F, -3.0F, -4.0F, 6, 6, 6, 0);
-		head.setRotationPoint(0, -3F, -2);
+		head.setRotationPoint(2, -3F, 0);
 		head.setTextureOffset(16, 18).addBox(-2.5F, -5.0F, -1.5F, 1, 2, 2, 0);
 		head.setTextureOffset(16, 18).addBox(1.5F, -5.0F, -1.5F, 1, 2, 2, 0);
 		head.setTextureOffset(0, 14).addBox(-1.5F, 0.0F, -7.0F, 3, 3, 4, 0);

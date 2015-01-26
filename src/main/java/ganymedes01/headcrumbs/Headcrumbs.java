@@ -145,6 +145,7 @@ public class Headcrumbs {
 		HeadUtils.natura = Loader.isModLoaded("Natura");
 		HeadUtils.thaumcraft = Loader.isModLoaded("Thaumcraft");
 		HeadUtils.lycanites = Loader.isModLoaded("lycanitesmobs");
+		HeadUtils.enderzoo = Loader.isModLoaded("EnderZoo");
 
 		UsercacheChecker.check();
 
