@@ -37,9 +37,16 @@ public class HandlerEvents {
 	public void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
 		if (event.entityLiving instanceof EntityCelebrity) {
 			String name = event.world.provider.getDimensionName();
-			if (name.equals("Twilight Forest") || name.equals("Erebus"))
+			if (name.equals("Twilight Forest") || name.equals("Erebus") || isDimensionBlackListed(event.world.provider.dimensionId))
 				event.setResult(Result.DENY);
 		}
+	}
+
+	private static boolean isDimensionBlackListed(int dimensionId) {
+		for (int id : Headcrumbs.blacklistedDimensions)
+			if (dimensionId == id)
+				return true;
+		return false;
 	}
 
 	@SubscribeEvent
