@@ -4,6 +4,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraftforge.common.util.Constants;
 
 import com.mojang.authlib.GameProfile;
 
@@ -34,7 +35,7 @@ public class TileEntityBlockSkull extends TileEntitySkull {
 		skullType = nbt.getInteger("skullType");
 		skullRotation = nbt.getInteger("skullRotation");
 
-		if (nbt.hasKey("Owner", 10))
+		if (nbt.hasKey("Owner", Constants.NBT.TAG_COMPOUND))
 			profile = NBTUtil.func_152459_a(nbt.getCompoundTag("Owner"));
 	}
 

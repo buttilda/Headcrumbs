@@ -20,8 +20,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSkull;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
@@ -48,13 +46,8 @@ public class Skull extends ItemSkull {
 		if (!Headcrumbs.enableTooltips)
 			return;
 
-		if (stack.hasTagCompound()) {
-			String name = null;
-			if (stack.getTagCompound().hasKey("SkullOwner", 10))
-				name = NBTUtil.func_152459_a(stack.getTagCompound().getCompoundTag("SkullOwner")).getName();
-			else if (stack.getTagCompound().hasKey("SkullOwner", 8))
-				name = stack.getTagCompound().getString("SkullOwner");
-
+		String name = HeadUtils.getName(stack);
+		if (name != null) {
 			String tip = CelebrityMap.getTooltip(name);
 			if (tip != null)
 				list.add(tip);
@@ -68,16 +61,7 @@ public class Skull extends ItemSkull {
 		else if (!world.getBlock(x, y, z).getMaterial().isSolid())
 			return false;
 		else if (Headcrumbs.enablePlayerStatues && stack.getItemDamage() == SkullTypes.player.ordinal() && isValidStructure(world, x, y, z)) {
-			GameProfile profile = null;
-
-			if (stack.hasTagCompound()) {
-				NBTTagCompound nbt = stack.getTagCompound();
-				if (nbt.hasKey("SkullOwner", 10))
-					profile = NBTUtil.func_152459_a(nbt.getCompoundTag("SkullOwner"));
-				else if (nbt.hasKey("SkullOwner", 8))
-					profile = new GameProfile(null, nbt.getString("SkullOwner"));
-			}
-
+			GameProfile profile = HeadUtils.getGameProfile(stack);
 			if (profile != null) {
 				world.setBlock(x, y, z, ModBlocks.blockPlayer, 1, 3);
 				Utils.doBreakParticles(world, x, y, z, Blocks.soul_sand, 0);
@@ -86,7 +70,6 @@ public class Skull extends ItemSkull {
 
 				TileEntityBlockSkull tile = Utils.getTileEntity(world, x, y, z, TileEntityBlockSkull.class);
 				if (tile != null) {
-
 					tile.setType(stack.getItemDamage(), profile);
 					tile.func_145903_a(MathHelper.floor_double(player.rotationYaw * 16.0F / 360.0F + 0.5D) & 15);
 					world.notifyBlockChange(x, y, z, ModBlocks.blockPlayer);
@@ -122,16 +105,7 @@ public class Skull extends ItemSkull {
 			TileEntityBlockSkull tile = Utils.getTileEntity(world, x, y, z, TileEntityBlockSkull.class);
 
 			if (tile != null) {
-				GameProfile profile = null;
-
-				if (stack.hasTagCompound()) {
-					NBTTagCompound nbt = stack.getTagCompound();
-					if (nbt.hasKey("SkullOwner", 10))
-						profile = NBTUtil.func_152459_a(nbt.getCompoundTag("SkullOwner"));
-					else if (nbt.hasKey("SkullOwner", 8))
-						profile = new GameProfile(null, nbt.getString("SkullOwner"));
-				}
-
+				GameProfile profile = HeadUtils.getGameProfile(stack);
 				tile.setType(stack.getItemDamage(), profile);
 				tile.func_145903_a(angle);
 				world.notifyBlockChange(x, y, z, ModBlocks.blockSkull);
@@ -186,13 +160,8 @@ public class Skull extends ItemSkull {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		if (stack.hasTagCompound()) {
-			String name = null;
-			if (stack.getTagCompound().hasKey("SkullOwner", 10))
-				name = NBTUtil.func_152459_a(stack.getTagCompound().getCompoundTag("SkullOwner")).getName();
-			else if (stack.getTagCompound().hasKey("SkullOwner", 8))
-				name = stack.getTagCompound().getString("SkullOwner");
-
+		String name = HeadUtils.getName(stack);
+		if (name != null) {
 			boolean isLycanites = stack.getItemDamage() == SkullTypes.lycanites.ordinal();
 			boolean isPlayer = stack.getItemDamage() == SkullTypes.player.ordinal();
 			if (isLycanites || isPlayer)

@@ -55,6 +55,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
+import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.common.util.Constants;
 
 import com.mojang.authlib.GameProfile;
 
@@ -257,7 +259,7 @@ public class HeadUtils {
 	}
 
 	public static ItemStack createHeadFor(String username) {
-		return createHeadFor(new GameProfile(UUID.nameUUIDFromBytes(username.getBytes()), username));
+		return createHeadFor(new GameProfile(null, username));
 	}
 
 	public static ItemStack createHeadFor(EntityPlayer player) {
@@ -272,5 +274,35 @@ public class HeadUtils {
 		stack.getTagCompound().setTag("SkullOwner", profileData);
 
 		return stack;
+	}
+
+	public static GameProfile getGameProfile(ItemStack stack) {
+		GameProfile profile = null;
+
+		if (stack.hasTagCompound()) {
+			NBTTagCompound nbt = stack.getTagCompound();
+			if (nbt.hasKey("SkullOwner", Constants.NBT.TAG_COMPOUND))
+				profile = NBTUtil.func_152459_a(nbt.getCompoundTag("SkullOwner"));
+			else if (nbt.hasKey("SkullOwner", Constants.NBT.TAG_STRING))
+				profile = new GameProfile(null, nbt.getString("SkullOwner"));
+			else if (nbt.hasKey("OwnerUUID", Constants.NBT.TAG_STRING)) {
+				profile = MinecraftServer.getServer().func_152358_ax().func_152652_a(UUID.fromString(nbt.getString("OwnerUUID")));
+				profile = MinecraftServer.getServer().func_147130_as().fillProfileProperties(profile, true);
+			}
+		}
+
+		return profile;
+	}
+
+	public static String getName(ItemStack stack) {
+		if (stack.hasTagCompound()) {
+			NBTTagCompound nbt = stack.getTagCompound();
+			if (nbt.hasKey("SkullOwner", Constants.NBT.TAG_COMPOUND))
+				return NBTUtil.func_152459_a(nbt.getCompoundTag("SkullOwner")).getName();
+			else if (nbt.hasKey("SkullOwner", Constants.NBT.TAG_STRING))
+				return nbt.getString("SkullOwner");
+		}
+
+		return null;
 	}
 }

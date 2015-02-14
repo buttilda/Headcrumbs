@@ -346,6 +346,7 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 			names.addAll(Arrays.asList(Headcrumbs.mindCrack));
 			names.addAll(Arrays.asList(Headcrumbs.forgeCraft));
 			names.addAll(Arrays.asList(Headcrumbs.ftb));
+			System.out.println(names.size());
 		}
 
 		return names;

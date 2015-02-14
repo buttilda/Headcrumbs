@@ -1,11 +1,10 @@
 package ganymedes01.headcrumbs.renderers;
 
 import ganymedes01.headcrumbs.libs.SkullTypes;
-import ganymedes01.headcrumbs.utils.TextureUtils;
+import ganymedes01.headcrumbs.utils.HeadUtils;
 import net.minecraft.client.renderer.tileentity.TileEntitySkullRenderer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
@@ -37,20 +36,13 @@ public class ItemSkullRender implements IItemRenderer {
 		GameProfile profile = null;
 		boolean isVanilla = stack.getItem() == Items.skull;
 
-		if (stack.hasTagCompound())
-			if (stack.getTagCompound().hasKey("SkullOwner", 10))
-				profile = NBTUtil.func_152459_a(stack.getTagCompound().getCompoundTag("SkullOwner"));
-			else if (stack.getTagCompound().hasKey("SkullOwner", 8)) {
-				String username = stack.getTagCompound().getString("SkullOwner");
-				if (TextureUtils.profiles.containsKey(username))
-					profile = TextureUtils.profiles.get(username);
-				else
-					profile = new GameProfile(null, username);
-				if (isVanilla) {
-					skullType = SkullTypes.player.ordinal();
-					isVanilla = false;
-				}
+		if (stack.hasTagCompound()) {
+			profile = HeadUtils.getGameProfile(stack);
+			if (isVanilla) {
+				skullType = SkullTypes.player.ordinal();
+				isVanilla = false;
 			}
+		}
 
 		if (!isVanilla)
 			switch (SkullTypes.values()[skullType]) {

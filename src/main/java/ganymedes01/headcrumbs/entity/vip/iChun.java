@@ -5,7 +5,7 @@ import ganymedes01.headcrumbs.entity.VIPHandler;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-public class ohaiiChun extends VIPHandler {
+public class iChun extends VIPHandler {
 
 	@Override
 	protected ItemStack getItem(EntityCelebrity entity) {
