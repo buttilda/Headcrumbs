@@ -1,6 +1,7 @@
 package ganymedes01.headcrumbs.entity;
 
 import ganymedes01.headcrumbs.Headcrumbs;
+import ganymedes01.headcrumbs.utils.UsernameUtils;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -317,7 +318,7 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 	}
 
 	private void setUsername(String name) {
-		getDataWatcher().updateObject(NAME, name);
+		getDataWatcher().updateObject(NAME, UsernameUtils.getFixedUsername(name));
 	}
 
 	public String getUsername() {

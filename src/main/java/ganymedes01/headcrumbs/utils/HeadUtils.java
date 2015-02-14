@@ -62,6 +62,8 @@ import com.mojang.authlib.GameProfile;
 
 public class HeadUtils {
 
+	private static final String OWNER_TAG = "SkullOwner";
+
 	public static final List<ItemStack> players = new LinkedList<ItemStack>();
 
 	public static boolean twilightForest = false;
@@ -259,7 +261,7 @@ public class HeadUtils {
 	}
 
 	public static ItemStack createHeadFor(String username) {
-		return createHeadFor(new GameProfile(null, username));
+		return createHeadFor(new GameProfile(null, UsernameUtils.getFixedUsername(username)));
 	}
 
 	public static ItemStack createHeadFor(EntityPlayer player) {
@@ -271,7 +273,7 @@ public class HeadUtils {
 		stack.setTagCompound(new NBTTagCompound());
 		NBTTagCompound profileData = new NBTTagCompound();
 		NBTUtil.func_152460_a(profileData, profile);
-		stack.getTagCompound().setTag("SkullOwner", profileData);
+		stack.getTagCompound().setTag(OWNER_TAG, profileData);
 
 		return stack;
 	}
@@ -281,10 +283,10 @@ public class HeadUtils {
 
 		if (stack.hasTagCompound()) {
 			NBTTagCompound nbt = stack.getTagCompound();
-			if (nbt.hasKey("SkullOwner", Constants.NBT.TAG_COMPOUND))
-				profile = NBTUtil.func_152459_a(nbt.getCompoundTag("SkullOwner"));
-			else if (nbt.hasKey("SkullOwner", Constants.NBT.TAG_STRING))
-				profile = new GameProfile(null, nbt.getString("SkullOwner"));
+			if (nbt.hasKey(OWNER_TAG, Constants.NBT.TAG_COMPOUND))
+				profile = NBTUtil.func_152459_a(nbt.getCompoundTag(OWNER_TAG));
+			else if (nbt.hasKey(OWNER_TAG, Constants.NBT.TAG_STRING))
+				profile = new GameProfile(null, nbt.getString(OWNER_TAG));
 			else if (nbt.hasKey("OwnerUUID", Constants.NBT.TAG_STRING)) {
 				profile = MinecraftServer.getServer().func_152358_ax().func_152652_a(UUID.fromString(nbt.getString("OwnerUUID")));
 				profile = MinecraftServer.getServer().func_147130_as().fillProfileProperties(profile, true);
@@ -297,10 +299,12 @@ public class HeadUtils {
 	public static String getName(ItemStack stack) {
 		if (stack.hasTagCompound()) {
 			NBTTagCompound nbt = stack.getTagCompound();
-			if (nbt.hasKey("SkullOwner", Constants.NBT.TAG_COMPOUND))
-				return NBTUtil.func_152459_a(nbt.getCompoundTag("SkullOwner")).getName();
-			else if (nbt.hasKey("SkullOwner", Constants.NBT.TAG_STRING))
-				return nbt.getString("SkullOwner");
+			if (nbt.hasKey(OWNER_TAG, Constants.NBT.TAG_COMPOUND)) {
+				GameProfile profile = NBTUtil.func_152459_a(nbt.getCompoundTag(OWNER_TAG));
+				if (profile != null)
+					return profile.getName();
+			} else if (nbt.hasKey(OWNER_TAG, Constants.NBT.TAG_STRING))
+				return nbt.getString(OWNER_TAG);
 		}
 
 		return null;

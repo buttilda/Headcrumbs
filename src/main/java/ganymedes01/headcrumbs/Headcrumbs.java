@@ -9,6 +9,7 @@ import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.network.PacketHandler;
 import ganymedes01.headcrumbs.proxy.CommonProxy;
 import ganymedes01.headcrumbs.utils.HeadUtils;
+import ganymedes01.headcrumbs.utils.UsernameUtils;
 import ganymedes01.headcrumbs.utils.UsercacheChecker;
 
 import java.lang.reflect.Field;
@@ -103,6 +104,7 @@ public class Headcrumbs {
 		ModItems.init();
 
 		HeadUtils.loadPlayerHeads();
+		UsernameUtils.initMap();
 
 		OreDictionary.registerOre("itemSkull", new ItemStack(ModItems.skull, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("itemSkull", new ItemStack(Items.skull, 1, OreDictionary.WILDCARD_VALUE));
