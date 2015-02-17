@@ -1,5 +1,6 @@
 package ganymedes01.headcrumbs.entity.vip;
 
+import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.entity.EntityCelebrity;
 import ganymedes01.headcrumbs.entity.VIPHandler;
 import net.minecraft.block.BlockColored;
@@ -26,6 +27,8 @@ public class Jeb_Jeb extends VIPHandler {
 
 	@Override
 	public void onSpawn(EntityCelebrity entity) {
+		if (!Headcrumbs.enableBaarbra)
+			return;
 		EntitySheep sheep = new EntitySheep(entity.worldObj);
 		sheep.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, entity.rotationYaw, entity.rotationPitch);
 		sheep.onSpawnWithEgg(null);
