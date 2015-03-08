@@ -85,6 +85,9 @@ public class CelebrityMap {
 		map.put("FyberOptic", "Hopper Ducts");
 		map.put("spacetoad", "BuildCraft");
 		map.put("aidancbrady", "Mekanism");
+		map.put("Adubbz", "Biomes O'Plenty");
+		map.put("Binnie567", "Extra Bees");
+		map.put("ShadwDrgn", "Soul Shards");
 
 		map.put("ganymedes01", "Gany's Mods");
 	}
