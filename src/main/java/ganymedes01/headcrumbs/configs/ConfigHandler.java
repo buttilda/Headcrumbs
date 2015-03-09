@@ -10,6 +10,7 @@ import net.minecraft.init.Blocks;
 import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class ConfigHandler {
 
@@ -47,7 +48,7 @@ public class ConfigHandler {
 		Headcrumbs.enableCelebrityMobs = configFile.get("mob", "Enable celebrity mobs", Headcrumbs.enableCelebrityMobs).setRequiresMcRestart(true).getBoolean();
 		Headcrumbs.enableVIPs = configFile.get("mob", "Enable VIP drops", Headcrumbs.enableVIPs, "Setting this to false will disable special drops/wheapons for certain celebrities. Existing mobs will still hold the wheapons they spawned with.").setRequiresMcRestart(true).getBoolean();
 		Headcrumbs.enableBaarbra = configFile.get("mob", "Disable Baarbra", Headcrumbs.enableBaarbra, "Setting this to false will cause Baarbra (or other mobs that VIPs mount) to no longer show up )=").setRequiresMcRestart(false).getBoolean();
-		Headcrumbs.celebrityID = configFile.get("mob", "Mob ID", Headcrumbs.celebrityID, "WARNING: CHANGING THIS WILL CAUSE EXISTING CELEBRITIES TO VANISH FROM EXISTING WORLDS!").setRequiresMcRestart(true).getInt();
+		Headcrumbs.celebrityID = configFile.get("mob", "Mob ID", EntityRegistry.findGlobalUniqueEntityId(), "WARNING: CHANGING THIS WILL CAUSE EXISTING CELEBRITIES TO VANISH FROM EXISTING WORLDS!").setRequiresMcRestart(true).getInt();
 		Headcrumbs.celebrityProb = configFile.get("mob", "Spawn probability", Headcrumbs.celebrityProb, "The change the mob will spawn. Base values: zombies, skeletons, spider, creepers = 100, endermen = 10, witches = 5").setRequiresMcRestart(true).getInt();
 		Headcrumbs.celebrityMin = configFile.get("mob", "Minimum group size", Headcrumbs.celebrityMin, "The minimum size of the group of mobs that will spawn at once").setRequiresMcRestart(true).getInt();
 		Headcrumbs.celebrityMax = configFile.get("mob", "Maximum group size", Headcrumbs.celebrityMax, "The maximum size of the group of mobs that will spawn at once").setRequiresMcRestart(true).getInt();
