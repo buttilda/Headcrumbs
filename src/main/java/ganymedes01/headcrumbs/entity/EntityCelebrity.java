@@ -178,7 +178,7 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 		setCombatAI();
 	}
 
-	/* SPAWN */
+	/* SPAWN AND DESPAWN */
 
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
@@ -209,11 +209,10 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 	}
 
 	@Override
-	public boolean attackEntityAsMob(Entity target) {
-		boolean result = super.attackEntityAsMob(target);
-		if (result)
-			swingItem();
-		return result;
+	protected void despawnEntity() {
+		super.despawnEntity();
+		if (isDead && ridingEntity != null)
+			ridingEntity.setDead();
 	}
 
 	/* RENDERING */
@@ -256,7 +255,15 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 		setCombatAI();
 	}
 
-	/* RANGED STUFF */
+	/* ATTACK STUFF */
+
+	@Override
+	public boolean attackEntityAsMob(Entity target) {
+		boolean result = super.attackEntityAsMob(target);
+		if (result)
+			swingItem();
+		return result;
+	}
 
 	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float damage) {
