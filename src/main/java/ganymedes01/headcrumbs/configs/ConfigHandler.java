@@ -42,6 +42,7 @@ public class ConfigHandler {
 		Headcrumbs.youtubers = configFile.get("heads", "youtubers", Headcrumbs.youtubers).setRequiresMcRestart(true).getStringList();
 		Headcrumbs.mojang = configFile.get("heads", "mojang", Headcrumbs.mojang).setRequiresMcRestart(true).getStringList();
 		Headcrumbs.mindCrack = configFile.get("heads", "mindCrack", Headcrumbs.mindCrack).setRequiresMcRestart(true).getStringList();
+		Headcrumbs.hermitcraft = configFile.get("heads", "hermitcraft", Headcrumbs.hermitcraft).setRequiresMcRestart(true).getStringList();
 		Headcrumbs.forgeCraft = configFile.get("heads", "forgeCraft", Headcrumbs.forgeCraft).setRequiresMcRestart(true).getStringList();
 		Headcrumbs.ftb = configFile.get("heads", "ftb", Headcrumbs.ftb).setRequiresMcRestart(true).getStringList();
 

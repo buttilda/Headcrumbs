@@ -3,7 +3,6 @@ package ganymedes01.headcrumbs.entity;
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.utils.UsernameUtils;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -346,15 +345,8 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 	private static List<String> names = new LinkedList<String>();
 
 	private static List<String> getNames() {
-		if (names.isEmpty()) {
-			names.addAll(Arrays.asList(Headcrumbs.others));
-			names.addAll(Arrays.asList(Headcrumbs.modders));
-			names.addAll(Arrays.asList(Headcrumbs.youtubers));
-			names.addAll(Arrays.asList(Headcrumbs.mojang));
-			names.addAll(Arrays.asList(Headcrumbs.mindCrack));
-			names.addAll(Arrays.asList(Headcrumbs.forgeCraft));
-			names.addAll(Arrays.asList(Headcrumbs.ftb));
-		}
+		if (names.isEmpty())
+			names.addAll(Headcrumbs.getAllNames());
 
 		return names;
 	}

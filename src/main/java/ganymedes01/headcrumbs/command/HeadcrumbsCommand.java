@@ -4,8 +4,6 @@ import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.libs.Reference;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.command.CommandBase;
@@ -36,15 +34,7 @@ public class HeadcrumbsCommand extends CommandBase {
 	@Override
 	@SuppressWarnings({ "rawtypes" })
 	public List addTabCompletionOptions(ICommandSender sender, String[] args) {
-		ArrayList<String> list = new ArrayList<String>();
-		list.addAll(Arrays.asList(Headcrumbs.others));
-		list.addAll(Arrays.asList(Headcrumbs.modders));
-		list.addAll(Arrays.asList(Headcrumbs.youtubers));
-		list.addAll(Arrays.asList(Headcrumbs.mojang));
-		list.addAll(Arrays.asList(Headcrumbs.mindCrack));
-		list.addAll(Arrays.asList(Headcrumbs.forgeCraft));
-		list.addAll(Arrays.asList(Headcrumbs.ftb));
-
+		List<String> list = Headcrumbs.getAllNames();
 		return args.length == 1 ? getListOfStringsMatchingLastWord(args, MinecraftServer.getServer().getAllUsernames()) : getListOfStringsMatchingLastWord(args, list.toArray(new String[0]));
 	}
 

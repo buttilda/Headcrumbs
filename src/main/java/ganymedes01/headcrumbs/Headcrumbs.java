@@ -14,6 +14,7 @@ import ganymedes01.headcrumbs.utils.UsernameUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -73,6 +74,7 @@ public class Headcrumbs {
 	public static String[] youtubers = { "SOTMead", "Nerdcubed", "Kleetho", "DanTDM", "Runew0lf", "GiantWaffle", "Bacon_Donut", "Vaygrim", "Heph", "ChimneySwift", "FuriousDestroyer", "SuperGirlyGamer", "CyaNideEPiC", "Jarrenitis", "direwolf20", "Sjin", "Xephos", "LividCoffee", "Rythian", "Zoeya", "TheStrippin", "InTheLittleWood", "Quetzz", "Blorph", "xbony2", "CaptainSparklez", "AntVenom", "CavemanFilms", "Fosler", "BevoLJ", "Sips_", "Honeydew", "TobyofBuscus", "corjaantje", "RealThinknoodles", "ZexyZek" };
 	public static String[] mojang = { "Notch", "jeb_", "C418", "Dinnerbone", "Grumm", "Searge_DP", "EvilSeph", "TheMogMiner" };
 	public static String[] mindCrack = { "adlingtont", "AnderZEL", "Arkas", "Aureylian", "AvidyaZEN", "BdoubleO100", "BlameTC", "Coestar", "Docm77", "Etho", "generikb", "Guude", "JSano19", "kurtmac", "SuperMCGamer", "Mhykol", "Millbee", "Nebris", "Pakratt0013", "paulsoaresjr", "PauseUnpause", "Pyro_0", "SethBling", "thejims", "Sevadus", "Vechs_", "VintageBeef", "W92Baj", "Zisteau" };
+	public static String[] hermitcraft = { "Biffa2001", "falsesymmetry", "hypnotizd", "iJevinYT", "impulseSV", "Jessassin", "joehillssays", "Keralis1", "KingDaddyDMAC", "monkeyfarm", "Mumbo", "Pungence", "skyzm", "sl1pg8r", "TangoTek", "Tinfoilchef", "topmass", "xBCrafted", "Xisuma", "ZombieCleo", "zueljin" };
 	public static String[] forgeCraft = { "ShadwDrgn", "Cojomax99", "Freyjadono", "Vaht", "EcuTruin", "BigBadChris", "boni", "Mr_okushama", "AlgorithmX2", "Mikeemoo", "_CrazyP_", "MysteriousAges", "MineMaarten", "nekosune", "tlovetech", "FireBall1725", "PurpleMentat", "calclavia", "Minalien", "fuj1n", "Mithion", "RWTema", "WayofFlowingTime", "TTFTCUTS", "bspkrs", "amnet", "azanor", "chicken_bones", "Cloudhunter", "CovertJaguar", "cpw11", "dan200", "Eloraam", "florastar", "iChun", "KingLemming", "Krapht", "LexManos", "TheMattaBase", "mDiyo", "Myrathi", "Morvelaira", "Pahimar", "sfPlayer1", "ProfMobius", "Rorax", "Sacheverell", "sirsengir", "Soaryn", "x3n0ph0b3", "XCompWiz", "Vswe", "Vazkii", "ZeldoKavira", "neptunepink", "EddieRuckus" };
 	public static String[] ftb = { "eyamaz", "jadedcat", "slowpoke101", "progwml6" };
 
@@ -173,5 +175,18 @@ public class Headcrumbs {
 	@EventHandler
 	public void serverStarting(FMLServerStartingEvent event) {
 		event.registerServerCommand(new HeadcrumbsCommand());
+	}
+
+	public static List<String> getAllNames() {
+		List<String> names = new LinkedList<String>();
+		names.addAll(Arrays.asList(others));
+		names.addAll(Arrays.asList(modders));
+		names.addAll(Arrays.asList(youtubers));
+		names.addAll(Arrays.asList(mojang));
+		names.addAll(Arrays.asList(mindCrack));
+		names.addAll(Arrays.asList(hermitcraft));
+		names.addAll(Arrays.asList(forgeCraft));
+		names.addAll(Arrays.asList(ftb));
+		return names;
 	}
 }

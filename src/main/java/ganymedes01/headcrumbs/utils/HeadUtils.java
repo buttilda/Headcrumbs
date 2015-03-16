@@ -11,7 +11,6 @@ import ganymedes01.headcrumbs.utils.helpers.TEHelper;
 import ganymedes01.headcrumbs.utils.helpers.ThaumcraftHelper;
 import ganymedes01.headcrumbs.utils.helpers.TwilightForestHelper;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -76,15 +75,7 @@ public class HeadUtils {
 	public static void loadPlayerHeads() {
 		Random rand = new Random();
 
-		List<String> allNames = new LinkedList<String>();
-		allNames.addAll(Arrays.asList(Headcrumbs.others));
-		allNames.addAll(Arrays.asList(Headcrumbs.modders));
-		allNames.addAll(Arrays.asList(Headcrumbs.youtubers));
-		allNames.addAll(Arrays.asList(Headcrumbs.mojang));
-		allNames.addAll(Arrays.asList(Headcrumbs.mindCrack));
-		allNames.addAll(Arrays.asList(Headcrumbs.forgeCraft));
-		allNames.addAll(Arrays.asList(Headcrumbs.ftb));
-
+		List<String> allNames = Headcrumbs.getAllNames();
 		Collections.sort(allNames, new Comparator<String>() {
 
 			@Override
