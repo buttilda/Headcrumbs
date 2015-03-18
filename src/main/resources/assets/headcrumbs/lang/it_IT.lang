@@ -1,4 +1,3 @@
-
 # Items
 item.headcrumbs.pigman.name=Testa di zombi suino
 item.headcrumbs.blaze.name=Testa di Vampo
@@ -41,54 +40,64 @@ item.headcrumbs.druid.name=Testa di Skeleton Druid
 item.headcrumbs.hedgeSpider.name=Testa di Hedge Spider
 -
 item.headcrumbs.blizz.name=Testa di Folata
-item.headcrumbs.enderDragon.name=Drago d'omega
-item.headcrumbs.hostileWolf.name=Lupo ostile
-item.headcrumbs.squirrel.name=Scoiattolo della forestra
-item.headcrumbs.ocelot.name=Gattopardo
-item.headcrumbs.ocelotBlack.name=Gatto nero
-item.headcrumbs.ocelotRed.name=Gatto rosso
-item.headcrumbs.ocelotSiamese.name=Gatto siamese
-item.headcrumbs.bat.name=Pipistrello
-item.headcrumbs.slime.name=Gelatina
-item.headcrumbs.magmaCube.name=Cubo di magma
-item.headcrumbs.horseBlack.name=Cavallo (Nerio)
-item.headcrumbs.horseBrown.name=Cavallo (Marrone)
-item.headcrumbs.horseChestnut.name=Cavallo (Nocciola)
-item.headcrumbs.horseCreamy.name=Cavallo (Crema)
-item.headcrumbs.horseDarkBrown.name=Cavallo (Marrone scuro)
-item.headcrumbs.horseGrey.name=Cavallo (Grigio)
-item.headcrumbs.horseWhite.name=Cavallo (Bianco)
-item.headcrumbs.donkey.name=Asino
-item.headcrumbs.mule.name=Mulo
-item.headcrumbs.horseUndead.name=Cavallo zombi
-item.headcrumbs.horseSkeleton.name=Cavallo scheletro
-item.headcrumbs.snowMan.name=Golem di neve
-item.headcrumbs.silverfish.name=Pesciolino d'argento
+item.headcrumbs.enderDragon.name=Testa di drago d'omega
+item.headcrumbs.hostileWolf.name=Testa di lupo ostile
+item.headcrumbs.squirrel.name=Testa di scoiattolo della forestra
+item.headcrumbs.ocelot.name=Testa di gattopardo
+item.headcrumbs.ocelotBlack.name=Testa di gatto nero
+item.headcrumbs.ocelotRed.name=Testa di gatto rosso
+item.headcrumbs.ocelotSiamese.name=Testa di gatto siamese
+item.headcrumbs.bat.name=Testa di pipistrello
+item.headcrumbs.slime.name=Testa di gelatina
+item.headcrumbs.magmaCube.name=Testa di cubo di magma
+item.headcrumbs.horseBlack.name=Testa di cavallo (nero)
+item.headcrumbs.horseBrown.name=Testa di cavallo (marrone)
+item.headcrumbs.horseChestnut.name=Testa di cavallo (nocciola)
+item.headcrumbs.horseCreamy.name=Testa di cavallo (crema)
+item.headcrumbs.horseDarkBrown.name=Testa di cavallo (marrone scuro)
+item.headcrumbs.horseGrey.name=Testa di cavallo (grigio)
+item.headcrumbs.horseWhite.name=Testa di cavallo (bianco)
+item.headcrumbs.donkey.name=Testa di asino
+item.headcrumbs.mule.name=Testa di mulo
+item.headcrumbs.horseUndead.name=Testa di cavallo zombi
+item.headcrumbs.horseSkeleton.name=Testa di cavallo scheletro
+item.headcrumbs.snowMan.name=Testa di golem di neve
+item.headcrumbs.silverfish.name=Testa di pesciolino d'argento
 -
-item.headcrumbs.swarmSpider.name=Swarm Spider
-item.headcrumbs.towerBroodling.name=Carminite Broodling
-item.headcrumbs.winterWolf.name=Winter Wolf
-item.headcrumbs.mazeSlime.name=Maze Slime
-item.headcrumbs.towerwoodBorer.name=Towerwood Borer
+item.headcrumbs.swarmSpider.name=Testa di Swarm Spider
+item.headcrumbs.towerBroodling.name=Testa di Carminite Broodling
+item.headcrumbs.winterWolf.name=Testa di Winter Wolf
+item.headcrumbs.mazeSlime.name=Testa di Maze Slime
+item.headcrumbs.towerwoodBorer.name=Testa di Towerwood Borer
 -
-item.headcrumbs.imp.name=Imp
-item.headcrumbs.nitroCreeper.name=Nitro Creeper
-item.headcrumbs.heatscarSpider.name=Ragno fiammeggiante
-item.headcrumbs.angryZombie.name=Zombi arrabbiato
-item.headcrumbs.fireBat.name=Pirostrello
-item.headcrumbs.thaumicSlime.name=Slime taumico
-item.headcrumbs.taintedChicken.name=Pollo corrotto
-item.headcrumbs.taintedCow.name=Mucca corrotta
-item.headcrumbs.taintedPig.name=Maiale corrotto
-item.headcrumbs.taintedCreeper.name=Creeper corrotto
-item.headcrumbs.taintedVillager.name=Villico corrotto
-item.headcrumbs.taintedSheep.name=Pecora corrotta
-item.headcrumbs.pech.name=Nano
-item.headcrumbs.eldritchGuardian.name=Guardiano innaturale
+item.headcrumbs.imp.name=Testa di imp
+item.headcrumbs.nitroCreeper.name=Testa di Nitro Creeper
+item.headcrumbs.heatscarSpider.name=Testa di ragno fiammeggiante
+item.headcrumbs.angryZombie.name=Testa di zombi arrabbiato
+item.headcrumbs.fireBat.name=Testa di pirostrello
+item.headcrumbs.thaumicSlime.name=Testa di gelatina taumico
+item.headcrumbs.taintedChicken.name=Testa di pollo corrotto
+item.headcrumbs.taintedCow.name=Testa di mucca corrotta
+item.headcrumbs.taintedPig.name=Testa di maiale corrotto
+item.headcrumbs.taintedCreeper.name=Testa di Creeper corrotto
+item.headcrumbs.taintedVillager.name=Testa di villico corrotto
+item.headcrumbs.taintedSheep.name=Testa di pecora corrotta
+item.headcrumbs.pech.name=Testa di nano
+item.headcrumbs.eldritchGuardian.name=Testa di guardiano innaturale
 -
-item.headcrumbs.pinky.name=Pinky
-item.headcrumbs.behemoth.name=Behemoth
-item.headcrumbs.belph.name=Belph
+item.headcrumbs.pinky.name=Testa di Pinky
+item.headcrumbs.behemoth.name=Testa di Behemoth
+item.headcrumbs.belph.name=Testa di Belph
+-
+item.headcrumbs.concussionCreeper.name=Testa di Concussion Creeper
+item.headcrumbs.enderminy.name=Testa di Enderminy
+item.headcrumbs.fallenKnight.name=Testa di Fallen Knight
+item.headcrumbs.witherWitch.name=Testa di Wither Witch
+item.headcrumbs.witherCat.name=Testa di Wither Cat
+item.headcrumbs.direWolf.name=Testa di Dire Wolf
+
+# Entity
+entity.Celebrity.name=Celebrità
 
 # Creative Tab
 itemGroup.headcrumbs=Headcrumbs
