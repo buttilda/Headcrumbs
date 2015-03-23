@@ -6,13 +6,9 @@ import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.helpers.LycanitesHelperClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.passive.EntitySheep;
-import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
@@ -28,7 +24,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 
 	private ModelHead model;
-	private final RenderBlocks renderer = new RenderBlocks();
 	public static TileEntityBlockSkullRenderer instance;
 
 	private static EntityLiving entity;
@@ -47,7 +42,8 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 
 	private EntityLiving getEntity() {
 		if (entity == null)
-			entity = new EntityLiving(Minecraft.getMinecraft().theWorld) {};
+			entity = new EntityLiving(Minecraft.getMinecraft().theWorld) {
+			};
 
 		return entity;
 	}
@@ -64,8 +60,10 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 	}
 
 	private void renderLycanites(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile playerName) {
-		if (playerName == null || !HeadUtils.lycanites)
+		if (playerName == null || !HeadUtils.lycanites) {
+			renderNormal(x, y, z, meta, skullRotation, SkullTypes.blaze, playerName); // So that the heads are visible after an eventual removal of Lycanites
 			return;
+		}
 
 		ModelBase model = LycanitesHelperClient.getModel(playerName.getName());
 		ResourceLocation tex = type.getTexture(playerName);
@@ -97,61 +95,22 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 		skullRotation = adjustRotation(meta, skullRotation);
 
 		GL11.glScalef(-1.0F, -1.0F, 1.0F);
-		model = ModelHead.getHead(type);
+		model = type.model();
+		model.preRender();
 		model.render(skullRotation);
-		renderSpecial(type, skullRotation);
+		renderSpecial(skullRotation);
 
 		if (GL11.glIsEnabled(GL11.GL_BLEND))
 			GL11.glDisable(GL11.GL_BLEND);
 		GL11.glPopMatrix();
 	}
 
-	private void renderSpecial(SkullTypes skullType, float skullRotation) {
-		ResourceLocation secondTex = skullType.getSecondTexture();
+	private void renderSpecial(float skullRotation) {
+		ResourceLocation secondTex = model.getSecondTexture();
 
 		if (secondTex != null) {
 			bindTexture(secondTex);
-			switch (skullType) {
-				case sheep:
-				case bighorn:
-				case taintedSheep:
-					int c = 12;
-					if (skullType == SkullTypes.bighorn)
-						GL11.glColor3f(EntitySheep.fleeceColorTable[c][0], EntitySheep.fleeceColorTable[c][1], EntitySheep.fleeceColorTable[c][2]);
-					model.renderOverlay(skullRotation);
-					return;
-				case mooshroom:
-					GL11.glScaled(1, -1, 1);
-					GL11.glTranslated(0, 1, 0);
-					GL11.glEnable(GL11.GL_CULL_FACE);
-					renderer.renderBlockAsItem(Blocks.red_mushroom, 0, 1.0F);
-					GL11.glDisable(GL11.GL_CULL_FACE);
-					return;
-				case spider:
-				case caveSpider:
-				case hedgeSpider:
-				case kingSpider:
-				case enderDragon:
-				case enderman:
-				case swarmSpider:
-				case towerBroodling:
-				case heatscarSpider:
-				case enderminy:
-					GL11.glEnable(GL11.GL_BLEND);
-					GL11.glDisable(GL11.GL_ALPHA_TEST);
-					GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
-					GL11.glDepthMask(true);
-					char c0 = 61680;
-					int j = c0 % 65536;
-					int k = c0 / 65536;
-					OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, j / 1.0F, k / 1.0F);
-					model.render(skullRotation);
-					GL11.glDisable(GL11.GL_BLEND);
-					GL11.glEnable(GL11.GL_ALPHA_TEST);
-					return;
-				default:
-					return;
-			}
+			model.renderSpecial(skullRotation);
 		}
 	}
 

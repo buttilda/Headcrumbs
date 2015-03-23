@@ -57,44 +57,7 @@ public class RenderPlayerHandler {
 				GL11.glPushMatrix();
 				GL11.glScalef(1.0F, -1.0F, -1.0F);
 
-				float offset;
-				switch (SkullTypes.values()[head.getItemDamage()]) {
-					case cow:
-					case mooshroom:
-					case slimeBeetle:
-					case fireBeetle:
-					case pinchBeetle:
-					case towerGolem:
-					case taintedCow:
-					case pech:
-						offset = 1.0F;
-						break;
-					case wolf:
-					case chicken:
-					case wildDeer:
-					case ocelot:
-					case ocelotBlack:
-					case ocelotRed:
-					case ocelotSiamese:
-					case silverfish:
-					case mistWolf:
-					case winterWolf:
-					case towerwoodBorer:
-					case taintedChicken:
-						offset = 2.0F;
-						break;
-					case bunnyDutch:
-					case bunnyBrown:
-					case bunnyWhite:
-					case bat:
-					case squirrel:
-					case fireBat:
-						offset = 3.0F;
-						break;
-					default:
-						offset = 0.0F;
-						break;
-				}
+				float offset = SkullTypes.values()[head.getItemDamage()].model().playerRenderOffset();
 
 				GameProfile profile = null;
 				if (head.hasTagCompound())

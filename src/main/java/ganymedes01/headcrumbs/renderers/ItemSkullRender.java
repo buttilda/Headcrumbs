@@ -45,35 +45,17 @@ public class ItemSkullRender implements IItemRenderer {
 		}
 
 		if (!isVanilla)
-			switch (SkullTypes.values()[skullType]) {
-				case witch:
-				case wildDeer:
-				case horseBlack:
-				case horseBrown:
-				case horseChestnut:
-				case horseCreamy:
-				case horseDarkBrown:
-				case horseGrey:
-				case horseWhite:
-				case donkey:
-				case mule:
-				case horseUndead:
-				case horseSkeleton:
-				case witherWitch:
-					GL11.glScaled(0.75, 0.75, 0.75);
-					GL11.glTranslated(0, -0.45, 0);
-					break;
-				case enderDragon:
-				case pinchBeetle:
-					GL11.glScaled(0.75, 0.75, 0.75);
-					break;
-				case mistWolf:
-				case winterWolf:
-					GL11.glTranslated(0, -0.25, 0);
-					break;
-				default:
-					break;
-			}
+			SkullTypes.values()[skullType].model().preRenderItem();
+
+		//		if (!isVanilla)
+		//			switch (SkullTypes.values()[skullType]) {
+		//				case mistWolf:
+		//				case winterWolf:
+		//					GL11.glTranslated(0, -0.25, 0);
+		//					break;
+		//				default:
+		//					break;
+		//			}
 
 		switch (type) {
 			case ENTITY:
