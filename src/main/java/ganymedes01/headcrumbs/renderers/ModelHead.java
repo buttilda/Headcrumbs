@@ -3,6 +3,7 @@ package ganymedes01.headcrumbs.renderers;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 public class ModelHead extends ModelBase {
 
@@ -36,7 +37,7 @@ public class ModelHead extends ModelBase {
 	public void renderSpecial(float skullRotation) {
 	}
 
-	public void preRenderItem() {
+	public void preRenderItem(ItemRenderType type) {
 	}
 
 	public final ResourceLocation getSecondTexture() {
@@ -50,17 +51,6 @@ public class ModelHead extends ModelBase {
 	public float playerRenderOffset() {
 		return 0;
 	}
-
-	//	private static void transform(SkullTypes skull) {
-	//		switch (skull) {
-	//			case mistWolf:
-	//			case winterWolf:
-	//				GL11.glScaled(1.5, 1.5, 1.5);
-	//				break;
-	//			default:
-	//				break;
-	//		}
-	//	}
 
 	protected ModelHead hideOverlay() {
 		renderOverlay = false;

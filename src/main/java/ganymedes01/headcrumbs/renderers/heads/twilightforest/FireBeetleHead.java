@@ -2,6 +2,9 @@ package ganymedes01.headcrumbs.renderers.heads.twilightforest;
 
 import ganymedes01.headcrumbs.renderers.ModelHead;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
+
+import org.lwjgl.opengl.GL11;
 
 public class FireBeetleHead extends ModelHead {
 
@@ -57,5 +60,11 @@ public class FireBeetleHead extends ModelHead {
 	@Override
 	public float playerRenderOffset() {
 		return 1;
+	}
+
+	@Override
+	public void preRenderItem(ItemRenderType type) {
+		if (type == ItemRenderType.INVENTORY)
+			GL11.glTranslated(0, 0.25, 0.5);
 	}
 }

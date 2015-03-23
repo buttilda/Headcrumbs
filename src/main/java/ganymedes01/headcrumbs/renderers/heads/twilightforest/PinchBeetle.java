@@ -2,6 +2,7 @@ package ganymedes01.headcrumbs.renderers.heads.twilightforest;
 
 import ganymedes01.headcrumbs.renderers.ModelHead;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 import org.lwjgl.opengl.GL11;
 
@@ -87,8 +88,10 @@ public class PinchBeetle extends ModelHead {
 	}
 
 	@Override
-	public void preRenderItem() {
-		GL11.glScaled(0.75, 0.75, 0.75);
+	public void preRenderItem(ItemRenderType type) {
+		GL11.glScaled(0.65, 0.65, 0.65);
+		if (type == ItemRenderType.INVENTORY)
+			GL11.glTranslated(0, 0.5, 0.5);
 	}
 
 	@Override

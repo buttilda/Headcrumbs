@@ -45,17 +45,7 @@ public class ItemSkullRender implements IItemRenderer {
 		}
 
 		if (!isVanilla)
-			SkullTypes.values()[skullType].model().preRenderItem();
-
-		//		if (!isVanilla)
-		//			switch (SkullTypes.values()[skullType]) {
-		//				case mistWolf:
-		//				case winterWolf:
-		//					GL11.glTranslated(0, -0.25, 0);
-		//					break;
-		//				default:
-		//					break;
-		//			}
+			SkullTypes.values()[skullType].model().preRenderItem(type);
 
 		switch (type) {
 			case ENTITY:
@@ -65,7 +55,7 @@ public class ItemSkullRender implements IItemRenderer {
 				renderSkull(0.5F, 0.0F, 0.0F, skullType, profile, isVanilla);
 				break;
 			case EQUIPPED_FIRST_PERSON:
-				renderSkull(0.75F, 0.25F, 0.4F, skullType, profile, isVanilla);
+				renderSkull(0.5F, 0.35F, 0.25F, skullType, profile, isVanilla);
 				break;
 			case INVENTORY:
 				GL11.glScaled(1.5, 1.5, 1.5);

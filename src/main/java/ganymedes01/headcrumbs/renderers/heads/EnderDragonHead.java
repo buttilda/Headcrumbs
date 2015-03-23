@@ -5,6 +5,7 @@ import ganymedes01.headcrumbs.renderers.ModelHead;
 import ganymedes01.headcrumbs.utils.Utils;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 import org.lwjgl.opengl.GL11;
 
@@ -64,7 +65,7 @@ public class EnderDragonHead extends ModelHead {
 	}
 
 	@Override
-	public void preRenderItem() {
+	public void preRenderItem(ItemRenderType type) {
 		GL11.glScaled(0.75, 0.75, 0.75);
 	}
 }

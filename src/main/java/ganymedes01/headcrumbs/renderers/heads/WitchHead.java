@@ -2,6 +2,7 @@ package ganymedes01.headcrumbs.renderers.heads;
 
 import ganymedes01.headcrumbs.renderers.ModelHead;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 import org.lwjgl.opengl.GL11;
 
@@ -53,7 +54,7 @@ public class WitchHead extends ModelHead {
 	}
 
 	@Override
-	public void preRenderItem() {
+	public void preRenderItem(ItemRenderType type) {
 		GL11.glScaled(0.75, 0.75, 0.75);
 		GL11.glTranslated(0, -0.45, 0);
 	}

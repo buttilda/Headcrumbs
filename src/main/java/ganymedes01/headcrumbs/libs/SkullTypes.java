@@ -39,6 +39,7 @@ import ganymedes01.headcrumbs.renderers.heads.twilightforest.BunnyHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.DeerHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.FireBeetleHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.KoboldHead;
+import ganymedes01.headcrumbs.renderers.heads.twilightforest.MistWolfHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.PenguinHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.PinchBeetle;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.RedcapHead;
@@ -86,7 +87,7 @@ public enum SkullTypes {
 	hedgeSpider			(Strings.TF_PREFIX + "hedgespider", 			"TwilightForest", 		SpiderHead.INSTANCE),
 	ghast				(Strings.MC_PREFIX + "ghast/ghast", 			null, 					GhastHead.INSTANCE),
 	blizz				(Strings.TE_PREFIX + "Blizz", 					"ThermalFoundation", 	ModelHead.INSTANCE),
-	mistWolf			(Strings.TF_PREFIX + "mistwolf", 				"TwilightForest", 		WolfHead.INSTANCE),
+	mistWolf			(Strings.TF_PREFIX + "mistwolf", 				"TwilightForest", 		MistWolfHead.INSTANCE),
 	miniGhast			(Strings.TF_PREFIX + "towerghast", 				"TwilightForest",		GhastHead.INSTANCE),
 	guardGhast			(Strings.TF_PREFIX + "towerghast_openeyes", 	"TwilightForest", 		GhastHead.INSTANCE),
 	kingSpider			(Strings.TF_PREFIX + "kingspider", 				"TwilightForest", 		SpiderHead.INSTANCE),
@@ -122,7 +123,7 @@ public enum SkullTypes {
 	silverfish			(Strings.MC_PREFIX + "silverfish", 				null, 					SilverfishHead.INSTANCE),
 	swarmSpider			(Strings.TF_PREFIX + "swarmspider", 			"TwilightForest", 		SpiderHead.INSTANCE),
 	towerBroodling		(Strings.TF_PREFIX + "towerbroodling", 			"TwilightForest", 		SpiderHead.INSTANCE),
-	winterWolf			(Strings.TF_PREFIX + "winterwolf", 				"TwilightForest", 		WolfHead.INSTANCE),
+	winterWolf			(Strings.TF_PREFIX + "winterwolf", 				"TwilightForest", 		MistWolfHead.INSTANCE),
 	mazeSlime			(Strings.TF_PREFIX + "mazeslime", 				"TwilightForest", 		SlimeHead.INSTANCE),
 	towerwoodBorer		(Strings.TF_PREFIX + "towertermite", 			"TwilightForest", 		SilverfishHead.INSTANCE),
 	imp					(Strings.NA_PREFIX + "imp", 					"Natura", 				ImpHead.INSTANCE),
