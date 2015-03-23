@@ -155,6 +155,7 @@ public enum SkullTypes {
 	private final String mod;
 	private final ResourceLocation texture;
 	private final ModelHead model;
+	private Boolean isActive = null;
 
 	SkullTypes(String texture, String mod, ModelHead model) {
 		this.mod = mod;
@@ -163,11 +164,11 @@ public enum SkullTypes {
 	}
 
 	public boolean canShow() {
-		return this != player && !Headcrumbs.enableMobsAndAnimalHeads ? false : mod == null || Loader.isModLoaded(mod);
+		return this != player && !Headcrumbs.enableMobsAndAnimalHeads ? false : isModLoaded();
 	}
 
 	public ResourceLocation getTexture(GameProfile name) {
-		if (this == player)
+		if (this == player || !isModLoaded())
 			return TextureUtils.getPlayerSkin(name);
 		if (this == lycanites)
 			return LycanitesHelperClient.getTexture(name.getName());
@@ -175,6 +176,12 @@ public enum SkullTypes {
 	}
 
 	public ModelHead model() {
-		return model;
+		return isModLoaded() ? model : ModelHead.INSTANCE;
+	}
+
+	private boolean isModLoaded() {
+		if (isActive == null)
+			isActive = mod == null || Loader.isModLoaded(mod);
+		return isActive;
 	}
 }
