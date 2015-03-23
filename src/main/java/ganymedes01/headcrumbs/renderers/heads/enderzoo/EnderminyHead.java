@@ -11,6 +11,11 @@ public class EnderminyHead extends EndermanHead {
 	public static final EnderminyHead INSTANCE = new EnderminyHead();
 
 	protected EnderminyHead() {
+	}
+
+	@Override
+	public void init() {
+		super.init();
 		setSecondTexture(Utils.getResource(Strings.EZ_PREFIX + "enderminy_eyes.png"));
 	}
 

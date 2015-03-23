@@ -10,6 +10,10 @@ public class PinkyHead extends ModelHead {
 	public static final PinkyHead INSTANCE = new PinkyHead();
 
 	protected PinkyHead() {
+	}
+
+	@Override
+	public void init() {
 		textureWidth = 128;
 		textureHeight = 64;
 

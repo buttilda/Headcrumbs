@@ -8,6 +8,10 @@ public class PenguinHead extends ModelHead {
 	public static final PenguinHead INSTANCE = new PenguinHead();
 
 	protected PenguinHead() {
+	}
+
+	@Override
+	public void init() {
 		head = new ModelRenderer(this, 0, 0).setTextureSize(64, 32);
 		head.addBox(-3.5F, -5.0F, -3.5F, 7, 5, 7);
 		head.setRotationPoint(0.0F, 0.0F, 0.0F);

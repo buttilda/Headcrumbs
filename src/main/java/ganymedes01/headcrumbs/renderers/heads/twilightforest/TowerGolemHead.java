@@ -8,6 +8,10 @@ public class TowerGolemHead extends ModelHead {
 	public static final TowerGolemHead INSTANCE = new TowerGolemHead();
 
 	protected TowerGolemHead() {
+	}
+
+	@Override
+	public void init() {
 		textureWidth = 128;
 		textureHeight = 64;
 		hideOverlay();

@@ -11,6 +11,10 @@ public class WitchHead extends ModelHead {
 	public static final WitchHead INSTANCE = new WitchHead();
 
 	protected WitchHead() {
+	}
+
+	@Override
+	public void init() {
 		head = new ModelRenderer(this).setTextureSize(64, 128);
 		head.setRotationPoint(0.0F, 0.0F, 0.0F);
 		head.setTextureOffset(0, 0).addBox(-4.0F, -10.0F, -4.0F, 8, 10, 8, 0.0F);

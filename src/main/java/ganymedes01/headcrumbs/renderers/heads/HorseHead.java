@@ -11,7 +11,14 @@ public class HorseHead extends ModelHead {
 	public static final HorseHead INSTANCE_HORSE = new HorseHead(false);
 	public static final HorseHead INSTANCE_MULE = new HorseHead(true);
 
+	private final boolean isMule;
+
 	protected HorseHead(boolean isMule) {
+		this.isMule = isMule;
+	}
+
+	@Override
+	public void init() {
 		textureWidth = 128;
 		textureHeight = 128;
 

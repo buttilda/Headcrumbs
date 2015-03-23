@@ -11,6 +11,10 @@ public class PinchBeetle extends ModelHead {
 	public static final PinchBeetle INSTANCE = new PinchBeetle();
 
 	protected PinchBeetle() {
+	}
+
+	@Override
+	public void init() {
 		hideOverlay();
 		float f = 4;
 		float f2 = -2;

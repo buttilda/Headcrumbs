@@ -8,6 +8,10 @@ public class BehemothHead extends ModelHead {
 	public static final BehemothHead INSTANCE = new BehemothHead();
 
 	protected BehemothHead() {
+	}
+
+	@Override
+	public void init() {
 		textureWidth = 128;
 		textureHeight = 128;
 

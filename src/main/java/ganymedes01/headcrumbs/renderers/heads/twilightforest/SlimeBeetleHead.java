@@ -11,6 +11,10 @@ public class SlimeBeetleHead extends ModelHead {
 	public static final SlimeBeetleHead INSTANCE = new SlimeBeetleHead();
 
 	protected SlimeBeetleHead() {
+	}
+
+	@Override
+	public void init() {
 		textureHeight = 64;
 
 		hideOverlay();

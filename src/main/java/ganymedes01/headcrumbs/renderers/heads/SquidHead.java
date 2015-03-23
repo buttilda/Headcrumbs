@@ -10,6 +10,10 @@ public class SquidHead extends ModelHead {
 	public static final SquidHead INSTANCE = new SquidHead();
 
 	protected SquidHead() {
+	}
+
+	@Override
+	public void init() {
 		head = new ModelRenderer(this).setTextureSize(64, 32);
 		head.setRotationPoint(0.0F, 0.0F, 0.0F);
 		head.addBox(-6.0F, -16F, -6.0F + 0.25F, 12, 16, 12);

@@ -8,6 +8,10 @@ public class PechHead extends ModelHead {
 	public static final PechHead INSTANCE = new PechHead();
 
 	protected PechHead() {
+	}
+
+	@Override
+	public void init() {
 		textureWidth = 128;
 		textureHeight = 64;
 		float f1 = -2.0F;

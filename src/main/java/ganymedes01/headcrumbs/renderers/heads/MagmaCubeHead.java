@@ -8,6 +8,10 @@ public class MagmaCubeHead extends ModelHead {
 	public static final MagmaCubeHead INSTANCE = new MagmaCubeHead();
 
 	protected MagmaCubeHead() {
+	}
+
+	@Override
+	public void init() {
 		hideOverlay();
 
 		head = new ModelRenderer(this, 0, 16);

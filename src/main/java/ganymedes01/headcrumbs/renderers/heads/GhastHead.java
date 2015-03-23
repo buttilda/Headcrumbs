@@ -8,6 +8,10 @@ public class GhastHead extends ModelHead {
 	public static final GhastHead INSTANCE = new GhastHead();
 
 	protected GhastHead() {
+	}
+
+	@Override
+	public void init() {
 		hideOverlay();
 		textureWidth = 32;
 		textureHeight = 16;

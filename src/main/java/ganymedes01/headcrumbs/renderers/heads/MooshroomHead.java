@@ -10,10 +10,16 @@ public class MooshroomHead extends CowHead {
 
 	public static final MooshroomHead INSTANCE = new MooshroomHead();
 
-	private final RenderBlocks renderer = new RenderBlocks();
+	private RenderBlocks renderer;
 
 	protected MooshroomHead() {
+	}
+
+	@Override
+	public void init() {
+		super.init();
 		setSecondTexture(TextureMap.locationBlocksTexture);
+		renderer = new RenderBlocks();
 	}
 
 	@Override

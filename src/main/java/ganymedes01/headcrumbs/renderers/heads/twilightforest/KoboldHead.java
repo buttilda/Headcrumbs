@@ -8,6 +8,10 @@ public class KoboldHead extends ModelHead {
 	public static final KoboldHead INSTANCE = new KoboldHead();
 
 	protected KoboldHead() {
+	}
+
+	@Override
+	public void init() {
 		float f = 1.0F;
 		hideOverlay();
 		head = new ModelRenderer(this, 0, 0);

@@ -8,6 +8,10 @@ public class BelphHead extends ModelHead {
 	public static final BelphHead INSTANCE = new BelphHead();
 
 	protected BelphHead() {
+	}
+
+	@Override
+	public void init() {
 		textureWidth = 64;
 		textureHeight = 32;
 

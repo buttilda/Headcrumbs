@@ -31,6 +31,9 @@ public class ModelHead extends ModelBase {
 		overlay.setRotationPoint(0.0F, 0.0F, 0.0F);
 	}
 
+	public void init() {
+	}
+
 	public void preRender() {
 	}
 

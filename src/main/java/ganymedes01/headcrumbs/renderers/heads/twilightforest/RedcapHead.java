@@ -8,6 +8,10 @@ public class RedcapHead extends ModelHead {
 	public static final RedcapHead INSTANCE = new RedcapHead();
 
 	protected RedcapHead() {
+	}
+
+	@Override
+	public void init() {
 		head = new ModelRenderer(this, 0, 0);
 		head = new ModelRenderer(this, 0, 0);
 		head.addBox(-3.4F, -7.0F, -4.0F, 7, 7, 7, 0.0F);

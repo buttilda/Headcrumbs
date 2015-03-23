@@ -8,6 +8,10 @@ public class ChickenHead extends ModelHead {
 	public static final ChickenHead INSTANCE = new ChickenHead();
 
 	protected ChickenHead() {
+	}
+
+	@Override
+	public void init() {
 		head = new ModelRenderer(this, 0, 0);
 		head.addBox(-2.0F, -6.0F, 1.0F, 4, 6, 3, 0.0F);
 		overlay = new ModelRenderer(this, 14, 0);

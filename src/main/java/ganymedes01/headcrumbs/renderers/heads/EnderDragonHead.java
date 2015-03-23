@@ -14,6 +14,10 @@ public class EnderDragonHead extends ModelHead {
 	public static final EnderDragonHead INSTANCE = new EnderDragonHead();
 
 	protected EnderDragonHead() {
+	}
+
+	@Override
+	public void init() {
 		setSecondTexture(Utils.getResource(Strings.MC_PREFIX + "enderdragon/dragon_eyes.png"));
 
 		float f1 = -14.0F;

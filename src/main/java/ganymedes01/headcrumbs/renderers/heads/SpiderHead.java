@@ -13,6 +13,10 @@ public class SpiderHead extends ModelHead {
 	public static final SpiderHead INSTANCE = new SpiderHead();
 
 	protected SpiderHead() {
+	}
+
+	@Override
+	public void init() {
 		setSecondTexture(Utils.getResource(Strings.MC_PREFIX + "spider_eyes.png"));
 
 		head = new ModelRenderer(this, 32, 4);

@@ -8,6 +8,10 @@ public class WildBoarHead extends ModelHead {
 	public static final WildBoarHead INSTANCE = new WildBoarHead();
 
 	protected WildBoarHead() {
+	}
+
+	@Override
+	public void init() {
 		hideOverlay();
 
 		head = new ModelRenderer(this, 0, 0);

@@ -8,6 +8,10 @@ public class DireWolfHead extends ModelHead {
 	public static final DireWolfHead INSTANCE = new DireWolfHead();
 
 	protected DireWolfHead() {
+	}
+
+	@Override
+	public void init() {
 		head = new ModelRenderer(this, 0, 0);
 		head.addBox(-3.0F, -3.0F, -4.0F, 6, 6, 6, 0);
 		head.setRotationPoint(2, -3F, 0);

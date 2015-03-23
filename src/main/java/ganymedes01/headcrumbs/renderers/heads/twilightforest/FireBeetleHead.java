@@ -11,6 +11,10 @@ public class FireBeetleHead extends ModelHead {
 	public static final FireBeetleHead INSTANCE = new FireBeetleHead();
 
 	protected FireBeetleHead() {
+	}
+
+	@Override
+	public void init() {
 		hideOverlay();
 		float f = 4;
 		float f2 = -2;

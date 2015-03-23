@@ -8,6 +8,10 @@ public class EldrichGuardianHead extends ModelHead {
 	public static final EldrichGuardianHead INSTANCE = new EldrichGuardianHead();
 
 	protected EldrichGuardianHead() {
+	}
+
+	@Override
+	public void init() {
 		textureWidth = 128;
 		textureHeight = 64;
 

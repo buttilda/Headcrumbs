@@ -1,13 +1,17 @@
 package ganymedes01.headcrumbs.renderers.heads.twilightforest;
 
-import ganymedes01.headcrumbs.renderers.heads.PigmanHead;
+import ganymedes01.headcrumbs.renderers.ModelHead;
 import net.minecraft.client.model.ModelRenderer;
 
-public class BunnyHead extends PigmanHead {
+public class BunnyHead extends ModelHead {
 
 	public static final BunnyHead INSTANCE = new BunnyHead();
 
 	protected BunnyHead() {
+	}
+
+	@Override
+	public void init() {
 		hideOverlay();
 
 		setTextureOffset("head.head", 0, 0);

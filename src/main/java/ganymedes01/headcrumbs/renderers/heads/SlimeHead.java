@@ -10,6 +10,10 @@ public class SlimeHead extends ModelHead {
 	public static final SlimeHead INSTANCE = new SlimeHead();
 
 	protected SlimeHead() {
+	}
+
+	@Override
+	public void init() {
 		float f1 = -24;
 		head = new ModelRenderer(this, 0, 16);
 		head.addBox(-3.0F, 17.0F + f1, -3.0F, 6, 6, 6);

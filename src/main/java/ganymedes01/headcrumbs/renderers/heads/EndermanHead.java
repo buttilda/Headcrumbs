@@ -13,6 +13,10 @@ public class EndermanHead extends ModelHead {
 	public static final EndermanHead INSTANCE = new EndermanHead();
 
 	protected EndermanHead() {
+	}
+
+	@Override
+	public void init() {
 		setSecondTexture(Utils.getResource(Strings.MC_PREFIX + "enderman/enderman_eyes.png"));
 
 		ModelEnderman model = new ModelEnderman();

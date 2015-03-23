@@ -10,6 +10,10 @@ public class BatHead extends ModelHead {
 	public static final BatHead INSTANCE = new BatHead();
 
 	protected BatHead() {
+	}
+
+	@Override
+	public void init() {
 		textureWidth = 64;
 		textureHeight = 64;
 		hideOverlay();

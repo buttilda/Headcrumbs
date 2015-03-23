@@ -11,6 +11,10 @@ public class DeerHead extends ModelHead {
 	public static final DeerHead INSTANCE = new DeerHead();
 
 	protected DeerHead() {
+	}
+
+	@Override
+	public void init() {
 		hideOverlay();
 
 		head = new ModelRenderer(this, 0, 5);

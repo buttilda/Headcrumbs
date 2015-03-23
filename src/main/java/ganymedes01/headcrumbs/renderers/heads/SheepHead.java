@@ -10,6 +10,11 @@ public class SheepHead extends ModelHead {
 	public static final SheepHead INSTANCE = new SheepHead();
 
 	protected SheepHead() {
+
+	}
+
+	@Override
+	public void init() {
 		setSecondTexture(Utils.getResource(Strings.MC_PREFIX + "sheep/sheep_fur.png"));
 
 		head = new ModelRenderer(this, 0, 0);

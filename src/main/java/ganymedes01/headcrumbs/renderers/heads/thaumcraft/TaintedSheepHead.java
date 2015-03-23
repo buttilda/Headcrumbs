@@ -9,6 +9,11 @@ public class TaintedSheepHead extends SheepHead {
 	public static final TaintedSheepHead INSTANCE = new TaintedSheepHead();
 
 	protected TaintedSheepHead() {
+	}
+
+	@Override
+	public void init() {
+		super.init();
 		setSecondTexture(Utils.getResource(Strings.TC_PREFIX + "sheep_fur.png"));
 	}
 }

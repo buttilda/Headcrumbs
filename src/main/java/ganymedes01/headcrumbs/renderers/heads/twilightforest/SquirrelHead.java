@@ -1,13 +1,17 @@
 package ganymedes01.headcrumbs.renderers.heads.twilightforest;
 
-import ganymedes01.headcrumbs.renderers.heads.PigmanHead;
+import ganymedes01.headcrumbs.renderers.ModelHead;
 import net.minecraft.client.model.ModelRenderer;
 
-public class SquirrelHead extends PigmanHead {
+public class SquirrelHead extends ModelHead {
 
 	public static final SquirrelHead INSTANCE = new SquirrelHead();
 
 	protected SquirrelHead() {
+	}
+
+	@Override
+	public void init() {
 		textureWidth = 32;
 		textureHeight = 32;
 		hideOverlay();

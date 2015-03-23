@@ -8,6 +8,10 @@ public class SilverfishHead extends ModelHead {
 	public static final SilverfishHead INSTANCE = new SilverfishHead();
 
 	protected SilverfishHead() {
+	}
+
+	@Override
+	public void init() {
 		float f = -1.9F;
 		float f1 = -24;
 		head = new ModelRenderer(this, 0, 0);

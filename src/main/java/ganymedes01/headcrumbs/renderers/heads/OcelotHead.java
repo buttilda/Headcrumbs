@@ -8,6 +8,10 @@ public class OcelotHead extends ModelHead {
 	public static final OcelotHead INSTANCE = new OcelotHead();
 
 	protected OcelotHead() {
+	}
+
+	@Override
+	public void init() {
 		setTextureOffset("head.main", 0, 0);
 		setTextureOffset("head.nose", 0, 24);
 		setTextureOffset("head.ear1", 0, 10);

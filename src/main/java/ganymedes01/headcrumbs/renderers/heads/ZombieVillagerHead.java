@@ -8,6 +8,10 @@ public class ZombieVillagerHead extends ModelHead {
 	public static final ZombieVillagerHead INSTANCE = new ZombieVillagerHead();
 
 	protected ZombieVillagerHead() {
+	}
+
+	@Override
+	public void init() {
 		head = new ModelRenderer(this).setTextureSize(64, 64);
 		head.setRotationPoint(0.0F, 0.0F, 0.0F);
 		head.setTextureOffset(0, 32).addBox(-4.0F, -10.0F, -4.0F, 8, 10, 8, 0.0F);

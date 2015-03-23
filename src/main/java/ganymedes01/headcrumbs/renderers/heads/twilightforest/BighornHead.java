@@ -11,6 +11,11 @@ public class BighornHead extends SheepHead {
 	public static final BighornHead INSTANCE = new BighornHead();
 
 	protected BighornHead() {
+	}
+
+	@Override
+	public void init() {
+		super.init();
 		head = new ModelRenderer(this, 0, 0);
 		head.addBox(-3.0F, -7.0F, -4.5F, 6, 6, 7, 0.0F);
 		head.setRotationPoint(0.0F, 0.0F, 0.0F);

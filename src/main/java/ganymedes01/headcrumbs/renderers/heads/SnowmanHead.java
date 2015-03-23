@@ -8,6 +8,10 @@ public class SnowmanHead extends ModelHead {
 	public static final SnowmanHead INSTANCE = new SnowmanHead();
 
 	protected SnowmanHead() {
+	}
+
+	@Override
+	public void init() {
 		textureWidth = 64;
 		textureHeight = 64;
 		head = new ModelRenderer(this, 0, 0);

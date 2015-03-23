@@ -8,6 +8,10 @@ public class WolfHead extends ModelHead {
 	public static final WolfHead INSTANCE = new WolfHead();
 
 	protected WolfHead() {
+	}
+
+	@Override
+	public void init() {
 		head = new ModelRenderer(this, 0, 0);
 		head.addBox(-3.0F, -6.0F, 0.0F, 6, 6, 4, 0.0F);
 

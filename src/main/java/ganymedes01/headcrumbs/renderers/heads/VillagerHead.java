@@ -8,7 +8,14 @@ public class VillagerHead extends ModelHead {
 	public static final VillagerHead INSTANCE64 = new VillagerHead(64);
 	public static final VillagerHead INSTANCE128 = new VillagerHead(128);
 
+	private final int textureSize;
+
 	protected VillagerHead(int textureSize) {
+		this.textureSize = textureSize;
+	}
+
+	@Override
+	public void init() {
 		head = new ModelRenderer(this).setTextureSize(textureSize, textureSize);
 		head.setRotationPoint(0.0F, 0.0F, 0.0F);
 		head.setTextureOffset(0, 0).addBox(-4.0F, -10.0F, -4.0F, 8, 10, 8, 0.0F);
