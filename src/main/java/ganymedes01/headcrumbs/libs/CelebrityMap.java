@@ -88,6 +88,7 @@ public class CelebrityMap {
 		map.put("Adubbz", "Biomes O'Plenty");
 		map.put("Binnie567", "Extra Bees");
 		map.put("ShadwDrgn", "Soul Shards");
+		map.put("techbrew", "JourneyMap");
 
 		map.put("ganymedes01", "Gany's Mods");
 	}
