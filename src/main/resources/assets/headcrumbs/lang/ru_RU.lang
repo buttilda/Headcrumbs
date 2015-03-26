@@ -1,4 +1,8 @@
-# Items
+#########
+# Items #
+#########
+
+# Vanilla
 item.headcrumbs.pigman.name=Голова зомби-свиночеловека
 item.headcrumbs.blaze.name=Голова ифрита
 item.headcrumbs.enderman.name=Голова странника Края
@@ -18,29 +22,7 @@ item.headcrumbs.ironGolem.name=Голова железного голема
 item.headcrumbs.squid.name=Голова спрута
 item.headcrumbs.wither.name=Голова иссушителя
 item.headcrumbs.ghast.name=Голова гаста
-item.headcrumbs.mistWolf.name=Голова туманного волка
-item.headcrumbs.miniGhast.name=Голова карминитового гаста
-item.headcrumbs.guardGhast.name=Голова карминитового гаста-охранника
-item.headcrumbs.kingSpider.name=Голова короля пауков
-item.headcrumbs.kobold.name=Голова кобольда
-item.headcrumbs.slimeBeetle.name=Голова слизневого жука
-item.headcrumbs.fireBeetle.name=Голова огненного жука
-item.headcrumbs.pinchBeetle.name=Голова жука с клешнями
-item.headcrumbs.towerGolem.name=Голова карминитового голема
-item.headcrumbs.bunnyDutch.name=Голова голландского кролика
-item.headcrumbs.bunnyBrown.name=Голова коричневого кролика
-item.headcrumbs.bunnyWhite.name=Голова белого кролика
-item.headcrumbs.penguin.name=Голова пингвина
-item.headcrumbs.bighorn.name=Голова барана
-item.headcrumbs.wildDeer.name=Голова дикого оленя
-item.headcrumbs.wildBoar.name=Голова дикого кабана
-item.headcrumbs.redcap.name=Голова красной шляпки
-item.headcrumbs.druid.name=Голова друида-скелета
-item.headcrumbs.hedgeSpider.name=Голова зелёного паука
-item.headcrumbs.blizz.name=Голова бурана
 item.headcrumbs.enderDragon.name=Голова дракона Края
-item.headcrumbs.hostileWolf.name=Голова злого волка
-item.headcrumbs.squirrel.name=Голова лесной белки
 item.headcrumbs.ocelot.name=Голова оцелота
 item.headcrumbs.ocelotBlack.name=Голова чёрной кошки
 item.headcrumbs.ocelotRed.name=Голова рыжей кошки
@@ -61,14 +43,44 @@ item.headcrumbs.horseUndead.name=Голова лошади-зомби
 item.headcrumbs.horseSkeleton.name=Голова лошади-скелета
 item.headcrumbs.snowMan.name=Голова снежнего голема
 item.headcrumbs.silverfish.name=Голова чешуйницы
+
+# Twilight Forest
+item.headcrumbs.mistWolf.name=Голова туманного волка
+item.headcrumbs.miniGhast.name=Голова карминитового гаста
+item.headcrumbs.guardGhast.name=Голова карминитового гаста-охранника
+item.headcrumbs.kingSpider.name=Голова короля пауков
+item.headcrumbs.kobold.name=Голова кобольда
+item.headcrumbs.slimeBeetle.name=Голова слизневого жука
+item.headcrumbs.fireBeetle.name=Голова огненного жука
+item.headcrumbs.pinchBeetle.name=Голова жука с клешнями
+item.headcrumbs.towerGolem.name=Голова карминитового голема
+item.headcrumbs.bunnyDutch.name=Голова голландского кролика
+item.headcrumbs.bunnyBrown.name=Голова коричневого кролика
+item.headcrumbs.bunnyWhite.name=Голова белого кролика
+item.headcrumbs.penguin.name=Голова пингвина
+item.headcrumbs.bighorn.name=Голова барана
+item.headcrumbs.wildDeer.name=Голова дикого оленя
+item.headcrumbs.wildBoar.name=Голова дикого кабана
+item.headcrumbs.redcap.name=Голова красной шляпки
+item.headcrumbs.druid.name=Голова друида-скелета
+item.headcrumbs.hedgeSpider.name=Голова зелёного паука
+item.headcrumbs.hostileWolf.name=Голова злого волка
+item.headcrumbs.squirrel.name=Голова лесной белки
 item.headcrumbs.swarmSpider.name=Голова паука роя
 item.headcrumbs.towerBroodling.name=Голова карминитового паука
 item.headcrumbs.winterWolf.name=Голова зимнего волка
 item.headcrumbs.mazeSlime.name=Голова лабиринтового слизня
 item.headcrumbs.towerwoodBorer.name=Голова чешуйницы тёмной башни
+
+# Thermal Foundation
+item.headcrumbs.blizz.name=Голова бурана
+
+# Natura
 item.headcrumbs.imp.name=Голова импа
 item.headcrumbs.nitroCreeper.name=Голова адского крипера
 item.headcrumbs.heatscarSpider.name=Голова огненного паука
+
+# Thaumcraft
 item.headcrumbs.angryZombie.name=Голова злого зомби
 item.headcrumbs.fireBat.name=Голова огненной летучей мыши
 item.headcrumbs.thaumicSlime.name=Голова таумического слизня
@@ -80,9 +92,13 @@ item.headcrumbs.taintedVillager.name=Голова заражённого жит�
 item.headcrumbs.taintedSheep.name=Голова заражённой овцы
 item.headcrumbs.pech.name=Голова гнома
 item.headcrumbs.eldritchGuardian.name=Голова древнего стража
+
+# Lycanites
 item.headcrumbs.pinky.name=Голова пинки
 item.headcrumbs.behemoth.name=Голова бегемота
 item.headcrumbs.belph.name=Голова бельфа
+
+# Ender Zoo
 item.headcrumbs.concussionCreeper.name=Голова оглушающего крипера
 item.headcrumbs.enderminy.name=Голова карлика Края
 item.headcrumbs.fallenKnight.name=Голова падшего рыцаря
@@ -90,8 +106,12 @@ item.headcrumbs.witherWitch.name=Голова ведьмы-иссушителя
 item.headcrumbs.witherCat.name=Голова кота-иссушителя
 item.headcrumbs.direWolf.name=Голова ужасного волка
 
-# Entity
+##########
+# Entity #
+##########
 entity.Celebrity.name=Знаменитость
 
-# Creative Tab
+################
+# Creative Tab #
+################
 itemGroup.headcrumbs=Headcrumbs

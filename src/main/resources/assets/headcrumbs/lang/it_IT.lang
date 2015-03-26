@@ -1,4 +1,8 @@
-# Items
+#########
+# Items #
+#########
+
+# Vanilla
 item.headcrumbs.pigman.name=Testa di zombi suino
 item.headcrumbs.blaze.name=Testa di Vampo
 item.headcrumbs.enderman.name=Testa di Enderman
@@ -18,31 +22,7 @@ item.headcrumbs.ironGolem.name=Testa di golem di ferro
 item.headcrumbs.squid.name=Testa di calamaro
 item.headcrumbs.wither.name=Teschio di Wither
 item.headcrumbs.ghast.name=Testa di Spettro
---
-item.headcrumbs.mistWolf.name=Testa di Mist Wolf
-item.headcrumbs.miniGhast.name=Testa di Carminite Ghastling
-item.headcrumbs.guardGhast.name=Testa di Carminite Ghastguard
-item.headcrumbs.kingSpider.name=Testa di King Spider
-item.headcrumbs.kobold.name=Testa di Kobold
-item.headcrumbs.slimeBeetle.name=Testa di Slime Beetle
-item.headcrumbs.fireBeetle.name=Testa di Fire Beetle
-item.headcrumbs.pinchBeetle.name=Testa di Pinch Beetle
-item.headcrumbs.towerGolem.name=Testa di Carminite Golem
-item.headcrumbs.bunnyDutch.name=Testa di Dutch Bunny
-item.headcrumbs.bunnyBrown.name=Testa di Brown Bunny
-item.headcrumbs.bunnyWhite.name=Testa di White Bunny
-item.headcrumbs.penguin.name=Testa di Penguin
-item.headcrumbs.bighorn.name=Testa di Bighorn Sheep
-item.headcrumbs.wildDeer.name=Testa di Wild Deer
-item.headcrumbs.wildBoar.name=Testa di Wild Boar
-item.headcrumbs.redcap.name=Testa di Redcap
-item.headcrumbs.druid.name=Testa di Skeleton Druid
-item.headcrumbs.hedgeSpider.name=Testa di Hedge Spider
--
-item.headcrumbs.blizz.name=Testa di Folata
 item.headcrumbs.enderDragon.name=Testa di drago d'omega
-item.headcrumbs.hostileWolf.name=Testa di lupo ostile
-item.headcrumbs.squirrel.name=Testa di scoiattolo della forestra
 item.headcrumbs.ocelot.name=Testa di gattopardo
 item.headcrumbs.ocelotBlack.name=Testa di gatto nero
 item.headcrumbs.ocelotRed.name=Testa di gatto rosso
@@ -63,16 +43,44 @@ item.headcrumbs.horseUndead.name=Testa di cavallo zombi
 item.headcrumbs.horseSkeleton.name=Testa di cavallo scheletro
 item.headcrumbs.snowMan.name=Testa di golem di neve
 item.headcrumbs.silverfish.name=Testa di pesciolino d'argento
--
+
+# Twilight Forest
+item.headcrumbs.mistWolf.name=Testa di Mist Wolf
+item.headcrumbs.miniGhast.name=Testa di Carminite Ghastling
+item.headcrumbs.guardGhast.name=Testa di Carminite Ghastguard
+item.headcrumbs.kingSpider.name=Testa di King Spider
+item.headcrumbs.kobold.name=Testa di Kobold
+item.headcrumbs.slimeBeetle.name=Testa di Slime Beetle
+item.headcrumbs.fireBeetle.name=Testa di Fire Beetle
+item.headcrumbs.pinchBeetle.name=Testa di Pinch Beetle
+item.headcrumbs.towerGolem.name=Testa di Carminite Golem
+item.headcrumbs.bunnyDutch.name=Testa di Dutch Bunny
+item.headcrumbs.bunnyBrown.name=Testa di Brown Bunny
+item.headcrumbs.bunnyWhite.name=Testa di White Bunny
+item.headcrumbs.penguin.name=Testa di Penguin
+item.headcrumbs.bighorn.name=Testa di Bighorn Sheep
+item.headcrumbs.wildDeer.name=Testa di Wild Deer
+item.headcrumbs.wildBoar.name=Testa di Wild Boar
+item.headcrumbs.redcap.name=Testa di Redcap
+item.headcrumbs.druid.name=Testa di Skeleton Druid
+item.headcrumbs.hedgeSpider.name=Testa di Hedge Spider
+item.headcrumbs.hostileWolf.name=Testa di lupo ostile
+item.headcrumbs.squirrel.name=Testa di scoiattolo della forestra
 item.headcrumbs.swarmSpider.name=Testa di Swarm Spider
 item.headcrumbs.towerBroodling.name=Testa di Carminite Broodling
 item.headcrumbs.winterWolf.name=Testa di Winter Wolf
 item.headcrumbs.mazeSlime.name=Testa di Maze Slime
 item.headcrumbs.towerwoodBorer.name=Testa di Towerwood Borer
--
+
+# Thermal Foundation
+item.headcrumbs.blizz.name=Testa di Folata
+
+# Natura
 item.headcrumbs.imp.name=Testa di imp
 item.headcrumbs.nitroCreeper.name=Testa di Nitro Creeper
 item.headcrumbs.heatscarSpider.name=Testa di ragno fiammeggiante
+
+# Thaumcraft
 item.headcrumbs.angryZombie.name=Testa di zombi arrabbiato
 item.headcrumbs.fireBat.name=Testa di pirostrello
 item.headcrumbs.thaumicSlime.name=Testa di gelatina taumico
@@ -84,11 +92,13 @@ item.headcrumbs.taintedVillager.name=Testa di villico corrotto
 item.headcrumbs.taintedSheep.name=Testa di pecora corrotta
 item.headcrumbs.pech.name=Testa di nano
 item.headcrumbs.eldritchGuardian.name=Testa di guardiano innaturale
--
+
+# Lycanites
 item.headcrumbs.pinky.name=Testa di Pinky
 item.headcrumbs.behemoth.name=Testa di Behemoth
 item.headcrumbs.belph.name=Testa di Belph
--
+
+# Ender Zoo
 item.headcrumbs.concussionCreeper.name=Testa di Concussion Creeper
 item.headcrumbs.enderminy.name=Testa di Enderminy
 item.headcrumbs.fallenKnight.name=Testa di Fallen Knight
@@ -96,8 +106,12 @@ item.headcrumbs.witherWitch.name=Testa di Wither Witch
 item.headcrumbs.witherCat.name=Testa di Wither Cat
 item.headcrumbs.direWolf.name=Testa di Dire Wolf
 
-# Entity
+##########
+# Entity #
+##########
 entity.Celebrity.name=Celebrità
 
-# Creative Tab
+################
+# Creative Tab #
+################
 itemGroup.headcrumbs=Headcrumbs

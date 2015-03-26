@@ -1,4 +1,8 @@
-# Items
+#########
+# Items #
+#########
+
+# Vanilla
 item.headcrumbs.pigman.name=僵尸猪人头颅
 item.headcrumbs.blaze.name=烈焰人头颅
 item.headcrumbs.enderman.name=末影人头颅
@@ -18,29 +22,7 @@ item.headcrumbs.ironGolem.name=铁傀儡头颅
 item.headcrumbs.squid.name=乌贼头颅
 item.headcrumbs.wither.name=凋灵头颅
 item.headcrumbs.ghast.name=恶魂头颅
-item.headcrumbs.mistWolf.name=迷雾狼头颅
-item.headcrumbs.miniGhast.name=迷你幽灵头颅
-item.headcrumbs.guardGhast.name=幽灵头颅
-item.headcrumbs.kingSpider.name=国王蜘蛛头颅
-item.headcrumbs.kobold.name=哥布林头颅
-item.headcrumbs.slimeBeetle.name=粘液甲虫头颅
-item.headcrumbs.fireBeetle.name=萤火虫头颅
-item.headcrumbs.pinchBeetle.name=枯萎甲虫头颅
-item.headcrumbs.towerGolem.name=高塔铁傀儡头颅
-item.headcrumbs.bunnyDutch.name=荷兰兔头颅
-item.headcrumbs.bunnyBrown.name=棕色兔子头颅
-item.headcrumbs.bunnyWhite.name=白色兔子头颅
-item.headcrumbs.penguin.name=企鹅头颅
-item.headcrumbs.bighorn.name=大角山羊头颅
-item.headcrumbs.wildDeer.name=野鹿头颅
-item.headcrumbs.wildBoar.name=野猪头颅
-item.headcrumbs.redcap.name=红帽地精头颅
-item.headcrumbs.druid.name=骷髅德鲁伊头颅
-item.headcrumbs.hedgeSpider.name=树篱蜘蛛头颅
-item.headcrumbs.blizz.name=暴雪头颅
 item.headcrumbs.enderDragon.name=末影龙头颅
-item.headcrumbs.hostileWolf.name=愤怒狼头颅
-item.headcrumbs.squirrel.name=松鼠头颅
 item.headcrumbs.ocelot.name=豹猫头颅
 item.headcrumbs.ocelotBlack.name=黑猫头颅
 item.headcrumbs.ocelotRed.name=姜黄猫头颅
@@ -61,14 +43,44 @@ item.headcrumbs.horseUndead.name=僵尸马头颅
 item.headcrumbs.horseSkeleton.name=骷髅马头颅
 item.headcrumbs.snowMan.name=学傀儡头颅
 item.headcrumbs.silverfish.name=蠹虫头颅
+
+# Twilight Forest
+item.headcrumbs.mistWolf.name=迷雾狼头颅
+item.headcrumbs.miniGhast.name=迷你幽灵头颅
+item.headcrumbs.guardGhast.name=幽灵头颅
+item.headcrumbs.kingSpider.name=国王蜘蛛头颅
+item.headcrumbs.kobold.name=哥布林头颅
+item.headcrumbs.slimeBeetle.name=粘液甲虫头颅
+item.headcrumbs.fireBeetle.name=萤火虫头颅
+item.headcrumbs.pinchBeetle.name=枯萎甲虫头颅
+item.headcrumbs.towerGolem.name=高塔铁傀儡头颅
+item.headcrumbs.bunnyDutch.name=荷兰兔头颅
+item.headcrumbs.bunnyBrown.name=棕色兔子头颅
+item.headcrumbs.bunnyWhite.name=白色兔子头颅
+item.headcrumbs.penguin.name=企鹅头颅
+item.headcrumbs.bighorn.name=大角山羊头颅
+item.headcrumbs.wildDeer.name=野鹿头颅
+item.headcrumbs.wildBoar.name=野猪头颅
+item.headcrumbs.redcap.name=红帽地精头颅
+item.headcrumbs.druid.name=骷髅德鲁伊头颅
+item.headcrumbs.hedgeSpider.name=树篱蜘蛛头颅
+item.headcrumbs.hostileWolf.name=愤怒狼头颅
+item.headcrumbs.squirrel.name=松鼠头颅
 item.headcrumbs.swarmSpider.name=集群蜘蛛头颅
 item.headcrumbs.towerBroodling.name=寄生蜘蛛头颅
 item.headcrumbs.winterWolf.name=冬狼头颅
 item.headcrumbs.mazeSlime.name=迷宫史莱姆头颅
 item.headcrumbs.towerwoodBorer.name=高塔蠹虫头颅
+
+# Thermal Foundation
+item.headcrumbs.blizz.name=暴雪头颅
+
+# Natura
 item.headcrumbs.imp.name=小恶魔头颅
 item.headcrumbs.nitroCreeper.name=硝基爬行者头颅
 item.headcrumbs.heatscarSpider.name=灼疤蜘蛛头颅
+
+# Thaumcraft
 item.headcrumbs.angryZombie.name=红眼僵尸头颅
 item.headcrumbs.fireBat.name=火蝙蝠头颅
 item.headcrumbs.thaumicSlime.name=神秘史莱姆头颅
@@ -80,9 +92,13 @@ item.headcrumbs.taintedVillager.name=腐化村民头颅
 item.headcrumbs.taintedSheep.name=腐化羊头颅
 item.headcrumbs.pech.name=岩精头颅
 item.headcrumbs.eldritchGuardian.name=邪术守卫头颅
+
+# Lycanites
 item.headcrumbs.pinky.name=牲畜消灭者头颅
 item.headcrumbs.behemoth.name=巨兽头颅
 item.headcrumbs.belph.name=红炎战士头颅
 
-# Creative Tab
+################
+# Creative Tab #
+################
 itemGroup.headcrumbs=Headcrumbs
