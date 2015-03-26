@@ -2,7 +2,6 @@ package ganymedes01.headcrumbs.renderers;
 
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
-import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.helpers.LycanitesHelperClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
@@ -43,7 +42,7 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 	private EntityLiving getEntity() {
 		if (entity == null)
 			entity = new EntityLiving(Minecraft.getMinecraft().theWorld) {
-			};
+		};
 
 		return entity;
 	}
@@ -60,7 +59,7 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 	}
 
 	private void renderLycanites(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile playerName) {
-		if (playerName == null || !HeadUtils.lycanites) {
+		if (playerName == null || !SkullTypes.lycanites.canShow()) {
 			renderNormal(x, y, z, meta, skullRotation, SkullTypes.blaze, playerName); // So that the heads are visible after an eventual removal of Lycanites
 			return;
 		}

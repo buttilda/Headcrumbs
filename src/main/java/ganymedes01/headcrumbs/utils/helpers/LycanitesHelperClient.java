@@ -27,7 +27,7 @@ public class LycanitesHelperClient {
 	}
 
 	public static ResourceLocation getTexture(String name) {
-		if (!HeadUtils.lycanites)
+		if (!SkullTypes.lycanites.canShow())
 			return null;
 		ResourceLocation tex = map.get(name);
 		if (tex == null) {

@@ -143,7 +143,7 @@ public class Skull extends ItemSkull {
 					if (skull == SkullTypes.player)
 						list.addAll(HeadUtils.players);
 			}
-		if (HeadUtils.lycanites)
+		if (SkullTypes.lycanites.canShow())
 			list.addAll(LycanitesHelperClient.getStacks());
 	}
 
