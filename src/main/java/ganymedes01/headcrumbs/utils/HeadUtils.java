@@ -4,12 +4,7 @@ import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.entity.EntityCelebrity;
 import ganymedes01.headcrumbs.libs.SkullTypes;
-import ganymedes01.headcrumbs.utils.helpers.EnderZooHelper;
-import ganymedes01.headcrumbs.utils.helpers.LycanitesHelper;
-import ganymedes01.headcrumbs.utils.helpers.NaturaHelper;
-import ganymedes01.headcrumbs.utils.helpers.TEHelper;
-import ganymedes01.headcrumbs.utils.helpers.ThaumcraftHelper;
-import ganymedes01.headcrumbs.utils.helpers.TwilightForestHelper;
+import ganymedes01.headcrumbs.utils.helpers.ModHeadDropHelper;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -65,13 +60,6 @@ public class HeadUtils {
 
 	public static final List<ItemStack> players = new LinkedList<ItemStack>();
 
-	public static boolean twilightForest = false;
-	public static boolean thermalExpansion = false;
-	public static boolean natura = false;
-	public static boolean thaumcraft = false;
-	public static boolean lycanites = false;
-	public static boolean enderzoo = false;
-
 	public static void loadPlayerHeads() {
 		Random rand = new Random();
 
@@ -104,41 +92,9 @@ public class HeadUtils {
 		if (target.isChild())
 			return null;
 
-		if (twilightForest) {
-			ItemStack head = TwilightForestHelper.getHead(target);
-			if (head != null)
-				return head;
-		}
-
-		if (thermalExpansion) {
-			ItemStack head = TEHelper.getHead(target);
-			if (head != null)
-				return head;
-		}
-
-		if (natura) {
-			ItemStack head = NaturaHelper.getHead(target);
-			if (head != null)
-				return head;
-		}
-
-		if (thaumcraft) {
-			ItemStack head = ThaumcraftHelper.getHead(target);
-			if (head != null)
-				return head;
-		}
-
-		if (lycanites) {
-			ItemStack head = LycanitesHelper.getHead(target);
-			if (head != null)
-				return head;
-		}
-
-		if (enderzoo) {
-			ItemStack head = EnderZooHelper.getHead(target);
-			if (head != null)
-				return head;
-		}
+		ItemStack head = ModHeadDropHelper.getHead(target);
+		if (head != null)
+			return head;
 
 		if (target instanceof EntityCelebrity)
 			return createHeadFor(((EntityCelebrity) target).getUsername());

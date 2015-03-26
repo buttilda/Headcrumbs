@@ -2,45 +2,43 @@ package ganymedes01.headcrumbs.utils.helpers;
 
 import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.libs.SkullTypes;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.item.ItemStack;
 
-public class TwilightForestHelper {
+public class TwilightForestHelper extends ModHeadDropHelper {
 
-	private static final Map<String, SkullTypes> map = new HashMap<String, SkullTypes>();
-	static {
-		map.put("Penguin", SkullTypes.penguin);
-		map.put("Bighorn Sheep", SkullTypes.bighorn);
-		map.put("Wild Deer", SkullTypes.wildDeer);
-		map.put("Wild Boar", SkullTypes.wildBoar);
-		map.put("Redcap", SkullTypes.redcap);
-		map.put("Redcap Sapper", SkullTypes.redcap);
-		map.put("Skeleton Druid", SkullTypes.druid);
-		map.put("Hedge Spider", SkullTypes.hedgeSpider);
-		map.put("Mist Wolf", SkullTypes.mistWolf);
-		map.put("Mini Ghast", SkullTypes.miniGhast);
-		map.put("Tower Ghast", SkullTypes.guardGhast);
-		map.put("King Spider", SkullTypes.kingSpider);
-		map.put("Twilight Kobold", SkullTypes.kobold);
-		map.put("Fire Beetle", SkullTypes.fireBeetle);
-		map.put("Slime Beetle", SkullTypes.slimeBeetle);
-		map.put("Pinch Beetle", SkullTypes.pinchBeetle);
-		map.put("Tower Golem", SkullTypes.towerGolem);
-		map.put("Hostile Wolf", SkullTypes.hostileWolf);
-		map.put("Forest Squirrel", SkullTypes.squirrel);
-		map.put("Swarm Spider", SkullTypes.swarmSpider);
-		map.put("Redscale Broodling", SkullTypes.towerBroodling);
-		map.put("WinterWolf", SkullTypes.winterWolf);
-		map.put("Tower Termite", SkullTypes.towerwoodBorer);
+	public TwilightForestHelper() {
+		super("TwilightForest");
+
+		typesMap.put("Penguin", SkullTypes.penguin);
+		typesMap.put("Bighorn Sheep", SkullTypes.bighorn);
+		typesMap.put("Wild Deer", SkullTypes.wildDeer);
+		typesMap.put("Wild Boar", SkullTypes.wildBoar);
+		typesMap.put("Redcap", SkullTypes.redcap);
+		typesMap.put("Redcap Sapper", SkullTypes.redcap);
+		typesMap.put("Skeleton Druid", SkullTypes.druid);
+		typesMap.put("Hedge Spider", SkullTypes.hedgeSpider);
+		typesMap.put("Mist Wolf", SkullTypes.mistWolf);
+		typesMap.put("Mini Ghast", SkullTypes.miniGhast);
+		typesMap.put("Tower Ghast", SkullTypes.guardGhast);
+		typesMap.put("King Spider", SkullTypes.kingSpider);
+		typesMap.put("Twilight Kobold", SkullTypes.kobold);
+		typesMap.put("Fire Beetle", SkullTypes.fireBeetle);
+		typesMap.put("Slime Beetle", SkullTypes.slimeBeetle);
+		typesMap.put("Pinch Beetle", SkullTypes.pinchBeetle);
+		typesMap.put("Tower Golem", SkullTypes.towerGolem);
+		typesMap.put("Hostile Wolf", SkullTypes.hostileWolf);
+		typesMap.put("Forest Squirrel", SkullTypes.squirrel);
+		typesMap.put("Swarm Spider", SkullTypes.swarmSpider);
+		typesMap.put("Redscale Broodling", SkullTypes.towerBroodling);
+		typesMap.put("WinterWolf", SkullTypes.winterWolf);
+		typesMap.put("Tower Termite", SkullTypes.towerwoodBorer);
 	}
 
-	public static ItemStack getHead(Entity entity) {
+	@Override
+	protected ItemStack getHeadForEntity(Entity entity) {
 		String mobName = EntityList.getEntityString(entity);
 
 		if (mobName == null)
@@ -74,7 +72,7 @@ public class TwilightForestHelper {
 			} else if (mobName.equals("Maze Slime") && ((EntitySlime) entity).getSlimeSize() == 1)
 				return new ItemStack(ModItems.skull, 1, SkullTypes.mazeSlime.ordinal());
 			else {
-				SkullTypes type = map.get(mobName);
+				SkullTypes type = typesMap.get(mobName);
 				if (type != null)
 					return new ItemStack(ModItems.skull, 1, type.ordinal());
 			}

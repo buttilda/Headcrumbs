@@ -11,6 +11,14 @@ import ganymedes01.headcrumbs.proxy.CommonProxy;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.UsercacheChecker;
 import ganymedes01.headcrumbs.utils.UsernameUtils;
+import ganymedes01.headcrumbs.utils.helpers.EnderZooHelper;
+import ganymedes01.headcrumbs.utils.helpers.LycanitesHelper;
+import ganymedes01.headcrumbs.utils.helpers.ModHeadDropHelper;
+import ganymedes01.headcrumbs.utils.helpers.NaturaHelper;
+import ganymedes01.headcrumbs.utils.helpers.PrimitiveMobsHelper;
+import ganymedes01.headcrumbs.utils.helpers.TEHelper;
+import ganymedes01.headcrumbs.utils.helpers.ThaumcraftHelper;
+import ganymedes01.headcrumbs.utils.helpers.TwilightForestHelper;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -145,12 +153,13 @@ public class Headcrumbs {
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		HeadUtils.twilightForest = Loader.isModLoaded("TwilightForest");
-		HeadUtils.thermalExpansion = Loader.isModLoaded("ThermalExpansion");
-		HeadUtils.natura = Loader.isModLoaded("Natura");
-		HeadUtils.thaumcraft = Loader.isModLoaded("Thaumcraft");
-		HeadUtils.lycanites = Loader.isModLoaded("lycanitesmobs");
-		HeadUtils.enderzoo = Loader.isModLoaded("EnderZoo");
+		ModHeadDropHelper.register(new TwilightForestHelper());
+		ModHeadDropHelper.register(new TEHelper());
+		ModHeadDropHelper.register(new NaturaHelper());
+		ModHeadDropHelper.register(new ThaumcraftHelper());
+		ModHeadDropHelper.register(new LycanitesHelper());
+		ModHeadDropHelper.register(new EnderZooHelper());
+		ModHeadDropHelper.register(new PrimitiveMobsHelper());
 
 		UsercacheChecker.check();
 

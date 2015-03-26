@@ -14,16 +14,21 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.item.ItemStack;
 
-public class LycanitesHelper {
+public class LycanitesHelper extends ModHeadDropHelper {
 
 	public static final List<String> blacklist = Arrays.asList("pinky", "behemoth", "belph");
 	public static final List<String> prefixes = Arrays.asList("arcticmobs", "demonmobs", "desertmobs", "forestmobs", "freshwatermobs", "infernomobs", "junglemobs", "mountainmobs", "plainsmobs", "saltwatermobs", "swampmobs");
+
+	public LycanitesHelper() {
+		super("lycanitesmobs");
+	}
 
 	public static String capitaliseString(String string) {
 		return string.substring(0, 1).toUpperCase() + string.substring(1);
 	}
 
-	public static ItemStack getHead(Entity entity) {
+	@Override
+	protected ItemStack getHeadForEntity(Entity entity) {
 		String mobName = EntityList.getEntityString(entity);
 		if (mobName == null)
 			return null;
