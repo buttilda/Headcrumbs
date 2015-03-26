@@ -32,7 +32,7 @@ import ganymedes01.headcrumbs.renderers.heads.lycanites.BelphHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.PinkyHead;
 import ganymedes01.headcrumbs.renderers.heads.natura.ImpHead;
 import ganymedes01.headcrumbs.renderers.heads.primitivemobs.JuggernautHead;
-import ganymedes01.headcrumbs.renderers.heads.primitivemobs.LillyLurkerHead;
+import ganymedes01.headcrumbs.renderers.heads.primitivemobs.LilyLurkerHead;
 import ganymedes01.headcrumbs.renderers.heads.primitivemobs.SheepmanHead;
 import ganymedes01.headcrumbs.renderers.heads.thaumcraft.EldrichGuardianHead;
 import ganymedes01.headcrumbs.renderers.heads.thaumcraft.PechHead;
@@ -160,7 +160,7 @@ public enum SkullTypes {
 	sheepman			(Strings.PM_PREFIX + "villager/sheepman", 					"primitivemobs", 		SheepmanHead.INSTANCE),
 	summoner			(Strings.PM_PREFIX + "summoner/summoner", 					"primitivemobs", 		VillagerHead.INSTANCE64),
 	blazingJuggernaut	(Strings.PM_PREFIX + "blazingjuggernaut/blazingjuggernaut",	"primitivemobs", 		JuggernautHead.INSTANCE),
-	lilyLurker			(Strings.PM_PREFIX + "lilylurker/lilylurker",				"primitivemobs", 		LillyLurkerHead.INSTANCE),
+	lilyLurker			(Strings.PM_PREFIX + "lilylurker/lilylurker",				"primitivemobs", 		LilyLurkerHead.INSTANCE),
 	motherSpider		(Strings.PM_PREFIX + "spiderfamily/motherspider",			"primitivemobs", 		SpiderHead.INSTANCE),
 	babySpider			(Strings.PM_PREFIX + "spiderfamily/babyspider",				"primitivemobs", 		SpiderHead.INSTANCE),
 	skeletonWarrior		(Strings.PM_PREFIX + "skeletonwarrior/skeletonwarrior",		"primitivemobs", 		ModelHead.INSTANCE_NO_OVERLAY),

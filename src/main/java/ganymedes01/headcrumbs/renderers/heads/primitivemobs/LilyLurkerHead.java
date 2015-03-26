@@ -3,11 +3,11 @@ package ganymedes01.headcrumbs.renderers.heads.primitivemobs;
 import ganymedes01.headcrumbs.renderers.ModelHead;
 import net.minecraft.client.model.ModelRenderer;
 
-public class LillyLurkerHead extends ModelHead {
+public class LilyLurkerHead extends ModelHead {
 
-	public static final LillyLurkerHead INSTANCE = new LillyLurkerHead();
+	public static final LilyLurkerHead INSTANCE = new LilyLurkerHead();
 
-	protected LillyLurkerHead() {
+	protected LilyLurkerHead() {
 	}
 
 	@Override

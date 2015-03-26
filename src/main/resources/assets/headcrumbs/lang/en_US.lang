@@ -1,4 +1,8 @@
-# Items
+#########
+# Items #
+#########
+
+# Vanilla
 item.headcrumbs.pigman.name=Pigman Head
 item.headcrumbs.blaze.name=Blaze Head
 item.headcrumbs.enderman.name=Enderman Head
@@ -18,29 +22,7 @@ item.headcrumbs.ironGolem.name=Iron Golem Head
 item.headcrumbs.squid.name=Squid Head
 item.headcrumbs.wither.name=Wither Head
 item.headcrumbs.ghast.name=Ghast Head
-item.headcrumbs.mistWolf.name=Mist Wolf Head
-item.headcrumbs.miniGhast.name=Carminite Ghastling Head
-item.headcrumbs.guardGhast.name=Carminite Ghastguard Head
-item.headcrumbs.kingSpider.name=King Spider Head
-item.headcrumbs.kobold.name=Kobold Head
-item.headcrumbs.slimeBeetle.name=Slime Beetle Head
-item.headcrumbs.fireBeetle.name=Fire Beetle Head
-item.headcrumbs.pinchBeetle.name=Pinch Beetle Head
-item.headcrumbs.towerGolem.name=Carminite Golem Head
-item.headcrumbs.bunnyDutch.name=Dutch Bunny Head
-item.headcrumbs.bunnyBrown.name=Brown Bunny Head
-item.headcrumbs.bunnyWhite.name=White Bunny Head
-item.headcrumbs.penguin.name=Penguin Head
-item.headcrumbs.bighorn.name=Bighorn Sheep Head
-item.headcrumbs.wildDeer.name=Wild Deer Head
-item.headcrumbs.wildBoar.name=Wild Boar Head
-item.headcrumbs.redcap.name=Redcap Head
-item.headcrumbs.druid.name=Skeleton Druid Head
-item.headcrumbs.hedgeSpider.name=Hedge Spider Head
-item.headcrumbs.blizz.name=Blizz Head
 item.headcrumbs.enderDragon.name=Ender Dragon Head
-item.headcrumbs.hostileWolf.name=Hostile Wolf Head
-item.headcrumbs.squirrel.name=Forest Squirrel Head
 item.headcrumbs.ocelot.name=Ocelot Head
 item.headcrumbs.ocelotBlack.name=Black Cat Head
 item.headcrumbs.ocelotRed.name=Red Cat Head
@@ -61,14 +43,45 @@ item.headcrumbs.horseUndead.name=Undead Horse Head
 item.headcrumbs.horseSkeleton.name=Skeleton Horse Head
 item.headcrumbs.snowMan.name=Snow Golem Head
 item.headcrumbs.silverfish.name=Silverfish Head
+
+# Twilight Forrest
+item.headcrumbs.mistWolf.name=Mist Wolf Head
+item.headcrumbs.miniGhast.name=Carminite Ghastling Head
+item.headcrumbs.guardGhast.name=Carminite Ghastguard Head
+item.headcrumbs.kingSpider.name=King Spider Head
+item.headcrumbs.kobold.name=Kobold Head
+item.headcrumbs.slimeBeetle.name=Slime Beetle Head
+item.headcrumbs.fireBeetle.name=Fire Beetle Head
+item.headcrumbs.pinchBeetle.name=Pinch Beetle Head
+item.headcrumbs.towerGolem.name=Carminite Golem Head
+item.headcrumbs.bunnyDutch.name=Dutch Bunny Head
+item.headcrumbs.bunnyBrown.name=Brown Bunny Head
+item.headcrumbs.bunnyWhite.name=White Bunny Head
+item.headcrumbs.penguin.name=Penguin Head
+item.headcrumbs.bighorn.name=Bighorn Sheep Head
+item.headcrumbs.wildDeer.name=Wild Deer Head
+item.headcrumbs.wildBoar.name=Wild Boar Head
+item.headcrumbs.redcap.name=Redcap Head
+item.headcrumbs.druid.name=Skeleton Druid Head
+item.headcrumbs.hedgeSpider.name=Hedge Spider Head
+item.headcrumbs.hostileWolf.name=Hostile Wolf Head
+item.headcrumbs.squirrel.name=Forest Squirrel Head
 item.headcrumbs.swarmSpider.name=Swarm Spider Head
 item.headcrumbs.towerBroodling.name=Carminite Broodling Head
 item.headcrumbs.winterWolf.name=Winter Wolf Head
 item.headcrumbs.mazeSlime.name=Maze Slime Head
 item.headcrumbs.towerwoodBorer.name=Towerwood Borer Head
+
+
+# Thermal Foundation
+item.headcrumbs.blizz.name=Blizz Head
+
+# Natura
 item.headcrumbs.imp.name=Imp Head
 item.headcrumbs.nitroCreeper.name=Nitro Creeper Head
 item.headcrumbs.heatscarSpider.name=Heatscar Spider Head
+
+# Thaumcraft
 item.headcrumbs.angryZombie.name=Angry Zombie Head
 item.headcrumbs.fireBat.name=Firebat Head
 item.headcrumbs.thaumicSlime.name=Thaumic Slime Head
@@ -80,9 +93,13 @@ item.headcrumbs.taintedVillager.name=Tainted Villager Head
 item.headcrumbs.taintedSheep.name=Tainted Sheep Head
 item.headcrumbs.pech.name=Pech Head
 item.headcrumbs.eldritchGuardian.name=Eldritch Guardian Head
+
+# Lycanites
 item.headcrumbs.pinky.name=Pinky Head
 item.headcrumbs.behemoth.name=Behemoth Head
 item.headcrumbs.belph.name=Belph Head
+
+# Ender Zoo
 item.headcrumbs.concussionCreeper.name=Concussion Creeper Head
 item.headcrumbs.enderminy.name=Enderminy Head
 item.headcrumbs.fallenKnight.name=Fallen Knight Head
@@ -90,8 +107,26 @@ item.headcrumbs.witherWitch.name=Wither Witch Head
 item.headcrumbs.witherCat.name=Wither Cat Head
 item.headcrumbs.direWolf.name=Dire Wolf Head
 
-# Entity
+# Primitive Mobs
+item.headcrumbs.rocketCreeper.name=Rocket Creeper Head
+item.headcrumbs.festiveCreeper.name=Festive Creeper Head
+item.headcrumbs.supportCreeper.name=Support Creeper Head
+item.headcrumbs.lostMiner.name=Lost Miner Head
+item.headcrumbs.sheepman.name=Sheepman Head
+item.headcrumbs.summoner.name=Summoner Head
+item.headcrumbs.blazingJuggernaut.name=Juggernaut Head
+item.headcrumbs.lilyLurker.name=Lily Lurker Head
+item.headcrumbs.motherSpider.name=Mother Spider Head
+item.headcrumbs.babySpider.name=Baby Spider Head
+item.headcrumbs.skeletonWarrior.name=Skeleton Warrior Head
+item.headcrumbs.brainSlime.name=Brain Slime Head
+
+##########
+# Entity #
+##########
 entity.Celebrity.name=Celebrity
 
-# Creative Tab
+################
+# Creative Tab #
+################
 itemGroup.headcrumbs=Headcrumbs
