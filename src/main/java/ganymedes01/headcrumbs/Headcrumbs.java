@@ -164,10 +164,10 @@ public class Headcrumbs {
 		UsercacheChecker.check();
 
 		if (enableCelebrityMobs) {
-			List<BiomeDictionary.Type> blacklistedBiomes = new LinkedList<BiomeDictionary.Type>();
+			List<BiomeDictionary.Type> blacklistedBiomes = new ArrayList<BiomeDictionary.Type>();
 			blacklistedBiomes.add(BiomeDictionary.Type.MUSHROOM);
 
-			List<BiomeGenBase> biomes = new ArrayList<BiomeGenBase>();
+			List<BiomeGenBase> biomes = new LinkedList<BiomeGenBase>();
 			label: for (BiomeGenBase biome : BiomeGenBase.getBiomeGenArray()) {
 				for (BiomeDictionary.Type type : BiomeDictionary.getTypesForBiome(biome))
 					if (blacklistedBiomes.contains(type))
