@@ -165,17 +165,14 @@ public class Headcrumbs {
 
 		if (enableCelebrityMobs) {
 			List<BiomeDictionary.Type> blacklistedBiomes = new LinkedList<BiomeDictionary.Type>();
-			blacklistedBiomes.add(BiomeDictionary.Type.NETHER);
-			blacklistedBiomes.add(BiomeDictionary.Type.END);
 			blacklistedBiomes.add(BiomeDictionary.Type.MUSHROOM);
 
 			List<BiomeGenBase> biomes = new ArrayList<BiomeGenBase>();
-			for (BiomeDictionary.Type type : BiomeDictionary.Type.values()) {
-				if (blacklistedBiomes.contains(type))
-					continue;
-				for (BiomeGenBase biome : BiomeDictionary.getBiomesForType(type))
-					if (biome != null)
-						biomes.add(biome);
+			label: for (BiomeGenBase biome : BiomeGenBase.getBiomeGenArray()) {
+				for (BiomeDictionary.Type type : BiomeDictionary.getTypesForBiome(biome))
+					if (blacklistedBiomes.contains(type))
+						continue label;
+				biomes.add(biome);
 			}
 			EntityRegistry.addSpawn(EntityCelebrity.class, celebrityProb, celebrityMin, celebrityMax, EnumCreatureType.monster, biomes.toArray(new BiomeGenBase[biomes.size()]));
 		}
