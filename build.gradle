@@ -17,13 +17,13 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.3.1"
+version = "1.3.2"
 group = "ganymedes01.headcrumbs"
 archivesBaseName = "Headcrumbs"
 
 minecraft {
     version = "1.7.10-10.13.2.1291"
-    assetDir = "eclipse/assets"
+    runDir = "eclipse/assets"
 }
 
 processResources {
