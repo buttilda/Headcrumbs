@@ -71,14 +71,14 @@ public class Headcrumbs {
 			Random rand = new Random();
 			List<SkullTypes> types = new ArrayList<SkullTypes>();
 			for (SkullTypes type : SkullTypes.values())
-				if (type.canShow() && type != SkullTypes.lycanites)
+				if (type.canShow() && type != SkullTypes.lycanites && type != SkullTypes.player)
 					types.add(type);
 			return types.get(rand.nextInt(types.size())).ordinal();
 		}
 	};
 
 	public static String[] others = { "Kaelten", "muted79", "DrummingFish", "Kyrinon", "vasili02", "Jeb_Jeb", "KingPurpleRaptor", "DylanGK" };
-	public static String[] modders = { "techbrew", "RazzleberryFox", "Binnie567", "Adubbz", "Drullkus", "aidancbrady", "spacetoad", "FyberOptic", "Vexatos", "Mineshopper", "AUTOMATIC_MAIDEN", "sanandreasMC", "FatherToast", "Erasmus_Crowley", "Alblaka", "Emoniph", "Nuchaz", "Kobata", "powercrystals", "AbrarSyed", "sdkillen", "Taelnia", "Lycanite", "asiekierka", "GregoriusT", "skyboy", "Flaxbeard", "Emasher", "joshiejack", "Reika", "MatrexsVigil", "ganymedes01", "Pokefenn", "chylex", "vadis365", "Kihira", "jakimfett" };
+	public static String[] modders = { "Silentine", "techbrew", "RazzleberryFox", "Binnie567", "Adubbz", "Drullkus", "aidancbrady", "spacetoad", "FyberOptic", "Vexatos", "Mineshopper", "AUTOMATIC_MAIDEN", "sanandreasMC", "FatherToast", "Erasmus_Crowley", "Alblaka", "Emoniph", "Nuchaz", "Kobata", "powercrystals", "AbrarSyed", "sdkillen", "Taelnia", "Lycanite", "asiekierka", "GregoriusT", "skyboy", "Flaxbeard", "Emasher", "joshiejack", "Reika", "MatrexsVigil", "ganymedes01", "Pokefenn", "chylex", "vadis365", "Kihira", "jakimfett" };
 	public static String[] youtubers = { "Straymaverick", "SOTMead", "Nerdcubed", "Kleetho", "DanTDM", "Runew0lf", "GiantWaffle", "Bacon_Donut", "Vaygrim", "Heph", "ChimneySwift", "FuriousDestroyer", "SuperGirlyGamer", "CyaNideEPiC", "Jarrenitis", "direwolf20", "Sjin", "Xephos", "LividCoffee", "Rythian", "Zoeya", "TheStrippin", "InTheLittleWood", "Quetzz", "Blorph", "xbony2", "CaptainSparklez", "AntVenom", "CavemanFilms", "Fosler", "BevoLJ", "Sips_", "Honeydew", "TobyofBuscus", "corjaantje", "RealThinknoodles", "ZexyZek" };
 	public static String[] mojang = { "Notch", "jeb_", "C418", "Dinnerbone", "Grumm", "Searge_DP", "EvilSeph", "TheMogMiner" };
 	public static String[] mindCrack = { "adlingtont", "AnderZEL", "Arkas", "Aureylian", "AvidyaZEN", "BdoubleO100", "BlameTC", "Coestar", "Docm77", "Etho", "generikb", "Guude", "JSano19", "kurtmac", "SuperMCGamer", "Mhykol", "Millbee", "Nebris", "Pakratt0013", "paulsoaresjr", "PauseUnpause", "Pyro_0", "SethBling", "thejims", "Sevadus", "Vechs_", "VintageBeef", "W92Baj", "Zisteau" };

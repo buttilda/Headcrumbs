@@ -27,6 +27,19 @@ import ganymedes01.headcrumbs.renderers.heads.WolfHead;
 import ganymedes01.headcrumbs.renderers.heads.ZombieVillagerHead;
 import ganymedes01.headcrumbs.renderers.heads.enderzoo.DireWolfHead;
 import ganymedes01.headcrumbs.renderers.heads.enderzoo.EnderminyHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.AnubisHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.BansheeHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.BaphometHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.CentaurHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.CobbleGolemHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.CobblestoneGolemHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.CockatriceHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.CyclopsHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.DhampirHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.DryadHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.DullahanHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.EnderDragonGirlHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.EnderEyeHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.BehemothHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.BelphHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.PinkyHead;
@@ -143,6 +156,7 @@ public enum SkullTypes {
 	taintedSheep		(Strings.TC_PREFIX + "sheep", 								"Thaumcraft", 			TaintedSheepHead.INSTANCE),
 	pech				(Strings.TC_PREFIX + "pech_forage", 						"Thaumcraft", 			PechHead.INSTANCE),
 	eldritchGuardian	(Strings.TC_PREFIX + "eldritch_guardian", 					"Thaumcraft", 			EldrichGuardianHead.INSTANCE),
+
 	lycanites			("", 														"lycanitesmobs", 		null),
 	pinky				(Strings.LY_PREFIX + "pinky", 								"lycanitesmobs", 		PinkyHead.INSTANCE),
 	behemoth			(Strings.LY_PREFIX + "behemoth", 							"lycanitesmobs", 		BehemothHead.INSTANCE),
@@ -164,7 +178,20 @@ public enum SkullTypes {
 	motherSpider		(Strings.PM_PREFIX + "spiderfamily/motherspider",			"primitivemobs", 		SpiderHead.INSTANCE),
 	babySpider			(Strings.PM_PREFIX + "spiderfamily/babyspider",				"primitivemobs", 		SpiderHead.INSTANCE),
 	skeletonWarrior		(Strings.PM_PREFIX + "skeletonwarrior/skeletonwarrior",		"primitivemobs", 		ModelHead.INSTANCE_NO_OVERLAY),
-	brainSlime			(Strings.PM_PREFIX + "brainslime/brainslime",				"primitivemobs", 		SlimeHead.INSTANCE);
+	brainSlime			(Strings.PM_PREFIX + "brainslime/brainslime",				"primitivemobs", 		SlimeHead.INSTANCE),
+	anubis				(Strings.GOG_PREFIX + "Anubis",								"GrimoireOfGaia", 		AnubisHead.INSTANCE),
+	banshee				(Strings.GOG_PREFIX + "Banshee",							"GrimoireOfGaia", 		BansheeHead.INSTANCE),
+	baphomet			(Strings.GOG_PREFIX + "Baphomet",							"GrimoireOfGaia", 		BaphometHead.INSTANCE),
+	centaur				(Strings.GOG_PREFIX + "Centaur",							"GrimoireOfGaia", 		CentaurHead.INSTANCE),
+	cobbleGolem			(Strings.GOG_PREFIX + "Cobble_Golem",						"GrimoireOfGaia", 		CobbleGolemHead.INSTANCE),
+	cobblestoneGolem	(Strings.GOG_PREFIX + "Cobblestone_Golem",					"GrimoireOfGaia", 		CobblestoneGolemHead.INSTANCE),
+	cockatrice			(Strings.GOG_PREFIX + "Cockatrice",							"GrimoireOfGaia", 		CockatriceHead.INSTANCE),
+	cyclops				(Strings.GOG_PREFIX + "Cyclops",							"GrimoireOfGaia", 		CyclopsHead.INSTANCE),
+	dhampir				(Strings.GOG_PREFIX + "Dhampir",							"GrimoireOfGaia", 		DhampirHead.INSTANCE),
+	dryad				(Strings.GOG_PREFIX + "Dryad01",							"GrimoireOfGaia", 		DryadHead.INSTANCE),
+	dullahan			(Strings.GOG_PREFIX + "Dullahan",							"GrimoireOfGaia", 		DullahanHead.INSTANCE),
+	enderDragonGirl		(Strings.GOG_PREFIX + "Ender_Dragon_Girl",					"GrimoireOfGaia", 		EnderDragonGirlHead.INSTANCE),
+	enderEye			(Strings.GOG_PREFIX + "Ender_Eye",							"GrimoireOfGaia", 		EnderEyeHead.INSTANCE);
 	// @formatter:on
 
 	private final String mod;
