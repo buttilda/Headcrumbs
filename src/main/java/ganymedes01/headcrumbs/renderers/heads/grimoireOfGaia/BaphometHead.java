@@ -14,17 +14,14 @@ public class BaphometHead extends ModelHead {
 	public void init() {
 		textureWidth = 128;
 		textureHeight = 64;
-		float f0 = 0;
 
 		head = new ModelRenderer(this, 0, 0);
 		head.addBox(-3.0F, -6.0F, -3.0F, 6, 6, 6);
-		head.setRotationPoint(0.0F, f0, 0.0F);
 		head.setTextureSize(64, 32);
 		head.mirror = true;
 		setRotation(head, 0.0F, 0.0F, 0.0F);
 		overlay = new ModelRenderer(this, 36, 0);
 		overlay.addBox(-3.5F, -6.5F, -3.5F, 7, 7, 7);
-		overlay.setRotationPoint(0.0F, f0, 0.0F);
 		overlay.setTextureSize(64, 32);
 		overlay.mirror = true;
 		setRotation(overlay, 0.0F, 0.0F, 0.0F);
