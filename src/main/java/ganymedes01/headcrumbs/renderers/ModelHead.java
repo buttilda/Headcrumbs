@@ -2,8 +2,13 @@ package ganymedes01.headcrumbs.renderers;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
+
+import org.lwjgl.opengl.GL11;
+
+import com.mojang.authlib.GameProfile;
 
 public class ModelHead extends ModelBase {
 
@@ -34,10 +39,10 @@ public class ModelHead extends ModelBase {
 	public void init() {
 	}
 
-	public void preRender() {
+	public void preRender(GameProfile profile) {
 	}
 
-	public void renderSpecial(float skullRotation) {
+	public void renderSpecial(GameProfile profile, float skullRotation) {
 	}
 
 	public void preRenderItem(ItemRenderType type) {
@@ -86,5 +91,16 @@ public class ModelHead extends ModelBase {
 		model.rotateAngleX = x;
 		model.rotateAngleY = y;
 		model.rotateAngleZ = z;
+	}
+
+	public void renderLitUp(float skullRotation) {
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_ALPHA_TEST);
+		GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
+		GL11.glDepthMask(true);
+		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 61680, 0);
+		render(skullRotation);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glEnable(GL11.GL_ALPHA_TEST);
 	}
 }

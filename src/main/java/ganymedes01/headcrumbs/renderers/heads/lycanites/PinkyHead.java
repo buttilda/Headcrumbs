@@ -5,6 +5,8 @@ import net.minecraft.client.model.ModelRenderer;
 
 import org.lwjgl.opengl.GL11;
 
+import com.mojang.authlib.GameProfile;
+
 public class PinkyHead extends ModelHead {
 
 	public static final PinkyHead INSTANCE = new PinkyHead();
@@ -110,7 +112,7 @@ public class PinkyHead extends ModelHead {
 	}
 
 	@Override
-	public void preRender() {
+	public void preRender(GameProfile profile) {
 		GL11.glScaled(2F / 3F, 2F / 3F, 2F / 3F);
 	}
 }

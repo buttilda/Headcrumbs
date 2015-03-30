@@ -3,6 +3,8 @@ package ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia;
 import ganymedes01.headcrumbs.renderers.ModelHead;
 import net.minecraft.client.model.ModelRenderer;
 
+import com.mojang.authlib.GameProfile;
+
 public class GryphonHead extends ModelHead {
 
 	public static final GryphonHead INSTANCE = new GryphonHead();
@@ -11,7 +13,7 @@ public class GryphonHead extends ModelHead {
 	}
 
 	@Override
-	public void preRender() {
+	public void preRender(GameProfile profile) {
 		// init();
 	}
 

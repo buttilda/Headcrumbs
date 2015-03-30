@@ -6,6 +6,8 @@ import net.minecraft.init.Blocks;
 
 import org.lwjgl.opengl.GL11;
 
+import com.mojang.authlib.GameProfile;
+
 public class MooshroomHead extends CowHead {
 
 	public static final MooshroomHead INSTANCE = new MooshroomHead();
@@ -23,7 +25,7 @@ public class MooshroomHead extends CowHead {
 	}
 
 	@Override
-	public void renderSpecial(float skullRotation) {
+	public void renderSpecial(GameProfile profile, float skullRotation) {
 		GL11.glScaled(1, -1, 1);
 		GL11.glTranslated(0, 1, 0);
 		GL11.glEnable(GL11.GL_CULL_FACE);

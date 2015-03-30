@@ -6,6 +6,8 @@ import net.minecraft.entity.passive.EntitySheep;
 
 import org.lwjgl.opengl.GL11;
 
+import com.mojang.authlib.GameProfile;
+
 public class BighornHead extends SheepHead {
 
 	public static final BighornHead INSTANCE = new BighornHead();
@@ -38,7 +40,7 @@ public class BighornHead extends SheepHead {
 	}
 
 	@Override
-	public void renderSpecial(float skullRotation) {
+	public void renderSpecial(GameProfile profile, float skullRotation) {
 		int colour = 12;
 		GL11.glColor3f(EntitySheep.fleeceColorTable[colour][0], EntitySheep.fleeceColorTable[colour][1], EntitySheep.fleeceColorTable[colour][2]);
 		renderOverlay(skullRotation);

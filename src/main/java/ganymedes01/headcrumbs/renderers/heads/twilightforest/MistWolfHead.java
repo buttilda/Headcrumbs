@@ -5,6 +5,8 @@ import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 import org.lwjgl.opengl.GL11;
 
+import com.mojang.authlib.GameProfile;
+
 public class MistWolfHead extends WolfHead {
 
 	public static final MistWolfHead INSTANCE = new MistWolfHead();
@@ -13,7 +15,7 @@ public class MistWolfHead extends WolfHead {
 	}
 
 	@Override
-	public void preRender() {
+	public void preRender(GameProfile profile) {
 		GL11.glScaled(1.5, 1.5, 1.5);
 	}
 

@@ -91,7 +91,7 @@ public class Headcrumbs {
 											"SuperGirlyGamer", "CyaNideEPiC", "Jarrenitis", "direwolf20", "Sjin", "Xephos", "LividCoffee",
 											"Rythian", "Zoeya", "TheStrippin", "InTheLittleWood", "Quetzz", "Blorph", "xbony2",
 											"CaptainSparklez", "AntVenom", "CavemanFilms", "Fosler", "BevoLJ", "Sips_", "Honeydew",
-											"TobyofBuscus", "corjaantje", "RealThinknoodles", "ZexyZek" };
+											"TobyofBuscus", "corjaantje", "RealThinknoodles", "ZexyZek", "WesWilson" };
 
 	public static String[] mojang = { "Notch", "jeb_", "C418", "Dinnerbone", "Grumm", "Searge_DP", "EvilSeph", "TheMogMiner" };
 

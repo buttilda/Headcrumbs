@@ -5,6 +5,8 @@ import net.minecraft.client.model.ModelRenderer;
 
 import org.lwjgl.opengl.GL11;
 
+import com.mojang.authlib.GameProfile;
+
 public class SlimeHead extends ModelHead {
 
 	public static final SlimeHead INSTANCE = new SlimeHead();
@@ -33,7 +35,7 @@ public class SlimeHead extends ModelHead {
 	}
 
 	@Override
-	public void preRender() {
+	public void preRender(GameProfile profile) {
 		GL11.glEnable(GL11.GL_NORMALIZE);
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);

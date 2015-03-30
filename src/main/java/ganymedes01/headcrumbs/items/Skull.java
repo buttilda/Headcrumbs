@@ -137,12 +137,14 @@ public class Skull extends ItemSkull {
 	public void getSubItems(Item item, CreativeTabs tab, List list) {
 		for (SkullTypes skull : SkullTypes.values())
 			if (skull.canShow() && skull != SkullTypes.lycanites) {
-				list.add(new ItemStack(item, 1, skull.ordinal()));
-
-				if (!Headcrumbs.hidePlayerHeadsFromTab)
-					if (skull == SkullTypes.player)
+				if (skull == SkullTypes.player)
+					if (!Headcrumbs.hidePlayerHeadsFromTab) {
 						list.addAll(HeadUtils.players);
+						continue;
+					}
+				list.add(new ItemStack(item, 1, skull.ordinal()));
 			}
+
 		if (SkullTypes.lycanites.canShow())
 			list.addAll(LycanitesHelperClient.getStacks());
 	}

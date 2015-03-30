@@ -14,6 +14,7 @@ import ganymedes01.headcrumbs.renderers.heads.MooshroomHead;
 import ganymedes01.headcrumbs.renderers.heads.OcelotHead;
 import ganymedes01.headcrumbs.renderers.heads.PigHead;
 import ganymedes01.headcrumbs.renderers.heads.PigmanHead;
+import ganymedes01.headcrumbs.renderers.heads.PlayerHead;
 import ganymedes01.headcrumbs.renderers.heads.SheepHead;
 import ganymedes01.headcrumbs.renderers.heads.SilverfishHead;
 import ganymedes01.headcrumbs.renderers.heads.SlimeHead;
@@ -80,7 +81,7 @@ import cpw.mods.fml.common.Loader;
 public enum SkullTypes {
 
 	// @formatter:off
-	player				(null, 														null, 					ModelHead.INSTANCE),
+	player				(null, 														null, 					PlayerHead.INSTANCE),
 	blaze				(Strings.MC_PREFIX + "blaze", 								null, 					ModelHead.INSTANCE),
 	enderman			(Strings.MC_PREFIX + "enderman/enderman", 					null, 					EndermanHead.INSTANCE),
 	pigman				(Strings.MC_PREFIX + "zombie_pigman", 						null, 					PigmanHead.INSTANCE),

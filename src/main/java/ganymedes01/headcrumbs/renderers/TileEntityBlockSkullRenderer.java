@@ -42,30 +42,30 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 	private EntityLiving getEntity() {
 		if (entity == null)
 			entity = new EntityLiving(Minecraft.getMinecraft().theWorld) {
-		};
+			};
 
 		return entity;
 	}
 
-	public void renderHead(float x, float y, float z, int meta, float skullRotation, int skullType, GameProfile playerName) {
+	public void renderHead(float x, float y, float z, int meta, float skullRotation, int skullType, GameProfile profile) {
 		if (skullType < 0 || skullType >= SkullTypes.values().length)
 			return;
 
 		SkullTypes type = SkullTypes.values()[skullType];
 		if (type == SkullTypes.lycanites)
-			renderLycanites(x, y, z, meta, skullRotation, type, playerName);
+			renderLycanites(x, y, z, meta, skullRotation, type, profile);
 		else
-			renderNormal(x, y, z, meta, skullRotation, type, playerName);
+			renderNormal(x, y, z, meta, skullRotation, type, profile);
 	}
 
-	private void renderLycanites(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile playerName) {
-		if (playerName == null || !SkullTypes.lycanites.canShow()) {
-			renderNormal(x, y, z, meta, skullRotation, SkullTypes.blaze, playerName); // So that the heads are visible after an eventual removal of Lycanites
+	private void renderLycanites(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile profile) {
+		if (profile == null || !SkullTypes.lycanites.canShow()) {
+			renderNormal(x, y, z, meta, skullRotation, SkullTypes.blaze, profile); // So that the heads are visible after an eventual removal of Lycanites
 			return;
 		}
 
-		ModelBase model = LycanitesHelperClient.getModel(playerName.getName());
-		ResourceLocation tex = type.getTexture(playerName);
+		ModelBase model = LycanitesHelperClient.getModel(profile.getName());
+		ResourceLocation tex = type.getTexture(profile);
 		if (model != null && tex != null) {
 			GL11.glPushMatrix();
 			GL11.glDisable(GL11.GL_CULL_FACE);
@@ -82,8 +82,8 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 		}
 	}
 
-	private void renderNormal(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile playerName) {
-		bindTexture(type.getTexture(playerName));
+	private void renderNormal(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile profile) {
+		bindTexture(type.getTexture(profile));
 
 		GL11.glPushMatrix();
 		GL11.glDisable(GL11.GL_CULL_FACE);
@@ -95,22 +95,21 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 
 		GL11.glScalef(-1.0F, -1.0F, 1.0F);
 		model = type.model();
-		model.preRender();
+		model.preRender(profile);
 		model.render(skullRotation);
-		renderSpecial(skullRotation);
+		renderSpecial(profile, skullRotation);
 
 		if (GL11.glIsEnabled(GL11.GL_BLEND))
 			GL11.glDisable(GL11.GL_BLEND);
 		GL11.glPopMatrix();
 	}
 
-	private void renderSpecial(float skullRotation) {
+	private void renderSpecial(GameProfile profile, float skullRotation) {
 		ResourceLocation secondTex = model.getSecondTexture();
 
-		if (secondTex != null) {
+		if (secondTex != null)
 			bindTexture(secondTex);
-			model.renderSpecial(skullRotation);
-		}
+		model.renderSpecial(profile, skullRotation);
 	}
 
 	private void translateHead(float x, float y, float z, int meta) {

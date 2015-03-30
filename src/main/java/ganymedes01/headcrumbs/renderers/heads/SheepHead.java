@@ -5,12 +5,13 @@ import ganymedes01.headcrumbs.renderers.ModelHead;
 import ganymedes01.headcrumbs.utils.Utils;
 import net.minecraft.client.model.ModelRenderer;
 
+import com.mojang.authlib.GameProfile;
+
 public class SheepHead extends ModelHead {
 
 	public static final SheepHead INSTANCE = new SheepHead();
 
 	protected SheepHead() {
-
 	}
 
 	@Override
@@ -25,7 +26,7 @@ public class SheepHead extends ModelHead {
 	}
 
 	@Override
-	public void renderSpecial(float skullRotation) {
+	public void renderSpecial(GameProfile profile, float skullRotation) {
 		renderOverlay(skullRotation);
 	}
 }

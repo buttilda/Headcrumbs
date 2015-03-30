@@ -6,6 +6,8 @@ import ganymedes01.headcrumbs.utils.Utils;
 
 import org.lwjgl.opengl.GL11;
 
+import com.mojang.authlib.GameProfile;
+
 public class EnderminyHead extends EndermanHead {
 
 	public static final EnderminyHead INSTANCE = new EnderminyHead();
@@ -20,7 +22,7 @@ public class EnderminyHead extends EndermanHead {
 	}
 
 	@Override
-	public void preRender() {
+	public void preRender(GameProfile profile) {
 		GL11.glScalef(1, 0.5F, 1);
 	}
 }

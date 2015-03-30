@@ -5,6 +5,8 @@ import net.minecraft.client.model.ModelRenderer;
 
 import org.lwjgl.opengl.GL11;
 
+import com.mojang.authlib.GameProfile;
+
 public class SquidHead extends ModelHead {
 
 	public static final SquidHead INSTANCE = new SquidHead();
@@ -21,7 +23,7 @@ public class SquidHead extends ModelHead {
 	}
 
 	@Override
-	public void preRender() {
+	public void preRender(GameProfile profile) {
 		GL11.glScaled(2F / 3F, 2F / 3F, 2F / 3F);
 	}
 }

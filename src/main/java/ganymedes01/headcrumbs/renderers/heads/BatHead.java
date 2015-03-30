@@ -5,6 +5,8 @@ import net.minecraft.client.model.ModelRenderer;
 
 import org.lwjgl.opengl.GL11;
 
+import com.mojang.authlib.GameProfile;
+
 public class BatHead extends ModelHead {
 
 	public static final BatHead INSTANCE = new BatHead();
@@ -31,7 +33,7 @@ public class BatHead extends ModelHead {
 	}
 
 	@Override
-	public void preRender() {
+	public void preRender(GameProfile profile) {
 		GL11.glScaled(0.5, 0.5, 0.5);
 	}
 
