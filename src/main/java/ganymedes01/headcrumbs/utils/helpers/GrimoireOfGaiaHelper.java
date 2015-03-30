@@ -24,6 +24,11 @@ public class GrimoireOfGaiaHelper extends ModHeadDropHelper {
 		typesMap.put("GrimoireOfGaia.Dullahan", SkullTypes.dullahan);
 		typesMap.put("GrimoireOfGaia.Ender Dragon Girl", SkullTypes.enderDragonGirl);
 		typesMap.put("GrimoireOfGaia.Ender Eye", SkullTypes.enderEye);
+		typesMap.put("GrimoireOfGaia.Flesh Lich", SkullTypes.fleshLich);
+		typesMap.put("GrimoireOfGaia.Futakuchi Onna", SkullTypes.futakuchiOnna);
+		typesMap.put("GrimoireOfGaia.Gryphon", SkullTypes.gryphon);
+		typesMap.put("GrimoireOfGaia.Harpy", SkullTypes.harpy);
+		typesMap.put("GrimoireOfGaia.Hunter", SkullTypes.hunter);
 	}
 
 	@Override

@@ -40,6 +40,11 @@ import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.DryadHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.DullahanHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.EnderDragonGirlHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.EnderEyeHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.FleshLichHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.FutakuchiOnnaHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.GryphonHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.HarpyHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.HunterHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.BehemothHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.BelphHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.PinkyHead;
@@ -190,7 +195,12 @@ public enum SkullTypes {
 	dryad				(Strings.GOG_PREFIX + "Dryad01",							"GrimoireOfGaia", 		DryadHead.INSTANCE),
 	dullahan			(Strings.GOG_PREFIX + "Dullahan",							"GrimoireOfGaia", 		DullahanHead.INSTANCE),
 	enderDragonGirl		(Strings.GOG_PREFIX + "Ender_Dragon_Girl",					"GrimoireOfGaia", 		EnderDragonGirlHead.INSTANCE),
-	enderEye			(Strings.GOG_PREFIX + "Ender_Eye",							"GrimoireOfGaia", 		EnderEyeHead.INSTANCE);
+	enderEye			(Strings.GOG_PREFIX + "Ender_Eye",							"GrimoireOfGaia", 		EnderEyeHead.INSTANCE),
+	fleshLich			(Strings.GOG_PREFIX + "Flesh_Lich",							"GrimoireOfGaia", 		FleshLichHead.INSTANCE),
+	futakuchiOnna		(Strings.GOG_PREFIX + "Futakuchi_Onna",						"GrimoireOfGaia", 		FutakuchiOnnaHead.INSTANCE),
+	gryphon				(Strings.GOG_PREFIX + "Gryphon",							"GrimoireOfGaia", 		GryphonHead.INSTANCE),
+	harpy				(Strings.GOG_PREFIX + "Harpy01",							"GrimoireOfGaia", 		HarpyHead.INSTANCE),
+	hunter				(Strings.GOG_PREFIX + "Hunter",								"GrimoireOfGaia", 		HunterHead.INSTANCE);
 	// @formatter:on
 
 	private final String mod;
