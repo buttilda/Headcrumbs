@@ -156,7 +156,6 @@ public enum SkullTypes {
 	taintedSheep		(Strings.TC_PREFIX + "sheep", 								"Thaumcraft", 			TaintedSheepHead.INSTANCE),
 	pech				(Strings.TC_PREFIX + "pech_forage", 						"Thaumcraft", 			PechHead.INSTANCE),
 	eldritchGuardian	(Strings.TC_PREFIX + "eldritch_guardian", 					"Thaumcraft", 			EldrichGuardianHead.INSTANCE),
-
 	lycanites			("", 														"lycanitesmobs", 		null),
 	pinky				(Strings.LY_PREFIX + "pinky", 								"lycanitesmobs", 		PinkyHead.INSTANCE),
 	behemoth			(Strings.LY_PREFIX + "behemoth", 							"lycanitesmobs", 		BehemothHead.INSTANCE),

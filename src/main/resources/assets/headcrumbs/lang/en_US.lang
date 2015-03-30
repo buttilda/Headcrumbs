@@ -121,6 +121,21 @@ item.headcrumbs.babySpider.name=Baby Spider Head
 item.headcrumbs.skeletonWarrior.name=Skeleton Warrior Head
 item.headcrumbs.brainSlime.name=Brain Slime Head
 
+# Grimoire of Gaia
+item.headcrumbs.anubis.name=Anubis Head
+item.headcrumbs.banshee.name=Banshee Head
+item.headcrumbs.baphomet.name=Baphomet Head
+item.headcrumbs.centaur.name=Centaur Head
+item.headcrumbs.cobbleGolem.name=Cobble Golem Head
+item.headcrumbs.cobblestoneGolem.name=Cobblestone Golem Head
+item.headcrumbs.cockatrice.name=Cockatrice Head
+item.headcrumbs.cyclops.name=Cyclops Head
+item.headcrumbs.dhampir.name=Dhampir Head
+item.headcrumbs.dryad.name=Dryad Head
+item.headcrumbs.dullahan.name=Dullahan Head
+item.headcrumbs.enderDragonGirl.name=Ender Dragon Girl Head
+item.headcrumbs.enderEye.name=Ender Eye Head
+
 ##########
 # Entity #
 ##########

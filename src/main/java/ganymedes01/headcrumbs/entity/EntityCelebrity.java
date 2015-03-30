@@ -306,12 +306,12 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 
 	@Override
 	public String getCommandSenderName() {
-		return getUsername();
+		return Headcrumbs.celebrityNamePrefix + getUsername();
 	}
 
 	@Override
 	public String getCustomNameTag() {
-		return getCommandSenderName();
+		return getUsername();
 	}
 
 	@Override

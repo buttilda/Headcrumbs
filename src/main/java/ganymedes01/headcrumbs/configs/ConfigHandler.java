@@ -54,10 +54,11 @@ public class ConfigHandler {
 		Headcrumbs.celebrityMin = configFile.get("mob", "Minimum group size", Headcrumbs.celebrityMin, "The minimum size of the group of mobs that will spawn at once").setRequiresMcRestart(true).getInt();
 		Headcrumbs.celebrityMax = configFile.get("mob", "Maximum group size", Headcrumbs.celebrityMax, "The maximum size of the group of mobs that will spawn at once").setRequiresMcRestart(true).getInt();
 		Headcrumbs.blacklistedDimensions = configFile.get("mob", "Dimension Blacklist", Headcrumbs.blacklistedDimensions).getIntList();
+		Headcrumbs.celebrityNamePrefix = configFile.get("mob", "prefix", Headcrumbs.celebrityNamePrefix, "This prefix will be shown in front of celebrities names in-world. Meant to be used to differentiate celebrities from real players.").getString();
 
 		String block = configFile.get(Configuration.CATEGORY_GENERAL, "Statue block material", Block.blockRegistry.getNameForObject(Blocks.clay), "modId:name. Whatever block is set here will be the block used to make player statues (2 tall and right-click the top one with a player head)").getString();
 		Headcrumbs.clay = (Block) Block.blockRegistry.getObject(block);
-		if (Headcrumbs.clay == null)
+		if (Headcrumbs.clay == null || Headcrumbs.clay == Blocks.air)
 			Headcrumbs.clay = Blocks.clay;
 
 		if (configFile.hasChanged())

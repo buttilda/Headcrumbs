@@ -71,9 +71,6 @@ public class RenderCelebrity extends RenderBiped {
 		if (f6 < 0.0F)
 			f6 = 0.0F;
 
-		float f8 = 0;//celebrity.prevCameraYaw + (celebrity.cameraYaw - celebrity.prevCameraYaw) * float0;
-		f5 += MathHelper.sin((celebrity.prevDistanceWalkedModified + (celebrity.distanceWalkedModified - celebrity.prevDistanceWalkedModified) * float0) * 6.0F) * 32.0F * f8;
-
 		if (celebrity.isSneaking())
 			f5 += 25.0F;
 
