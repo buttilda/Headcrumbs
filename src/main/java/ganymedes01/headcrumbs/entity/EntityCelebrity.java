@@ -3,6 +3,7 @@ package ganymedes01.headcrumbs.entity;
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.utils.UsernameUtils;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -31,6 +32,9 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatStyle;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
@@ -306,7 +310,7 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 
 	@Override
 	public String getCommandSenderName() {
-		return Headcrumbs.celebrityNamePrefix + getUsername();
+		return getUsername();
 	}
 
 	@Override
@@ -317,6 +321,37 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 	@Override
 	public boolean hasCustomNameTag() {
 		return true;
+	}
+
+	@Override
+	public IChatComponent func_145748_c_() {
+		return new ChatComponentText(getCommandSenderName()) {
+
+			private ChatStyle style;
+
+			@Override
+			public ChatStyle getChatStyle() {
+				if (style == null) {
+					style = new ChatStyle() {
+
+						@Override
+						@SideOnly(Side.CLIENT)
+						public String getFormattingCode() {
+							return Headcrumbs.celebrityNamePrefix;
+						}
+
+					};
+					Iterator<?> iterator = siblings.iterator();
+
+					while (iterator.hasNext()) {
+						IChatComponent ichatcomponent = (IChatComponent) iterator.next();
+						ichatcomponent.getChatStyle().setParentStyle(style);
+					}
+				}
+
+				return style;
+			}
+		};
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import ganymedes01.headcrumbs.tileentities.TileEntityBlockPlayer;
 import ganymedes01.headcrumbs.utils.TextureUtils;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.IChatComponent;
@@ -74,6 +75,12 @@ public class TileEntityBlockPlayerRenderer extends TileEntityBlockSkullRenderer 
 		@Override
 		public ChunkCoordinates getPlayerCoordinates() {
 			return null;
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public boolean isInvisibleToPlayer(EntityPlayer p_98034_1_) {
+			return true;
 		}
 
 		@Override
