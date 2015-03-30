@@ -2,6 +2,7 @@ package ganymedes01.headcrumbs.renderers;
 
 import ganymedes01.headcrumbs.entity.EntityCelebrity;
 import ganymedes01.headcrumbs.utils.TextureUtils;
+import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.EntityLiving;
@@ -44,41 +45,72 @@ public class RenderCelebrity extends RenderBiped {
 			return;
 
 		EntityCelebrity celebrity = (EntityCelebrity) entity;
+
+		// Ears
+		ResourceLocation skin = TextureUtils.getPlayerSkin(celebrity.getProfile());
+		if (entity.getCommandSenderName().equals("deadmau5") && skin != AbstractClientPlayer.locationStevePng) {
+			bindTexture(skin);
+
+			for (int i = 0; i < 2; i++) {
+				GL11.glPushMatrix();
+				modelBipedMain.bipedHead.postRender(0.0625F);
+				GL11.glTranslatef(0.375F * (i * 2 - 1), 0.0F, 0.0F);
+				GL11.glTranslatef(0.0F, -0.375F, 0.0F);
+				float scale = 4F / 3F;
+				GL11.glScalef(scale, scale, scale);
+
+				modelBipedMain.bipedEars.rotateAngleX = 0;
+				modelBipedMain.bipedEars.rotateAngleY = 0;
+				modelBipedMain.bipedEars.rotateAngleZ = 0;
+				modelBipedMain.bipedEars.rotationPointX = 0;
+				modelBipedMain.bipedEars.rotationPointY = 0;
+				modelBipedMain.bipedEars.rotationPointZ = 0;
+				modelBipedMain.bipedEars.render(0.0625F);
+
+				GL11.glPopMatrix();
+			}
+		}
+
+		// Cape
 		ResourceLocation cape = TextureUtils.getPlayerCape(celebrity.getProfile());
-		if (cape == null)
-			return;
+		if (cape != null) {
+			bindTexture(cape);
+			GL11.glPushMatrix();
+			GL11.glTranslatef(0.0F, 0.0F, 0.125F);
+			double d3 = celebrity.field_71091_bM + (celebrity.field_71094_bP - celebrity.field_71091_bM) * float0 - (celebrity.prevPosX + (celebrity.posX - celebrity.prevPosX) * float0);
+			double d4 = celebrity.field_71096_bN + (celebrity.field_71095_bQ - celebrity.field_71096_bN) * float0 - (celebrity.prevPosY + (celebrity.posY - celebrity.prevPosY) * float0);
+			double d0 = celebrity.field_71097_bO + (celebrity.field_71085_bR - celebrity.field_71097_bO) * float0 - (celebrity.prevPosZ + (celebrity.posZ - celebrity.prevPosZ) * float0);
+			float f4 = celebrity.prevRenderYawOffset + (celebrity.renderYawOffset - celebrity.prevRenderYawOffset) * float0;
+			double d1 = MathHelper.sin(f4 * (float) Math.PI / 180.0F);
+			double d2 = -MathHelper.cos(f4 * (float) Math.PI / 180.0F);
+			float f5 = (float) d4 * 10.0F;
 
-		bindTexture(cape);
-		GL11.glPushMatrix();
-		GL11.glTranslatef(0.0F, 0.0F, 0.125F);
-		double d3 = celebrity.field_71091_bM + (celebrity.field_71094_bP - celebrity.field_71091_bM) * float0 - (celebrity.prevPosX + (celebrity.posX - celebrity.prevPosX) * float0);
-		double d4 = celebrity.field_71096_bN + (celebrity.field_71095_bQ - celebrity.field_71096_bN) * float0 - (celebrity.prevPosY + (celebrity.posY - celebrity.prevPosY) * float0);
-		double d0 = celebrity.field_71097_bO + (celebrity.field_71085_bR - celebrity.field_71097_bO) * float0 - (celebrity.prevPosZ + (celebrity.posZ - celebrity.prevPosZ) * float0);
-		float f4 = celebrity.prevRenderYawOffset + (celebrity.renderYawOffset - celebrity.prevRenderYawOffset) * float0;
-		double d1 = MathHelper.sin(f4 * (float) Math.PI / 180.0F);
-		double d2 = -MathHelper.cos(f4 * (float) Math.PI / 180.0F);
-		float f5 = (float) d4 * 10.0F;
+			if (f5 < -6.0F)
+				f5 = -6.0F;
 
-		if (f5 < -6.0F)
-			f5 = -6.0F;
+			if (f5 > 32.0F)
+				f5 = 32.0F;
 
-		if (f5 > 32.0F)
-			f5 = 32.0F;
+			float f6 = (float) (d3 * d1 + d0 * d2) * 100.0F;
+			float f7 = (float) (d3 * d2 - d0 * d1) * 100.0F;
 
-		float f6 = (float) (d3 * d1 + d0 * d2) * 100.0F;
-		float f7 = (float) (d3 * d2 - d0 * d1) * 100.0F;
+			if (f6 < 0.0F)
+				f6 = 0.0F;
 
-		if (f6 < 0.0F)
-			f6 = 0.0F;
+			if (celebrity.isSneaking())
+				f5 += 25.0F;
 
-		if (celebrity.isSneaking())
-			f5 += 25.0F;
+			GL11.glRotatef(6.0F + f6 / 2.0F + f5, 1.0F, 0.0F, 0.0F);
+			GL11.glRotatef(f7 / 2.0F, 0.0F, 0.0F, 1.0F);
+			GL11.glRotatef(-f7 / 2.0F, 0.0F, 1.0F, 0.0F);
+			GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
+			modelBipedMain.renderCloak(0.0625F);
+			GL11.glPopMatrix();
+		}
+	}
 
-		GL11.glRotatef(6.0F + f6 / 2.0F + f5, 1.0F, 0.0F, 0.0F);
-		GL11.glRotatef(f7 / 2.0F, 0.0F, 0.0F, 1.0F);
-		GL11.glRotatef(-f7 / 2.0F, 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
-		modelBipedMain.renderCloak(0.0625F);
-		GL11.glPopMatrix();
+	@Override
+	protected void preRenderCallback(EntityLivingBase entity, float float0) {
+		GL11.glScalef(0.9375F, 0.9375F, 0.9375F);
 	}
 }
