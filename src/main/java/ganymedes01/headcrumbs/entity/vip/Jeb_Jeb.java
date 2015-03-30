@@ -21,6 +21,21 @@ public class Jeb_Jeb extends VIPHandler {
 	}
 
 	@Override
+	public String livingSound() {
+		return "mob.sheep.say";
+	}
+
+	@Override
+	protected String hurtSound() {
+		return "mob.sheep.say";
+	}
+
+	@Override
+	protected String deathSound() {
+		return "mob.sheep.say";
+	}
+
+	@Override
 	protected ItemStack getItem(EntityCelebrity entity) {
 		return entity.getRNG().nextFloat() > 0.25F ? new ItemStack(Blocks.double_plant, 1, 5) : new ItemStack(Blocks.red_flower, 1, 2);
 	}
