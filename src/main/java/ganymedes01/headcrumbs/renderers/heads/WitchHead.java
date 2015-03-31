@@ -6,6 +6,8 @@ import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 import org.lwjgl.opengl.GL11;
 
+import com.mojang.authlib.GameProfile;
+
 public class WitchHead extends ModelHead {
 
 	public static final WitchHead INSTANCE = new WitchHead();
@@ -58,7 +60,7 @@ public class WitchHead extends ModelHead {
 	}
 
 	@Override
-	public void preRenderItem(ItemRenderType type) {
+	public void preRenderItem(GameProfile profile, ItemRenderType type) {
 		GL11.glScaled(0.75, 0.75, 0.75);
 		GL11.glTranslated(0, -0.45, 0);
 	}

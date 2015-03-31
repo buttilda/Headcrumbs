@@ -45,7 +45,7 @@ public class ItemSkullRender implements IItemRenderer {
 		}
 
 		if (!isVanilla)
-			SkullTypes.values()[skullType].model().preRenderItem(type);
+			SkullTypes.values()[skullType].model().preRenderItem(profile, type);
 
 		switch (type) {
 			case ENTITY:

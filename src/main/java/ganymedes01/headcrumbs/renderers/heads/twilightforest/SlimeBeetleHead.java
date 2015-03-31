@@ -6,6 +6,8 @@ import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 import org.lwjgl.opengl.GL11;
 
+import com.mojang.authlib.GameProfile;
+
 public class SlimeBeetleHead extends ModelHead {
 
 	public static final SlimeBeetleHead INSTANCE = new SlimeBeetleHead();
@@ -57,7 +59,7 @@ public class SlimeBeetleHead extends ModelHead {
 	}
 
 	@Override
-	public void preRenderItem(ItemRenderType type) {
+	public void preRenderItem(GameProfile profile, ItemRenderType type) {
 		if (type == ItemRenderType.INVENTORY)
 			GL11.glTranslated(0, 0.25, 0.5);
 	}

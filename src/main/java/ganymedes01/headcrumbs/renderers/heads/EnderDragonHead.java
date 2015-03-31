@@ -60,7 +60,7 @@ public class EnderDragonHead extends ModelHead {
 	}
 
 	@Override
-	public void preRenderItem(ItemRenderType type) {
+	public void preRenderItem(GameProfile profile, ItemRenderType type) {
 		GL11.glScaled(0.75, 0.75, 0.75);
 	}
 }

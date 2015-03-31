@@ -6,6 +6,8 @@ import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 import org.lwjgl.opengl.GL11;
 
+import com.mojang.authlib.GameProfile;
+
 public class BansheeHead extends ModelHead {
 
 	public static final BansheeHead INSTANCE = new BansheeHead();
@@ -56,7 +58,7 @@ public class BansheeHead extends ModelHead {
 	}
 
 	@Override
-	public void preRenderItem(ItemRenderType type) {
+	public void preRenderItem(GameProfile profile, ItemRenderType type) {
 		GL11.glScalef(0.75F, 0.75F, 0.75F);
 		GL11.glTranslatef(0, -0.5F, -0.5F);
 	}

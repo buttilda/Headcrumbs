@@ -6,6 +6,8 @@ import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 import org.lwjgl.opengl.GL11;
 
+import com.mojang.authlib.GameProfile;
+
 public class DeerHead extends ModelHead {
 
 	public static final DeerHead INSTANCE = new DeerHead();
@@ -51,7 +53,7 @@ public class DeerHead extends ModelHead {
 	}
 
 	@Override
-	public void preRenderItem(ItemRenderType type) {
+	public void preRenderItem(GameProfile profile, ItemRenderType type) {
 		GL11.glScaled(0.75, 0.75, 0.75);
 		if (type != ItemRenderType.EQUIPPED_FIRST_PERSON)
 			GL11.glTranslated(0, -0.45, 0);

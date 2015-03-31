@@ -2,6 +2,7 @@ package ganymedes01.headcrumbs.renderers.heads;
 
 import ganymedes01.headcrumbs.renderers.ModelHead;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 import org.lwjgl.opengl.GL11;
 
@@ -25,7 +26,7 @@ public class PlayerHead extends ModelHead {
 	}
 
 	@Override
-	public void preRender(GameProfile profile) {
+	public void preRenderItem(GameProfile profile, ItemRenderType type) {
 		if (profile != null && "deadmau5".equals(profile.getName())) {
 			GL11.glScalef(0.85F, 0.85F, 0.85F);
 			GL11.glTranslatef(0, 0.0625F, 0);

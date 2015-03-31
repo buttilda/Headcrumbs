@@ -45,7 +45,7 @@ public class ModelHead extends ModelBase {
 	public void renderSpecial(GameProfile profile, float skullRotation) {
 	}
 
-	public void preRenderItem(ItemRenderType type) {
+	public void preRenderItem(GameProfile profile, ItemRenderType type) {
 	}
 
 	public final ResourceLocation getSecondTexture() {

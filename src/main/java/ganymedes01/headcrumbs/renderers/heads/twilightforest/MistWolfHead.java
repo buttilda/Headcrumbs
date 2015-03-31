@@ -20,7 +20,7 @@ public class MistWolfHead extends WolfHead {
 	}
 
 	@Override
-	public void preRenderItem(ItemRenderType type) {
+	public void preRenderItem(GameProfile profile, ItemRenderType type) {
 		GL11.glTranslated(0, -0.25, 0);
 	}
 }

@@ -6,6 +6,8 @@ import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 import org.lwjgl.opengl.GL11;
 
+import com.mojang.authlib.GameProfile;
+
 public class PinchBeetle extends ModelHead {
 
 	public static final PinchBeetle INSTANCE = new PinchBeetle();
@@ -92,7 +94,7 @@ public class PinchBeetle extends ModelHead {
 	}
 
 	@Override
-	public void preRenderItem(ItemRenderType type) {
+	public void preRenderItem(GameProfile profile, ItemRenderType type) {
 		GL11.glScaled(0.65, 0.65, 0.65);
 		if (type == ItemRenderType.INVENTORY)
 			GL11.glTranslated(0, 0.5, 0.5);
