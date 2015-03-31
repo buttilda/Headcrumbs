@@ -84,7 +84,7 @@ public class Headcrumbs {
 										"spacetoad", "FyberOptic", "Vexatos", "Mineshopper", "AUTOMATIC_MAIDEN", "sanandreasMC", "FatherToast",
 										"Erasmus_Crowley", "Alblaka", "Emoniph", "Nuchaz", "Kobata", "powercrystals", "AbrarSyed", "sdkillen",
 										"Taelnia", "Lycanite", "asiekierka", "GregoriusT", "skyboy", "Flaxbeard", "Emasher", "joshiejack", "Reika",
-										"MatrexsVigil", "ganymedes01", "Pokefenn", "chylex", "vadis365", "Kihira", "jakimfett", "mezz" };
+										"MatrexsVigil", "ganymedes01", "Pokefenn", "chylex", "vadis365", "jakimfett", "mezz" };
 
 	public static String[] youtubers = {	"wyld", "SkythekidRS", "Bashur", "Straymaverick", "SOTMead", "Nerdcubed", "Kleetho", "DanTDM",
 											"Runew0lf", "GiantWaffle", "Bacon_Donut", "Vaygrim", "Heph", "ChimneySwift", "FuriousDestroyer",
@@ -111,7 +111,7 @@ public class Headcrumbs {
 											"CovertJaguar", "cpw11", "dan200", "Eloraam", "florastar", "iChun", "KingLemming", "Krapht",
 											"LexManos", "TheMattaBase", "mDiyo", "Myrathi", "Morvelaira", "Pahimar", "sfPlayer1", "ProfMobius",
 											"Rorax", "Sacheverell", "sirsengir", "Soaryn", "x3n0ph0b3", "XCompWiz", "Vswe", "Vazkii", "ZeldoKavira",
-											"neptunepink", "EddieRuckus", "LordDusk" };
+											"neptunepink", "EddieRuckus", "LordDusk", "Kihira" };
 
 	public static String[] ftb = { "eyamaz", "jadedcat", "slowpoke101", "progwml6" };
 	// @formatter:on
