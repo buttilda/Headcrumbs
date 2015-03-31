@@ -78,7 +78,7 @@ public class Headcrumbs {
 	};
 
 	// @formatter:off
-	public static String[] others = { "deadmau5", "Kaelten", "muted79", "DrummingFish", "Kyrinon", "vasili02", "Jeb_Jeb", "KingPurpleRaptor", "DylanGK" };
+	public static String[] others = { "wiiv", "deadmau5", "Kaelten", "muted79", "DrummingFish", "Kyrinon", "vasili02", "Jeb_Jeb", "KingPurpleRaptor", "DylanGK" };
 
 	public static String[] modders = {	"sinkillerj", "Silentine", "techbrew", "RazzleberryFox", "Binnie567", "Adubbz", "Drullkus", "aidancbrady",
 										"spacetoad", "FyberOptic", "Vexatos", "Mineshopper", "AUTOMATIC_MAIDEN", "sanandreasMC", "FatherToast",
