@@ -84,7 +84,7 @@ public class Headcrumbs {
 										"spacetoad", "FyberOptic", "Vexatos", "Mineshopper", "AUTOMATIC_MAIDEN", "sanandreasMC", "FatherToast",
 										"Erasmus_Crowley", "Alblaka", "Emoniph", "Nuchaz", "Kobata", "powercrystals", "AbrarSyed", "sdkillen",
 										"Taelnia", "Lycanite", "asiekierka", "GregoriusT", "skyboy", "Flaxbeard", "Emasher", "joshiejack", "Reika",
-										"MatrexsVigil", "ganymedes01", "Pokefenn", "chylex", "vadis365", "Kihira", "jakimfett", "mezz" };
+										"MatrexsVigil", "ganymedes01", "Pokefenn", "chylex", "vadis365", "Kihira", "jakimfett", "mezz", "LordDusk" };
 
 	public static String[] youtubers = {	"wyld", "SkythekidRS", "Bashur", "Straymaverick", "SOTMead", "Nerdcubed", "Kleetho", "DanTDM",
 											"Runew0lf", "GiantWaffle", "Bacon_Donut", "Vaygrim", "Heph", "ChimneySwift", "FuriousDestroyer",
