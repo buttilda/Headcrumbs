@@ -12,6 +12,7 @@ import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.UsercacheChecker;
 import ganymedes01.headcrumbs.utils.UsernameUtils;
 import ganymedes01.headcrumbs.utils.helpers.EnderZooHelper;
+import ganymedes01.headcrumbs.utils.helpers.GrimoireOfGaiaHelper;
 import ganymedes01.headcrumbs.utils.helpers.LycanitesHelper;
 import ganymedes01.headcrumbs.utils.helpers.ModHeadDropHelper;
 import ganymedes01.headcrumbs.utils.helpers.NaturaHelper;
@@ -191,6 +192,7 @@ public class Headcrumbs {
 		ModHeadDropHelper.register(new LycanitesHelper());
 		ModHeadDropHelper.register(new EnderZooHelper());
 		ModHeadDropHelper.register(new PrimitiveMobsHelper());
+		ModHeadDropHelper.register(new GrimoireOfGaiaHelper());
 
 		UsercacheChecker.check();
 
