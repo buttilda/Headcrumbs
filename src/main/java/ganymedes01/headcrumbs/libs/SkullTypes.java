@@ -46,6 +46,10 @@ import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.FutakuchiOnnaHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.GryphonHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.HarpyHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.HunterHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.JorogumoHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.MandragoraHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.MermaidHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.MimicHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.BehemothHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.BelphHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.PinkyHead;
@@ -201,7 +205,11 @@ public enum SkullTypes {
 	futakuchiOnna		(Strings.GOG_PREFIX + "Futakuchi_Onna",						"GrimoireOfGaia", 		FutakuchiOnnaHead.INSTANCE),
 	gryphon				(Strings.GOG_PREFIX + "Gryphon",							"GrimoireOfGaia", 		GryphonHead.INSTANCE),
 	harpy				(Strings.GOG_PREFIX + "Harpy01",							"GrimoireOfGaia", 		HarpyHead.INSTANCE),
-	hunter				(Strings.GOG_PREFIX + "Hunter",								"GrimoireOfGaia", 		HunterHead.INSTANCE);
+	hunter				(Strings.GOG_PREFIX + "Hunter",								"GrimoireOfGaia", 		HunterHead.INSTANCE),
+	jorogumo			(Strings.GOG_PREFIX + "Jorogumo",							"GrimoireOfGaia", 		JorogumoHead.INSTANCE),
+	mandragora			(Strings.GOG_PREFIX + "Mandragora",							"GrimoireOfGaia", 		MandragoraHead.INSTANCE),
+	mermaid				(Strings.GOG_PREFIX + "Mermaid",							"GrimoireOfGaia", 		MermaidHead.INSTANCE),
+	mimic				(Strings.GOG_PREFIX + "Mimic",								"GrimoireOfGaia", 		MimicHead.INSTANCE);
 	// @formatter:on
 
 	private final String mod;
