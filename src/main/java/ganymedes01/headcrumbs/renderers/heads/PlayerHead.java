@@ -29,7 +29,7 @@ public class PlayerHead extends ModelHead {
 	public void preRenderItem(GameProfile profile, ItemRenderType type) {
 		if (profile != null && "deadmau5".equals(profile.getName())) {
 			GL11.glScalef(0.85F, 0.85F, 0.85F);
-			GL11.glTranslatef(0, 0.0625F, 0);
+			GL11.glTranslatef(0, -0.2F, 0);
 		}
 	}
 
