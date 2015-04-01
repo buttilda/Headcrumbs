@@ -43,6 +43,7 @@ import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.EnderDragonGirlHead
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.EnderEyeHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.FleshLichHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.FutakuchiOnnaHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.GoGWitchHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.GryphonHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.HarpyHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.HunterHead;
@@ -50,6 +51,29 @@ import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.JorogumoHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.MandragoraHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.MermaidHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.MimicHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.MinotaurHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.MinotaurusHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.NagaHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.NineTailsHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SahuaginHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SatyrHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SelkieHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.ShamanHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SharkoHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SirenHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SludgeGirlHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SphinxHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SprigganHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SuccubusHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SummonButlerHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SwamperHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.TraderHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.ValkyrieHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.VampireHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.WerecatHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.WitherCowHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.YetiHead;
+import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.YukiOnnaHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.BehemothHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.BelphHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.PinkyHead;
@@ -209,7 +233,31 @@ public enum SkullTypes {
 	jorogumo			(Strings.GOG_PREFIX + "Jorogumo",							"GrimoireOfGaia", 		JorogumoHead.INSTANCE),
 	mandragora			(Strings.GOG_PREFIX + "Mandragora",							"GrimoireOfGaia", 		MandragoraHead.INSTANCE),
 	mermaid				(Strings.GOG_PREFIX + "Mermaid",							"GrimoireOfGaia", 		MermaidHead.INSTANCE),
-	mimic				(Strings.GOG_PREFIX + "Mimic",								"GrimoireOfGaia", 		MimicHead.INSTANCE);
+	mimic				(Strings.GOG_PREFIX + "Mimic",								"GrimoireOfGaia", 		MimicHead.INSTANCE),
+	minotaur			(Strings.GOG_PREFIX + "Minotaur",							"GrimoireOfGaia", 		MinotaurHead.INSTANCE),
+	minotaurus			(Strings.GOG_PREFIX + "Minotaurus",							"GrimoireOfGaia", 		MinotaurusHead.INSTANCE),
+	naga				(Strings.GOG_PREFIX + "Naga",								"GrimoireOfGaia", 		NagaHead.INSTANCE),
+	nineTails			(Strings.GOG_PREFIX + "Nine_Tails",							"GrimoireOfGaia", 		NineTailsHead.INSTANCE),
+	sahuagin			(Strings.GOG_PREFIX + "Sahuagin",							"GrimoireOfGaia", 		SahuaginHead.INSTANCE),
+	satyr				(Strings.GOG_PREFIX + "Satyr",								"GrimoireOfGaia", 		SatyrHead.INSTANCE),
+	selkie				(Strings.GOG_PREFIX + "Selkie",								"GrimoireOfGaia", 		SelkieHead.INSTANCE),
+	shaman				(Strings.GOG_PREFIX + "Shaman",								"GrimoireOfGaia", 		ShamanHead.INSTANCE),
+	sharko				(Strings.GOG_PREFIX + "Sharko",								"GrimoireOfGaia", 		SharkoHead.INSTANCE),
+	siren				(Strings.GOG_PREFIX + "Siren",								"GrimoireOfGaia", 		SirenHead.INSTANCE),
+	sludgeGirl			(Strings.GOG_PREFIX + "Sludge_Girl01",						"GrimoireOfGaia", 		SludgeGirlHead.INSTANCE),
+	sphinx				(Strings.GOG_PREFIX + "Sphinx",								"GrimoireOfGaia", 		SphinxHead.INSTANCE),
+	spriggan			(Strings.GOG_PREFIX + "Spriggan",							"GrimoireOfGaia", 		SprigganHead.INSTANCE),
+	succubus			(Strings.GOG_PREFIX + "Succubus",							"GrimoireOfGaia", 		SuccubusHead.INSTANCE),
+	summonButler		(Strings.GOG_PREFIX + "Summon_Butler",						"GrimoireOfGaia", 		SummonButlerHead.INSTANCE),
+	swamper				(Strings.GOG_PREFIX + "Swamper",							"GrimoireOfGaia", 		SwamperHead.INSTANCE),
+	trader				(Strings.GOG_PREFIX + "Trader",								"GrimoireOfGaia", 		TraderHead.INSTANCE),
+	valkyrie			(Strings.GOG_PREFIX + "Valkyrie",							"GrimoireOfGaia", 		ValkyrieHead.INSTANCE),
+	vampire				(Strings.GOG_PREFIX + "Vampire",							"GrimoireOfGaia", 		VampireHead.INSTANCE),
+	werecat				(Strings.GOG_PREFIX + "Werecat01",							"GrimoireOfGaia", 		WerecatHead.INSTANCE),
+	gogWitch			(Strings.GOG_PREFIX + "Witch",								"GrimoireOfGaia", 		GoGWitchHead.INSTANCE),
+	witherCow			(Strings.GOG_PREFIX + "Wither_Cow",							"GrimoireOfGaia", 		WitherCowHead.INSTANCE),
+	yeti				(Strings.GOG_PREFIX + "Yeti",								"GrimoireOfGaia", 		YetiHead.INSTANCE),
+	yukiOnna			(Strings.GOG_PREFIX + "Yuki_Onna",							"GrimoireOfGaia", 		YukiOnnaHead.INSTANCE);
 	// @formatter:on
 
 	private final String mod;

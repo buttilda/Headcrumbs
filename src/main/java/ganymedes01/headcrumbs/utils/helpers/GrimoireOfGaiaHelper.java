@@ -33,6 +33,30 @@ public class GrimoireOfGaiaHelper extends ModHeadDropHelper {
 		typesMap.put("GrimoireOfGaia.Mandragora", SkullTypes.mandragora);
 		typesMap.put("GrimoireOfGaia.Mermaid", SkullTypes.mermaid);
 		typesMap.put("GrimoireOfGaia.Mimic", SkullTypes.mimic);
+		typesMap.put("GrimoireOfGaia.Minotaur", SkullTypes.minotaur);
+		typesMap.put("GrimoireOfGaia.Minotaurus", SkullTypes.minotaurus);
+		typesMap.put("GrimoireOfGaia.Naga", SkullTypes.naga);
+		typesMap.put("GrimoireOfGaia.Nine Tails", SkullTypes.nineTails);
+		typesMap.put("GrimoireOfGaia.Sahuagin", SkullTypes.sahuagin);
+		typesMap.put("GrimoireOfGaia.Satyr", SkullTypes.satyr);
+		typesMap.put("GrimoireOfGaia.Selkie", SkullTypes.selkie);
+		typesMap.put("GrimoireOfGaia.Shaman", SkullTypes.shaman);
+		typesMap.put("GrimoireOfGaia.Sharko", SkullTypes.sharko);
+		typesMap.put("GrimoireOfGaia.Siren", SkullTypes.siren);
+		typesMap.put("GrimoireOfGaia.Sludge Girl", SkullTypes.sludgeGirl);
+		typesMap.put("GrimoireOfGaia.Sphinx", SkullTypes.sphinx);
+		typesMap.put("GrimoireOfGaia.Spriggan", SkullTypes.spriggan);
+		typesMap.put("GrimoireOfGaia.Succubus", SkullTypes.succubus);
+		typesMap.put("GrimoireOfGaia.Summon Butler", SkullTypes.summonButler);
+		typesMap.put("GrimoireOfGaia.Swamper", SkullTypes.swamper);
+		typesMap.put("GrimoireOfGaia.Trader", SkullTypes.trader);
+		typesMap.put("GrimoireOfGaia.Valkyrie", SkullTypes.valkyrie);
+		typesMap.put("GrimoireOfGaia.Vampire", SkullTypes.vampire);
+		typesMap.put("GrimoireOfGaia.Werecat", SkullTypes.werecat);
+		typesMap.put("GrimoireOfGaia.Witch", SkullTypes.gogWitch);
+		typesMap.put("GrimoireOfGaia.Wither Cow", SkullTypes.witherCow);
+		typesMap.put("GrimoireOfGaia.Yeti", SkullTypes.yeti);
+		typesMap.put("GrimoireOfGaia.Yuki Onna", SkullTypes.yukiOnna);
 	}
 
 	@Override
