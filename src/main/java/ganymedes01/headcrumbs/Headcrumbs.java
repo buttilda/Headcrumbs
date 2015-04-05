@@ -79,7 +79,7 @@ public class Headcrumbs {
 	};
 
 	// @formatter:off
-	public static String[] others = { "saukawolf", "Fullapple1991", "Kaisacles", "Cindric", "wiiv", "deadmau5", "Kaelten", "muted79", "DrummingFish", "Kyrinon", "vasili02", "Jeb_Jeb", "KingPurpleRaptor", "DylanGK" };
+	public static String[] others = { "ez", "saukawolf", "Fullapple1991", "Kaisacles", "Cindric", "wiiv", "deadmau5", "muted79", "DrummingFish", "Kyrinon", "vasili02", "Jeb_Jeb", "KingPurpleRaptor", "DylanGK" };
 
 	public static String[] modders = {	"sinkillerj", "Silentine", "techbrew", "RazzleberryFox", "Binnie567", "Adubbz", "Drullkus", "aidancbrady",
 										"spacetoad", "FyberOptic", "Vexatos", "Mineshopper", "AUTOMATIC_MAIDEN", "sanandreasMC", "FatherToast",
@@ -88,22 +88,21 @@ public class Headcrumbs {
 										"MatrexsVigil", "ganymedes01", "Pokefenn", "chylex", "vadis365", "jakimfett", "mezz" };
 
 	public static String[] youtubers = {	"wyld", "SkythekidRS", "Bashur", "Straymaverick", "SOTMead", "Nerdcubed", "Kleetho", "DanTDM",
-											"Runew0lf", "GiantWaffle", "Bacon_Donut", "Vaygrim", "Heph", "ChimneySwift", "FuriousDestroyer",
+											"Runew0lf", "GiantWaffle", "Bacon_Donut", "Heph", "ChimneySwift", "FuriousDestroyer", "paulsoaresjr", 
 											"SuperGirlyGamer", "CyaNideEPiC", "Jarrenitis", "direwolf20", "Sjin", "Xephos", "LividCoffee",
-											"Rythian", "Zoeya", "TheStrippin", "InTheLittleWood", "Quetzz", "Blorph", "xbony2",
-											"CaptainSparklez", "AntVenom", "CavemanFilms", "Fosler", "BevoLJ", "Sips_", "Honeydew",
-											"TobyofBuscus", "corjaantje", "RealThinknoodles", "ZexyZek", "WesWilson" };
+											"Rythian", "Zoeya", "TheStrippin", "InTheLittleWood", "Quetzz", "Blorph", "xbony2", "generikb",
+											"CaptainSparklez", "AntVenom", "CavemanFilms", "Fosler", "BevoLJ", "Sips_", "Honeydew", "thejims",
+											"TobyofBuscus", "corjaantje", "RealThinknoodles", "ZexyZek", "WesWilson", "BdoubleO100" };
 
-	public static String[] mojang = { "Notch", "jeb_", "C418", "Dinnerbone", "Grumm", "Searge_DP", "EvilSeph", "TheMogMiner" };
+	public static String[] mojang = { "Notch", "jeb_", "C418", "Dinnerbone", "Grumm", "Searge_DP", "EvilSeph", "TheMogMiner", "Marc_IRL" };
 
-	public static String[] mindCrack = {	"adlingtont", "AnderZEL", "Arkas", "Aureylian", "AvidyaZEN", "BdoubleO100", "BlameTC", "Coestar",
-											"Docm77", "Etho", "generikb", "Guude", "JSano19", "kurtmac", "SuperMCGamer", "Mhykol", "Millbee",
-											"Nebris", "Pakratt0013", "paulsoaresjr", "PauseUnpause", "Pyro_0", "SethBling", "thejims", "Sevadus",
-											"Vechs_", "VintageBeef", "W92Baj", "Zisteau" };
+	public static String[] mindCrack = {	"adlingtont", "AnderZEL", "Arkas", "Aureylian", "AvidyaZEN", "BlameTC", "Coestar", "Docm77", 
+											"Guude", "JSano19", "kurtmac", "SuperMCGamer", "Mhykol", "Millbee", "Nebris", "OMGchad", "Pakratt0013",
+											"PauseUnpause", "Pyro_0", "SethBling", "Sevadus", "Vechs_", "VintageBeef", "W92Baj", "Zisteau" };
 
 	public static String[] hermitcraft = {	"Biffa2001", "falsesymmetry", "hypnotizd", "iJevin", "impulseSV", "Jessassin", "joehillssays",
 											"Keralis1", "KingDaddyDMAC", "monkeyfarm", "Mumbo", "Pungence", "skyzm", "sl1pg8r", "Tango",
-											"Tinfoilchef", "topmass", "xBCrafted", "Xisuma", "ZombieCleo", "zueljin" };
+											"Tinfoilchef", "topmass", "xBCrafted", "Xisuma", "ZombieCleo", "zueljin", "Etho" };
 
 	public static String[] forgeCraft = {	"Imalune", "ShadwDrgn", "Cojomax99", "Freyjadono", "Vaht", "EcuTruin", "BigBadChris", "boni",
 											"Mr_okushama", "AlgorithmX2", "Mikeemoo", "_CrazyP_", "MysteriousAges", "MineMaarten", "nekosune",
@@ -112,7 +111,7 @@ public class Headcrumbs {
 											"CovertJaguar", "cpw11", "dan200", "Eloraam", "florastar", "iChun", "KingLemming", "Krapht",
 											"LexManos", "TheMattaBase", "mDiyo", "Myrathi", "Morvelaira", "Pahimar", "sfPlayer1", "ProfMobius",
 											"Rorax", "Sacheverell", "sirsengir", "Soaryn", "x3n0ph0b3", "XCompWiz", "Vswe", "Vazkii", "ZeldoKavira",
-											"neptunepink", "EddieRuckus", "LordDusk", "Kihira" };
+											"neptunepink", "EddieRuckus", "LordDusk", "Kihira", "Vaygrim", "Kaelten" };
 
 	public static String[] ftb = { "eyamaz", "jadedcat", "slowpoke101", "progwml6" };
 	// @formatter:on
