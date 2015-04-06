@@ -63,7 +63,8 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 		super(world);
 		getNavigator().setBreakDoors(true);
 		tasks.addTask(0, new EntityAISwimming(this));
-		tasks.addTask(1, new EntityAIOpenDoor(this, true));
+		if (Headcrumbs.celebrityOpensDoors && world.difficultySetting == EnumDifficulty.HARD)
+			tasks.addTask(1, new EntityAIOpenDoor(this, true));
 		tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
 		tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
 		tasks.addTask(6, new EntityAIMoveThroughVillage(this, 1.0D, false));

@@ -148,7 +148,7 @@ public class Headcrumbs {
 	public static int[] blacklistedDimensions = { 1, -1 };
 	public static String celebrityNamePrefix = "";
 
-	public static boolean enableCelebrityMobs = true;
+	public static boolean enableCelebrityMobs = true, celebrityOpensDoors = true;
 	public static int celebrityProb = 80, celebrityMin = 4, celebrityMax = 4, celebrityID = 89;
 
 	public static Item ganysEndSkull = null;
