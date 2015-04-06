@@ -17,7 +17,6 @@ public class Etho extends VIPHandler {
 	public void onSpawn(EntityCelebrity entity) {
 		ItemStack axe = new ItemStack(Items.iron_axe);
 		axe.setStackDisplayName("Treetho's Choppa");
-
 		entity.setCurrentItemOrArmor(0, axe);
 	}
 }
