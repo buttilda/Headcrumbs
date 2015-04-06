@@ -24,7 +24,7 @@ public class Myrathi extends VIPHandler {
 	protected ItemStack getItem(EntityCelebrity entity) {
 		ItemStack trousers = new ItemStack(Items.leather_leggings);
 		trousers.setItemDamage(1 + entity.getRNG().nextInt(Items.leather_leggings.getMaxDamage()));
-		Items.leather_leggings.func_82813_b(trousers, new Color(entity.getRNG().nextInt(256), entity.getRNG().nextInt(256), entity.getRNG().nextInt(256)).getRGB());
+		Items.leather_leggings.func_82813_b(trousers, new Color(entity.getRNG().nextInt(256), entity.getRNG().nextInt(256), entity.getRNG().nextInt(256), 0).getRGB());
 		return trousers;
 	}
 }
