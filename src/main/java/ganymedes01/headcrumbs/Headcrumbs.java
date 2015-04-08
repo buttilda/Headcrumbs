@@ -125,11 +125,11 @@ public class Headcrumbs {
 		"CovertJaguar", "cpw11", "dan200", "Eloraam", "florastar", "iChun", "KingLemming", "Krapht", "peterixxx",
 		"LexManos", "TheMattaBase", "mDiyo", "Myrathi", "Morvelaira", "Pahimar", "sfPlayer1", "ProfMobius",
 		"Rorax", "Sacheverell", "sirsengir", "Soaryn", "x3n0ph0b3", "XCompWiz", "Vswe", "Vazkii", "ZeldoKavira",
-		"neptunepink", "EddieRuckus", "LordDusk", "Kihira", "Vaygrim", "Kaelten", "MatrexsVigil", "tfox83"
+		"neptunepink", "EddieRuckus", "LordDusk", "Kihira", "Vaygrim", "Kaelten", "MatrexsVigil", "tfox83", "jadedcat"
 	};
 
 	public static String[] ftb = {
-		"eyamaz", "jadedcat", "slowpoke101", "progwml6"
+		"eyamaz", "slowpoke101", "progwml6"
 	};
 	// @formatter:on
 
