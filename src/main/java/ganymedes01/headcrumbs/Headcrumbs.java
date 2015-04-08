@@ -131,6 +131,10 @@ public class Headcrumbs {
 	public static String[] ftb = {
 		"eyamaz", "slowpoke101", "progwml6"
 	};
+
+	public static String[] technic = {
+		"GenPage", "Slink730", "sct", "KakerMix"
+	};
 	// @formatter:on
 
 	public static boolean enableVanillaHeadsDrop = true;
@@ -243,6 +247,7 @@ public class Headcrumbs {
 		names.addAll(Arrays.asList(hermitcraft));
 		names.addAll(Arrays.asList(forgeCraft));
 		names.addAll(Arrays.asList(ftb));
+		names.addAll(Arrays.asList(technic));
 		return names;
 	}
 }
