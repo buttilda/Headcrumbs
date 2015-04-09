@@ -98,7 +98,7 @@ public class Headcrumbs {
 		"SuperGirlyGamer", "CyaNideEPiC", "Jarrenitis", "direwolf20", "Sjin", "Xephos", "LividCoffee",
 		"Rythian", "Zoeya", "TheStrippin", "InTheLittleWood", "Quetzz", "Blorph", "xbony2", "generikb",
 		"CaptainSparklez", "AntVenom", "CavemanFilms", "Fosler", "BevoLJ", "Sips_", "Honeydew", "thejims",
-		"TobyofBuscus", "corjaantje", "RealThinknoodles", "ZexyZek", "WesWilson", "BdoubleO100"
+		"TobyofBuscus", "corjaantje", "RealThinknoodles", "ZexyZek", "WesWilson", "BdoubleO100", "tedyhere"
 	};
 
 	public static String[] mojang = {
@@ -133,7 +133,7 @@ public class Headcrumbs {
 	};
 
 	public static String[] technic = {
-		"GenPage", "Slink730", "sct", "KakerMix"
+		"GenPage", "Slink730", "sct", "KakerMix", "Skuli_Steinulf"
 	};
 	// @formatter:on
 
