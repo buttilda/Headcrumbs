@@ -133,7 +133,7 @@ public class Headcrumbs {
 	};
 
 	public static String[] technic = {
-		"GenPage", "Slink730", "sct", "KakerMix", "Skuli_Steinulf"
+		"GenPage", "Slink730", "sct", "KakerMix", "Skuli_Steinulf", "Talonos"
 	};
 	// @formatter:on
 
