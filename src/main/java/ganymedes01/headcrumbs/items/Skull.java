@@ -95,7 +95,7 @@ public class Skull extends ItemSkull {
 			return false;
 		else if (!ModBlocks.blockSkull.canPlaceBlockAt(world, x, y, z))
 			return false;
-		else if (!world.isRemote) {
+		else {
 			world.setBlock(x, y, z, ModBlocks.blockSkull, side, 2);
 
 			int angle = 0;
