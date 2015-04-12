@@ -157,4 +157,9 @@ public class VanillaHelper extends HeadDropHelper {
 	protected boolean isEnabled() {
 		return true;
 	}
+
+	@Override
+	public int compareTo(HeadDropHelper obj) {
+		return 1;
+	}
 }
