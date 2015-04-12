@@ -18,7 +18,6 @@ public abstract class ModHeadDropHelper {
 	public static final List<ModHeadDropHelper> helpers = new LinkedList<ModHeadDropHelper>();
 
 	public static ItemStack getHead(Entity entity) {
-		System.out.println(EntityList.getEntityString(entity));
 		for (ModHeadDropHelper helper : helpers)
 			if (helper.isEnabled()) {
 				ItemStack head = helper.getHeadForEntity(entity);
