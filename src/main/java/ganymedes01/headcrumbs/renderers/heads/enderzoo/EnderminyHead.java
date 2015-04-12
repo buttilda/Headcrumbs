@@ -1,10 +1,9 @@
 package ganymedes01.headcrumbs.renderers.heads.enderzoo;
 
 import ganymedes01.headcrumbs.libs.Strings;
+import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import ganymedes01.headcrumbs.renderers.heads.EndermanHead;
 import ganymedes01.headcrumbs.utils.Utils;
-
-import org.lwjgl.opengl.GL11;
 
 import com.mojang.authlib.GameProfile;
 
@@ -23,6 +22,6 @@ public class EnderminyHead extends EndermanHead {
 
 	@Override
 	public void preRender(GameProfile profile) {
-		GL11.glScalef(1, 0.5F, 1);
+		OpenGLHelper.scale(1, 0.5F, 1);
 	}
 }

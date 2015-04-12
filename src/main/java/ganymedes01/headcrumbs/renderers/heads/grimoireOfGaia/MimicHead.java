@@ -1,9 +1,8 @@
 package ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia;
 
 import ganymedes01.headcrumbs.renderers.ModelHead;
+import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import net.minecraft.client.model.ModelRenderer;
-
-import org.lwjgl.opengl.GL11;
 
 import com.mojang.authlib.GameProfile;
 
@@ -16,7 +15,7 @@ public class MimicHead extends ModelHead {
 
 	@Override
 	public void preRender(GameProfile profile) {
-		GL11.glScaled(0.54F, 0.54F, 0.54F);
+		OpenGLHelper.scale(0.54F, 0.54F, 0.54F);
 	}
 
 	@Override

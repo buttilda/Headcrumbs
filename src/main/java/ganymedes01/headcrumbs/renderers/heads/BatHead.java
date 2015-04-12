@@ -1,9 +1,8 @@
 package ganymedes01.headcrumbs.renderers.heads;
 
 import ganymedes01.headcrumbs.renderers.ModelHead;
+import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import net.minecraft.client.model.ModelRenderer;
-
-import org.lwjgl.opengl.GL11;
 
 import com.mojang.authlib.GameProfile;
 
@@ -34,7 +33,7 @@ public class BatHead extends ModelHead {
 
 	@Override
 	public void preRender(GameProfile profile) {
-		GL11.glScaled(0.5, 0.5, 0.5);
+		OpenGLHelper.scale(0.5, 0.5, 0.5);
 	}
 
 	@Override

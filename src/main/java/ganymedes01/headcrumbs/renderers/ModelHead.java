@@ -96,15 +96,15 @@ public class ModelHead extends ModelBase {
 	public void renderLitUp(float skullRotation) {
 		boolean isAlphaEnabled = GL11.glIsEnabled(GL11.GL_ALPHA_TEST);
 
-		GL11.glEnable(GL11.GL_BLEND);
+		OpenGLHelper.enableBlend();
 		if (isAlphaEnabled)
 			GL11.glDisable(GL11.GL_ALPHA_TEST);
-		GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
-		GL11.glDepthMask(true);
+		OpenGLHelper.blendFunc(GL11.GL_ONE, GL11.GL_ONE);
+		OpenGLHelper.depthMask(true);
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 61680, 0);
 		render(skullRotation);
-		GL11.glDisable(GL11.GL_BLEND);
+		OpenGLHelper.disableBlend();
 		if (isAlphaEnabled)
-			GL11.glEnable(GL11.GL_ALPHA_TEST);
+			OpenGLHelper.enableAlpha();
 	}
 }

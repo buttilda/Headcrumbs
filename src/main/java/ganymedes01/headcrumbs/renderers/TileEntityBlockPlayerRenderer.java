@@ -11,8 +11,6 @@ import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import org.lwjgl.opengl.GL11;
-
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 
@@ -41,15 +39,15 @@ public class TileEntityBlockPlayerRenderer extends TileEntityBlockSkullRenderer 
 		RenderManager.renderPosY = player.posY = player.lastTickPosY = player.prevPosY = player.field_71096_bN = player.field_71095_bQ = y;
 		RenderManager.renderPosZ = player.posZ = player.lastTickPosZ = player.prevPosZ = player.field_71097_bO = player.field_71085_bR = z;
 
-		GL11.glPushMatrix();
-		GL11.glTranslated(x + 0.5, y + 0.63, z + 0.5);
-		GL11.glScalef(1.0F, -1.0F, -1.0F);
-		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
-		GL11.glRotatef(adjustRotation(tilePlayer.getBlockMetadata() & 7, -tilePlayer.func_145906_b() * 360 / 16.0F), 0, 1, 0);
+		OpenGLHelper.pushMatrix();
+		OpenGLHelper.translate(x + 0.5, y + 0.63, z + 0.5);
+		OpenGLHelper.scale(1.0F, -1.0F, -1.0F);
+		OpenGLHelper.rotate(180.0F, 0.0F, 0.0F, 1.0F);
+		OpenGLHelper.rotate(adjustRotation(tilePlayer.getBlockMetadata() & 7, -tilePlayer.func_145906_b() * 360 / 16.0F), 0, 1, 0);
 
 		RenderManager.instance.renderEntitySimple(player, 0);
 
-		GL11.glPopMatrix();
+		OpenGLHelper.popMatrix();
 	}
 
 	public static class PlayerForRendering extends AbstractClientPlayer {

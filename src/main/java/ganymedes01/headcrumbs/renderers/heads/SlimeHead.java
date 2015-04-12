@@ -1,6 +1,7 @@
 package ganymedes01.headcrumbs.renderers.heads;
 
 import ganymedes01.headcrumbs.renderers.ModelHead;
+import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import net.minecraft.client.model.ModelRenderer;
 
 import org.lwjgl.opengl.GL11;
@@ -36,8 +37,8 @@ public class SlimeHead extends ModelHead {
 
 	@Override
 	public void preRender(GameProfile profile) {
-		GL11.glEnable(GL11.GL_NORMALIZE);
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		OpenGLHelper.enableNormalise();
+		OpenGLHelper.enableBlend();
+		OpenGLHelper.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 	}
 }

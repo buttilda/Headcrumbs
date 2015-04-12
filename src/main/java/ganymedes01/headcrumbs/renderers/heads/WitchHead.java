@@ -1,10 +1,9 @@
 package ganymedes01.headcrumbs.renderers.heads;
 
 import ganymedes01.headcrumbs.renderers.ModelHead;
+import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
-
-import org.lwjgl.opengl.GL11;
 
 import com.mojang.authlib.GameProfile;
 
@@ -61,7 +60,7 @@ public class WitchHead extends ModelHead {
 
 	@Override
 	public void preRenderItem(GameProfile profile, ItemRenderType type) {
-		GL11.glScaled(0.75, 0.75, 0.75);
-		GL11.glTranslated(0, -0.45, 0);
+		OpenGLHelper.scale(0.75, 0.75, 0.75);
+		OpenGLHelper.translate(0, -0.45, 0);
 	}
 }

@@ -10,9 +10,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Items;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -52,12 +49,12 @@ public class RenderCelebrity extends RenderBiped {
 			bindTexture(skin);
 
 			for (int i = 0; i < 2; i++) {
-				GL11.glPushMatrix();
+				OpenGLHelper.pushMatrix();
 				modelBipedMain.bipedHead.postRender(0.0625F);
-				GL11.glTranslatef(0.375F * (i * 2 - 1), 0.0F, 0.0F);
-				GL11.glTranslatef(0.0F, -0.375F, 0.0F);
+				OpenGLHelper.translate(0.375F * (i * 2 - 1), 0.0F, 0.0F);
+				OpenGLHelper.translate(0.0F, -0.375F, 0.0F);
 				float scale = 4F / 3F;
-				GL11.glScalef(scale, scale, scale);
+				OpenGLHelper.scale(scale, scale, scale);
 
 				modelBipedMain.bipedEars.rotateAngleX = 0;
 				modelBipedMain.bipedEars.rotateAngleY = 0;
@@ -67,7 +64,7 @@ public class RenderCelebrity extends RenderBiped {
 				modelBipedMain.bipedEars.rotationPointZ = 0;
 				modelBipedMain.bipedEars.render(0.0625F);
 
-				GL11.glPopMatrix();
+				OpenGLHelper.popMatrix();
 			}
 		}
 
@@ -75,8 +72,8 @@ public class RenderCelebrity extends RenderBiped {
 		ResourceLocation cape = TextureUtils.getPlayerCape(celebrity.getProfile());
 		if (cape != null) {
 			bindTexture(cape);
-			GL11.glPushMatrix();
-			GL11.glTranslatef(0.0F, 0.0F, 0.125F);
+			OpenGLHelper.pushMatrix();
+			OpenGLHelper.translate(0.0F, 0.0F, 0.125F);
 			double d3 = celebrity.field_71091_bM + (celebrity.field_71094_bP - celebrity.field_71091_bM) * float0 - (celebrity.prevPosX + (celebrity.posX - celebrity.prevPosX) * float0);
 			double d4 = celebrity.field_71096_bN + (celebrity.field_71095_bQ - celebrity.field_71096_bN) * float0 - (celebrity.prevPosY + (celebrity.posY - celebrity.prevPosY) * float0);
 			double d0 = celebrity.field_71097_bO + (celebrity.field_71085_bR - celebrity.field_71097_bO) * float0 - (celebrity.prevPosZ + (celebrity.posZ - celebrity.prevPosZ) * float0);
@@ -100,17 +97,17 @@ public class RenderCelebrity extends RenderBiped {
 			if (celebrity.isSneaking())
 				f5 += 25.0F;
 
-			GL11.glRotatef(6.0F + f6 / 2.0F + f5, 1.0F, 0.0F, 0.0F);
-			GL11.glRotatef(f7 / 2.0F, 0.0F, 0.0F, 1.0F);
-			GL11.glRotatef(-f7 / 2.0F, 0.0F, 1.0F, 0.0F);
-			GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
+			OpenGLHelper.rotate(6.0F + f6 / 2.0F + f5, 1.0F, 0.0F, 0.0F);
+			OpenGLHelper.rotate(f7 / 2.0F, 0.0F, 0.0F, 1.0F);
+			OpenGLHelper.rotate(-f7 / 2.0F, 0.0F, 1.0F, 0.0F);
+			OpenGLHelper.rotate(180.0F, 0.0F, 1.0F, 0.0F);
 			modelBipedMain.renderCloak(0.0625F);
-			GL11.glPopMatrix();
+			OpenGLHelper.popMatrix();
 		}
 	}
 
 	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float float0) {
-		GL11.glScalef(0.9375F, 0.9375F, 0.9375F);
+		OpenGLHelper.scale(0.9375F, 0.9375F, 0.9375F);
 	}
 }

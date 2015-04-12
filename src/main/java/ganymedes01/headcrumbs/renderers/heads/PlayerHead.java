@@ -1,10 +1,9 @@
 package ganymedes01.headcrumbs.renderers.heads;
 
 import ganymedes01.headcrumbs.renderers.ModelHead;
+import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
-
-import org.lwjgl.opengl.GL11;
 
 import com.mojang.authlib.GameProfile;
 
@@ -28,8 +27,8 @@ public class PlayerHead extends ModelHead {
 	@Override
 	public void preRenderItem(GameProfile profile, ItemRenderType type) {
 		if (profile != null && "deadmau5".equals(profile.getName())) {
-			GL11.glScalef(0.85F, 0.85F, 0.85F);
-			GL11.glTranslatef(0, -0.2F, 0);
+			OpenGLHelper.scale(0.85F, 0.85F, 0.85F);
+			OpenGLHelper.translate(0, -0.2F, 0);
 		}
 	}
 
@@ -39,7 +38,7 @@ public class PlayerHead extends ModelHead {
 			setRotation(earLeft, head.rotateAngleX, head.rotateAngleY, head.rotateAngleZ);
 			setRotation(earRight, head.rotateAngleX, head.rotateAngleY, head.rotateAngleZ);
 
-			GL11.glScalef(4F / 3F, 4F / 3F, 4F / 3F);
+			OpenGLHelper.scale(4F / 3F, 4F / 3F, 4F / 3F);
 			earLeft.render(0.0625F);
 			earRight.render(0.0625F);
 		}

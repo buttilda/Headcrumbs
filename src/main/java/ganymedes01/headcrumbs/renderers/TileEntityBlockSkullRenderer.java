@@ -12,7 +12,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 import com.mojang.authlib.GameProfile;
 
@@ -67,41 +66,41 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 		ModelBase model = LycanitesHelperClient.getModel(profile.getName());
 		ResourceLocation tex = type.getTexture(profile);
 		if (model != null && tex != null) {
-			GL11.glPushMatrix();
-			GL11.glDisable(GL11.GL_CULL_FACE);
-			GL11.glEnable(GL11.GL_ALPHA_TEST);
+			OpenGLHelper.pushMatrix();
+			OpenGLHelper.disableCull();
+			OpenGLHelper.enableAlpha();
 
 			translateHead(x, y + 1.75F, z, meta);
 			skullRotation = adjustRotation(meta, skullRotation);
-			GL11.glScaled(-1, -1, 1);
-			GL11.glRotated(skullRotation, 0, 1, 0);
+			OpenGLHelper.scale(-1, -1, 1);
+			OpenGLHelper.rotate(skullRotation, 0, 1, 0);
 			bindTexture(tex);
 			model.render(getEntity(), 0, 0, 0, 0, 0, -1F);
 
-			GL11.glPopMatrix();
+			OpenGLHelper.popMatrix();
 		}
 	}
 
 	private void renderNormal(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile profile) {
 		bindTexture(type.getTexture(profile));
 
-		GL11.glPushMatrix();
-		GL11.glDisable(GL11.GL_CULL_FACE);
-		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-		GL11.glEnable(GL11.GL_ALPHA_TEST);
+		OpenGLHelper.pushMatrix();
+		OpenGLHelper.disableCull();
+		OpenGLHelper.enableRescaleNormal();
+		OpenGLHelper.enableAlpha();
 
 		translateHead(x, y, z, meta);
 		skullRotation = adjustRotation(meta, skullRotation);
 
-		GL11.glScalef(-1.0F, -1.0F, 1.0F);
+		OpenGLHelper.scale(-1.0F, -1.0F, 1.0F);
 		model = type.model();
 		model.preRender(profile);
 		model.render(skullRotation);
 		renderSpecial(profile, skullRotation);
 
 		if (GL11.glIsEnabled(GL11.GL_BLEND))
-			GL11.glDisable(GL11.GL_BLEND);
-		GL11.glPopMatrix();
+			OpenGLHelper.enableBlend();
+		OpenGLHelper.popMatrix();
 	}
 
 	private void renderSpecial(GameProfile profile, float skullRotation) {
@@ -115,19 +114,19 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 	private void translateHead(float x, float y, float z, int meta) {
 		switch (meta) {
 			case 1:
-				GL11.glTranslatef(x + 0.5F, y, z + 0.5F);
+				OpenGLHelper.translate(x + 0.5F, y, z + 0.5F);
 				break;
 			case 2:
-				GL11.glTranslatef(x + 0.5F, y + 0.25F, z + 0.74F);
+				OpenGLHelper.translate(x + 0.5F, y + 0.25F, z + 0.74F);
 				break;
 			case 3:
-				GL11.glTranslatef(x + 0.5F, y + 0.25F, z + 0.26F);
+				OpenGLHelper.translate(x + 0.5F, y + 0.25F, z + 0.26F);
 				break;
 			case 4:
-				GL11.glTranslatef(x + 0.74F, y + 0.25F, z + 0.5F);
+				OpenGLHelper.translate(x + 0.74F, y + 0.25F, z + 0.5F);
 				break;
 			default:
-				GL11.glTranslatef(x + 0.26F, y + 0.25F, z + 0.5F);
+				OpenGLHelper.translate(x + 0.26F, y + 0.25F, z + 0.5F);
 				break;
 		}
 	}

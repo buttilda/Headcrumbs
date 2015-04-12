@@ -1,10 +1,9 @@
 package ganymedes01.headcrumbs.renderers.heads.twilightforest;
 
 import ganymedes01.headcrumbs.renderers.ModelHead;
+import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
-
-import org.lwjgl.opengl.GL11;
 
 import com.mojang.authlib.GameProfile;
 
@@ -61,6 +60,6 @@ public class SlimeBeetleHead extends ModelHead {
 	@Override
 	public void preRenderItem(GameProfile profile, ItemRenderType type) {
 		if (type == ItemRenderType.INVENTORY)
-			GL11.glTranslated(0, 0.25, 0.5);
+			OpenGLHelper.translate(0, 0.25, 0.5);
 	}
 }

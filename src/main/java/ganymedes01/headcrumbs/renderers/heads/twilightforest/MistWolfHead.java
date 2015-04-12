@@ -1,9 +1,8 @@
 package ganymedes01.headcrumbs.renderers.heads.twilightforest;
 
+import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import ganymedes01.headcrumbs.renderers.heads.WolfHead;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
-
-import org.lwjgl.opengl.GL11;
 
 import com.mojang.authlib.GameProfile;
 
@@ -16,11 +15,11 @@ public class MistWolfHead extends WolfHead {
 
 	@Override
 	public void preRender(GameProfile profile) {
-		GL11.glScaled(1.5, 1.5, 1.5);
+		OpenGLHelper.scale(1.5, 1.5, 1.5);
 	}
 
 	@Override
 	public void preRenderItem(GameProfile profile, ItemRenderType type) {
-		GL11.glTranslated(0, -0.25, 0);
+		OpenGLHelper.translate(0, -0.25, 0);
 	}
 }
