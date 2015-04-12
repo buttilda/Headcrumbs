@@ -81,6 +81,7 @@ import ganymedes01.headcrumbs.renderers.heads.natura.ImpHead;
 import ganymedes01.headcrumbs.renderers.heads.primitivemobs.JuggernautHead;
 import ganymedes01.headcrumbs.renderers.heads.primitivemobs.LilyLurkerHead;
 import ganymedes01.headcrumbs.renderers.heads.primitivemobs.SheepmanHead;
+import ganymedes01.headcrumbs.renderers.heads.thaumcraft.EldrichCrabHead;
 import ganymedes01.headcrumbs.renderers.heads.thaumcraft.EldrichGuardianHead;
 import ganymedes01.headcrumbs.renderers.heads.thaumcraft.PechHead;
 import ganymedes01.headcrumbs.renderers.heads.thaumcraft.TaintedSheepHead;
@@ -257,7 +258,9 @@ public enum SkullTypes {
 	gogWitch			(Strings.GOG_PREFIX + "Witch",								"GrimoireOfGaia", 		GoGWitchHead.INSTANCE),
 	witherCow			(Strings.GOG_PREFIX + "Wither_Cow",							"GrimoireOfGaia", 		WitherCowHead.INSTANCE),
 	yeti				(Strings.GOG_PREFIX + "Yeti",								"GrimoireOfGaia", 		YetiHead.INSTANCE),
-	yukiOnna			(Strings.GOG_PREFIX + "Yuki_Onna",							"GrimoireOfGaia", 		YukiOnnaHead.INSTANCE);
+	yukiOnna			(Strings.GOG_PREFIX + "Yuki_Onna",							"GrimoireOfGaia", 		YukiOnnaHead.INSTANCE),
+	cultist				(Strings.TC_PREFIX + "cultist", 							"Thaumcraft", 			PlayerHead.INSTANCE),
+	eldritchCrab		(Strings.TC_PREFIX + "crab",			 					"Thaumcraft", 			EldrichCrabHead.INSTANCE);
 	// @formatter:on
 
 	private final String mod;

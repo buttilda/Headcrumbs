@@ -22,6 +22,9 @@ public class ThaumcraftHelper extends HeadDropHelper {
 		typesMap.put("Thaumcraft.TaintedSheep", SkullTypes.taintedSheep);
 		typesMap.put("Thaumcraft.Pech", SkullTypes.pech);
 		typesMap.put("Thaumcraft.EldritchGuardian", SkullTypes.eldritchGuardian);
+		typesMap.put("Thaumcraft.CultistKnight", SkullTypes.cultist);
+		typesMap.put("Thaumcraft.CultistCleric", SkullTypes.cultist);
+		typesMap.put("Thaumcraft.EldritchCrab", SkullTypes.eldritchCrab);
 	}
 
 	@Override
