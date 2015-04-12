@@ -13,8 +13,8 @@ import ganymedes01.headcrumbs.utils.UsercacheChecker;
 import ganymedes01.headcrumbs.utils.UsernameUtils;
 import ganymedes01.headcrumbs.utils.helpers.EnderZooHelper;
 import ganymedes01.headcrumbs.utils.helpers.GrimoireOfGaiaHelper;
-import ganymedes01.headcrumbs.utils.helpers.LycanitesHelper;
 import ganymedes01.headcrumbs.utils.helpers.HeadDropHelper;
+import ganymedes01.headcrumbs.utils.helpers.LycanitesHelper;
 import ganymedes01.headcrumbs.utils.helpers.NaturaHelper;
 import ganymedes01.headcrumbs.utils.helpers.PrimitiveMobsHelper;
 import ganymedes01.headcrumbs.utils.helpers.TEHelper;
@@ -143,7 +143,7 @@ public class Headcrumbs {
 	public static int headDropChance = 200;
 	public static boolean addPlayerHeadsAsDungeonLoot = true;
 	public static boolean enableMobsAndAnimalHeads = true;
-	public static int headsDungeonLootMaxWeight = 3;
+	public static int headsDungeonLootMaxWeight = 1;
 	public static boolean hidePlayerHeadsFromTab = false;
 	public static boolean enableChargedCreeperKills = true;
 	public static boolean enablePlayerStatues = true;
