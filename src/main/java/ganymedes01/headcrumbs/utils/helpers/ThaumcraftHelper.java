@@ -3,46 +3,35 @@ package ganymedes01.headcrumbs.utils.helpers;
 import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.item.ItemStack;
 import thaumcraft.common.entities.monster.EntityThaumicSlime;
 
-public class ThaumcraftHelper extends ModHeadDropHelper {
+public class ThaumcraftHelper extends HeadDropHelper {
 
 	public ThaumcraftHelper() {
 		super("Thaumcraft");
 
-		typesMap.put("BrainyZombie", SkullTypes.angryZombie);
-		typesMap.put("GiantBrainyZombie", SkullTypes.angryZombie);
-		typesMap.put("Firebat", SkullTypes.fireBat);
-		typesMap.put("TaintedChicken", SkullTypes.taintedChicken);
-		typesMap.put("TaintedCow", SkullTypes.taintedCow);
-		typesMap.put("TaintedPig", SkullTypes.taintedPig);
-		typesMap.put("TaintedCreeper", SkullTypes.taintedCreeper);
-		typesMap.put("TaintedVillager", SkullTypes.taintedVillager);
-		typesMap.put("TaintedSheep", SkullTypes.taintedSheep);
-		typesMap.put("Pech", SkullTypes.pech);
-		typesMap.put("EldritchGuardian", SkullTypes.eldritchGuardian);
+		typesMap.put("Thaumcraft.BrainyZombie", SkullTypes.angryZombie);
+		typesMap.put("Thaumcraft.GiantBrainyZombie", SkullTypes.angryZombie);
+		typesMap.put("Thaumcraft.Firebat", SkullTypes.fireBat);
+		typesMap.put("Thaumcraft.TaintedChicken", SkullTypes.taintedChicken);
+		typesMap.put("Thaumcraft.TaintedCow", SkullTypes.taintedCow);
+		typesMap.put("Thaumcraft.TaintedPig", SkullTypes.taintedPig);
+		typesMap.put("Thaumcraft.TaintedCreeper", SkullTypes.taintedCreeper);
+		typesMap.put("Thaumcraft.TaintedVillager", SkullTypes.taintedVillager);
+		typesMap.put("Thaumcraft.TaintedSheep", SkullTypes.taintedSheep);
+		typesMap.put("Thaumcraft.Pech", SkullTypes.pech);
+		typesMap.put("Thaumcraft.EldritchGuardian", SkullTypes.eldritchGuardian);
 	}
 
 	@Override
 	protected ItemStack getHeadForEntity(Entity entity) {
-		String mobName = EntityList.getEntityString(entity);
+		ItemStack head = super.getHeadForEntity(entity);
+		if (head != null)
+			return head;
 
-		if (mobName == null)
-			return null;
-		int dot = mobName.indexOf('.') + 1;
-		if (dot >= 0) {
-			mobName = mobName.substring(dot);
-
-			if (mobName.equals("ThaumSlime") && getThaumicSlimeSize(entity) == 1)
-				return new ItemStack(ModItems.skull, 1, SkullTypes.thaumicSlime.ordinal());
-			else {
-				SkullTypes type = typesMap.get(mobName);
-				if (type != null)
-					return new ItemStack(ModItems.skull, 1, type.ordinal());
-			}
-		}
+		if (getThaumicSlimeSize(entity) == 1)
+			return new ItemStack(ModItems.skull, 1, SkullTypes.thaumicSlime.ordinal());
 
 		return null;
 	}
@@ -50,6 +39,6 @@ public class ThaumcraftHelper extends ModHeadDropHelper {
 	private static int getThaumicSlimeSize(Entity entity) {
 		if (entity instanceof EntityThaumicSlime)
 			return ((EntityThaumicSlime) entity).getSlimeSize();
-		return 0;
+		return -1;
 	}
 }

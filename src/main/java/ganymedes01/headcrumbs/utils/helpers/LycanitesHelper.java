@@ -14,7 +14,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.item.ItemStack;
 
-public class LycanitesHelper extends ModHeadDropHelper {
+public class LycanitesHelper extends HeadDropHelper {
 
 	public static final List<String> blacklist = Arrays.asList("pinky", "behemoth", "belph");
 	public static final List<String> prefixes = Arrays.asList("arcticmobs", "demonmobs", "desertmobs", "forestmobs", "freshwatermobs", "infernomobs", "junglemobs", "mountainmobs", "plainsmobs", "saltwatermobs", "swampmobs");

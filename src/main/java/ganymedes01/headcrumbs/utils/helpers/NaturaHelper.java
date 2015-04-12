@@ -2,7 +2,7 @@ package ganymedes01.headcrumbs.utils.helpers;
 
 import ganymedes01.headcrumbs.libs.SkullTypes;
 
-public class NaturaHelper extends ModHeadDropHelper {
+public class NaturaHelper extends HeadDropHelper {
 
 	public NaturaHelper() {
 		super("Natura");

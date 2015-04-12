@@ -2,7 +2,7 @@ package ganymedes01.headcrumbs.utils.helpers;
 
 import ganymedes01.headcrumbs.libs.SkullTypes;
 
-public class EnderZooHelper extends ModHeadDropHelper {
+public class EnderZooHelper extends HeadDropHelper {
 
 	public EnderZooHelper() {
 		super("EnderZoo");

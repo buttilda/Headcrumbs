@@ -14,12 +14,13 @@ import ganymedes01.headcrumbs.utils.UsernameUtils;
 import ganymedes01.headcrumbs.utils.helpers.EnderZooHelper;
 import ganymedes01.headcrumbs.utils.helpers.GrimoireOfGaiaHelper;
 import ganymedes01.headcrumbs.utils.helpers.LycanitesHelper;
-import ganymedes01.headcrumbs.utils.helpers.ModHeadDropHelper;
+import ganymedes01.headcrumbs.utils.helpers.HeadDropHelper;
 import ganymedes01.headcrumbs.utils.helpers.NaturaHelper;
 import ganymedes01.headcrumbs.utils.helpers.PrimitiveMobsHelper;
 import ganymedes01.headcrumbs.utils.helpers.TEHelper;
 import ganymedes01.headcrumbs.utils.helpers.ThaumcraftHelper;
 import ganymedes01.headcrumbs.utils.helpers.TwilightForestHelper;
+import ganymedes01.headcrumbs.utils.helpers.VanillaHelper;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -205,14 +206,15 @@ public class Headcrumbs {
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		ModHeadDropHelper.register(new TwilightForestHelper());
-		ModHeadDropHelper.register(new TEHelper());
-		ModHeadDropHelper.register(new NaturaHelper());
-		ModHeadDropHelper.register(new ThaumcraftHelper());
-		ModHeadDropHelper.register(new LycanitesHelper());
-		ModHeadDropHelper.register(new EnderZooHelper());
-		ModHeadDropHelper.register(new PrimitiveMobsHelper());
-		ModHeadDropHelper.register(new GrimoireOfGaiaHelper());
+		HeadDropHelper.register(new TwilightForestHelper());
+		HeadDropHelper.register(new TEHelper());
+		HeadDropHelper.register(new NaturaHelper());
+		HeadDropHelper.register(new ThaumcraftHelper());
+		HeadDropHelper.register(new LycanitesHelper());
+		HeadDropHelper.register(new EnderZooHelper());
+		HeadDropHelper.register(new PrimitiveMobsHelper());
+		HeadDropHelper.register(new GrimoireOfGaiaHelper());
+		HeadDropHelper.register(new VanillaHelper());
 
 		UsercacheChecker.check();
 

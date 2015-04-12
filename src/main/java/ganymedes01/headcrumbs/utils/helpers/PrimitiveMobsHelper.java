@@ -2,7 +2,7 @@ package ganymedes01.headcrumbs.utils.helpers;
 
 import ganymedes01.headcrumbs.libs.SkullTypes;
 
-public class PrimitiveMobsHelper extends ModHeadDropHelper {
+public class PrimitiveMobsHelper extends HeadDropHelper {
 
 	public PrimitiveMobsHelper() {
 		super("primitivemobs");

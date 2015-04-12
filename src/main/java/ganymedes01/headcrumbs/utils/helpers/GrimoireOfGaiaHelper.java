@@ -6,7 +6,7 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-public class GrimoireOfGaiaHelper extends ModHeadDropHelper {
+public class GrimoireOfGaiaHelper extends HeadDropHelper {
 
 	public GrimoireOfGaiaHelper() {
 		super("GrimoireOfGaia");

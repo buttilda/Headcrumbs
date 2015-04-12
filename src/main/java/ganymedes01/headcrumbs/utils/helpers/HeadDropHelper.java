@@ -13,12 +13,12 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.Loader;
 
-public abstract class ModHeadDropHelper {
+public abstract class HeadDropHelper {
 
-	public static final List<ModHeadDropHelper> helpers = new LinkedList<ModHeadDropHelper>();
+	public static final List<HeadDropHelper> helpers = new LinkedList<HeadDropHelper>();
 
 	public static ItemStack getHead(Entity entity) {
-		for (ModHeadDropHelper helper : helpers)
+		for (HeadDropHelper helper : helpers)
 			if (helper.isEnabled()) {
 				ItemStack head = helper.getHeadForEntity(entity);
 				if (head != null)
@@ -27,14 +27,14 @@ public abstract class ModHeadDropHelper {
 		return null;
 	}
 
-	public static void register(ModHeadDropHelper helper) {
+	public static void register(HeadDropHelper helper) {
 		helpers.add(helper);
 	}
 
 	protected final String modID;
 	protected final Map<String, SkullTypes> typesMap = new HashMap<String, SkullTypes>();
 
-	public ModHeadDropHelper(String modID) {
+	public HeadDropHelper(String modID) {
 		this.modID = modID;
 	}
 
