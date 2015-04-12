@@ -37,7 +37,7 @@ public class HeadUtils {
 
 			@Override
 			public int compare(String s1, String s2) {
-				return s1.toLowerCase().compareTo(s2.toLowerCase());
+				return s1.compareTo(s2);
 			}
 		});
 
@@ -69,7 +69,7 @@ public class HeadUtils {
 			return createHeadFor(((EntityCelebrity) target).getUsername());
 
 		if (target instanceof EntityPlayer)
-			return HeadUtils.createHeadFor((EntityPlayer) target);
+			return createHeadFor((EntityPlayer) target);
 
 		return null;
 	}
