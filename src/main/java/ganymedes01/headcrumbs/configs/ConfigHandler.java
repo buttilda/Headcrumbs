@@ -45,6 +45,7 @@ public class ConfigHandler {
 		Headcrumbs.hermitcraft = configFile.get("heads", "hermitcraft", Headcrumbs.hermitcraft).setRequiresMcRestart(true).getStringList();
 		Headcrumbs.forgeCraft = configFile.get("heads", "forgeCraft", Headcrumbs.forgeCraft).setRequiresMcRestart(true).getStringList();
 		Headcrumbs.ftb = configFile.get("heads", "ftb", Headcrumbs.ftb).setRequiresMcRestart(true).getStringList();
+		Headcrumbs.technic = configFile.get("heads", "technic", Headcrumbs.technic).setRequiresMcRestart(true).getStringList();
 
 		Headcrumbs.enableCelebrityMobs = configFile.get("mob", "Enable celebrity mobs", Headcrumbs.enableCelebrityMobs).setRequiresMcRestart(true).getBoolean();
 		Headcrumbs.enableVIPs = configFile.get("mob", "Enable VIP drops", Headcrumbs.enableVIPs, "Setting this to false will disable special drops/wheapons for certain celebrities. Existing mobs will still hold the wheapons they spawned with.").setRequiresMcRestart(true).getBoolean();
