@@ -92,6 +92,7 @@ public class CelebrityMap {
 		map.put("Silentine", "Grimoire Of Gaia 3");
 		map.put("sinkillerj", "ProjectE");
 		map.put("mezz", "Forestry");
+		map.put("copygirl", "BetterStorage");
 
 		map.put("ganymedes01", "Gany's Mods");
 	}
