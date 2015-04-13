@@ -38,12 +38,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.oredict.OreDictionary;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent;
+import cpw.mods.fml.common.event.FMLInterModComms.IMCMessage;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
@@ -136,6 +142,8 @@ public class Headcrumbs {
 	public static String[] technic = {
 		"GenPage", "Slink730", "sct", "KakerMix", "Skuli_Steinulf", "Talonos"
 	};
+
+	public static List<String> modsent = new ArrayList<String>();
 	// @formatter:on
 
 	public static boolean enableVanillaHeadsDrop = true;
@@ -167,7 +175,6 @@ public class Headcrumbs {
 		ModBlocks.init();
 		ModItems.init();
 
-		HeadUtils.loadPlayerHeads();
 		UsernameUtils.initMap();
 
 		OreDictionary.registerOre("itemSkull", new ItemStack(ModItems.skull, 1, OreDictionary.WILDCARD_VALUE));
@@ -206,6 +213,8 @@ public class Headcrumbs {
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
+		HeadUtils.loadPlayerHeads();
+
 		HeadDropHelper.register(new TwilightForestHelper());
 		HeadDropHelper.register(new TEHelper());
 		HeadDropHelper.register(new NaturaHelper());
@@ -239,6 +248,24 @@ public class Headcrumbs {
 		event.registerServerCommand(new HeadcrumbsCommand());
 	}
 
+	@EventHandler
+	public void imcEvent(IMCEvent event) {
+		Logger logger = LogManager.getLogger(Reference.MOD_ID);
+		for (IMCMessage message : event.getMessages())
+			if (message.key.equals("add-username")) {
+				if (message.isStringMessage()) {
+					String username = message.getStringValue();
+					if (!getAllNames().contains(username)) {
+						modsent.add(username);
+						logger.info(String.format("%s added %s to the username list", message.getSender(), message.getStringValue()));
+					} else
+						logger.info(String.format("%s tried to add %s to the username list, but it was already present", message.getSender(), message.getStringValue()));
+				} else
+					logger.error(String.format("Invalid message type sent from %s", message.getSender()));
+			} else
+				logger.error(String.format("Invalid message key sent from %s: %s", message.getSender(), message.key));
+	}
+
 	public static List<String> getAllNames() {
 		List<String> names = new LinkedList<String>();
 		names.addAll(Arrays.asList(others));
@@ -250,6 +277,7 @@ public class Headcrumbs {
 		names.addAll(Arrays.asList(forgeCraft));
 		names.addAll(Arrays.asList(ftb));
 		names.addAll(Arrays.asList(technic));
+		names.addAll(modsent);
 		return names;
 	}
 }
