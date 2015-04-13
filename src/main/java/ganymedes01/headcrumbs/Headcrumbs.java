@@ -143,6 +143,7 @@ public class Headcrumbs {
 		"GenPage", "Slink730", "sct", "KakerMix", "Skuli_Steinulf", "Talonos"
 	};
 
+	public static boolean enableModSent = true;
 	public static List<String> modsent = new ArrayList<String>();
 	// @formatter:on
 
@@ -253,6 +254,10 @@ public class Headcrumbs {
 		Logger logger = LogManager.getLogger(Reference.MOD_ID);
 		for (IMCMessage message : event.getMessages())
 			if (message.key.equals("add-username")) {
+				if (!enableModSent) {
+					logger.info(String.format("%s tried to add %s to the username list, but the feature has been disabled by the user.", message.getSender(), message.getStringValue()));
+					continue;
+				}
 				if (message.isStringMessage()) {
 					String username = message.getStringValue();
 					if (!getAllNames().contains(username)) {
@@ -277,7 +282,8 @@ public class Headcrumbs {
 		names.addAll(Arrays.asList(forgeCraft));
 		names.addAll(Arrays.asList(ftb));
 		names.addAll(Arrays.asList(technic));
-		names.addAll(modsent);
+		if (enableModSent)
+			names.addAll(modsent);
 		return names;
 	}
 }
