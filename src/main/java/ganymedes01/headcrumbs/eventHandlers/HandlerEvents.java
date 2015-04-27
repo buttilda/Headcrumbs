@@ -147,12 +147,17 @@ public class HandlerEvents {
 		return null;
 	}
 
-	private void addDrop(ItemStack stack, EntityLivingBase entity, List<EntityItem> list) {
+	private void addDrop(ItemStack stack, EntityLivingBase entity, List<EntityItem> drops) {
 		if (stack.stackSize <= 0)
 			return;
+		for (EntityItem drop : drops) {
+			ItemStack dropStack = drop.getEntityItem();
+			if (ItemStack.areItemStacksEqual(stack, dropStack))
+				return;
+		}
 
 		EntityItem entityItem = new EntityItem(entity.worldObj, entity.posX, entity.posY, entity.posZ, stack);
 		entityItem.delayBeforeCanPickup = 10;
-		list.add(entityItem);
+		drops.add(entityItem);
 	}
 }
