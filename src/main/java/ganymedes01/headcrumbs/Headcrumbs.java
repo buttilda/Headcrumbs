@@ -92,11 +92,11 @@ public class Headcrumbs {
 	};
 
 	public static String[] modders = {
-		"sinkillerj", "Silentine", "techbrew", "RazzleberryFox", "Binnie567", "Adubbz", "Drullkus", "aidancbrady",
+		"sinkillerj", "Silentine", "techbrew", "Binnie567", "Adubbz", "Drullkus", "aidancbrady",
 		"spacetoad", "FyberOptic", "Vexatos", "Mineshopper", "AUTOMATIC_MAIDEN", "sanandreasMC", "FatherToast",
 		"Erasmus_Crowley", "Alblaka", "Emoniph", "Nuchaz", "Kobata", "powercrystals", "AbrarSyed", "sdkillen",
 		"Taelnia", "Lycanite", "asiekierka", "GregoriusT", "skyboy", "Flaxbeard", "Emasher", "joshiejack", "Reika",
-		"ganymedes01", "Pokefenn", "chylex", "vadis365", "jakimfett", "mezz", "Lunatrius", "copygirl"
+		"ganymedes01", "Pokefenn", "chylex", "vadis365", "jakimfett", "Lunatrius", "copygirl"
 	};
 
 	public static String[] youtubers = {
@@ -128,11 +128,11 @@ public class Headcrumbs {
 		"Imalune", "ShadwDrgn", "Cojomax99", "Freyjadono", "Vaht", "EcuTruin", "BigBadChris", "boni",
 		"Mr_okushama", "AlgorithmX2", "Mikeemoo", "_CrazyP_", "MysteriousAges", "MineMaarten", "nekosune",
 		"tlovetech", "FireBall1725", "PurpleMentat", "calclavia", "Minalien", "fuj1n", "Mithion", "RWTema",
-		"WayofFlowingTime", "TTFTCUTS", "bspkrs", "amnet", "azanor", "chicken_bones", "Cloudhunter",
+		"WayofFlowingTime", "TTFTCUTS", "bspkrs", "amnet", "azanor", "chicken_bones", "Cloudhunter", "RazzleberryFox",
 		"CovertJaguar", "cpw11", "dan200", "Eloraam", "florastar", "iChun", "KingLemming", "Krapht", "peterixxx",
 		"LexManos", "TheMattaBase", "mDiyo", "Myrathi", "Morvelaira", "Pahimar", "sfPlayer1", "ProfMobius",
 		"Rorax", "Sacheverell", "sirsengir", "Soaryn", "x3n0ph0b3", "XCompWiz", "Vswe", "Vazkii", "ZeldoKavira",
-		"neptunepink", "EddieRuckus", "LordDusk", "Kihira", "Vaygrim", "Kaelten", "MatrexsVigil", "tfox83", "jadedcat"
+		"neptunepink", "EddieRuckus", "LordDusk", "Kihira", "Vaygrim", "Kaelten", "MatrexsVigil", "tfox83", "jadedcat", "mezz"
 	};
 
 	public static String[] ftb = {
