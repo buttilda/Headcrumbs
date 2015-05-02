@@ -1,7 +1,11 @@
 package ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia;
 
 import ganymedes01.headcrumbs.renderers.ModelHead;
+import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
+
+import com.mojang.authlib.GameProfile;
 
 public class SludgeGirlHead extends ModelHead {
 
@@ -32,5 +36,10 @@ public class SludgeGirlHead extends ModelHead {
 		setRotation(headslime, 0.0F, 0.0F, 0.0F);
 
 		head.addChild(headslime);
+	}
+
+	@Override
+	public void preRenderItem(GameProfile profile, ItemRenderType type) {
+		OpenGLHelper.translate(0, 0.25F, 0);
 	}
 }

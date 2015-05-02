@@ -47,9 +47,8 @@ public class GrimoireOfGaiaHelper extends HeadDropHelper {
 		typesMap.put("GrimoireOfGaia.Sphinx", SkullTypes.sphinx);
 		typesMap.put("GrimoireOfGaia.Spriggan", SkullTypes.spriggan);
 		typesMap.put("GrimoireOfGaia.Succubus", SkullTypes.succubus);
-		typesMap.put("GrimoireOfGaia.Summon Butler", SkullTypes.summonButler);
+		typesMap.put("GrimoireOfGaia.Butler", SkullTypes.butler);
 		typesMap.put("GrimoireOfGaia.Swamper", SkullTypes.swamper);
-		typesMap.put("GrimoireOfGaia.Trader", SkullTypes.trader);
 		typesMap.put("GrimoireOfGaia.Valkyrie", SkullTypes.valkyrie);
 		typesMap.put("GrimoireOfGaia.Vampire", SkullTypes.vampire);
 		typesMap.put("GrimoireOfGaia.Werecat", SkullTypes.werecat);

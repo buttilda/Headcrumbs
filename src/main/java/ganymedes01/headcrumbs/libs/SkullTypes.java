@@ -65,9 +65,7 @@ import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SludgeGirlHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SphinxHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SprigganHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SuccubusHead;
-import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SummonButlerHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SwamperHead;
-import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.TraderHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.ValkyrieHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.VampireHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.WerecatHead;
@@ -249,9 +247,8 @@ public enum SkullTypes {
 	sphinx				(Strings.GOG_PREFIX + "Sphinx",								"GrimoireOfGaia", 		SphinxHead.INSTANCE),
 	spriggan			(Strings.GOG_PREFIX + "Spriggan",							"GrimoireOfGaia", 		SprigganHead.INSTANCE),
 	succubus			(Strings.GOG_PREFIX + "Succubus",							"GrimoireOfGaia", 		SuccubusHead.INSTANCE),
-	summonButler		(Strings.GOG_PREFIX + "Summon_Butler",						"GrimoireOfGaia", 		SummonButlerHead.INSTANCE),
+	butler				(Strings.GOG_PREFIX + "Summon_Butler",						"GrimoireOfGaia", 		ModelHead.INSTANCE),
 	swamper				(Strings.GOG_PREFIX + "Swamper",							"GrimoireOfGaia", 		SwamperHead.INSTANCE),
-	trader				(Strings.GOG_PREFIX + "Trader",								"GrimoireOfGaia", 		TraderHead.INSTANCE),
 	valkyrie			(Strings.GOG_PREFIX + "Valkyrie",							"GrimoireOfGaia", 		ValkyrieHead.INSTANCE),
 	vampire				(Strings.GOG_PREFIX + "Vampire",							"GrimoireOfGaia", 		VampireHead.INSTANCE),
 	werecat				(Strings.GOG_PREFIX + "Werecat01",							"GrimoireOfGaia", 		WerecatHead.INSTANCE),
