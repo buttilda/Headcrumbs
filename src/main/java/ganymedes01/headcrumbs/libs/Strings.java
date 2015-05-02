@@ -10,5 +10,5 @@ public class Strings {
 	public static final String LY_PREFIX = "demonmobs:textures/entity/";
 	public static final String EZ_PREFIX = "enderzoo:entity/";
 	public static final String PM_PREFIX = "primitivemobs:textures/entity/";
-	public static final String GOG_PREFIX = "gaia:textures/entity/";
+	public static final String GOG_PREFIX = "gaia:textures/models/";
 }

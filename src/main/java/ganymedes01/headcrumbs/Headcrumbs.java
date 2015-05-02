@@ -142,10 +142,10 @@ public class Headcrumbs {
 	public static String[] technic = {
 		"GenPage", "Slink730", "sct", "KakerMix", "Skuli_Steinulf", "Talonos"
 	};
+	// @formatter:on
 
 	public static boolean enableModSent = true;
 	public static List<String> modsent = new ArrayList<String>();
-	// @formatter:on
 
 	public static boolean enableVanillaHeadsDrop = true;
 	public static boolean enableRandomHeadDrop = true;
