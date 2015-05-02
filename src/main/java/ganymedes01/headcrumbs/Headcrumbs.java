@@ -11,6 +11,7 @@ import ganymedes01.headcrumbs.proxy.CommonProxy;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.UsercacheChecker;
 import ganymedes01.headcrumbs.utils.UsernameUtils;
+import ganymedes01.headcrumbs.utils.helpers.ElementalCreepersHelper;
 import ganymedes01.headcrumbs.utils.helpers.EnderZooHelper;
 import ganymedes01.headcrumbs.utils.helpers.GrimoireOfGaiaHelper;
 import ganymedes01.headcrumbs.utils.helpers.HeadDropHelper;
@@ -224,6 +225,7 @@ public class Headcrumbs {
 		HeadDropHelper.register(new EnderZooHelper());
 		HeadDropHelper.register(new PrimitiveMobsHelper());
 		HeadDropHelper.register(new GrimoireOfGaiaHelper());
+		HeadDropHelper.register(new ElementalCreepersHelper());
 		HeadDropHelper.register(new VanillaHelper());
 
 		UsercacheChecker.check();

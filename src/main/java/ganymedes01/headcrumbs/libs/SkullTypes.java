@@ -26,6 +26,7 @@ import ganymedes01.headcrumbs.renderers.heads.WitchHead;
 import ganymedes01.headcrumbs.renderers.heads.WitherHead;
 import ganymedes01.headcrumbs.renderers.heads.WolfHead;
 import ganymedes01.headcrumbs.renderers.heads.ZombieVillagerHead;
+import ganymedes01.headcrumbs.renderers.heads.elementalCreepers.GhostCreeperHead;
 import ganymedes01.headcrumbs.renderers.heads.enderzoo.DireWolfHead;
 import ganymedes01.headcrumbs.renderers.heads.enderzoo.EnderminyHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.AnubisHead;
@@ -257,7 +258,30 @@ public enum SkullTypes {
 	yeti				(Strings.GOG_PREFIX + "Yeti",								"GrimoireOfGaia", 		YetiHead.INSTANCE),
 	yukiOnna			(Strings.GOG_PREFIX + "Yuki_Onna",							"GrimoireOfGaia", 		YukiOnnaHead.INSTANCE),
 	cultist				(Strings.TC_PREFIX + "cultist", 							"Thaumcraft", 			PlayerHead.INSTANCE),
-	eldritchCrab		(Strings.TC_PREFIX + "crab",			 					"Thaumcraft", 			EldrichCrabHead.INSTANCE);
+	eldritchCrab		(Strings.TC_PREFIX + "crab",			 					"Thaumcraft", 			EldrichCrabHead.INSTANCE),
+	fireCreeper			(Strings.EC_PREFIX + "firecreeper",			 				"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	waterCreeper		(Strings.EC_PREFIX + "watercreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	electricCreeper		(Strings.EC_PREFIX + "electriccreeper",		 				"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	ghostCreeper		(Strings.MC_PREFIX + "creeper/creeper",					 	"ElementalCreepers", 	GhostCreeperHead.INSTANCE),
+	cookieCreeper		(Strings.EC_PREFIX + "cookiecreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	darkCreeper			(Strings.EC_PREFIX + "darkcreeper",			 				"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	lightCreeper		(Strings.EC_PREFIX + "lightcreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	earthCreeper		(Strings.EC_PREFIX + "earthcreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	magmaCreeper		(Strings.EC_PREFIX + "magmacreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	reverseCreeper		(Strings.EC_PREFIX + "reversecreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	iceCreeper			(Strings.EC_PREFIX + "icecreeper",			 				"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	friendlyCreeper		(Strings.EC_PREFIX + "friendlycreeper0",					"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	illusionCreeper		(Strings.EC_PREFIX + "illusioncreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	psychicCreeper		(Strings.EC_PREFIX + "psychiccreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	spiderCreeper		(Strings.EC_PREFIX + "spidercreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	windCreeper			(Strings.EC_PREFIX + "windcreeper",			 				"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	hydrogenCreeper		(Strings.EC_PREFIX + "hydrogencreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	enderCreeper		(Strings.EC_PREFIX + "endercreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	stoneCreeper		(Strings.EC_PREFIX + "stonecreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	solarCreeper		(Strings.EC_PREFIX + "solarcreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	cakeCreeper			(Strings.EC_PREFIX + "cakecreeper",			 				"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	fireworkCreeper		(Strings.EC_PREFIX + "fireworkcreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	springCreeper		(Strings.EC_PREFIX + "springcreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY);
 	// @formatter:on
 
 	private final String mod;
