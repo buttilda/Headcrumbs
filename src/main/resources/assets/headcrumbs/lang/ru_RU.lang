@@ -92,6 +92,8 @@ item.headcrumbs.taintedVillager.name=Голова заражённого жит�
 item.headcrumbs.taintedSheep.name=Голова заражённой овцы
 item.headcrumbs.pech.name=Голова гнома
 item.headcrumbs.eldritchGuardian.name=Голова древнего стража
+item.headcrumbs.cultist.name=Голова культиста
+item.headcrumbs.eldritchCrab.name=Голова древнего краба
 
 # Lycanites
 item.headcrumbs.pinky.name=Голова пинки
@@ -105,6 +107,68 @@ item.headcrumbs.fallenKnight.name=Голова падшего рыцаря
 item.headcrumbs.witherWitch.name=Голова ведьмы-иссушителя
 item.headcrumbs.witherCat.name=Голова кота-иссушителя
 item.headcrumbs.direWolf.name=Голова ужасного волка
+
+# Primitive Mobs
+item.headcrumbs.rocketCreeper.name=Голова реактивного крипера
+item.headcrumbs.festiveCreeper.name=Голова весёлого крипера
+item.headcrumbs.supportCreeper.name=Голова крипера поддержки
+item.headcrumbs.lostMiner.name=Голова потерянного шахтёра
+item.headcrumbs.sheepman.name=Голова овцечеловека
+item.headcrumbs.summoner.name=Голова призывателя
+item.headcrumbs.blazingJuggernaut.name=Голова джаггернаута
+item.headcrumbs.lilyLurker.name=Голова наблюдающей лилии
+item.headcrumbs.motherSpider.name=Голова паучихи
+item.headcrumbs.babySpider.name=Голова паука-ребёнка
+item.headcrumbs.skeletonWarrior.name=Голова скелета-воина
+item.headcrumbs.brainSlime.name=Голова мозгового слизня
+
+# Grimoire of Gaia
+item.headcrumbs.anubis.name=Голова анубиса
+item.headcrumbs.banshee.name=Голова банши
+item.headcrumbs.baphomet.name=Голова бафомета
+item.headcrumbs.centaur.name=Голова кентавра
+item.headcrumbs.cobbleGolem.name=Голова булыжникового голема
+item.headcrumbs.cobblestoneGolem.name=Голова булыжникового голема
+item.headcrumbs.cockatrice.name=Голова кокатрикса
+item.headcrumbs.cyclops.name=Голова циклопа
+item.headcrumbs.dhampir.name=Голова дампира
+item.headcrumbs.dryad.name=Голова дриады
+item.headcrumbs.dullahan.name=Голова дуллахана
+item.headcrumbs.enderDragonGirl.name=Голова драконицы Края
+item.headcrumbs.enderEye.name=Голова ока Края
+item.headcrumbs.fleshLich.name=Голова мясного лича
+item.headcrumbs.futakuchiOnna.name=Голова фута-кути-онна
+item.headcrumbs.gryphon.name=Голова грифона
+item.headcrumbs.harpy.name=Голова гарпии
+item.headcrumbs.hunter.name=Голова охотника
+item.headcrumbs.jorogumo.name=Голова джёрёгумо
+item.headcrumbs.mandragora.name=Голова мандрагоры
+item.headcrumbs.mermaid.name=Голова морской девы
+item.headcrumbs.mimic.name=Голова мимика
+item.headcrumbs.minotaur.name=Голова минотавра
+item.headcrumbs.minotaurus.name=Голова большого минотавра
+item.headcrumbs.naga.name=Голова наги
+item.headcrumbs.nineTails.name=Голова кицунэ
+item.headcrumbs.sahuagin.name=Голова сахуагина
+item.headcrumbs.satyr.name=Голова сатира
+item.headcrumbs.selkie.name=Голова селки
+item.headcrumbs.shaman.name=Голова шамана
+item.headcrumbs.sharko.name=Голова шарко
+item.headcrumbs.siren.name=Голова сирены
+item.headcrumbs.sludgeGirl.name=Голова грязевой девушки
+item.headcrumbs.sphinx.name=Голова сфинкса
+item.headcrumbs.spriggan.name=Голова сприггана
+item.headcrumbs.succubus.name=Голова суккуба
+item.headcrumbs.butler.name=Голова батлера
+item.headcrumbs.swamper.name=Голова болотника
+item.headcrumbs.trader.name=Голова торговца
+item.headcrumbs.valkyrie.name=Голова Валькирии
+item.headcrumbs.vampire.name=Голова вампира
+item.headcrumbs.werecat.name=Голова кота-оборотня
+item.headcrumbs.gogWitch.name=Голова ведьмы
+item.headcrumbs.witherCow.name=Голова коровы-иссушителя
+item.headcrumbs.yeti.name=Голова йети
+item.headcrumbs.yukiOnna.name=Голова юки-онна
 
 ##########
 # Entity #
