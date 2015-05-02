@@ -75,6 +75,7 @@ import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.YetiHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.YukiOnnaHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.BehemothHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.BelphHead;
+import ganymedes01.headcrumbs.renderers.heads.lycanites.LycaniteHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.PinkyHead;
 import ganymedes01.headcrumbs.renderers.heads.natura.ImpHead;
 import ganymedes01.headcrumbs.renderers.heads.primitivemobs.JuggernautHead;
@@ -190,7 +191,7 @@ public enum SkullTypes {
 	taintedSheep		(Strings.TC_PREFIX + "sheep", 								"Thaumcraft", 			TaintedSheepHead.INSTANCE),
 	pech				(Strings.TC_PREFIX + "pech_forage", 						"Thaumcraft", 			PechHead.INSTANCE),
 	eldritchGuardian	(Strings.TC_PREFIX + "eldritch_guardian", 					"Thaumcraft", 			EldrichGuardianHead.INSTANCE),
-	lycanites			("", 														"lycanitesmobs", 		null),
+	lycanites			("", 														"lycanitesmobs", 		LycaniteHead.INSTANCE),
 	pinky				(Strings.LY_PREFIX + "pinky", 								"lycanitesmobs", 		PinkyHead.INSTANCE),
 	behemoth			(Strings.LY_PREFIX + "behemoth", 							"lycanitesmobs", 		BehemothHead.INSTANCE),
 	belph				(Strings.LY_PREFIX + "belph", 								"lycanitesmobs", 		BelphHead.INSTANCE),
@@ -293,6 +294,8 @@ public enum SkullTypes {
 		this.mod = mod;
 		this.texture = Utils.getResource(texture + ".png");
 		this.model = model;
+		if (model == null)
+			throw new IllegalArgumentException("Head model for " + this + " cannot be null!");
 	}
 
 	public boolean canShow() {

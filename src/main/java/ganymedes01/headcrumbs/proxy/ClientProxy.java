@@ -5,7 +5,6 @@ import ganymedes01.headcrumbs.entity.EntityCelebrity;
 import ganymedes01.headcrumbs.eventHandlers.RenderPlayerHandler;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.renderers.ItemSkullRender;
-import ganymedes01.headcrumbs.renderers.ModelHead;
 import ganymedes01.headcrumbs.renderers.RenderCelebrity;
 import ganymedes01.headcrumbs.renderers.TileEntityBlockPlayerRenderer;
 import ganymedes01.headcrumbs.renderers.TileEntityBlockSkullRenderer;
@@ -40,10 +39,7 @@ public class ClientProxy extends CommonProxy {
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityCelebrity.class, new RenderCelebrity());
 
-		for (SkullTypes type : SkullTypes.values()) {
-			ModelHead model = type.model();
-			if (model != null)
-				model.init();
-		}
+		for (SkullTypes type : SkullTypes.values())
+			type.model().init();
 	}
 }
