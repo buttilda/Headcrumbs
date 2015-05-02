@@ -44,7 +44,7 @@ item.headcrumbs.horseSkeleton.name=Skeleton Horse Head
 item.headcrumbs.snowMan.name=Snow Golem Head
 item.headcrumbs.silverfish.name=Silverfish Head
 
-# Twilight Forrest
+# Twilight Forest
 item.headcrumbs.mistWolf.name=Mist Wolf Head
 item.headcrumbs.miniGhast.name=Carminite Ghastling Head
 item.headcrumbs.guardGhast.name=Carminite Ghastguard Head
@@ -71,7 +71,6 @@ item.headcrumbs.towerBroodling.name=Carminite Broodling Head
 item.headcrumbs.winterWolf.name=Winter Wolf Head
 item.headcrumbs.mazeSlime.name=Maze Slime Head
 item.headcrumbs.towerwoodBorer.name=Towerwood Borer Head
-
 
 # Thermal Foundation
 item.headcrumbs.blizz.name=Blizz Head
