@@ -93,6 +93,7 @@ public class CelebrityMap {
 		map.put("sinkillerj", "ProjectE");
 		map.put("mezz", "Forestry");
 		map.put("copygirl", "BetterStorage");
+		map.put("amadornes", "BluePower");
 
 		map.put("ganymedes01", "Gany's Mods");
 	}
