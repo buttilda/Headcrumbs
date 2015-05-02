@@ -122,6 +122,31 @@ item.headcrumbs.babySpider.name=Голова паука-ребёнка
 item.headcrumbs.skeletonWarrior.name=Голова скелета-воина
 item.headcrumbs.brainSlime.name=Голова мозгового слизня
 
+# Elemental Creepers
+item.headcrumbs.fireCreeper.name=Голова огненного крипера
+item.headcrumbs.waterCreeper.name=Голова водяного крипера
+item.headcrumbs.electricCreeper.name=Голова электрического крипера
+item.headcrumbs.ghostCreeper.name=Голова призрачного крипера
+item.headcrumbs.cookieCreeper.name=Голова печенькового крипера
+item.headcrumbs.darkCreeper.name=Голова тёмного крипера
+item.headcrumbs.lightCreeper.name=Голова светящегося крипера
+item.headcrumbs.earthCreeper.name=Голова земляного крипера
+item.headcrumbs.magmaCreeper.name=Голова магматического крипера
+item.headcrumbs.reverseCreeper.name=Голова перевёрнутого крипера
+item.headcrumbs.iceCreeper.name=Голова ледяного крипера
+item.headcrumbs.friendlyCreeper.name=Голова дружелюбного крипера
+item.headcrumbs.illusionCreeper.name=Голова крипера-иллюзиониста
+item.headcrumbs.psychicCreeper.name=Голова психованного крипера
+item.headcrumbs.spiderCreeper.name=Голова крипера-паука
+item.headcrumbs.windCreeper.name=Голова ветряного крипера
+item.headcrumbs.hydrogenCreeper.name=Голова водородного крипера
+item.headcrumbs.enderCreeper.name=Голова крипера Края
+item.headcrumbs.stoneCreeper.name=Голова каменного крипера
+item.headcrumbs.solarCreeper.name=Голова солнечного крипера
+item.headcrumbs.cakeCreeper.name=Голова тортикового крипера
+item.headcrumbs.fireworkCreeper.name=Голова фейерверкового крипера
+item.headcrumbs.springCreeper.name=Голова пружинистого крипера
+
 # Grimoire of Gaia
 item.headcrumbs.anubis.name=Голова анубиса
 item.headcrumbs.banshee.name=Голова банши
