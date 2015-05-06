@@ -4,6 +4,7 @@ import ganymedes01.headcrumbs.command.HeadcrumbsCommand;
 import ganymedes01.headcrumbs.configs.ConfigHandler;
 import ganymedes01.headcrumbs.entity.EntityCelebrity;
 import ganymedes01.headcrumbs.entity.VIPHandler;
+import ganymedes01.headcrumbs.items.CelebrityEgg;
 import ganymedes01.headcrumbs.libs.Reference;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.network.PacketHandler;
@@ -55,6 +56,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -162,6 +164,7 @@ public class Headcrumbs {
 	public static boolean enableBaarbra = true;
 	public static int[] blacklistedDimensions = { 1, -1 };
 	public static String celebrityNamePrefix = "";
+	public static boolean alternativeCelebrityRegistering = false;
 
 	public static boolean enableCelebrityMobs = true, celebrityOpensDoors = true;
 	public static int celebrityProb = 80, celebrityMin = 4, celebrityMax = 4, celebrityID = 89;
@@ -208,7 +211,17 @@ public class Headcrumbs {
 			}
 
 		if (enableCelebrityMobs) {
-			EntityRegistry.registerGlobalEntityID(EntityCelebrity.class, "Celebrity", celebrityID, 0xFFF144, 0x69DFDA);
+			if (alternativeCelebrityRegistering) {
+				EntityRegistry.registerModEntity(EntityCelebrity.class, "Celebrity", 0, instance, 512, 1, true);
+				Item egg = new CelebrityEgg();
+				GameRegistry.registerItem(egg, egg.getUnlocalizedName().substring(egg.getUnlocalizedName().lastIndexOf(".")));
+				OreDictionary.registerOre("mobEgg", egg);
+			} else
+				try {
+					EntityRegistry.registerGlobalEntityID(EntityCelebrity.class, "Celebrity", celebrityID, 0xFFF144, 0x69DFDA);
+				} catch (IllegalArgumentException e) {
+					throw new RuntimeException("The Celebrity ID chosen is already being used. Enable the alternative method of registering entities in the config file or change the ID until you find a free one!", e);
+				}
 			VIPHandler.init();
 		}
 	}
