@@ -61,15 +61,15 @@ public class HeadUtils {
 		if (target.isChild())
 			return null;
 
-		ItemStack head = HeadDropHelper.getHead(target);
-		if (head != null)
-			return head;
-
 		if (target instanceof EntityCelebrity)
 			return createHeadFor(((EntityCelebrity) target).getUsername());
 
 		if (target instanceof EntityPlayer)
 			return createHeadFor((EntityPlayer) target);
+
+		ItemStack head = HeadDropHelper.getHead(target);
+		if (head != null)
+			return head;
 
 		return null;
 	}
