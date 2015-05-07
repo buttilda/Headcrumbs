@@ -26,7 +26,7 @@ public class BlockEmpty extends Block {
 		super(Material.clay);
 		setHardness(1.0F);
 		setStepSound(soundTypeStone);
-		setBlockName(Utils.getUnlocalizedName("empty"));
+		setBlockName(Utils.getUnlocalisedName("empty"));
 	}
 
 	@Override

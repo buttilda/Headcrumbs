@@ -14,7 +14,7 @@ public class BlockPlayer extends BlockSkull {
 
 	public BlockPlayer() {
 		super(Material.clay);
-		setBlockName(Utils.getUnlocalizedName("player"));
+		setBlockName(Utils.getUnlocalisedName("player"));
 	}
 
 	@Override

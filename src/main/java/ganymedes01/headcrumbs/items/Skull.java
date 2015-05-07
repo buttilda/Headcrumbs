@@ -36,7 +36,7 @@ public class Skull extends ItemSkull {
 		setMaxDamage(0);
 		setHasSubtypes(true);
 		setCreativeTab(Headcrumbs.tab);
-		setUnlocalizedName(Utils.getUnlocalizedName("head"));
+		setUnlocalizedName(Utils.getUnlocalisedName("head"));
 	}
 
 	@Override
@@ -123,7 +123,7 @@ public class Skull extends ItemSkull {
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
 		SkullTypes type = SkullTypes.values()[Math.max(Math.min(stack.getItemDamage(), SkullTypes.values().length - 1), 0)];
-		return "item." + Utils.getUnlocalizedName(type.name());
+		return "item." + Utils.getUnlocalisedName(type.name());
 	}
 
 	@Override

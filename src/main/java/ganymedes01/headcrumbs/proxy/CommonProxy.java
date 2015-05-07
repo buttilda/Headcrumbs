@@ -17,8 +17,8 @@ public class CommonProxy {
 	}
 
 	public void registerTileEntities() {
-		GameRegistry.registerTileEntity(TileEntityBlockSkull.class, Utils.getUnlocalizedName("head"));
-		GameRegistry.registerTileEntity(TileEntityBlockPlayer.class, Utils.getUnlocalizedName("player"));
+		GameRegistry.registerTileEntity(TileEntityBlockSkull.class, Utils.getUnlocalisedName("head"));
+		GameRegistry.registerTileEntity(TileEntityBlockPlayer.class, Utils.getUnlocalisedName("player"));
 	}
 
 	public void registerRenderers() {

@@ -27,7 +27,7 @@ public class CelebrityEgg extends Item {
 
 	public CelebrityEgg() {
 		setCreativeTab(CreativeTabs.tabMisc);
-		setUnlocalizedName(Utils.getUnlocalizedName("egg"));
+		setUnlocalizedName(Utils.getUnlocalisedName("egg"));
 	}
 
 	@Override

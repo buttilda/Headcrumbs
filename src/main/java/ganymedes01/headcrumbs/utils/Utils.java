@@ -16,7 +16,7 @@ import net.minecraftforge.common.ChestGenHooks;
 
 public class Utils {
 
-	public static String getUnlocalizedName(String name) {
+	public static String getUnlocalisedName(String name) {
 		return Reference.MOD_ID + "." + name;
 	}
 

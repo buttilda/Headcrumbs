@@ -35,7 +35,7 @@ public class BlockSkull extends BlockContainer implements IInfusionStabiliser {
 
 	public BlockSkull() {
 		this(Material.circuits);
-		setBlockName(Utils.getUnlocalizedName("betterSkull"));
+		setBlockName(Utils.getUnlocalisedName("betterSkull"));
 	}
 
 	protected BlockSkull(Material material) {
