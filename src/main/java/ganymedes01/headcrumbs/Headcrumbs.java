@@ -105,7 +105,7 @@ public class Headcrumbs {
 	public static String[] youtubers = {
 		"wyld", "SkythekidRS", "Bashur", "Straymaverick", "SOTMead", "Nerdcubed", "Kleetho", "DanTDM",
 		"Runew0lf", "GiantWaffle", "Bacon_Donut", "Heph", "ChimneySwift", "FuriousDestroyer", "paulsoaresjr",
-		"SuperGirlyGamer", "CyaNideEPiC", "Jarrenitis", "direwolf20", "Sjin", "Xephos", "LividCoffee",
+		"SuperGirlyGamer", "CyaNideEPiC", "Jarrenitis", "direwolf20", "Sjin", "Xephos", "LividCoffee", "pewdie",
 		"Rythian", "Zoeya", "TheStrippin", "InTheLittleWood", "Quetzz", "Blorph", "xbony2", "generikb",
 		"CaptainSparklez", "AntVenom", "CavemanFilms", "Fosler", "BevoLJ", "Sips_", "Honeydew", "thejims",
 		"TobyofBuscus", "corjaantje", "RealThinknoodles", "ZexyZek", "WesWilson", "BdoubleO100", "tedyhere"
