@@ -168,6 +168,7 @@ public class Headcrumbs {
 
 	public static boolean enableCelebrityMobs = true, celebrityOpensDoors = true;
 	public static int celebrityProb = 80, celebrityMin = 4, celebrityMax = 4, celebrityID = 89;
+	public static double babyCelebrityChance = 0.1F;
 
 	public static Item ganysEndSkull = null;
 

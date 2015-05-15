@@ -5,11 +5,15 @@ import ganymedes01.headcrumbs.utils.TextureUtils;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderBiped;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Items;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -17,7 +21,39 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class RenderCelebrity extends RenderBiped {
 
 	public RenderCelebrity() {
-		super(new ModelBiped(), 0.5F, 1.0F);
+		super(new ModelBiped() {
+			@Override
+			public void render(Entity entity, float f0, float f1, float f2, float f3, float f4, float f5) {
+				setRotationAngles(f0, f1, f2, f3, f4, f5, entity);
+
+				if (isChild) {
+					float f6 = 2.0F;
+					GL11.glPushMatrix();
+					GL11.glScalef(1.5F / f6, 1.5F / f6, 1.5F / f6);
+					GL11.glTranslatef(0.0F, 16.0F * f5, 0.0F);
+					bipedHead.render(f5);
+					bipedHeadwear.render(f5);
+					GL11.glPopMatrix();
+					GL11.glPushMatrix();
+					GL11.glScalef(1.0F / f6, 1.0F / f6, 1.0F / f6);
+					GL11.glTranslatef(0.0F, 24.0F * f5, 0.0F);
+					bipedBody.render(f5);
+					bipedRightArm.render(f5);
+					bipedLeftArm.render(f5);
+					bipedRightLeg.render(f5);
+					bipedLeftLeg.render(f5);
+					GL11.glPopMatrix();
+				} else {
+					bipedHead.render(f5);
+					bipedBody.render(f5);
+					bipedRightArm.render(f5);
+					bipedLeftArm.render(f5);
+					bipedRightLeg.render(f5);
+					bipedLeftLeg.render(f5);
+					bipedHeadwear.render(f5);
+				}
+			}
+		}, 0.5F, 1.0F);
 	}
 
 	@Override
@@ -70,7 +106,7 @@ public class RenderCelebrity extends RenderBiped {
 
 		// Cape
 		ResourceLocation cape = TextureUtils.getPlayerCape(celebrity.getProfile());
-		if (cape != null) {
+		if (cape != null && !celebrity.isChild()) {
 			bindTexture(cape);
 			OpenGLHelper.pushMatrix();
 			OpenGLHelper.translate(0.0F, 0.0F, 0.125F);

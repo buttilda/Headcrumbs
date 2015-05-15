@@ -59,6 +59,7 @@ public class ConfigHandler {
 		Headcrumbs.celebrityNamePrefix = configFile.get("mob", "prefix", Headcrumbs.celebrityNamePrefix, "This prefix will be shown in front of celebrities names in-world. Meant to be used to differentiate celebrities from real players.").getString();
 		Headcrumbs.celebrityOpensDoors = configFile.get("mob", "Allow celebrity mobs to open doors", Headcrumbs.celebrityOpensDoors).setRequiresMcRestart(true).getBoolean();
 		Headcrumbs.alternativeCelebrityRegistering = configFile.get("mob", "Register Celebrities with an alternative method", Headcrumbs.alternativeCelebrityRegistering, "WARNING: CHANGING THIS WILL CAUSE EXISTING CELEBRITIES TO VANISH FROM EXISTING WORLDS!").setRequiresMcRestart(true).getBoolean();
+		Headcrumbs.babyCelebrityChance = configFile.get("mob", "Baby celebrity chance", Headcrumbs.babyCelebrityChance, "Chance that a celebrity will spawn as a baby. Set to -1 to disable.").setRequiresMcRestart(false).getDouble(Headcrumbs.babyCelebrityChance);
 
 		String block = configFile.get(Configuration.CATEGORY_GENERAL, "Statue block material", Block.blockRegistry.getNameForObject(Blocks.clay), "modId:name. Whatever block is set here will be the block used to make player statues (2 tall and right-click the top one with a player head)").getString();
 		Headcrumbs.clay = (Block) Block.blockRegistry.getObject(block);

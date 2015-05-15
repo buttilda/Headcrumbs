@@ -6,6 +6,7 @@ import ganymedes01.headcrumbs.utils.UsernameUtils;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -26,6 +27,7 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
@@ -56,8 +58,14 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 	public double field_71095_bQ;
 	public double field_71085_bR;
 
+	// Baby zombie stuff
+	private static final AttributeModifier babySpeedBoostModifier = new AttributeModifier(UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836"), "Baby speed boost", 0.5D, 1);
+
 	private final EntityAIArrowAttack arrowAI = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F);
 	private static final int NAME = 13;
+	private static final int CHILD = 14;
+	private static final int WIDTH = 15;
+	private static final int HEIGHT = 16;
 
 	public EntityCelebrity(World world) {
 		super(world);
@@ -73,6 +81,7 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 		tasks.addTask(8, new EntityAILookIdle(this));
 		targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
 		targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		setSize(0.6F, 1.8F);
 	}
 
 	@Override
@@ -112,6 +121,15 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 		field_71085_bR += d1 * 0.25D;
 		field_71095_bQ += d0 * 0.25D;
 
+		if (worldObj.isRemote) {
+			float w = dataWatcher.getWatchableObjectFloat(WIDTH);
+			if (w != width)
+				width = w;
+			float h = dataWatcher.getWatchableObjectFloat(HEIGHT);
+			if (h != height)
+				height = h;
+		}
+
 		super.onUpdate();
 	}
 
@@ -129,6 +147,9 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 	protected void entityInit() {
 		super.entityInit();
 		getDataWatcher().addObject(NAME, "");
+		getDataWatcher().addObject(CHILD, (byte) 0);
+		getDataWatcher().addObject(WIDTH, width);
+		getDataWatcher().addObject(HEIGHT, height);
 	}
 
 	/* SOUNDS */
@@ -209,6 +230,9 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 
 		getVIPHandler().onSpawn(this);
 
+		if (rand.nextDouble() < Headcrumbs.babyCelebrityChance)
+			setChild(true);
+
 		return null;
 	}
 
@@ -242,6 +266,9 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 		String username = getUsername();
 		if (!StringUtils.isBlank(username))
 			nbt.setString("Username", username);
+
+		if (isChild())
+			nbt.setBoolean("IsBaby", true);
 	}
 
 	@Override
@@ -255,6 +282,9 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 		} else
 			username = getRandomUsername();
 		setUsername(username);
+
+		if (nbt.getBoolean("IsBaby"))
+			setChild(true);
 
 		setCombatAI();
 	}
@@ -395,5 +425,33 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 		if (profile == null)
 			profile = new GameProfile(null, getUsername());
 		return profile;
+	}
+
+	// Child stuff
+
+	@Override
+	public boolean isChild() {
+		return getDataWatcher().getWatchableObjectByte(CHILD) == 1;
+	}
+
+	public void setChild(boolean isChild) {
+		getDataWatcher().updateObject(CHILD, (byte) (isChild ? 1 : 0));
+
+		if (worldObj != null && !worldObj.isRemote) {
+			IAttributeInstance speed = getEntityAttribute(SharedMonsterAttributes.movementSpeed);
+			speed.removeModifier(babySpeedBoostModifier);
+			if (isChild)
+				speed.applyModifier(babySpeedBoostModifier);
+		}
+
+		if (isChild)
+			setSize(width * 0.5F, height * 0.5F);
+	}
+
+	@Override
+	protected void setSize(float width, float height) {
+		super.setSize(width, height);
+		dataWatcher.updateObject(WIDTH, this.width);
+		dataWatcher.updateObject(HEIGHT, this.height);
 	}
 }
