@@ -228,10 +228,10 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 		if (rand.nextFloat() < f * 0.2F)
 			getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(new AttributeModifier("Speed Bonus", rand.nextDouble() * 2.0 * 0.24 + 0.01, 2));
 
-		getVIPHandler().onSpawn(this);
-
 		if (rand.nextDouble() < Headcrumbs.babyCelebrityChance)
 			setChild(true);
+
+		getVIPHandler().onSpawn(this);
 
 		return null;
 	}

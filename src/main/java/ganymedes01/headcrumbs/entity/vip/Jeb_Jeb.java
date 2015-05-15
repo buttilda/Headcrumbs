@@ -4,6 +4,8 @@ import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.entity.EntityCelebrity;
 import ganymedes01.headcrumbs.entity.VIPHandler;
 import net.minecraft.block.BlockColored;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -44,14 +46,15 @@ public class Jeb_Jeb extends VIPHandler {
 	public void onSpawn(EntityCelebrity entity) {
 		if (!Headcrumbs.enableBaarbra)
 			return;
-		EntitySheep sheep = new EntitySheep(entity.worldObj);
-		sheep.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, entity.rotationYaw, entity.rotationPitch);
-		sheep.onSpawnWithEgg(null);
-		sheep.setFleeceColor(BlockColored.func_150032_b(5));
+		EntityLiving mount = entity.isChild() ? new EntityChicken(entity.worldObj) : new EntitySheep(entity.worldObj);
+		mount.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, entity.rotationYaw, entity.rotationPitch);
+		mount.onSpawnWithEgg(null);
+		if (mount instanceof EntitySheep)
+			((EntitySheep) mount).setFleeceColor(BlockColored.func_150032_b(5));
 
-		sheep.setCustomNameTag("Baabara");
-		entity.worldObj.spawnEntityInWorld(sheep);
-		sheep.playLivingSound();
-		entity.mountEntity(sheep);
+		mount.setCustomNameTag(entity.isChild() ? "Omelette" : "Baabara");
+		entity.worldObj.spawnEntityInWorld(mount);
+		mount.playLivingSound();
+		entity.mountEntity(mount);
 	}
 }
