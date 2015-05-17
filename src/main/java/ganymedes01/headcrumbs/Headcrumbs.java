@@ -33,6 +33,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -164,10 +165,9 @@ public class Headcrumbs {
 	public static boolean enableBaarbra = true;
 	public static int[] blacklistedDimensions = { 1, -1 };
 	public static String celebrityNamePrefix = "";
-	public static boolean alternativeCelebrityRegistering = false;
 
 	public static boolean enableCelebrityMobs = true, celebrityOpensDoors = true;
-	public static int celebrityProb = 80, celebrityMin = 4, celebrityMax = 4, celebrityID = 89;
+	public static int celebrityProb = 80, celebrityMin = 4, celebrityMax = 4;
 	public static double babyCelebrityChance = 0.1;
 
 	public static Item ganysEndSkull = null;
@@ -195,6 +195,7 @@ public class Headcrumbs {
 	}
 
 	@EventHandler
+	@SuppressWarnings("unchecked")
 	public void init(FMLInitializationEvent event) {
 		PacketHandler.init();
 		proxy.registerEvents();
@@ -212,17 +213,13 @@ public class Headcrumbs {
 			}
 
 		if (enableCelebrityMobs) {
-			if (alternativeCelebrityRegistering) {
-				EntityRegistry.registerModEntity(EntityCelebrity.class, "Celebrity", 0, instance, 512, 1, true);
-				Item egg = new CelebrityEgg();
-				GameRegistry.registerItem(egg, egg.getUnlocalizedName().substring(egg.getUnlocalizedName().lastIndexOf(".")));
-				OreDictionary.registerOre("mobEgg", egg);
-			} else
-				try {
-					EntityRegistry.registerGlobalEntityID(EntityCelebrity.class, "Celebrity", celebrityID, 0xFFF144, 0x69DFDA);
-				} catch (IllegalArgumentException e) {
-					throw new RuntimeException("The Celebrity ID chosen is already being used. Enable the alternative method of registering entities in the config file or change the ID until you find a free one!", e);
-				}
+			EntityList.stringToClassMapping.put("Celebrity", EntityCelebrity.class);
+
+			EntityRegistry.registerModEntity(EntityCelebrity.class, "Celebrity", 0, instance, 512, 1, true);
+			Item egg = new CelebrityEgg();
+			GameRegistry.registerItem(egg, "egg");
+			OreDictionary.registerOre("mobEgg", egg);
+
 			VIPHandler.init();
 		}
 	}
