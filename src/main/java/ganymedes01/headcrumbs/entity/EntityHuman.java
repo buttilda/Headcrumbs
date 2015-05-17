@@ -71,7 +71,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob {
 		super(world);
 		getNavigator().setBreakDoors(true);
 		tasks.addTask(0, new EntityAISwimming(this));
-		if (Headcrumbs.celebrityOpensDoors && world.difficultySetting == EnumDifficulty.HARD)
+		if (Headcrumbs.humansOpenDoors && world.difficultySetting == EnumDifficulty.HARD)
 			tasks.addTask(1, new EntityAIOpenDoor(this, true));
 		tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
 		tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
@@ -228,7 +228,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob {
 		if (rand.nextFloat() < f * 0.2F)
 			getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(new AttributeModifier("Speed Bonus", rand.nextDouble() * 2.0 * 0.24 + 0.01, 2));
 
-		if (rand.nextDouble() < Headcrumbs.babyCelebrityChance)
+		if (rand.nextDouble() < Headcrumbs.babyHumanChance)
 			setChild(true);
 
 		getVIPHandler().onSpawn(this);
@@ -368,7 +368,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob {
 						@Override
 						@SideOnly(Side.CLIENT)
 						public String getFormattingCode() {
-							return Headcrumbs.celebrityNamePrefix;
+							return Headcrumbs.humanNamePrefix;
 						}
 
 					};

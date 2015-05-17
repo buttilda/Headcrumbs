@@ -164,11 +164,11 @@ public class Headcrumbs {
 	public static boolean enableVIPs = true;
 	public static boolean enableBaarbra = true;
 	public static int[] blacklistedDimensions = { 1, -1 };
-	public static String celebrityNamePrefix = "";
+	public static String humanNamePrefix = "";
 
-	public static boolean enableCelebrityMobs = true, celebrityOpensDoors = true;
+	public static boolean enableHumanMobs = true, humansOpenDoors = true;
 	public static int celebrityProb = 80, celebrityMin = 4, celebrityMax = 4;
-	public static double babyCelebrityChance = 0.1;
+	public static double babyHumanChance = 0.1;
 
 	public static Item ganysEndSkull = null;
 
@@ -212,7 +212,7 @@ public class Headcrumbs {
 			} catch (Exception e) {
 			}
 
-		if (enableCelebrityMobs) {
+		if (enableHumanMobs) {
 			EntityList.stringToClassMapping.put("Celebrity", EntityHuman.class);
 
 			EntityRegistry.registerModEntity(EntityHuman.class, "Human", 0, instance, 512, 1, true);
@@ -241,7 +241,7 @@ public class Headcrumbs {
 
 		UsercacheChecker.check();
 
-		if (enableCelebrityMobs) {
+		if (enableHumanMobs) {
 			List<BiomeDictionary.Type> blacklistedBiomes = new ArrayList<BiomeDictionary.Type>();
 			blacklistedBiomes.add(BiomeDictionary.Type.MUSHROOM);
 
