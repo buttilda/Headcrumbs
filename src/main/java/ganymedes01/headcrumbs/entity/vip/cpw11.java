@@ -1,6 +1,6 @@
 package ganymedes01.headcrumbs.entity.vip;
 
-import ganymedes01.headcrumbs.entity.EntityCelebrity;
+import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.entity.VIPHandler;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -30,7 +30,7 @@ public class cpw11 extends VIPHandler {
 	}
 
 	@Override
-	protected ItemStack getItem(EntityCelebrity entity) {
+	protected ItemStack getItem(EntityHuman entity) {
 		if (dirtChest9000GuideBook == null) {
 			dirtChest9000GuideBook = new ItemStack(Items.written_book);
 			dirtChest9000GuideBook.setTagInfo("author", new NBTTagString("cpw"));

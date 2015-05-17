@@ -30,7 +30,7 @@ public class VIPHandler {
 	private VIPHandler(int i) {
 	}
 
-	public void dropItems(EntityCelebrity entity, int looting) {
+	public void dropItems(EntityHuman entity, int looting) {
 		int amount = minDropAmount() + entity.getRNG().nextInt(maxBaseDropAmount());
 
 		if (looting > 0)
@@ -44,7 +44,7 @@ public class VIPHandler {
 		}
 	}
 
-	public void dropRare(EntityCelebrity entity, int looting) {
+	public void dropRare(EntityHuman entity, int looting) {
 	}
 
 	protected int minDropAmount() {
@@ -59,11 +59,11 @@ public class VIPHandler {
 		return 3;
 	}
 
-	protected ItemStack getItem(EntityCelebrity entity) {
+	protected ItemStack getItem(EntityHuman entity) {
 		return entity.getRNG().nextBoolean() ? new ItemStack(Items.bone) : new ItemStack(Items.rotten_flesh);
 	}
 
-	public void onSpawn(EntityCelebrity entity) {
+	public void onSpawn(EntityHuman entity) {
 	}
 
 	public String livingSound() {

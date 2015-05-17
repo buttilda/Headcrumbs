@@ -198,8 +198,8 @@ item.headcrumbs.yukiOnna.name=Yuki Onna Head
 ##########
 # Entity #
 ##########
-entity.Celebrity.name=Celebrity
-entity.headcrumbs.Celebrity.name=Celebrity
+entity.Celebrity.name=Human
+entity.headcrumbs.Human.name=Human
 
 ################
 # Creative Tab #

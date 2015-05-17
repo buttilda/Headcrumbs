@@ -1,6 +1,6 @@
 package ganymedes01.headcrumbs.renderers;
 
-import ganymedes01.headcrumbs.entity.EntityCelebrity;
+import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.utils.TextureUtils;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelBiped;
@@ -18,9 +18,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderCelebrity extends RenderBiped {
+public class RenderHuman extends RenderBiped {
 
-	public RenderCelebrity() {
+	public RenderHuman() {
 		super(new ModelBiped() {
 			@Override
 			public void render(Entity entity, float f0, float f1, float f2, float f3, float f4, float f5) {
@@ -68,7 +68,7 @@ public class RenderCelebrity extends RenderBiped {
 
 	@Override
 	protected ResourceLocation getEntityTexture(EntityLiving entity) {
-		return TextureUtils.getPlayerSkin(((EntityCelebrity) entity).getProfile());
+		return TextureUtils.getPlayerSkin(((EntityHuman) entity).getProfile());
 	}
 
 	@Override
@@ -77,10 +77,10 @@ public class RenderCelebrity extends RenderBiped {
 		if (entity.isInvisible())
 			return;
 
-		EntityCelebrity celebrity = (EntityCelebrity) entity;
+		EntityHuman human = (EntityHuman) entity;
 
 		// Ears
-		ResourceLocation skin = TextureUtils.getPlayerSkin(celebrity.getProfile());
+		ResourceLocation skin = TextureUtils.getPlayerSkin(human.getProfile());
 		if (entity.getCommandSenderName().equals("deadmau5") && skin != AbstractClientPlayer.locationStevePng) {
 			bindTexture(skin);
 
@@ -105,15 +105,15 @@ public class RenderCelebrity extends RenderBiped {
 		}
 
 		// Cape
-		ResourceLocation cape = TextureUtils.getPlayerCape(celebrity.getProfile());
-		if (cape != null && !celebrity.isChild()) {
+		ResourceLocation cape = TextureUtils.getPlayerCape(human.getProfile());
+		if (cape != null && !human.isChild()) {
 			bindTexture(cape);
 			OpenGLHelper.pushMatrix();
 			OpenGLHelper.translate(0.0F, 0.0F, 0.125F);
-			double d3 = celebrity.field_71091_bM + (celebrity.field_71094_bP - celebrity.field_71091_bM) * float0 - (celebrity.prevPosX + (celebrity.posX - celebrity.prevPosX) * float0);
-			double d4 = celebrity.field_71096_bN + (celebrity.field_71095_bQ - celebrity.field_71096_bN) * float0 - (celebrity.prevPosY + (celebrity.posY - celebrity.prevPosY) * float0);
-			double d0 = celebrity.field_71097_bO + (celebrity.field_71085_bR - celebrity.field_71097_bO) * float0 - (celebrity.prevPosZ + (celebrity.posZ - celebrity.prevPosZ) * float0);
-			float f4 = celebrity.prevRenderYawOffset + (celebrity.renderYawOffset - celebrity.prevRenderYawOffset) * float0;
+			double d3 = human.field_71091_bM + (human.field_71094_bP - human.field_71091_bM) * float0 - (human.prevPosX + (human.posX - human.prevPosX) * float0);
+			double d4 = human.field_71096_bN + (human.field_71095_bQ - human.field_71096_bN) * float0 - (human.prevPosY + (human.posY - human.prevPosY) * float0);
+			double d0 = human.field_71097_bO + (human.field_71085_bR - human.field_71097_bO) * float0 - (human.prevPosZ + (human.posZ - human.prevPosZ) * float0);
+			float f4 = human.prevRenderYawOffset + (human.renderYawOffset - human.prevRenderYawOffset) * float0;
 			double d1 = MathHelper.sin(f4 * (float) Math.PI / 180.0F);
 			double d2 = -MathHelper.cos(f4 * (float) Math.PI / 180.0F);
 			float f5 = (float) d4 * 10.0F;
@@ -130,7 +130,7 @@ public class RenderCelebrity extends RenderBiped {
 			if (f6 < 0.0F)
 				f6 = 0.0F;
 
-			if (celebrity.isSneaking())
+			if (human.isSneaking())
 				f5 += 25.0F;
 
 			OpenGLHelper.rotate(6.0F + f6 / 2.0F + f5, 1.0F, 0.0F, 0.0F);

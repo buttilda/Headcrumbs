@@ -2,7 +2,7 @@ package ganymedes01.headcrumbs.utils;
 
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.ModItems;
-import ganymedes01.headcrumbs.entity.EntityCelebrity;
+import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.utils.helpers.HeadDropHelper;
 
@@ -61,8 +61,8 @@ public class HeadUtils {
 		if (target.isChild())
 			return null;
 
-		if (target instanceof EntityCelebrity)
-			return createHeadFor(((EntityCelebrity) target).getUsername());
+		if (target instanceof EntityHuman)
+			return createHeadFor(((EntityHuman) target).getUsername());
 
 		if (target instanceof EntityPlayer)
 			return createHeadFor((EntityPlayer) target);

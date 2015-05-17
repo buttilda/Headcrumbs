@@ -1,6 +1,6 @@
 package ganymedes01.headcrumbs.entity.vip;
 
-import ganymedes01.headcrumbs.entity.EntityCelebrity;
+import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.entity.VIPHandler;
 
 import java.awt.Color;
@@ -21,7 +21,7 @@ public class Myrathi extends VIPHandler {
 	}
 
 	@Override
-	protected ItemStack getItem(EntityCelebrity entity) {
+	protected ItemStack getItem(EntityHuman entity) {
 		ItemStack trousers = new ItemStack(Items.leather_leggings);
 		trousers.setItemDamage(1 + entity.getRNG().nextInt(Items.leather_leggings.getMaxDamage()));
 		Items.leather_leggings.func_82813_b(trousers, new Color(entity.getRNG().nextInt(256), entity.getRNG().nextInt(256), entity.getRNG().nextInt(256), 0).getRGB());

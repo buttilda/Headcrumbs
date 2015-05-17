@@ -1,11 +1,11 @@
 package ganymedes01.headcrumbs.proxy;
 
 import ganymedes01.headcrumbs.ModItems;
-import ganymedes01.headcrumbs.entity.EntityCelebrity;
+import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.eventHandlers.RenderPlayerHandler;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.renderers.ItemSkullRender;
-import ganymedes01.headcrumbs.renderers.RenderCelebrity;
+import ganymedes01.headcrumbs.renderers.RenderHuman;
 import ganymedes01.headcrumbs.renderers.TileEntityBlockPlayerRenderer;
 import ganymedes01.headcrumbs.renderers.TileEntityBlockSkullRenderer;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockPlayer;
@@ -37,7 +37,7 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(ModItems.skull, new ItemSkullRender());
 		MinecraftForgeClient.registerItemRenderer(Items.skull, new ItemSkullRender());
 
-		RenderingRegistry.registerEntityRenderingHandler(EntityCelebrity.class, new RenderCelebrity());
+		RenderingRegistry.registerEntityRenderingHandler(EntityHuman.class, new RenderHuman());
 
 		for (SkullTypes type : SkullTypes.values())
 			type.model().init();

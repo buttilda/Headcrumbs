@@ -48,7 +48,7 @@ import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
+public class EntityHuman extends EntityMob implements IRangedAttackMob {
 
 	// Cape related variables. Copied from EntityPlayer
 	public double field_71091_bM;
@@ -67,7 +67,7 @@ public class EntityCelebrity extends EntityMob implements IRangedAttackMob {
 	private static final int WIDTH = 15;
 	private static final int HEIGHT = 16;
 
-	public EntityCelebrity(World world) {
+	public EntityHuman(World world) {
 		super(world);
 		getNavigator().setBreakDoors(true);
 		tasks.addTask(0, new EntityAISwimming(this));

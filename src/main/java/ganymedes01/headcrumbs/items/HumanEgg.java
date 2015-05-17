@@ -1,6 +1,6 @@
 package ganymedes01.headcrumbs.items;
 
-import ganymedes01.headcrumbs.entity.EntityCelebrity;
+import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
@@ -23,9 +23,9 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class CelebrityEgg extends Item {
+public class HumanEgg extends Item {
 
-	public CelebrityEgg() {
+	public HumanEgg() {
 		setCreativeTab(CreativeTabs.tabMisc);
 		setUnlocalizedName(Utils.getUnlocalisedName("egg"));
 	}
@@ -33,7 +33,7 @@ public class CelebrityEgg extends Item {
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		String s = ("" + StatCollector.translateToLocal(Items.spawn_egg.getUnlocalizedName() + ".name")).trim();
-		String s1 = "headcrumbs.Celebrity";
+		String s1 = "headcrumbs.Human";
 
 		if (s1 != null)
 			s = s + " " + StatCollector.translateToLocal("entity." + s1 + ".name");
@@ -115,7 +115,7 @@ public class CelebrityEgg extends Item {
 	}
 
 	private Entity spawnCelebrity(World world, double x, double y, double z) {
-		Entity entity = new EntityCelebrity(world);
+		Entity entity = new EntityHuman(world);
 		if (entity != null && entity instanceof EntityLivingBase) {
 			EntityLiving entityliving = (EntityLiving) entity;
 			entity.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);

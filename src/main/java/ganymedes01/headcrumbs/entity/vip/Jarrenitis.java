@@ -1,6 +1,6 @@
 package ganymedes01.headcrumbs.entity.vip;
 
-import ganymedes01.headcrumbs.entity.EntityCelebrity;
+import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.entity.VIPHandler;
 
 import java.lang.reflect.Field;
@@ -18,7 +18,7 @@ public class Jarrenitis extends VIPHandler {
 	private ItemStack held = null;
 
 	@Override
-	public void onSpawn(EntityCelebrity entity) {
+	public void onSpawn(EntityHuman entity) {
 		boolean error = false;
 		try {
 			if (Loader.isModLoaded("TConstruct")) {

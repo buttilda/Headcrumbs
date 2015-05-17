@@ -2,7 +2,7 @@ package ganymedes01.headcrumbs.eventHandlers;
 
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.ModItems;
-import ganymedes01.headcrumbs.entity.EntityCelebrity;
+import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 
@@ -35,7 +35,7 @@ public class HandlerEvents {
 
 	@SubscribeEvent
 	public void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
-		if (event.entityLiving instanceof EntityCelebrity) {
+		if (event.entityLiving instanceof EntityHuman) {
 			String name = event.world.provider.getDimensionName();
 			if (name.equals("Twilight Forest") || name.equals("Erebus") || isDimensionBlackListed(event.world.provider.dimensionId))
 				event.setResult(Result.DENY);

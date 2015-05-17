@@ -1,7 +1,7 @@
 package ganymedes01.headcrumbs.entity.vip;
 
 import ganymedes01.headcrumbs.Headcrumbs;
-import ganymedes01.headcrumbs.entity.EntityCelebrity;
+import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.entity.VIPHandler;
 import net.minecraft.block.BlockColored;
 import net.minecraft.entity.EntityLiving;
@@ -38,12 +38,12 @@ public class Jeb_Jeb extends VIPHandler {
 	}
 
 	@Override
-	protected ItemStack getItem(EntityCelebrity entity) {
+	protected ItemStack getItem(EntityHuman entity) {
 		return entity.getRNG().nextFloat() > 0.25F ? new ItemStack(Blocks.double_plant, 1, 5) : new ItemStack(Blocks.red_flower, 1, 2);
 	}
 
 	@Override
-	public void onSpawn(EntityCelebrity entity) {
+	public void onSpawn(EntityHuman entity) {
 		if (!Headcrumbs.enableBaarbra)
 			return;
 		EntityLiving mount = entity.isChild() ? new EntityChicken(entity.worldObj) : new EntitySheep(entity.worldObj);

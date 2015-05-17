@@ -2,9 +2,9 @@ package ganymedes01.headcrumbs;
 
 import ganymedes01.headcrumbs.command.HeadcrumbsCommand;
 import ganymedes01.headcrumbs.configs.ConfigHandler;
-import ganymedes01.headcrumbs.entity.EntityCelebrity;
+import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.entity.VIPHandler;
-import ganymedes01.headcrumbs.items.CelebrityEgg;
+import ganymedes01.headcrumbs.items.HumanEgg;
 import ganymedes01.headcrumbs.libs.Reference;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.network.PacketHandler;
@@ -213,10 +213,10 @@ public class Headcrumbs {
 			}
 
 		if (enableCelebrityMobs) {
-			EntityList.stringToClassMapping.put("Celebrity", EntityCelebrity.class);
+			EntityList.stringToClassMapping.put("Celebrity", EntityHuman.class);
 
-			EntityRegistry.registerModEntity(EntityCelebrity.class, "Celebrity", 0, instance, 512, 1, true);
-			Item egg = new CelebrityEgg();
+			EntityRegistry.registerModEntity(EntityHuman.class, "Human", 0, instance, 512, 1, true);
+			Item egg = new HumanEgg();
 			GameRegistry.registerItem(egg, "egg");
 			OreDictionary.registerOre("mobEgg", egg);
 
@@ -253,7 +253,7 @@ public class Headcrumbs {
 							continue label;
 					biomes.add(biome);
 				}
-			EntityRegistry.addSpawn(EntityCelebrity.class, celebrityProb, celebrityMin, celebrityMax, EnumCreatureType.monster, biomes.toArray(new BiomeGenBase[biomes.size()]));
+			EntityRegistry.addSpawn(EntityHuman.class, celebrityProb, celebrityMin, celebrityMax, EnumCreatureType.monster, biomes.toArray(new BiomeGenBase[biomes.size()]));
 		}
 	}
 
