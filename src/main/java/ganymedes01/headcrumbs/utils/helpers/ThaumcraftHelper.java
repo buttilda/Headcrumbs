@@ -1,10 +1,17 @@
 package ganymedes01.headcrumbs.utils.helpers;
 
+import ganymedes01.headcrumbs.ModBlocks;
 import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+import thaumcraft.api.ThaumcraftApi;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.aspects.AspectList;
 import thaumcraft.common.entities.monster.EntityThaumicSlime;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.Optional;
 
 public class ThaumcraftHelper extends HeadDropHelper {
 
@@ -25,6 +32,17 @@ public class ThaumcraftHelper extends HeadDropHelper {
 		typesMap.put("Thaumcraft.CultistKnight", SkullTypes.cultist);
 		typesMap.put("Thaumcraft.CultistCleric", SkullTypes.cultist);
 		typesMap.put("Thaumcraft.EldritchCrab", SkullTypes.eldritchCrab);
+
+		if (Loader.isModLoaded("Thaumcraft"))
+			addAspects();
+	}
+
+	@Optional.Method(modid = "Thaumcraft")
+	private void addAspects() {
+		AspectList aspects = new AspectList().add(Aspect.MAN, 4).add(Aspect.DEATH, 4).add(Aspect.SOUL, 4);
+		ThaumcraftApi.registerObjectTag(new ItemStack(ModBlocks.blockPlayer, 1, OreDictionary.WILDCARD_VALUE), aspects);
+		ThaumcraftApi.registerObjectTag(new ItemStack(ModBlocks.blockSkull, 1, OreDictionary.WILDCARD_VALUE), aspects);
+		ThaumcraftApi.registerObjectTag(new ItemStack(ModItems.skull, 1, OreDictionary.WILDCARD_VALUE), aspects);
 	}
 
 	@Override
