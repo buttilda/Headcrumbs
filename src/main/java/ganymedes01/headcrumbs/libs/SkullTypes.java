@@ -73,6 +73,9 @@ import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.WerecatHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.WitherCowHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.YetiHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.YukiOnnaHead;
+import ganymedes01.headcrumbs.renderers.heads.lasercreeper.JetPackSpiderHead;
+import ganymedes01.headcrumbs.renderers.heads.lasercreeper.LaserCreeperHead;
+import ganymedes01.headcrumbs.renderers.heads.lasercreeper.RoboDinoHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.BehemothHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.BelphHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.LycaniteHead;
@@ -282,7 +285,10 @@ public enum SkullTypes {
 	solarCreeper		(Strings.EC_PREFIX + "solarcreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
 	cakeCreeper			(Strings.EC_PREFIX + "cakecreeper",			 				"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
 	fireworkCreeper		(Strings.EC_PREFIX + "fireworkcreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
-	springCreeper		(Strings.EC_PREFIX + "springcreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY);
+	springCreeper		(Strings.EC_PREFIX + "springcreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+	laserCreeper		(Strings.LC_PREFIX + "laserCreeper",			 			"lasercreepers", 		LaserCreeperHead.INSTANCE),
+	roboDino			(Strings.LC_PREFIX + "roboDino",			 				"lasercreepers", 		RoboDinoHead.INSTANCE),
+	jetPackSpider		(Strings.LC_PREFIX + "jetPackSpider",			 			"lasercreepers", 		JetPackSpiderHead.INSTANCE);
 	// @formatter:on
 
 	private final String mod;

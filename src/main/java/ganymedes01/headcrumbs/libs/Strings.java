@@ -12,4 +12,5 @@ public class Strings {
 	public static final String PM_PREFIX = "primitivemobs:textures/entity/";
 	public static final String GOG_PREFIX = "gaia:textures/models/";
 	public static final String EC_PREFIX = "elementalcreepers:textures/entities/";
+	public static final String LC_PREFIX = "lcrdrfs:textures/entity/";
 }

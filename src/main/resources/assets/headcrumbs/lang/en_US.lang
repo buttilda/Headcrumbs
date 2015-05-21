@@ -195,6 +195,11 @@ item.headcrumbs.witherCow.name=Wither Cow Head
 item.headcrumbs.yeti.name=Yeti Head
 item.headcrumbs.yukiOnna.name=Yuki Onna Head
 
+# Laser Creeper Robot Dino Riders From Space
+item.headcrumbs.laserCreeper.name=Laser Creeper Head
+item.headcrumbs.roboDino.name=T-R3X 1000 Head
+item.headcrumbs.jetPackSpider.name=ARTHR0-BORG JETLINER 2000 Head
+
 ##########
 # Entity #
 ##########

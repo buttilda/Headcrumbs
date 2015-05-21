@@ -16,6 +16,7 @@ import ganymedes01.headcrumbs.utils.helpers.ElementalCreepersHelper;
 import ganymedes01.headcrumbs.utils.helpers.EnderZooHelper;
 import ganymedes01.headcrumbs.utils.helpers.GrimoireOfGaiaHelper;
 import ganymedes01.headcrumbs.utils.helpers.HeadDropHelper;
+import ganymedes01.headcrumbs.utils.helpers.LaserCreepersHelper;
 import ganymedes01.headcrumbs.utils.helpers.LycanitesHelper;
 import ganymedes01.headcrumbs.utils.helpers.NaturaHelper;
 import ganymedes01.headcrumbs.utils.helpers.PrimitiveMobsHelper;
@@ -228,6 +229,7 @@ public class Headcrumbs {
 	public void postInit(FMLPostInitializationEvent event) {
 		HeadUtils.loadPlayerHeads();
 
+		HeadDropHelper.register(new LaserCreepersHelper());
 		HeadDropHelper.register(new TwilightForestHelper());
 		HeadDropHelper.register(new TEHelper());
 		HeadDropHelper.register(new NaturaHelper());
