@@ -9,6 +9,7 @@ import ganymedes01.headcrumbs.libs.Reference;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.network.PacketHandler;
 import ganymedes01.headcrumbs.proxy.CommonProxy;
+import ganymedes01.headcrumbs.recipe.PlayerSkullRecipe;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.UsercacheChecker;
 import ganymedes01.headcrumbs.utils.UsernameUtils;
@@ -42,6 +43,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.RecipeSorter;
+import net.minecraftforge.oredict.RecipeSorter.Category;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -162,14 +165,15 @@ public class Headcrumbs {
 	public static boolean enableChargedCreeperKills = true;
 	public static boolean enablePlayerStatues = true;
 	public static boolean enableTooltips = true;
-	public static boolean enableVIPs = true;
-	public static boolean enableBaarbra = true;
-	public static int[] blacklistedDimensions = { 1, -1 };
-	public static String humanNamePrefix = "";
+	public static boolean enableHeadConversion = true;
 
 	public static boolean enableHumanMobs = true, humansOpenDoors = true;
 	public static int celebrityProb = 80, celebrityMin = 4, celebrityMax = 4;
 	public static double babyHumanChance = 0.1;
+	public static boolean enableVIPs = true;
+	public static boolean enableBaarbra = true;
+	public static int[] blacklistedDimensions = { 1, -1 };
+	public static String humanNamePrefix = "";
 
 	public static Item ganysEndSkull = null;
 
@@ -193,6 +197,12 @@ public class Headcrumbs {
 		OreDictionary.registerOre("skullZombie", new ItemStack(Items.skull, 1, 2));
 		OreDictionary.registerOre("skullPlayer", new ItemStack(Items.skull, 1, 3));
 		OreDictionary.registerOre("skullCreeper", new ItemStack(Items.skull, 1, 4));
+
+		if (enableHeadConversion) {
+			RecipeSorter.register("headcrumbs.playerskullrecipe", PlayerSkullRecipe.class, Category.SHAPELESS, "after:minecraft:shapeless");
+			GameRegistry.addRecipe(new PlayerSkullRecipe(new ItemStack(ModItems.skull, 1, SkullTypes.player.ordinal()), new ItemStack(Items.skull, 1, 3)));
+			GameRegistry.addRecipe(new PlayerSkullRecipe(new ItemStack(Items.skull, 1, 3), new ItemStack(ModItems.skull, 1, SkullTypes.player.ordinal())));
+		}
 	}
 
 	@EventHandler
