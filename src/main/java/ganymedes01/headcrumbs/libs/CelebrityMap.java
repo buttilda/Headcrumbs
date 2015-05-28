@@ -96,7 +96,7 @@ public class CelebrityMap {
 		map.put("amadornes", "BluePower");
 		map.put("Melonar", "MCUpdater");
 		map.put("DrZhark", "Mo' Creatures");
-
+		map.put("TheSarge", "Soul Shards: The Old Ways");
 		map.put("ganymedes01", "Gany's Mods");
 	}
 }
