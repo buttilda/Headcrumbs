@@ -71,7 +71,7 @@ public class CelebrityMap {
 		map.put("Taelnia", "JABBA");
 		map.put("TTFTCUTS", "Alternate Terrain Generation");
 		map.put("vadis365", "The Erebus");
-		map.put("Vazkii", "Botania");
+		map.put("_phi", "Botania");
 		map.put("Vswe", "Steve's Carts");
 		map.put("WayofFlowingTime", "BloodMagic");
 		map.put("x3n0ph0b3", "Equivalent Exchange");
