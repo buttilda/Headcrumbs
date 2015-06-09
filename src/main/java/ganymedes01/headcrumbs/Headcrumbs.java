@@ -106,25 +106,26 @@ public class Headcrumbs {
 	};
 
 	public static String[] modders = {
-		"sinkillerj", "Silentine", "techbrew", "Binnie567", "Adubbz", "Drullkus", "aidancbrady", "Melonar", "Cricket",
+		"sinkillerj", "Silentine", "techbrew", "Drullkus", "aidancbrady", "Melonar", "Cricket", "TheSarge",
 		"spacetoad", "FyberOptic", "Vexatos", "Mineshopper", "AUTOMATIC_MAIDEN", "sanandreasMC", "FatherToast",
 		"Erasmus_Crowley", "Alblaka", "Emoniph", "Nuchaz", "Kobata", "powercrystals", "AbrarSyed", "sdkillen",
 		"Taelnia", "Lycanite", "asiekierka", "GregoriusT", "skyboy", "Flaxbeard", "Emasher", "joshiejack", "Reika",
 		"ganymedes01", "Pokefenn", "chylex", "vadis365", "jakimfett", "Lunatrius", "copygirl", "amadornes", "DrZhark",
-		"TheSarge"
 	};
 
 	public static String[] youtubers = {
 		"wyld", "SkythekidRS", "Bashur", "Straymaverick", "SOTMead", "Nerdcubed", "Kleetho", "DanTDM",
 		"Runew0lf", "GiantWaffle", "Bacon_Donut", "Heph", "ChimneySwift", "FuriousDestroyer", "paulsoaresjr",
 		"SuperGirlyGamer", "CyaNideEPiC", "Jarrenitis", "direwolf20", "Sjin", "Xephos", "LividCoffee", "pewdie",
-		"Rythian", "Zoeya", "TheStrippin", "InTheLittleWood", "Quetzz", "Blorph", "xbony2", "generikb",
-		"CaptainSparklez", "AntVenom", "CavemanFilms", "Fosler", "BevoLJ", "Sips_", "Honeydew", "thejims",
+		"Rythian", "Zoeya", "TheStrippin", "InTheLittleWood", "Quetzz", "Blorph", "xbony2", "generikb", "GameChap",
+		"CaptainSparklez", "AntVenom", "CavemanFilms", "Fosler", "BevoLJ", "Sips_", "Honeydew", "thejims", "BertieChap",
 		"TobyofBuscus", "corjaantje", "RealThinknoodles", "ZexyZek", "WesWilson", "BdoubleO100", "tedyhere"
 	};
 
 	public static String[] mojang = {
-		"Notch", "jeb_", "C418", "Dinnerbone", "Grumm", "Searge_DP", "EvilSeph", "TheMogMiner", "Marc_IRL"
+		"Notch", "jeb_", "C418", "Dinnerbone", "Grumm", "Searge", "EvilSeph", "TheMogMiner", "Marc_IRL", "FruktHamster",
+		"carlmanneh", "vubui", "_tommo_", "kappe", "geuder", "mollstam", "xlson", "KrisJelbring", "amir343", "NeonMaster",
+		"carnalizer", "eldrone", "MinecraftChick", "Bopogamel", "Hideous", "MidnightEnforcer"
 	};
 
 	public static String[] mindCrack = {
@@ -144,14 +145,15 @@ public class Headcrumbs {
 		"Mr_okushama", "AlgorithmX2", "Mikeemoo", "_CrazyP_", "MysteriousAges", "MineMaarten", "nekosune", "Mr_Damien_Hazard",
 		"tlovetech", "FireBall1725", "PurpleMentat", "calclavia", "Minalien", "fuj1n", "Mithion", "RWTema", "alexbegt",
 		"WayofFlowingTime", "TTFTCUTS", "bspkrs", "amnet", "azanor", "chicken_bones", "Cloudhunter", "RazzleberryFox",
-		"CovertJaguar", "cpw11", "dan200", "Eloraam", "florastar", "iChun", "KingLemming", "Krapht", "peterixxx",
+		"CovertJaguar", "cpw11", "dan200", "Eloraam", "florastar", "iChun", "KingLemming", "Krapht", "peterixxx", "Adubbz",
 		"LexManos", "TheMattaBase", "mDiyo", "Myrathi", "Morvelaira", "Pahimar", "sfPlayer1", "ProfMobius", "Arkember",
 		"Rorax", "Sacheverell", "sirsengir", "Soaryn", "x3n0ph0b3", "XCompWiz", "Vswe", "_phi", "ZeldoKavira", "AtomicBlom",
-		"neptunepink", "EddieRuckus", "LordDusk", "Kihira", "Vaygrim", "Kaelten", "MatrexsVigil", "tfox83", "jadedcat", "mezz"
+		"neptunepink", "EddieRuckus", "LordDusk", "Kihira", "Vaygrim", "Kaelten", "MatrexsVigil", "tfox83", "jadedcat", "mezz",
+		"aivukuro", "ArashiDragon", "Binnie567"
 	};
 
 	public static String[] ftb = {
-		"eyamaz", "slowpoke101", "progwml6"
+		"eyamaz", "slowpoke101", "progwml6", "Captainnana", "Gideonseymour", "Watchful11"
 	};
 
 	public static String[] technic = {
