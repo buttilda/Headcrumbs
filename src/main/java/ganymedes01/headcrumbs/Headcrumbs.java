@@ -76,6 +76,9 @@ public class Headcrumbs {
 
 	public static CreativeTabs tab = new CreativeTabs(Reference.MOD_ID) {
 
+		@SideOnly(Side.CLIENT)
+		private ItemStack displayStack;
+
 		@Override
 		public Item getTabIconItem() {
 			return ModItems.skull;
@@ -84,12 +87,15 @@ public class Headcrumbs {
 		@Override
 		@SideOnly(Side.CLIENT)
 		public ItemStack getIconItemStack() {
-			Random rand = new Random();
-			List<SkullTypes> types = new ArrayList<SkullTypes>();
-			for (SkullTypes type : SkullTypes.values())
-				if (type.canShow() && type != SkullTypes.lycanites && type != SkullTypes.player)
-					types.add(type);
-			return types.isEmpty() ? new ItemStack(Items.skull) : new ItemStack(ModItems.skull, 1, types.get(rand.nextInt(types.size())).ordinal());
+			if (displayStack == null) {
+				Random rand = new Random();
+				List<SkullTypes> types = new ArrayList<SkullTypes>();
+				for (SkullTypes type : SkullTypes.values())
+					if (type.canShow() && type != SkullTypes.lycanites && type != SkullTypes.player)
+						types.add(type);
+				displayStack = types.isEmpty() ? new ItemStack(Items.skull) : new ItemStack(ModItems.skull, 1, types.get(rand.nextInt(types.size())).ordinal());
+			}
+			return displayStack;
 		}
 	};
 
