@@ -8,6 +8,7 @@ import ganymedes01.headcrumbs.utils.HeadUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -33,11 +34,13 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class HandlerEvents {
 
+	private static List<String> hardcodedBlacklist = Arrays.asList("Twilight Forest", "Erebus", "The Outer Lands");
+
 	@SubscribeEvent
 	public void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
 		if (event.entityLiving instanceof EntityHuman) {
 			String name = event.world.provider.getDimensionName();
-			if (name.equals("Twilight Forest") || name.equals("Erebus") || isDimensionBlackListed(event.world.provider.dimensionId))
+			if (hardcodedBlacklist.contains(name) || isDimensionBlackListed(event.world.provider.dimensionId))
 				event.setResult(Result.DENY);
 		}
 	}
