@@ -83,13 +83,13 @@ public class Headcrumbs {
 
 		@Override
 		@SideOnly(Side.CLIENT)
-		public int func_151243_f() {
+		public ItemStack getIconItemStack() {
 			Random rand = new Random();
 			List<SkullTypes> types = new ArrayList<SkullTypes>();
 			for (SkullTypes type : SkullTypes.values())
 				if (type.canShow() && type != SkullTypes.lycanites && type != SkullTypes.player)
 					types.add(type);
-			return types.get(rand.nextInt(types.size())).ordinal();
+			return types.isEmpty() ? new ItemStack(Items.skull) : new ItemStack(ModItems.skull, 1, types.get(rand.nextInt(types.size())).ordinal());
 		}
 	};
 
