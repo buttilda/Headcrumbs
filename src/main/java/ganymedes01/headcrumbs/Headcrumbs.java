@@ -100,7 +100,7 @@ public class Headcrumbs {
 	};
 
 	public static String[] modders = {
-		"sinkillerj", "Silentine", "techbrew", "Binnie567", "Adubbz", "Drullkus", "aidancbrady", "Melonar",
+		"sinkillerj", "Silentine", "techbrew", "Binnie567", "Adubbz", "Drullkus", "aidancbrady", "Melonar", "Cricket",
 		"spacetoad", "FyberOptic", "Vexatos", "Mineshopper", "AUTOMATIC_MAIDEN", "sanandreasMC", "FatherToast",
 		"Erasmus_Crowley", "Alblaka", "Emoniph", "Nuchaz", "Kobata", "powercrystals", "AbrarSyed", "sdkillen",
 		"Taelnia", "Lycanite", "asiekierka", "GregoriusT", "skyboy", "Flaxbeard", "Emasher", "joshiejack", "Reika",
