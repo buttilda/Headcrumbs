@@ -95,16 +95,19 @@ public class HeadUtils {
 	public static GameProfile getGameProfile(ItemStack stack) {
 		GameProfile profile = null;
 
-		if (stack.hasTagCompound()) {
-			NBTTagCompound nbt = stack.getTagCompound();
-			if (nbt.hasKey(OWNER_TAG, Constants.NBT.TAG_COMPOUND))
-				profile = NBTUtil.func_152459_a(nbt.getCompoundTag(OWNER_TAG));
-			else if (nbt.hasKey(OWNER_TAG, Constants.NBT.TAG_STRING))
-				profile = new GameProfile(null, nbt.getString(OWNER_TAG));
-			else if (nbt.hasKey("OwnerUUID", Constants.NBT.TAG_STRING)) {
-				profile = MinecraftServer.getServer().func_152358_ax().func_152652_a(UUID.fromString(nbt.getString("OwnerUUID")));
-				profile = MinecraftServer.getServer().func_147130_as().fillProfileProperties(profile, true);
+		try {
+			if (stack.hasTagCompound()) {
+				NBTTagCompound nbt = stack.getTagCompound();
+				if (nbt.hasKey(OWNER_TAG, Constants.NBT.TAG_COMPOUND))
+					profile = NBTUtil.func_152459_a(nbt.getCompoundTag(OWNER_TAG));
+				else if (nbt.hasKey(OWNER_TAG, Constants.NBT.TAG_STRING))
+					profile = new GameProfile(null, nbt.getString(OWNER_TAG));
+				else if (nbt.hasKey("OwnerUUID", Constants.NBT.TAG_STRING)) {
+					profile = MinecraftServer.getServer().func_152358_ax().func_152652_a(UUID.fromString(nbt.getString("OwnerUUID")));
+					profile = MinecraftServer.getServer().func_147130_as().fillProfileProperties(profile, true);
+				}
 			}
+		} catch (IllegalArgumentException e) {
 		}
 
 		return profile;
