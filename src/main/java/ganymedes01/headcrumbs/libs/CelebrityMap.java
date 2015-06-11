@@ -98,5 +98,8 @@ public class CelebrityMap {
 		map.put("DrZhark", "Mo' Creatures");
 		map.put("TheSarge", "Soul Shards: The Old Ways");
 		map.put("ganymedes01", "Gany's Mods");
+        map.put("KeldonSlayer", "HxC-Mods");
+        map.put("KarelMikie3", "HxC-Mods");
+        map.put("Mfernflower", "Minechem, HxC-Mods");
 	}
 }

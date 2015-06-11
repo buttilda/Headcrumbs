@@ -1,15 +1,14 @@
 package ganymedes01.headcrumbs.configs;
 
+import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.libs.Reference;
-
-import java.io.File;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.common.config.Configuration;
-import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+
+import java.io.File;
 
 public class ConfigHandler {
 
@@ -49,7 +48,7 @@ public class ConfigHandler {
 		Headcrumbs.enableModSent = configFile.get("heads", "Enable usernames sent by other mods", Headcrumbs.enableModSent, "Other mods can add usernames using inter-mod communications, turns this config to false will prevent that from happening").setRequiresMcRestart(true).getBoolean();
 
 		Headcrumbs.enableHumanMobs = configFile.get("mob", "Enable celebrity mobs", Headcrumbs.enableHumanMobs).setRequiresMcRestart(true).getBoolean();
-		Headcrumbs.enableVIPs = configFile.get("mob", "Enable VIP drops", Headcrumbs.enableVIPs, "Setting this to false will disable special drops/wheapons for certain celebrities. Existing mobs will still hold the wheapons they spawned with.").setRequiresMcRestart(true).getBoolean();
+		Headcrumbs.enableVIPs = configFile.get("mob", "Enable VIP drops", Headcrumbs.enableVIPs, "Setting this to false will disable special drops/weapons for certain celebrities. Existing mobs will still hold the weapons they spawned with.").setRequiresMcRestart(true).getBoolean();
 		Headcrumbs.enableBaarbra = configFile.get("mob", "Disable Baarbra", Headcrumbs.enableBaarbra, "Setting this to false will cause Baarbra (or other mobs that VIPs mount) to no longer show up )=").setRequiresMcRestart(false).getBoolean();
 		Headcrumbs.celebrityProb = configFile.get("mob", "Spawn probability", Headcrumbs.celebrityProb, "The change the mob will spawn. Base values: zombies, skeletons, spider, creepers = 100, endermen = 10, witches = 5").setRequiresMcRestart(true).getInt();
 		Headcrumbs.celebrityMin = configFile.get("mob", "Minimum group size", Headcrumbs.celebrityMin, "The minimum size of the group of mobs that will spawn at once").setRequiresMcRestart(true).getInt();
