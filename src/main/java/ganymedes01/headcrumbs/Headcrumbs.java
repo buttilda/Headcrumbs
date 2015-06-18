@@ -29,9 +29,11 @@ import ganymedes01.headcrumbs.utils.helpers.VanillaHelper;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -308,7 +310,7 @@ public class Headcrumbs {
 	}
 
 	public static List<String> getAllNames() {
-		List<String> names = new LinkedList<String>();
+		Set<String> names = new HashSet<String>();
 		names.addAll(Arrays.asList(others));
 		names.addAll(Arrays.asList(modders));
 		names.addAll(Arrays.asList(youtubers));
@@ -320,6 +322,6 @@ public class Headcrumbs {
 		names.addAll(Arrays.asList(technic));
 		if (enableModSent)
 			names.addAll(modsent);
-		return names;
+		return new ArrayList<String>(names);
 	}
 }
