@@ -39,10 +39,12 @@ import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.RecipeSorter;
@@ -273,13 +275,26 @@ public class Headcrumbs {
 			List<BiomeGenBase> biomes = new LinkedList<BiomeGenBase>();
 			label: for (BiomeGenBase biome : BiomeGenBase.getBiomeGenArray())
 				if (biome != null) {
+					// Check if the biome name is blacklisted
 					if (blacklistedBiomeNames.contains(biome.biomeName))
-						continue label;
+						continue;
+
+					// Check if the biome type is blacklisted
 					for (BiomeDictionary.Type type : BiomeDictionary.getTypesForBiome(biome))
 						if (blacklistedBiomes.contains(type))
 							continue label;
-					biomes.add(biome);
+
+					// Check if zombies can spawn on this biome
+					for (Object obj : biome.getSpawnableList(EnumCreatureType.monster))
+						if (obj instanceof SpawnListEntry) {
+							SpawnListEntry entry = (SpawnListEntry) obj;
+							if (entry.entityClass == EntityZombie.class) {
+								biomes.add(biome);
+								continue label;
+							}
+						}
 				}
+
 			EntityRegistry.addSpawn(EntityHuman.class, celebrityProb, celebrityMin, celebrityMax, EnumCreatureType.monster, biomes.toArray(new BiomeGenBase[biomes.size()]));
 		}
 	}
