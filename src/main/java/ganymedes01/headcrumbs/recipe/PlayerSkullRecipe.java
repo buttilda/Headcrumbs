@@ -19,7 +19,7 @@ public class PlayerSkullRecipe extends ShapelessRecipes {
 
 		for (int i = 0; i < grid.getSizeInventory(); i++) {
 			ItemStack head = grid.getStackInSlot(i);
-			if (head != null) {
+			if (head != null && head.hasTagCompound()) {
 				newHead.setTagCompound((NBTTagCompound) head.getTagCompound().copy());
 				break;
 			}
