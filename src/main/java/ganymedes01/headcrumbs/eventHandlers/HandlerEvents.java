@@ -30,6 +30,7 @@ import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.Event.Result;
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class HandlerEvents {
@@ -52,7 +53,7 @@ public class HandlerEvents {
 		return false;
 	}
 
-	@SubscribeEvent
+	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void playerDrop(LivingDeathEvent event) {
 		EntityLivingBase entity = event.entityLiving;
 		if (entity.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory") && entity instanceof EntityPlayerMP) {
@@ -68,7 +69,7 @@ public class HandlerEvents {
 		}
 	}
 
-	@SubscribeEvent
+	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void dropEvent(LivingDropsEvent event) {
 		drop(event.entityLiving, event.source, event.lootingLevel, event.drops);
 	}
@@ -105,9 +106,8 @@ public class HandlerEvents {
 
 	private boolean canDropThisHead(ItemStack head, int beheading) {
 		if (beheading > 0)
-			return head.getItem() != Items.skull && !isPlayerHead(head);
-
-		return head.getItem() == Items.skull ? head.getItemDamage() != 1 && Headcrumbs.enableVanillaHeadsDrop : true;
+			return head.getItem() != Items.skull;
+		return head.getItem() != Items.skull || Headcrumbs.enableVanillaHeadsDrop;
 	}
 
 	private boolean isPlayerHead(ItemStack stack) {
@@ -153,11 +153,13 @@ public class HandlerEvents {
 	private void addDrop(ItemStack stack, EntityLivingBase entity, List<EntityItem> drops) {
 		if (stack.stackSize <= 0)
 			return;
+		List<EntityItem> toRemove = new ArrayList<EntityItem>();
 		for (EntityItem drop : drops) {
 			ItemStack dropStack = drop.getEntityItem();
-			if (ItemStack.areItemStacksEqual(stack, dropStack))
-				return;
+			if (dropStack.getItem() == Items.skull && dropStack.getItemDamage() != 1) // Remove any head that isn't the wither skeleton's head
+				toRemove.add(drop);
 		}
+		drops.removeAll(toRemove);
 
 		EntityItem entityItem = new EntityItem(entity.worldObj, entity.posX, entity.posY, entity.posZ, stack);
 		entityItem.delayBeforeCanPickup = 10;

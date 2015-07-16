@@ -51,10 +51,7 @@ public class VanillaHelper extends HeadDropHelper {
 			if (entity instanceof EntityCreeper)
 				return new ItemStack(Items.skull, 1, 4);
 			else if (entity instanceof EntitySkeleton) {
-				int type = ((EntitySkeleton) entity).getSkeletonType();
-				if (type == 1) // Wither
-					return new ItemStack(Items.skull, 1, 1);
-				else if (type == 0) // Normal
+				if (((EntitySkeleton) entity).getSkeletonType() == 0) // Only drop normal skeleton's head. Vanilla handles withers
 					return new ItemStack(Items.skull, 1, 0);
 			} else if (entity instanceof EntityZombie) {
 				if (entity instanceof EntityPigZombie)
