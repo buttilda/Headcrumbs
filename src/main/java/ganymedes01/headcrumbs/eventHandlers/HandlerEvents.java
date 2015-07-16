@@ -88,7 +88,10 @@ public class HandlerEvents {
 			if (stack == null)
 				return;
 
-			if (isPoweredCreeper || canDropThisHead(stack, beheading))
+			if (beheading > 0 && stack.getItem() == Items.skull)
+				return; // Vanilla head drops will be handled by TiCon
+
+			if (stack.getItem() != Items.skull || Headcrumbs.enableVanillaHeadsDrop)
 				if (isPlayerHead(stack) || Headcrumbs.enableMobsAndAnimalHeads)
 					addDrop(stack, entity, drops);
 		}
@@ -102,12 +105,6 @@ public class HandlerEvents {
 		}
 
 		return false;
-	}
-
-	private boolean canDropThisHead(ItemStack head, int beheading) {
-		if (beheading > 0)
-			return head.getItem() != Items.skull;
-		return head.getItem() != Items.skull || Headcrumbs.enableVanillaHeadsDrop;
 	}
 
 	private boolean isPlayerHead(ItemStack stack) {
