@@ -22,6 +22,5 @@ public class UsernameUtils {
 		map.put("jsano19", "JSano19");
 		map.put("hephinator", "Heph");
 		map.put("BigBagComplex", "BigBagChris");
-		map.put("Vazkii", "_phi");
 	}
 }
