@@ -32,6 +32,7 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
@@ -323,7 +324,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob {
 	}
 
 	private boolean hasBow() {
-		return getHeldItem() != null && getHeldItem().getItem() == Items.bow;
+		return getHeldItem() != null && getHeldItem().getItem() instanceof ItemBow;
 	}
 
 	private void setCombatAI() {
