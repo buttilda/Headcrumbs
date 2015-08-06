@@ -200,6 +200,20 @@ item.headcrumbs.laserCreeper.name=Laser Creeper Head
 item.headcrumbs.roboDino.name=T-R3X 1000 Head
 item.headcrumbs.jetPackSpider.name=ARTHR0-BORG JETLINER 2000 Head
 
+# Et Futurum
+item.headcrumbs.endermite.name=Endermite Head
+item.headcrumbs.guardian.name=Guardian Head
+item.headcrumbs.guardianElder.name=Elder Guardian Head
+item.headcrumbs.shulker.name=Shulker Head
+item.headcrumbs.rabbitBlack.name=Rabbit Head (Black)
+item.headcrumbs.rabbitBrown.name=Rabbit Head (Brown)
+item.headcrumbs.rabbitCaerbannog.name=Rabbit Head (Caerbannog)
+item.headcrumbs.rabbitGold.name=Rabbit Head (Gold)
+item.headcrumbs.rabbitSalt.name=Rabbit Head (Salt)
+item.headcrumbs.rabbitToast.name=Rabbit Head (Toast)
+item.headcrumbs.rabbitSplotched.name=Rabbit Head (White Splotched)
+item.headcrumbs.rabbitWhite.name=Rabbit Head (White)
+
 ##########
 # Entity #
 ##########

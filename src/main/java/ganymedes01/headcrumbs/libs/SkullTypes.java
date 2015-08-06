@@ -1,6 +1,7 @@
 package ganymedes01.headcrumbs.libs;
 
 import ganymedes01.headcrumbs.Headcrumbs;
+import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.renderers.ModelHead;
 import ganymedes01.headcrumbs.renderers.heads.BatHead;
 import ganymedes01.headcrumbs.renderers.heads.ChickenHead;
@@ -29,6 +30,10 @@ import ganymedes01.headcrumbs.renderers.heads.ZombieVillagerHead;
 import ganymedes01.headcrumbs.renderers.heads.elementalCreepers.GhostCreeperHead;
 import ganymedes01.headcrumbs.renderers.heads.enderzoo.DireWolfHead;
 import ganymedes01.headcrumbs.renderers.heads.enderzoo.EnderminyHead;
+import ganymedes01.headcrumbs.renderers.heads.etfuturum.EndermiteHead;
+import ganymedes01.headcrumbs.renderers.heads.etfuturum.GuardianHead;
+import ganymedes01.headcrumbs.renderers.heads.etfuturum.RabbitHead;
+import ganymedes01.headcrumbs.renderers.heads.etfuturum.ShulkerHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.AnubisHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.BansheeHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.BaphometHead;
@@ -104,6 +109,7 @@ import ganymedes01.headcrumbs.renderers.heads.twilightforest.WildBoarHead;
 import ganymedes01.headcrumbs.utils.TextureUtils;
 import ganymedes01.headcrumbs.utils.Utils;
 import ganymedes01.headcrumbs.utils.helpers.LycanitesHelperClient;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import com.mojang.authlib.GameProfile;
@@ -288,7 +294,19 @@ public enum SkullTypes {
 	springCreeper		(Strings.EC_PREFIX + "springcreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
 	laserCreeper		(Strings.LC_PREFIX + "laserCreeper",			 			"lasercreepers", 		LaserCreeperHead.INSTANCE),
 	roboDino			(Strings.LC_PREFIX + "roboDino",			 				"lasercreepers", 		RoboDinoHead.INSTANCE),
-	jetPackSpider		(Strings.LC_PREFIX + "jetPackSpider",			 			"lasercreepers", 		JetPackSpiderHead.INSTANCE);
+	jetPackSpider		(Strings.LC_PREFIX + "jetPackSpider",			 			"lasercreepers", 		JetPackSpiderHead.INSTANCE),
+	endermite			(Strings.MC_PREFIX + "endermite",			 				"etfuturum", 			EndermiteHead.INSTANCE),
+	guardian			(Strings.MC_PREFIX + "guardian",			 				"etfuturum", 			GuardianHead.INSTANCE),
+	guardianElder		(Strings.MC_PREFIX + "guardian_elder",			 			"etfuturum", 			GuardianHead.INSTANCE),
+	shulker				(Strings.MC_PREFIX + "shulker/endergolem",			 		"etfuturum", 			ShulkerHead.INSTANCE),
+	rabbitBlack			(Strings.MC_PREFIX + "rabbit/black",			 			"etfuturum", 			RabbitHead.INSTANCE),
+	rabbitBrown			(Strings.MC_PREFIX + "rabbit/brown",			 			"etfuturum", 			RabbitHead.INSTANCE),
+	rabbitCaerbannog	(Strings.MC_PREFIX + "rabbit/caerbannog",					"etfuturum", 			RabbitHead.INSTANCE),
+	rabbitGold			(Strings.MC_PREFIX + "rabbit/gold",			 				"etfuturum", 			RabbitHead.INSTANCE),
+	rabbitSalt			(Strings.MC_PREFIX + "rabbit/salt",			 				"etfuturum", 			RabbitHead.INSTANCE),
+	rabbitToast			(Strings.MC_PREFIX + "rabbit/toast",		 				"etfuturum", 			RabbitHead.INSTANCE),
+	rabbitSplotched		(Strings.MC_PREFIX + "rabbit/white_splotched",				"etfuturum", 			RabbitHead.INSTANCE),
+	rabbitWhite			(Strings.MC_PREFIX + "rabbit/white",			 			"etfuturum", 			RabbitHead.INSTANCE);
 	// @formatter:on
 
 	private final String mod;
@@ -324,5 +342,9 @@ public enum SkullTypes {
 		if (isActive == null)
 			isActive = mod == null || Loader.isModLoaded(mod);
 		return isActive;
+	}
+
+	public ItemStack getStack() {
+		return new ItemStack(ModItems.skull, 1, ordinal());
 	}
 }

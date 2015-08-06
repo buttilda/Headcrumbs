@@ -15,6 +15,7 @@ import ganymedes01.headcrumbs.utils.UsercacheChecker;
 import ganymedes01.headcrumbs.utils.UsernameUtils;
 import ganymedes01.headcrumbs.utils.helpers.ElementalCreepersHelper;
 import ganymedes01.headcrumbs.utils.helpers.EnderZooHelper;
+import ganymedes01.headcrumbs.utils.helpers.EtFuturumHelper;
 import ganymedes01.headcrumbs.utils.helpers.GrimoireOfGaiaHelper;
 import ganymedes01.headcrumbs.utils.helpers.HeadDropHelper;
 import ganymedes01.headcrumbs.utils.helpers.LaserCreepersHelper;
@@ -254,6 +255,7 @@ public class Headcrumbs {
 	public void postInit(FMLPostInitializationEvent event) {
 		HeadUtils.loadPlayerHeads();
 
+		HeadDropHelper.register(new EtFuturumHelper());
 		HeadDropHelper.register(new LaserCreepersHelper());
 		HeadDropHelper.register(new TwilightForestHelper());
 		HeadDropHelper.register(new TEHelper());
