@@ -22,7 +22,6 @@ public class EtFuturumHelper extends HeadDropHelper {
 		Utils.addDungeonLoot(SkullTypes.shulker.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
 		Utils.addDungeonLoot(SkullTypes.rabbitBlack.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
 		Utils.addDungeonLoot(SkullTypes.rabbitBrown.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
-		Utils.addDungeonLoot(SkullTypes.rabbitCaerbannog.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
 		Utils.addDungeonLoot(SkullTypes.rabbitGold.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
 		Utils.addDungeonLoot(SkullTypes.rabbitSalt.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
 		Utils.addDungeonLoot(SkullTypes.rabbitToast.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));

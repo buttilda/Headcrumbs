@@ -301,7 +301,6 @@ public enum SkullTypes {
 	shulker				(Strings.MC_PREFIX + "shulker/endergolem",			 		"etfuturum", 			ShulkerHead.INSTANCE),
 	rabbitBlack			(Strings.MC_PREFIX + "rabbit/black",			 			"etfuturum", 			RabbitHead.INSTANCE),
 	rabbitBrown			(Strings.MC_PREFIX + "rabbit/brown",			 			"etfuturum", 			RabbitHead.INSTANCE),
-	rabbitCaerbannog	(Strings.MC_PREFIX + "rabbit/caerbannog",					"etfuturum", 			RabbitHead.INSTANCE),
 	rabbitGold			(Strings.MC_PREFIX + "rabbit/gold",			 				"etfuturum", 			RabbitHead.INSTANCE),
 	rabbitSalt			(Strings.MC_PREFIX + "rabbit/salt",			 				"etfuturum", 			RabbitHead.INSTANCE),
 	rabbitToast			(Strings.MC_PREFIX + "rabbit/toast",		 				"etfuturum", 			RabbitHead.INSTANCE),
