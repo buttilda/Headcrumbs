@@ -52,7 +52,7 @@ public class ThaumcraftHelper extends HeadDropHelper {
 			return head;
 
 		if (getThaumicSlimeSize(entity) == 1)
-			return new ItemStack(ModItems.skull, 1, SkullTypes.thaumicSlime.ordinal());
+			return SkullTypes.thaumicSlime.getStack();
 
 		return null;
 	}

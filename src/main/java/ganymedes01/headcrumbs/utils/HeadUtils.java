@@ -1,7 +1,6 @@
 package ganymedes01.headcrumbs.utils;
 
 import ganymedes01.headcrumbs.Headcrumbs;
-import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.utils.helpers.HeadDropHelper;
@@ -83,7 +82,7 @@ public class HeadUtils {
 	}
 
 	public static ItemStack createHeadFor(GameProfile profile) {
-		ItemStack stack = new ItemStack(ModItems.skull, 1, SkullTypes.player.ordinal());
+		ItemStack stack = SkullTypes.player.getStack();
 		stack.setTagCompound(new NBTTagCompound());
 		NBTTagCompound profileData = new NBTTagCompound();
 		NBTUtil.func_152460_a(profileData, profile);

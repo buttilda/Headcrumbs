@@ -1,6 +1,5 @@
 package ganymedes01.headcrumbs.utils.helpers;
 
-import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -55,22 +54,18 @@ public class TwilightForestHelper extends HeadDropHelper {
 			} catch (Exception e) {
 				type = 0;
 			}
-			int meta = 0;
+			SkullTypes skullType = SkullTypes.bunnyDutch;
 			switch (type) {
-				case 0:
-				case 1:
-					meta = SkullTypes.bunnyDutch.ordinal();
-					break;
 				case 3:
-					meta = SkullTypes.bunnyBrown.ordinal();
+					skullType = SkullTypes.bunnyBrown;
 					break;
 				case 2:
-					meta = SkullTypes.bunnyWhite.ordinal();
+					skullType = SkullTypes.bunnyWhite;
 					break;
 			}
-			return new ItemStack(ModItems.skull, 1, meta);
+			return skullType.getStack();
 		} else if (mobName.equals("TwilightForest.Maze Slime") && ((EntitySlime) entity).getSlimeSize() == 1)
-			return new ItemStack(ModItems.skull, 1, SkullTypes.mazeSlime.ordinal());
+			return SkullTypes.mazeSlime.getStack();
 
 		return null;
 	}

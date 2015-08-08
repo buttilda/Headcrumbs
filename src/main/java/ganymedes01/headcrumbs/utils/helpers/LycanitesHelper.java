@@ -1,6 +1,5 @@
 package ganymedes01.headcrumbs.utils.helpers;
 
-import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 
@@ -34,11 +33,11 @@ public class LycanitesHelper extends HeadDropHelper {
 			return null;
 
 		if (entity instanceof EntityPinky)
-			return new ItemStack(ModItems.skull, 1, SkullTypes.pinky.ordinal());
+			return SkullTypes.pinky.getStack();
 		else if (entity instanceof EntityBehemoth)
-			return new ItemStack(ModItems.skull, 1, SkullTypes.behemoth.ordinal());
+			return SkullTypes.behemoth.getStack();
 		else if (entity instanceof EntityBelph)
-			return new ItemStack(ModItems.skull, 1, SkullTypes.belph.ordinal());
+			return SkullTypes.belph.getStack();
 		else {
 			int dot = mobName.indexOf('.') + 1;
 			if (dot > 1) {

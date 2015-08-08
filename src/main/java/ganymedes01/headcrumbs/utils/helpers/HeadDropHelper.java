@@ -1,6 +1,5 @@
 package ganymedes01.headcrumbs.utils.helpers;
 
-import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 
 import java.util.Collections;
@@ -51,7 +50,7 @@ public abstract class HeadDropHelper implements Comparable<HeadDropHelper> {
 			return null;
 		SkullTypes type = typesMap.get(mobName);
 		if (type != null)
-			return new ItemStack(ModItems.skull, 1, type.ordinal());
+			return type.getStack();
 
 		return null;
 	}

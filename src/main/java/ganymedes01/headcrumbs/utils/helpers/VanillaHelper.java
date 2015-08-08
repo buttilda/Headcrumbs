@@ -1,6 +1,5 @@
 package ganymedes01.headcrumbs.utils.helpers;
 
-import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.EntityDragon;
@@ -55,49 +54,49 @@ public class VanillaHelper extends HeadDropHelper {
 					return new ItemStack(Items.skull, 1, 0);
 			} else if (entity instanceof EntityZombie) {
 				if (entity instanceof EntityPigZombie)
-					return new ItemStack(ModItems.skull, 1, SkullTypes.pigman.ordinal());
+					return SkullTypes.pigman.getStack();
 				else if (((EntityZombie) entity).isVillager())
-					return new ItemStack(ModItems.skull, 1, SkullTypes.zombieVillager.ordinal());
+					return SkullTypes.zombieVillager.getStack();
 				else
 					return new ItemStack(Items.skull, 1, 2);
 			} else if (entity instanceof EntityEnderman)
-				return new ItemStack(ModItems.skull, 1, SkullTypes.enderman.ordinal());
+				return SkullTypes.enderman.getStack();
 			else if (entity instanceof EntityBlaze)
-				return new ItemStack(ModItems.skull, 1, SkullTypes.blaze.ordinal());
+				return SkullTypes.blaze.getStack();
 			else if (entity instanceof EntitySpider) {
 				if (entity instanceof EntityCaveSpider)
-					return new ItemStack(ModItems.skull, 1, SkullTypes.caveSpider.ordinal());
-				return new ItemStack(ModItems.skull, 1, SkullTypes.spider.ordinal());
+					return SkullTypes.caveSpider.getStack();
+				return SkullTypes.spider.getStack();
 			} else if (entity instanceof EntityWitch)
-				return new ItemStack(ModItems.skull, 1, SkullTypes.witch.ordinal());
+				return SkullTypes.witch.getStack();
 			else if (entity instanceof EntityWither)
-				return new ItemStack(ModItems.skull, 1 + (entity.worldObj.rand.nextInt(100) == 0 ? 1 + entity.worldObj.rand.nextInt(2) : 0), SkullTypes.wither.ordinal());
+				return SkullTypes.wither.getStack(1 + (entity.worldObj.rand.nextInt(100) == 0 ? 1 + entity.worldObj.rand.nextInt(2) : 0));
 			else if (entity instanceof EntitySilverfish)
-				return new ItemStack(ModItems.skull, 1, SkullTypes.silverfish.ordinal());
+				return SkullTypes.silverfish.getStack();
 		} else if (entity instanceof EntityAnimal) {
 			if (entity instanceof EntityPig)
-				return new ItemStack(ModItems.skull, 1, SkullTypes.pig.ordinal());
+				return SkullTypes.pig.getStack();
 			else if (entity instanceof EntityCow) {
 				if (entity instanceof EntityMooshroom)
-					return new ItemStack(ModItems.skull, 1, SkullTypes.mooshroom.ordinal());
+					return SkullTypes.mooshroom.getStack();
 				else
-					return new ItemStack(ModItems.skull, 1, SkullTypes.cow.ordinal());
+					return SkullTypes.cow.getStack();
 			} else if (entity instanceof EntitySheep)
-				return new ItemStack(ModItems.skull, 1, SkullTypes.sheep.ordinal());
+				return SkullTypes.sheep.getStack();
 			else if (entity instanceof EntityWolf)
-				return new ItemStack(ModItems.skull, 1, SkullTypes.wolf.ordinal());
+				return SkullTypes.wolf.getStack();
 			else if (entity instanceof EntityChicken)
-				return new ItemStack(ModItems.skull, 1, SkullTypes.chicken.ordinal());
+				return SkullTypes.chicken.getStack();
 			else if (entity instanceof EntityOcelot)
 				switch (((EntityOcelot) entity).getTameSkin()) {
 					case 0:
-						return new ItemStack(ModItems.skull, 1, SkullTypes.ocelot.ordinal());
+						return SkullTypes.ocelot.getStack();
 					case 1:
-						return new ItemStack(ModItems.skull, 1, SkullTypes.ocelotBlack.ordinal());
+						return SkullTypes.ocelotBlack.getStack();
 					case 2:
-						return new ItemStack(ModItems.skull, 1, SkullTypes.ocelotRed.ordinal());
+						return SkullTypes.ocelotRed.getStack();
 					case 3:
-						return new ItemStack(ModItems.skull, 1, SkullTypes.ocelotSiamese.ordinal());
+						return SkullTypes.ocelotSiamese.getStack();
 				}
 			else if (entity instanceof EntityHorse) {
 				int type = ((EntityHorse) entity).getHorseType();
@@ -105,47 +104,47 @@ public class VanillaHelper extends HeadDropHelper {
 				if (type == 0)
 					switch (((EntityHorse) entity).getHorseVariant() & 255) {
 						case 0:
-							return new ItemStack(ModItems.skull, 1, SkullTypes.horseWhite.ordinal());
+							return SkullTypes.horseWhite.getStack();
 						case 1:
-							return new ItemStack(ModItems.skull, 1, SkullTypes.horseCreamy.ordinal());
+							return SkullTypes.horseCreamy.getStack();
 						case 2:
-							return new ItemStack(ModItems.skull, 1, SkullTypes.horseChestnut.ordinal());
+							return SkullTypes.horseChestnut.getStack();
 						case 3:
-							return new ItemStack(ModItems.skull, 1, SkullTypes.horseBrown.ordinal());
+							return SkullTypes.horseBrown.getStack();
 						case 4:
-							return new ItemStack(ModItems.skull, 1, SkullTypes.horseBlack.ordinal());
+							return SkullTypes.horseBlack.getStack();
 						case 5:
-							return new ItemStack(ModItems.skull, 1, SkullTypes.horseGrey.ordinal());
+							return SkullTypes.horseGrey.getStack();
 						case 6:
-							return new ItemStack(ModItems.skull, 1, SkullTypes.horseDarkBrown.ordinal());
+							return SkullTypes.horseDarkBrown.getStack();
 					}
 				else if (type == 1)
-					return new ItemStack(ModItems.skull, 1, SkullTypes.donkey.ordinal());
+					return SkullTypes.donkey.getStack();
 				else if (type == 2)
-					return new ItemStack(ModItems.skull, 1, SkullTypes.mule.ordinal());
+					return SkullTypes.mule.getStack();
 				else if (type == 3)
-					return new ItemStack(ModItems.skull, 1, SkullTypes.horseUndead.ordinal());
+					return SkullTypes.horseUndead.getStack();
 				else if (type == 4)
-					return new ItemStack(ModItems.skull, 1, SkullTypes.horseSkeleton.ordinal());
+					return SkullTypes.horseSkeleton.getStack();
 			}
 		} else if (entity instanceof EntityVillager)
-			return new ItemStack(ModItems.skull, 1, SkullTypes.villager.ordinal());
+			return SkullTypes.villager.getStack();
 		else if (entity instanceof EntityIronGolem)
-			return new ItemStack(ModItems.skull, 1, SkullTypes.ironGolem.ordinal());
+			return SkullTypes.ironGolem.getStack();
 		else if (entity instanceof EntitySquid)
-			return new ItemStack(ModItems.skull, 1, SkullTypes.squid.ordinal());
+			return SkullTypes.squid.getStack();
 		else if (entity instanceof EntityGhast)
-			return new ItemStack(ModItems.skull, 1, SkullTypes.ghast.ordinal());
+			return SkullTypes.ghast.getStack();
 		else if (entity instanceof EntityDragon)
-			return new ItemStack(ModItems.skull, 1, SkullTypes.enderDragon.ordinal());
+			return SkullTypes.enderDragon.getStack();
 		else if (entity instanceof EntityBat)
-			return new ItemStack(ModItems.skull, 1, SkullTypes.bat.ordinal());
+			return SkullTypes.bat.getStack();
 		else if (entity instanceof EntitySlime && ((EntitySlime) entity).getSlimeSize() == 1) {
 			if (entity instanceof EntityMagmaCube)
-				return new ItemStack(ModItems.skull, 1, SkullTypes.magmaCube.ordinal());
-			return new ItemStack(ModItems.skull, 1, SkullTypes.slime.ordinal());
+				return SkullTypes.magmaCube.getStack();
+			return SkullTypes.slime.getStack();
 		} else if (entity instanceof EntitySnowman)
-			return new ItemStack(ModItems.skull, 1, SkullTypes.snowMan.ordinal());
+			return SkullTypes.snowMan.getStack();
 
 		return null;
 	}

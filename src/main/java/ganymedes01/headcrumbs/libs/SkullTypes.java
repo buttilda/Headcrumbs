@@ -353,6 +353,10 @@ public enum SkullTypes {
 	}
 
 	public ItemStack getStack() {
-		return new ItemStack(ModItems.skull, 1, ordinal());
+		return getStack(1);
+	}
+
+	public ItemStack getStack(int size) {
+		return new ItemStack(ModItems.skull, size, ordinal());
 	}
 }
