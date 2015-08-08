@@ -97,12 +97,16 @@ import ganymedes01.headcrumbs.renderers.heads.twilightforest.BighornHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.BunnyHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.DeerHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.FireBeetleHead;
+import ganymedes01.headcrumbs.renderers.heads.twilightforest.HydraHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.KoboldHead;
+import ganymedes01.headcrumbs.renderers.heads.twilightforest.LichHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.MistWolfHead;
+import ganymedes01.headcrumbs.renderers.heads.twilightforest.NagaTFHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.PenguinHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.PinchBeetle;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.RedcapHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.SlimeBeetleHead;
+import ganymedes01.headcrumbs.renderers.heads.twilightforest.SnowQueenHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.SquirrelHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.TowerGolemHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.WildBoarHead;
@@ -305,7 +309,12 @@ public enum SkullTypes {
 	rabbitSalt			(Strings.MC_PREFIX + "rabbit/salt",			 				"etfuturum", 			RabbitHead.INSTANCE),
 	rabbitToast			(Strings.MC_PREFIX + "rabbit/toast",		 				"etfuturum", 			RabbitHead.INSTANCE),
 	rabbitSplotched		(Strings.MC_PREFIX + "rabbit/white_splotched",				"etfuturum", 			RabbitHead.INSTANCE),
-	rabbitWhite			(Strings.MC_PREFIX + "rabbit/white",			 			"etfuturum", 			RabbitHead.INSTANCE);
+	rabbitWhite			(Strings.MC_PREFIX + "rabbit/white",			 			"etfuturum", 			RabbitHead.INSTANCE),
+	hydra				(Strings.TF_PREFIX + "hydra4", 								"TwilightForest", 		HydraHead.INSTANCE),
+	nagaTF				(Strings.TF_PREFIX + "nagahead", 							"TwilightForest", 		NagaTFHead.INSTANCE),
+	lich				(Strings.TF_PREFIX + "twilightlich64", 						"TwilightForest", 		LichHead.INSTANCE),
+	snowQueen			(Strings.TF_PREFIX + "snowqueen", 							"TwilightForest", 		SnowQueenHead.INSTANCE),
+	urGhast				(Strings.TF_PREFIX + "towerboss", 							"TwilightForest", 		GhastHead.INSTANCE);
 	// @formatter:on
 
 	private final String mod;

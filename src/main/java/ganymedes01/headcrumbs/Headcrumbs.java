@@ -216,8 +216,8 @@ public class Headcrumbs {
 
 		if (enableHeadConversion) {
 			RecipeSorter.register("headcrumbs.playerskullrecipe", PlayerSkullRecipe.class, Category.SHAPELESS, "after:minecraft:shapeless");
-			GameRegistry.addRecipe(new PlayerSkullRecipe(new ItemStack(ModItems.skull, 1, SkullTypes.player.ordinal()), new ItemStack(Items.skull, 1, 3)));
-			GameRegistry.addRecipe(new PlayerSkullRecipe(new ItemStack(Items.skull, 1, 3), new ItemStack(ModItems.skull, 1, SkullTypes.player.ordinal())));
+			GameRegistry.addRecipe(new PlayerSkullRecipe(SkullTypes.player.getStack(), new ItemStack(Items.skull, 1, 3)));
+			GameRegistry.addRecipe(new PlayerSkullRecipe(new ItemStack(Items.skull, 1, 3), SkullTypes.player.getStack()));
 		}
 	}
 
@@ -299,6 +299,21 @@ public class Headcrumbs {
 
 			EntityRegistry.addSpawn(EntityHuman.class, celebrityProb, celebrityMin, celebrityMax, EnumCreatureType.monster, biomes.toArray(new BiomeGenBase[biomes.size()]));
 		}
+
+		if (enableHeadConversion)
+			if (Loader.isModLoaded("TwilightForest")) {
+				Item tropy = (Item) Item.itemRegistry.getObject("TwilightForest:item.trophy");
+				addConvertionRecipe(SkullTypes.hydra.getStack(), new ItemStack(tropy, 1, 0));
+				addConvertionRecipe(SkullTypes.nagaTF.getStack(), new ItemStack(tropy, 1, 1));
+				addConvertionRecipe(SkullTypes.lich.getStack(), new ItemStack(tropy, 1, 2));
+				addConvertionRecipe(SkullTypes.urGhast.getStack(), new ItemStack(tropy, 1, 3));
+				addConvertionRecipe(SkullTypes.snowQueen.getStack(), new ItemStack(tropy, 1, 4));
+			}
+	}
+
+	private void addConvertionRecipe(ItemStack output, ItemStack input) {
+		GameRegistry.addShapelessRecipe(output, input);
+		GameRegistry.addShapelessRecipe(input, output);
 	}
 
 	@EventHandler
