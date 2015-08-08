@@ -6,6 +6,11 @@ import ganymedes01.headcrumbs.utils.Utils;
 
 import java.util.Random;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+
 public class EtFuturumHelper extends HeadDropHelper {
 
 	public EtFuturumHelper() {
@@ -20,12 +25,38 @@ public class EtFuturumHelper extends HeadDropHelper {
 		Utils.addDungeonLoot(SkullTypes.guardian.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
 		Utils.addDungeonLoot(SkullTypes.guardianElder.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
 		Utils.addDungeonLoot(SkullTypes.shulker.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
-		Utils.addDungeonLoot(SkullTypes.rabbitBlack.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
-		Utils.addDungeonLoot(SkullTypes.rabbitBrown.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
-		Utils.addDungeonLoot(SkullTypes.rabbitGold.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
-		Utils.addDungeonLoot(SkullTypes.rabbitSalt.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
-		Utils.addDungeonLoot(SkullTypes.rabbitToast.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
-		Utils.addDungeonLoot(SkullTypes.rabbitSplotched.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
-		Utils.addDungeonLoot(SkullTypes.rabbitWhite.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
+	}
+
+	@Override
+	protected ItemStack getHeadForEntity(Entity entity) {
+		ItemStack head = super.getHeadForEntity(entity);
+		if (head != null)
+			return head;
+
+		String mobName = EntityList.getEntityString(entity);
+
+		if (mobName != null && mobName.equals("etfuturum.rabbit")) {
+			String name = EnumChatFormatting.getTextWithoutFormattingCodes(entity.getCommandSenderName());
+			if (name != null && name.equals("Toast"))
+				return SkullTypes.rabbitToast.getStack();
+
+			byte rabbitType = entity.getDataWatcher().getWatchableObjectByte(18);
+			switch (rabbitType) {
+				case 0:
+					return SkullTypes.rabbitBrown.getStack();
+				case 1:
+					return SkullTypes.rabbitWhite.getStack();
+				case 2:
+					return SkullTypes.rabbitBlack.getStack();
+				case 3:
+					return SkullTypes.rabbitSplotched.getStack();
+				case 4:
+					return SkullTypes.rabbitGold.getStack();
+				case 5:
+					return SkullTypes.rabbitSalt.getStack();
+			}
+		}
+
+		return null;
 	}
 }
