@@ -100,6 +100,7 @@ public class CelebrityMap {
 		map.put("KeldonSlayer", "HxC-Mods");
 		map.put("KarelMikie3", "HxC-Mods");
 		map.put("Mfernflower", "Minechem, HxC-Mods");
+		map.put("Benimatic", "Twilight Forest");
 
 		map.put("ganymedes01", "Gany's Mods");
 	}
