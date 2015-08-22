@@ -13,6 +13,7 @@ import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
+import cpw.mods.fml.common.Loader;
 
 public class Utils {
 
@@ -69,6 +70,8 @@ public class Utils {
 		ChestGenHooks.addItem(ChestGenHooks.MINESHAFT_CORRIDOR, new WeightedRandomChestContent(stack, minChance, maxChance, weight));
 		ChestGenHooks.addItem(ChestGenHooks.PYRAMID_DESERT_CHEST, new WeightedRandomChestContent(stack, minChance, maxChance, weight));
 		ChestGenHooks.addItem(ChestGenHooks.PYRAMID_JUNGLE_CHEST, new WeightedRandomChestContent(stack, minChance, maxChance, weight));
+		if (Loader.isModLoaded("ganysnether"))
+			ChestGenHooks.addItem("ganysnether.undertaker", new WeightedRandomChestContent(stack, minChance, maxChance, weight));
 	}
 
 	public static void addStrongholdLoot(ItemStack stack, int minChance, int maxChance, int weight) {
