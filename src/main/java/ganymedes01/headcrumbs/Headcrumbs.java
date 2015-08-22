@@ -27,7 +27,6 @@ import ganymedes01.headcrumbs.utils.helpers.ThaumcraftHelper;
 import ganymedes01.headcrumbs.utils.helpers.TwilightForestHelper;
 import ganymedes01.headcrumbs.utils.helpers.VanillaHelper;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -191,8 +190,6 @@ public class Headcrumbs {
 	public static int[] blacklistedDimensions = { 1, -1 };
 	public static String humanNamePrefix = "";
 
-	public static Item ganysEndSkull = null;
-
 	public static Block clay;
 
 	@EventHandler
@@ -228,16 +225,6 @@ public class Headcrumbs {
 		proxy.registerEvents();
 		proxy.registerTileEntities();
 		proxy.registerRenderers();
-
-		if (Loader.isModLoaded("ganysend"))
-			try {
-				Class<?> cls = Class.forName("ganymedes01.ganysend.ModItems");
-				Field f = cls.getDeclaredField("skull");
-				if (!f.isAccessible())
-					f.setAccessible(true);
-				ganysEndSkull = (Item) f.get(null);
-			} catch (Exception e) {
-			}
 
 		if (enableHumanMobs) {
 			EntityList.stringToClassMapping.put("Celebrity", EntityHuman.class);

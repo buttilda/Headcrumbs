@@ -1,13 +1,11 @@
 package ganymedes01.headcrumbs.eventHandlers;
 
-import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import ganymedes01.headcrumbs.renderers.TileEntityBlockSkullRenderer;
 import ganymedes01.headcrumbs.utils.TextureUtils;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraftforge.client.event.RenderPlayerEvent;
@@ -29,15 +27,8 @@ public class RenderPlayerHandler {
 				return;
 
 			ItemStack head = event.entityPlayer.inventory.armorItemInSlot(3);
-			if (head != null && head.getItem() == ModItems.skull)
-				setHiddenState(model, true);
-			else if (head == null || !isGanysEndHead(head.getItem()))
-				setHiddenState(model, false);
+			setHiddenState(model, head != null && head.getItem() == ModItems.skull);
 		}
-	}
-
-	private boolean isGanysEndHead(Item item) {
-		return Headcrumbs.ganysEndSkull != null && Headcrumbs.ganysEndSkull == item;
 	}
 
 	@SubscribeEvent
