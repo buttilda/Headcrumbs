@@ -3,6 +3,7 @@ package ganymedes01.headcrumbs.items;
 import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.utils.Utils;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -28,6 +29,7 @@ public class HumanEgg extends Item {
 	public HumanEgg() {
 		setCreativeTab(CreativeTabs.tabMisc);
 		setUnlocalizedName(Utils.getUnlocalisedName("egg"));
+		BlockDispenser.dispenseBehaviorRegistry.putObject(this, new DispenserBehaviourHumanEgg());
 	}
 
 	@Override
@@ -61,7 +63,7 @@ public class HumanEgg extends Item {
 			if (side == 1 && block.getRenderType() == 11)
 				d0 = 0.5D;
 
-			Entity entity = spawnCelebrity(world, x + 0.5D, y + d0, z + 0.5D);
+			Entity entity = spawnHuman(world, x + 0.5D, y + d0, z + 0.5D);
 
 			if (entity != null) {
 				if (entity instanceof EntityLivingBase && stack.hasDisplayName())
@@ -97,11 +99,11 @@ public class HumanEgg extends Item {
 						return stack;
 
 					if (world.getBlock(i, j, k) instanceof BlockLiquid) {
-						Entity entity = spawnCelebrity(world, i, j, k);
+						EntityHuman human = spawnHuman(world, i, j, k);
 
-						if (entity != null) {
-							if (entity instanceof EntityLivingBase && stack.hasDisplayName())
-								((EntityLiving) entity).setCustomNameTag(stack.getDisplayName());
+						if (human != null) {
+							if (stack.hasDisplayName())
+								human.setUsername(stack.getDisplayName());
 
 							if (!player.capabilities.isCreativeMode)
 								stack.stackSize--;
@@ -114,10 +116,10 @@ public class HumanEgg extends Item {
 		}
 	}
 
-	private Entity spawnCelebrity(World world, double x, double y, double z) {
-		Entity entity = new EntityHuman(world);
+	public static EntityHuman spawnHuman(World world, double x, double y, double z) {
+		EntityHuman entity = new EntityHuman(world);
 		if (entity != null && entity instanceof EntityLivingBase) {
-			EntityLiving entityliving = (EntityLiving) entity;
+			EntityLiving entityliving = entity;
 			entity.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
 			entityliving.rotationYawHead = entityliving.rotationYaw;
 			entityliving.renderYawOffset = entityliving.rotationYaw;

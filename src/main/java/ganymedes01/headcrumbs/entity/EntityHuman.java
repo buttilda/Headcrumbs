@@ -390,7 +390,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob {
 	public void setCustomNameTag(String name) {
 	}
 
-	private void setUsername(String name) {
+	public void setUsername(String name) {
 		getDataWatcher().updateObject(NAME, UsernameUtils.getFixedUsername(name));
 	}
 
