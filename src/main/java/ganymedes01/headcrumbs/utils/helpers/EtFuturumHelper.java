@@ -18,13 +18,15 @@ public class EtFuturumHelper extends HeadDropHelper {
 
 		typesMap.put("etfuturum.endermite", SkullTypes.endermite);
 
-		Random rand = new Random();
-		int min = 1;
-		int max = 1;
-		int baseWeight = 3;
-		Utils.addDungeonLoot(SkullTypes.guardian.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
-		Utils.addDungeonLoot(SkullTypes.guardianElder.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
-		Utils.addDungeonLoot(SkullTypes.shulker.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
+		if (Headcrumbs.addPlayerHeadsAsDungeonLoot) {
+			Random rand = new Random();
+			int min = 1;
+			int max = 1;
+			int baseWeight = 3;
+			Utils.addDungeonLoot(SkullTypes.guardian.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
+			Utils.addDungeonLoot(SkullTypes.guardianElder.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
+			Utils.addDungeonLoot(SkullTypes.shulker.getStack(), min, max, baseWeight + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
+		}
 	}
 
 	@Override
