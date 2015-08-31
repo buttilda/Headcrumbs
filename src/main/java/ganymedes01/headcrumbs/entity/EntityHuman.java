@@ -392,6 +392,12 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob {
 
 	public void setUsername(String name) {
 		getDataWatcher().updateObject(NAME, UsernameUtils.getFixedUsername(name));
+
+		if ("Herobrine".equals(name)) {
+			getEntityAttribute(SharedMonsterAttributes.maxHealth).applyModifier(new AttributeModifier("Herobrine Health Bonus", 10, 2));
+			getEntityAttribute(SharedMonsterAttributes.attackDamage).applyModifier(new AttributeModifier("Herobrine Damage Bonus", 1, 2));
+			getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(new AttributeModifier("Herobrine Speed Bonus", 0.5, 2));
+		}
 	}
 
 	public String getUsername() {
