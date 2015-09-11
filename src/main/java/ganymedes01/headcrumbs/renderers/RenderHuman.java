@@ -1,7 +1,7 @@
 package ganymedes01.headcrumbs.renderers;
 
 import ganymedes01.headcrumbs.ModItems;
-import ganymedes01.headcrumbs.entity.EntityHuman;
+import ganymedes01.headcrumbs.api.IHumanEntity;
 import ganymedes01.headcrumbs.utils.TextureUtils;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.RenderBiped;
@@ -37,21 +37,21 @@ public class RenderHuman extends RenderBiped {
 
 	@Override
 	protected ResourceLocation getEntityTexture(EntityLiving entity) {
-		return TextureUtils.getPlayerSkin(((EntityHuman) entity).getProfile());
+		return TextureUtils.getPlayerSkin(((IHumanEntity) entity).getProfile());
 	}
 
 	@Override
-	protected void renderEquippedItems(EntityLivingBase entity, float float0) {
-		super.renderEquippedItems(entity, float0);
+	protected void renderEquippedItems(EntityLiving entity, float partialTickTime) {
+		super.renderEquippedItems(entity, partialTickTime);
 		if (entity.isInvisible())
 			return;
 
-		EntityHuman human = (EntityHuman) entity;
+		IHumanEntity human = (IHumanEntity) entity;
 
 		// Head equip
-		if (isWearingHelmet(human)) {
+		if (isWearingHelmet(entity)) {
 			OpenGLHelper.pushMatrix();
-			ItemStack helmet = human.func_130225_q(3);
+			ItemStack helmet = entity.func_130225_q(3);
 			modelBipedMain.bipedHead.postRender(0.0625F);
 			OpenGLHelper.scale(1.0F, -1.0F, -1.0F);
 			TileEntityBlockSkullRenderer.instance.renderHead(-0.5F, 0.0F, -0.5F, helmet);
@@ -64,7 +64,7 @@ public class RenderHuman extends RenderBiped {
 			bindTexture(skin);
 
 			OpenGLHelper.pushMatrix();
-			if (human.isChild()) {
+			if (entity.isChild()) {
 				float f6 = 2.0F;
 				OpenGLHelper.scale(1.5F / f6, 1.5F / f6, 1.5F / f6);
 				OpenGLHelper.translate(0.0F, 16.0F * 0.0625F, 0.0F);
@@ -92,14 +92,14 @@ public class RenderHuman extends RenderBiped {
 
 		// Cape
 		ResourceLocation cape = TextureUtils.getPlayerCape(human.getProfile());
-		if (cape != null && !human.isChild()) {
+		if (cape != null && !entity.isChild()) {
 			bindTexture(cape);
 			OpenGLHelper.pushMatrix();
 			OpenGLHelper.translate(0.0F, 0.0F, 0.125F);
-			double d3 = human.field_71091_bM + (human.field_71094_bP - human.field_71091_bM) * float0 - (human.prevPosX + (human.posX - human.prevPosX) * float0);
-			double d4 = human.field_71096_bN + (human.field_71095_bQ - human.field_71096_bN) * float0 - (human.prevPosY + (human.posY - human.prevPosY) * float0);
-			double d0 = human.field_71097_bO + (human.field_71085_bR - human.field_71097_bO) * float0 - (human.prevPosZ + (human.posZ - human.prevPosZ) * float0);
-			float f4 = human.prevRenderYawOffset + (human.renderYawOffset - human.prevRenderYawOffset) * float0;
+			double d3 = human.getInterpolatedCapeX(partialTickTime);
+			double d4 = human.getInterpolatedCapeY(partialTickTime);
+			double d0 = human.getInterpolatedCapeZ(partialTickTime);
+			float f4 = entity.prevRenderYawOffset + (entity.renderYawOffset - entity.prevRenderYawOffset) * partialTickTime;
 			double d1 = MathHelper.sin(f4 * (float) Math.PI / 180.0F);
 			double d2 = -MathHelper.cos(f4 * (float) Math.PI / 180.0F);
 			float f5 = (float) d4 * 10.0F;
@@ -116,7 +116,7 @@ public class RenderHuman extends RenderBiped {
 			if (f6 < 0.0F)
 				f6 = 0.0F;
 
-			if (human.isSneaking())
+			if (entity.isSneaking())
 				f5 += 25.0F;
 
 			OpenGLHelper.rotate(6.0F + f6 / 2.0F + f5, 1.0F, 0.0F, 0.0F);

@@ -2,11 +2,13 @@ package ganymedes01.headcrumbs.entity;
 
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.ModItems;
+import ganymedes01.headcrumbs.api.IHumanEntity;
 import ganymedes01.headcrumbs.utils.UsernameUtils;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import net.minecraft.enchantment.Enchantment;
@@ -51,15 +53,17 @@ import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class EntityHuman extends EntityMob implements IRangedAttackMob {
+public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEntity {
 
 	// Cape related variables. Copied from EntityPlayer
-	public double field_71091_bM;
-	public double field_71096_bN;
-	public double field_71097_bO;
-	public double field_71094_bP;
-	public double field_71095_bQ;
-	public double field_71085_bR;
+	private double field_71091_bM;
+	private double field_71096_bN;
+	private double field_71097_bO;
+	private double field_71094_bP;
+	private double field_71095_bQ;
+	private double field_71085_bR;
+
+	private GameProfile profile;
 
 	// Baby zombie stuff
 	private static final AttributeModifier babySpeedBoostModifier = new AttributeModifier(UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836"), "Baby speed boost", 0.5D, 1);
@@ -217,7 +221,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob {
 
 	@Override
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
-		setUsername(getRandomUsername());
+		setUsername(getRandomUsername(rand));
 		addRandomArmor();
 		enchantEquipment();
 		setCombatAI();
@@ -290,7 +294,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob {
 			username = nbt.getString("Username");
 			getNames().remove(username);
 		} else
-			username = getRandomUsername();
+			username = getRandomUsername(rand);
 		setUsername(username);
 
 		if (nbt.getBoolean("IsBaby"))
@@ -411,6 +415,41 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob {
 	public void setCustomNameTag(String name) {
 	}
 
+	public static String getRandomUsername(Random rand) {
+		List<String> names = getNames();
+
+		String username = names.get(rand.nextInt(names.size()));
+		names.remove(username);
+		return username;
+	}
+
+	private static List<String> names = new LinkedList<String>();
+
+	public static List<String> getNames() {
+		if (names.isEmpty())
+			names.addAll(Headcrumbs.getAllNames());
+
+		return names;
+	}
+
+	// IHumanEntity
+
+	@Override
+	public GameProfile getProfile() {
+		if (profile == null)
+			profile = new GameProfile(null, getUsername());
+		return profile;
+	}
+
+	@Override
+	public String getUsername() {
+		String username = getDataWatcher().getWatchableObjectString(NAME);
+		if (StringUtils.isBlank(username))
+			getDataWatcher().updateObject(NAME, getRandomUsername(rand));
+		return username;
+	}
+
+	@Override
 	public void setUsername(String name) {
 		getDataWatcher().updateObject(NAME, UsernameUtils.getFixedUsername(name));
 
@@ -421,38 +460,19 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob {
 		}
 	}
 
-	public String getUsername() {
-		String username = getDataWatcher().getWatchableObjectString(NAME);
-		if (StringUtils.isBlank(username))
-			getDataWatcher().updateObject(NAME, getRandomUsername());
-		return username;
+	@Override
+	public double getInterpolatedCapeX(float partialTickTime) {
+		return field_71091_bM + (field_71094_bP - field_71091_bM) * partialTickTime - (prevPosX + (posX - prevPosX) * partialTickTime);
 	}
 
-	private String getRandomUsername() {
-		List<String> names = getNames();
-
-		String username = names.get(rand.nextInt(names.size()));
-		names.remove(username);
-		return username;
+	@Override
+	public double getInterpolatedCapeY(float partialTickTime) {
+		return field_71096_bN + (field_71095_bQ - field_71096_bN) * partialTickTime - (prevPosY + (posY - prevPosY) * partialTickTime);
 	}
 
-	private static List<String> names = new LinkedList<String>();
-
-	private static List<String> getNames() {
-		if (names.isEmpty())
-			names.addAll(Headcrumbs.getAllNames());
-
-		return names;
-	}
-
-	@SideOnly(Side.CLIENT)
-	private GameProfile profile;
-
-	@SideOnly(Side.CLIENT)
-	public GameProfile getProfile() {
-		if (profile == null)
-			profile = new GameProfile(null, getUsername());
-		return profile;
+	@Override
+	public double getInterpolatedCapeZ(float partialTickTime) {
+		return field_71097_bO + (field_71085_bR - field_71097_bO) * partialTickTime - (prevPosZ + (posZ - prevPosZ) * partialTickTime);
 	}
 
 	// Child stuff
