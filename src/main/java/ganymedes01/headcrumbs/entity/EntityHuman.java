@@ -39,6 +39,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatStyle;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
@@ -202,6 +203,11 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob {
 	public void setCurrentItemOrArmor(int slot, ItemStack stack) {
 		super.setCurrentItemOrArmor(slot, stack);
 		setCombatAI();
+	}
+
+	@Override
+	public ItemStack getPickedResult(MovingObjectPosition target) {
+		return new ItemStack(Headcrumbs.spawnEgg);
 	}
 
 	/* SPAWN AND DESPAWN */

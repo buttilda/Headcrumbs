@@ -193,6 +193,7 @@ public class Headcrumbs {
 	public static int[] blacklistedDimensions = { 1, -1 };
 	public static String humanNamePrefix = "";
 
+	public static Item spawnEgg;
 	public static Block clay;
 
 	@EventHandler
@@ -233,9 +234,8 @@ public class Headcrumbs {
 			EntityList.stringToClassMapping.put("Celebrity", EntityHuman.class);
 
 			EntityRegistry.registerModEntity(EntityHuman.class, "Human", 0, instance, 512, 1, true);
-			Item egg = new HumanEgg();
-			GameRegistry.registerItem(egg, "egg");
-			OreDictionary.registerOre("mobEgg", egg);
+			GameRegistry.registerItem(spawnEgg = new HumanEgg(), "egg");
+			OreDictionary.registerOre("mobEgg", spawnEgg);
 
 			VIPHandler.init();
 		}
