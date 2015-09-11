@@ -10,7 +10,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -100,14 +99,10 @@ public class HumanEgg extends Item {
 
 					if (world.getBlock(i, j, k) instanceof BlockLiquid) {
 						EntityHuman human = spawnHuman(world, i, j, k);
-
-						if (human != null) {
-							if (stack.hasDisplayName())
-								human.setUsername(stack.getDisplayName());
-
-							if (!player.capabilities.isCreativeMode)
-								stack.stackSize--;
-						}
+						if (stack.hasDisplayName())
+							human.setUsername(stack.getDisplayName());
+						if (!player.capabilities.isCreativeMode)
+							stack.stackSize--;
 					}
 				}
 
@@ -117,18 +112,15 @@ public class HumanEgg extends Item {
 	}
 
 	public static EntityHuman spawnHuman(World world, double x, double y, double z) {
-		EntityHuman entity = new EntityHuman(world);
-		if (entity != null && entity instanceof EntityLivingBase) {
-			EntityLiving entityliving = entity;
-			entity.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
-			entityliving.rotationYawHead = entityliving.rotationYaw;
-			entityliving.renderYawOffset = entityliving.rotationYaw;
-			entityliving.onSpawnWithEgg((IEntityLivingData) null);
-			world.spawnEntityInWorld(entity);
-			entityliving.playLivingSound();
-		}
+		EntityHuman human = new EntityHuman(world);
+		human.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(world.rand.nextFloat() * 360.0F), 0.0F);
+		human.rotationYawHead = human.rotationYaw;
+		human.renderYawOffset = human.rotationYaw;
+		human.onSpawnWithEgg(null);
+		world.spawnEntityInWorld(human);
+		human.playLivingSound();
 
-		return entity;
+		return human;
 	}
 
 	@Override

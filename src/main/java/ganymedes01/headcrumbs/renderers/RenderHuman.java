@@ -1,5 +1,6 @@
 package ganymedes01.headcrumbs.renderers;
 
+import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.utils.TextureUtils;
 import net.minecraft.client.entity.AbstractClientPlayer;
@@ -7,6 +8,7 @@ import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import cpw.mods.fml.relauncher.Side;
@@ -26,6 +28,10 @@ public class RenderHuman extends RenderBiped {
 		else
 			modelBipedMain.aimedBow = false;
 
+		boolean isWearingHead = isWearingHelmet(entity);
+		modelBipedMain.bipedHead.isHidden = isWearingHead;
+		modelBipedMain.bipedHeadwear.isHidden = isWearingHead;
+
 		super.doRender(entity, d0, d1, d2, f0, f1);
 	}
 
@@ -41,6 +47,16 @@ public class RenderHuman extends RenderBiped {
 			return;
 
 		EntityHuman human = (EntityHuman) entity;
+
+		// Head equip
+		if (isWearingHelmet(human)) {
+			OpenGLHelper.pushMatrix();
+			ItemStack helmet = human.func_130225_q(3);
+			modelBipedMain.bipedHead.postRender(0.0625F);
+			OpenGLHelper.scale(1.0F, -1.0F, -1.0F);
+			TileEntityBlockSkullRenderer.instance.renderHead(-0.5F, 0.0F, -0.5F, helmet);
+			OpenGLHelper.popMatrix();
+		}
 
 		// Ears
 		ResourceLocation skin = TextureUtils.getPlayerSkin(human.getProfile());
@@ -115,5 +131,10 @@ public class RenderHuman extends RenderBiped {
 	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float float0) {
 		OpenGLHelper.scale(0.9375F, 0.9375F, 0.9375F);
+	}
+
+	private boolean isWearingHelmet(EntityLiving entity) {
+		ItemStack helmet = entity.func_130225_q(3);
+		return helmet != null && helmet.getItem() == ModItems.skull;
 	}
 }

@@ -1,6 +1,7 @@
 package ganymedes01.headcrumbs.entity;
 
 import ganymedes01.headcrumbs.Headcrumbs;
+import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.utils.UsernameUtils;
 
 import java.util.Iterator;
@@ -207,7 +208,9 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob {
 
 	@Override
 	public ItemStack getPickedResult(MovingObjectPosition target) {
-		return new ItemStack(Headcrumbs.spawnEgg);
+		ItemStack stack = new ItemStack(Headcrumbs.spawnEgg);
+		stack.setStackDisplayName(getUsername());
+		return stack;
 	}
 
 	/* SPAWN AND DESPAWN */
@@ -338,6 +341,18 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob {
 			tasks.addTask(1, arrowAI);
 		else
 			tasks.removeTask(arrowAI);
+	}
+
+	@Override
+	public void onLivingUpdate() {
+		super.onLivingUpdate();
+
+		ItemStack held = getHeldItem();
+		ItemStack helmet = func_130225_q(3);
+		if (held != null && held.getItem() == ModItems.skull && helmet == null) {
+			setCurrentItemOrArmor(4, held);
+			setCurrentItemOrArmor(0, null);
+		}
 	}
 
 	/* USERNAME */
