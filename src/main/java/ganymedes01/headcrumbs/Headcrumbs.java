@@ -40,9 +40,11 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary;
@@ -59,6 +61,7 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent;
 import cpw.mods.fml.common.event.FMLInterModComms.IMCMessage;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -236,6 +239,30 @@ public class Headcrumbs {
 
 			VIPHandler.init();
 		}
+
+		if (Loader.isModLoaded("ganysend")) {
+			addEnderFurnaceRecipe(new ItemStack(Blocks.dragon_egg), "skullEnderDragon");
+			addEnderFurnaceRecipe(new ItemStack(Items.nether_star), "skullWither");
+		}
+	}
+
+	private void addEnderFurnaceRecipe(ItemStack output, Object... input) {
+		NBTTagCompound nbt = new NBTTagCompound();
+
+		NBTTagCompound out = new NBTTagCompound();
+		output.writeToNBT(out);
+		nbt.setTag("output", out);
+
+		for (int i = 0; i < input.length; i++)
+			if (input[i] != null)
+				if (input[i] instanceof ItemStack) {
+					NBTTagCompound in = new NBTTagCompound();
+					((ItemStack) input[i]).writeToNBT(in);
+					nbt.setTag("input" + i, in);
+				} else
+					nbt.setString("input" + i, (String) input[i]);
+
+		FMLInterModComms.sendMessage("ganysend", "enderFurnaceRecipe", nbt);
 	}
 
 	@EventHandler
