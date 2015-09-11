@@ -100,7 +100,7 @@ public class Headcrumbs {
 				for (SkullTypes type : SkullTypes.values())
 					if (type.canShow() && type != SkullTypes.lycanites && type != SkullTypes.player)
 						types.add(type);
-				displayStack = types.isEmpty() ? new ItemStack(Items.skull) : new ItemStack(ModItems.skull, 1, types.get(rand.nextInt(types.size())).ordinal());
+				displayStack = types.isEmpty() ? new ItemStack(Items.skull) : types.get(rand.nextInt(types.size())).getStack();
 			}
 			return displayStack;
 		}
