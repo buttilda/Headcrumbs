@@ -28,7 +28,6 @@ import net.minecraft.util.EntityDamageSource;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -36,6 +35,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 public class HandlerEvents {
 
 	private static List<String> hardcodedBlacklist = Arrays.asList("Twilight Forest", "Erebus", "The Outer Lands");
+	private static Item cleaver;
 
 	@SubscribeEvent
 	public void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
@@ -120,20 +120,21 @@ public class HandlerEvents {
 	}
 
 	private int getBeaheadingLevel(ItemStack weapon) {
-		if (Loader.isModLoaded("TConstruct"))
-			try {
-				Class<?> TinkerTools = Class.forName("tconstruct.tools.TinkerTools");
-				Field field = TinkerTools.getDeclaredField("cleaver");
-				field.setAccessible(true);
-				Item cleaver = (Item) field.get(null);
+		if (Headcrumbs.isTinkersConstructLoaded) {
+			if (cleaver == null)
+				try {
+					Class<?> TinkerTools = Class.forName("tconstruct.tools.TinkerTools");
+					Field field = TinkerTools.getDeclaredField("cleaver");
+					field.setAccessible(true);
+					cleaver = (Item) field.get(null);
+				} catch (Exception e) {
+				}
 
-				int beheading = weapon.getTagCompound().getCompoundTag("InfiTool").getInteger("Beheading");
-				if (cleaver == weapon.getItem())
-					beheading += 2;
-
-				return beheading;
-			} catch (Exception e) {
-			}
+			int beheading = weapon.getTagCompound().getCompoundTag("InfiTool").getInteger("Beheading");
+			if (cleaver == weapon.getItem())
+				beheading += 2;
+			return beheading;
+		}
 
 		return 0;
 	}

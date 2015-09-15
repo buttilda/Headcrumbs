@@ -193,6 +193,8 @@ public class Headcrumbs {
 	public static int[] blacklistedDimensions = { 1, -1 };
 	public static String humanNamePrefix = "";
 
+	public static boolean isTinkersConstructLoaded = false;
+
 	public static Item spawnEgg;
 	public static Block clay;
 
@@ -239,6 +241,8 @@ public class Headcrumbs {
 
 			VIPHandler.init();
 		}
+
+		isTinkersConstructLoaded = Loader.isModLoaded("TConstruct");
 
 		if (Loader.isModLoaded("ganysend")) {
 			addEnderFurnaceRecipe(new ItemStack(Blocks.dragon_egg), "skullEnderDragon");
