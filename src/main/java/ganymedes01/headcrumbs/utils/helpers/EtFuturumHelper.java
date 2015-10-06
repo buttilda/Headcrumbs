@@ -18,7 +18,7 @@ public class EtFuturumHelper extends HeadDropHelper {
 
 		typesMap.put("etfuturum.endermite", SkullTypes.endermite);
 
-		if (Headcrumbs.addPlayerHeadsAsDungeonLoot) {
+		if (isEnabled() && Headcrumbs.addPlayerHeadsAsDungeonLoot) {
 			Random rand = new Random();
 			int min = 1;
 			int max = 1;
