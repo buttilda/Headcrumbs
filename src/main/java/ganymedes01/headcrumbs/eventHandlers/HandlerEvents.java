@@ -23,8 +23,10 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
@@ -130,10 +132,18 @@ public class HandlerEvents {
 				} catch (Exception e) {
 				}
 
-			int beheading = weapon.getTagCompound().getCompoundTag("InfiTool").getInteger("Beheading");
-			if (cleaver == weapon.getItem())
-				beheading += 2;
-			return beheading;
+			if (weapon == null || !weapon.hasTagCompound())
+				return 0;
+
+			if (weapon.getTagCompound().hasKey("InfiTool", Constants.NBT.TAG_COMPOUND)) {
+				NBTTagCompound infiTool = weapon.getTagCompound().getCompoundTag("InfiTool");
+				if (infiTool.hasKey("Beheading", Constants.NBT.TAG_INT)) {
+					int beheading = infiTool.getInteger("Beheading");
+					if (cleaver == weapon.getItem())
+						beheading += 2;
+					return beheading;
+				}
+			}
 		}
 
 		return 0;
