@@ -314,7 +314,9 @@ public enum SkullTypes {
 	nagaTF				(Strings.TF_PREFIX + "nagahead", 							"TwilightForest", 		NagaTFHead.INSTANCE),
 	lich				(Strings.TF_PREFIX + "twilightlich64", 						"TwilightForest", 		LichHead.INSTANCE),
 	snowQueen			(Strings.TF_PREFIX + "snowqueen", 							"TwilightForest", 		SnowQueenHead.INSTANCE),
-	urGhast				(Strings.TF_PREFIX + "towerboss", 							"TwilightForest", 		GhastHead.INSTANCE);
+	urGhast				(Strings.TF_PREFIX + "towerboss", 							"TwilightForest", 		GhastHead.INSTANCE),
+	blitz				(Strings.TE_PREFIX + "Blitz", 								"ThermalFoundation",	ModelHead.INSTANCE),
+	basalz				(Strings.TE_PREFIX + "Basalz", 								"ThermalFoundation",	ModelHead.INSTANCE);
 	// @formatter:on
 
 	private final String mod;

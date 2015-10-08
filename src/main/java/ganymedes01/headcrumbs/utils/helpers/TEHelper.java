@@ -8,5 +8,7 @@ public class TEHelper extends HeadDropHelper {
 		super("ThermalFoundation");
 
 		typesMap.put("Blizz", SkullTypes.blizz);
+		typesMap.put("Blitz", SkullTypes.blitz);
+		typesMap.put("Basalz", SkullTypes.basalz);
 	}
 }
