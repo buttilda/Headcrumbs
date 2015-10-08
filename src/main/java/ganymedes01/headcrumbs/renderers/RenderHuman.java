@@ -43,8 +43,6 @@ public class RenderHuman extends RenderBiped {
 	@Override
 	protected void renderEquippedItems(EntityLiving entity, float partialTickTime) {
 		super.renderEquippedItems(entity, partialTickTime);
-		if (entity.isInvisible())
-			return;
 
 		IHumanEntity human = (IHumanEntity) entity;
 
@@ -53,10 +51,17 @@ public class RenderHuman extends RenderBiped {
 			OpenGLHelper.pushMatrix();
 			ItemStack helmet = entity.func_130225_q(3);
 			modelBipedMain.bipedHead.postRender(0.0625F);
+
+			if (modelBipedMain.isChild)
+				OpenGLHelper.translate(0, 0.75F, 0);
+
 			OpenGLHelper.scale(1.0F, -1.0F, -1.0F);
 			TileEntityBlockSkullRenderer.instance.renderHead(-0.5F, 0.0F, -0.5F, helmet);
 			OpenGLHelper.popMatrix();
 		}
+
+		if (entity.isInvisible())
+			return;
 
 		// Ears
 		ResourceLocation skin = TextureUtils.getPlayerSkin(human.getProfile());
