@@ -17,6 +17,11 @@ public class TileEntityBlockSkull extends TileEntitySkull {
 	protected GameProfile profile = null;
 
 	@Override
+	public boolean canUpdate() {
+		return false;
+	}
+
+	@Override
 	public void writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		nbt.setInteger("skullType", skullType);
