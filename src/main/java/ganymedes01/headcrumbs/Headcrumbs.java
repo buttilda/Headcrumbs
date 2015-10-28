@@ -290,35 +290,8 @@ public class Headcrumbs {
 
 		UsercacheChecker.check();
 
-		if (enableHumanMobs) {
-			List<BiomeDictionary.Type> blacklistedBiomes = Arrays.asList(BiomeDictionary.Type.MUSHROOM);
-			List<String> blacklistedBiomeNames = Arrays.asList("Tainted Land");
-
-			List<BiomeGenBase> biomes = new LinkedList<BiomeGenBase>();
-			label: for (BiomeGenBase biome : BiomeGenBase.getBiomeGenArray())
-				if (biome != null) {
-					// Check if the biome name is blacklisted
-					if (blacklistedBiomeNames.contains(biome.biomeName))
-						continue;
-
-					// Check if the biome type is blacklisted
-					for (BiomeDictionary.Type type : BiomeDictionary.getTypesForBiome(biome))
-						if (blacklistedBiomes.contains(type))
-							continue label;
-
-					// Check if zombies can spawn on this biome
-					for (Object obj : biome.getSpawnableList(EnumCreatureType.monster))
-						if (obj instanceof SpawnListEntry) {
-							SpawnListEntry entry = (SpawnListEntry) obj;
-							if (entry.entityClass == EntityZombie.class) {
-								biomes.add(biome);
-								continue label;
-							}
-						}
-				}
-
-			EntityRegistry.addSpawn(EntityHuman.class, celebrityProb, celebrityMin, celebrityMax, EnumCreatureType.monster, biomes.toArray(new BiomeGenBase[biomes.size()]));
-		}
+		if (enableHumanMobs)
+			addHumanSpawns();
 
 		if (enableHeadConversion)
 			if (Loader.isModLoaded("TwilightForest")) {
@@ -377,5 +350,42 @@ public class Headcrumbs {
 		if (enableModSent)
 			names.addAll(modsent);
 		return new ArrayList<String>(names);
+	}
+
+	private static void addHumanSpawns() {
+		List<BiomeDictionary.Type> blacklistedBiomes = Arrays.asList(BiomeDictionary.Type.MUSHROOM);
+		List<String> blacklistedBiomeNames = Arrays.asList("Tainted Land");
+
+		List<BiomeGenBase> biomes = new LinkedList<BiomeGenBase>();
+		label: for (BiomeGenBase biome : BiomeGenBase.getBiomeGenArray())
+			if (biome != null) {
+				// Check if the biome name is blacklisted
+				if (blacklistedBiomeNames.contains(biome.biomeName))
+					continue;
+
+				// Check if the biome type is blacklisted
+				for (BiomeDictionary.Type type : BiomeDictionary.getTypesForBiome(biome))
+					if (blacklistedBiomes.contains(type))
+						continue label;
+
+				// Check if zombies can spawn on this biome
+				for (Object obj : biome.getSpawnableList(EnumCreatureType.monster))
+					if (obj instanceof SpawnListEntry) {
+						SpawnListEntry entry = (SpawnListEntry) obj;
+						try {
+
+							boolean isSpecialMobsZombie = Loader.isModLoaded("SpecialMobs") && Class.forName("toast.specialMobs.entity.zombie.Entity_SpecialZombie").isAssignableFrom(entry.entityClass);
+							if (entry.entityClass == EntityZombie.class || isSpecialMobsZombie) {
+								biomes.add(biome);
+								continue label;
+							}
+
+						} catch (ClassNotFoundException e) {
+							e.printStackTrace();
+						}
+					}
+			}
+
+		EntityRegistry.addSpawn(EntityHuman.class, celebrityProb, celebrityMin, celebrityMax, EnumCreatureType.monster, biomes.toArray(new BiomeGenBase[biomes.size()]));
 	}
 }
