@@ -232,6 +232,8 @@ public class Headcrumbs {
 		proxy.registerTileEntities();
 		proxy.registerRenderers();
 
+		FMLInterModComms.sendMessage("Waila", "register", "ganymedes01.headcrumbs.waila.WailaRegistrar.wailaCallback");
+
 		if (enableHumanMobs) {
 			EntityList.stringToClassMapping.put("Celebrity", EntityHuman.class);
 
