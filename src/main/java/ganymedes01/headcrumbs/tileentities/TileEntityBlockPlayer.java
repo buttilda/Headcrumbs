@@ -24,7 +24,7 @@ public class TileEntityBlockPlayer extends TileEntityBlockSkull {
 		}
 
 		if (player == null)
-			player = new PlayerForRendering(worldObj, profile, xCoord, yCoord, zCoord);
+			player = new PlayerForRendering(worldObj, profile);
 		return player;
 	}
 }

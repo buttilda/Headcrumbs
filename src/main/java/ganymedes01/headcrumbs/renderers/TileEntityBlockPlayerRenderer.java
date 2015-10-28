@@ -8,7 +8,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.IChatComponent;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.mojang.authlib.GameProfile;
@@ -35,9 +34,9 @@ public class TileEntityBlockPlayerRenderer extends TileEntityBlockSkullRenderer 
 		player.func_152121_a(MinecraftProfileTexture.Type.CAPE, TextureUtils.getPlayerCape(profile));
 		player.func_152121_a(MinecraftProfileTexture.Type.SKIN, TextureUtils.getPlayerSkin(profile));
 
-		RenderManager.renderPosX = player.posX = player.lastTickPosX = player.prevPosX = player.field_71091_bM = player.field_71094_bP = x;
-		RenderManager.renderPosY = player.posY = player.lastTickPosY = player.prevPosY = player.field_71096_bN = player.field_71095_bQ = y;
-		RenderManager.renderPosZ = player.posZ = player.lastTickPosZ = player.prevPosZ = player.field_71097_bO = player.field_71085_bR = z;
+		RenderManager.renderPosX = player.posX = player.lastTickPosX = player.prevPosX = player.field_71091_bM = player.field_71094_bP = tilePlayer.xCoord;
+		RenderManager.renderPosY = player.posY = player.lastTickPosY = player.prevPosY = player.field_71096_bN = player.field_71095_bQ = tilePlayer.yCoord;
+		RenderManager.renderPosZ = player.posZ = player.lastTickPosZ = player.prevPosZ = player.field_71097_bO = player.field_71085_bR = tilePlayer.zCoord;
 
 		OpenGLHelper.pushMatrix();
 		OpenGLHelper.translate(x + 0.5, y + 0.63, z + 0.5);
@@ -52,13 +51,8 @@ public class TileEntityBlockPlayerRenderer extends TileEntityBlockSkullRenderer 
 
 	public static class PlayerForRendering extends AbstractClientPlayer {
 
-		private final int x, y, z;
-
-		public PlayerForRendering(World world, GameProfile profile, int x, int y, int z) {
+		public PlayerForRendering(World world, GameProfile profile) {
 			super(world, profile);
-			this.x = x;
-			this.y = y;
-			this.z = z;
 		}
 
 		@Override
@@ -79,20 +73,6 @@ public class TileEntityBlockPlayerRenderer extends TileEntityBlockSkullRenderer 
 		@SideOnly(Side.CLIENT)
 		public boolean isInvisibleToPlayer(EntityPlayer p_98034_1_) {
 			return true;
-		}
-
-		@Override
-		@SideOnly(Side.CLIENT)
-		public int getBrightnessForRender(float partialTicks) {
-			int i = MathHelper.floor_double(x);
-			int j = MathHelper.floor_double(z);
-
-			if (worldObj.blockExists(i, 0, j)) {
-				double d0 = (boundingBox.maxY - boundingBox.minY) * 0.66D;
-				int k = MathHelper.floor_double(y - (double) yOffset + d0);
-				return worldObj.getLightBrightnessForSkyBlocks(i, k, j, 0);
-			} else
-				return 0;
 		}
 	}
 }
