@@ -1,13 +1,13 @@
 package ganymedes01.headcrumbs.proxy;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.registry.GameRegistry;
 import ganymedes01.headcrumbs.configs.ConfigHandler;
 import ganymedes01.headcrumbs.eventHandlers.HandlerEvents;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockPlayer;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
 import ganymedes01.headcrumbs.utils.Utils;
 import net.minecraftforge.common.MinecraftForge;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class CommonProxy {
 

@@ -1,12 +1,12 @@
 package ganymedes01.headcrumbs.renderers.heads;
 
-import ganymedes01.headcrumbs.renderers.ModelHead;
-import ganymedes01.headcrumbs.renderers.OpenGLHelper;
-import net.minecraft.client.model.ModelRenderer;
-
 import org.lwjgl.opengl.GL11;
 
 import com.mojang.authlib.GameProfile;
+
+import ganymedes01.headcrumbs.renderers.ModelHead;
+import ganymedes01.headcrumbs.renderers.OpenGLHelper;
+import net.minecraft.client.model.ModelRenderer;
 
 public class SlimeHead extends ModelHead {
 

@@ -1,9 +1,9 @@
 package ganymedes01.headcrumbs.entity.vip;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.entity.VIPHandler;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class direwolf20 extends VIPHandler {
 

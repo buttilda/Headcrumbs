@@ -1,9 +1,9 @@
 package ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia;
 
+import com.mojang.authlib.GameProfile;
+
 import ganymedes01.headcrumbs.renderers.ModelHead;
 import net.minecraft.client.model.ModelRenderer;
-
-import com.mojang.authlib.GameProfile;
 
 public class GryphonHead extends ModelHead {
 

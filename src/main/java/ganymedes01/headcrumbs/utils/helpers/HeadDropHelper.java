@@ -1,17 +1,16 @@
 package ganymedes01.headcrumbs.utils.helpers;
 
-import ganymedes01.headcrumbs.libs.SkullTypes;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import cpw.mods.fml.common.Loader;
+import ganymedes01.headcrumbs.libs.SkullTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.common.Loader;
 
 public abstract class HeadDropHelper implements Comparable<HeadDropHelper> {
 

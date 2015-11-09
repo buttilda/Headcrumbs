@@ -1,5 +1,8 @@
 package ganymedes01.headcrumbs.network.packet;
 
+import com.mojang.authlib.GameProfile;
+
+import cpw.mods.fml.common.network.ByteBufUtils;
 import ganymedes01.headcrumbs.network.PacketHandler.PacketType;
 import ganymedes01.headcrumbs.utils.TextureUtils;
 import io.netty.buffer.ByteBuf;
@@ -7,10 +10,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.world.World;
-
-import com.mojang.authlib.GameProfile;
-
-import cpw.mods.fml.common.network.ByteBufUtils;
 
 public class TextureSendPacket extends CustomPacket {
 

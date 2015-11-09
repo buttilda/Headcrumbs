@@ -1,5 +1,7 @@
 package ganymedes01.headcrumbs.configs;
 
+import java.io.File;
+
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import ganymedes01.headcrumbs.Headcrumbs;
@@ -7,8 +9,6 @@ import ganymedes01.headcrumbs.libs.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.common.config.Configuration;
-
-import java.io.File;
 
 public class ConfigHandler {
 

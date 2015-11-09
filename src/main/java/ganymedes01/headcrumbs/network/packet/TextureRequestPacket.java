@@ -1,17 +1,16 @@
 package ganymedes01.headcrumbs.network.packet;
 
+import com.google.common.collect.Iterables;
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.properties.Property;
+
+import cpw.mods.fml.common.network.ByteBufUtils;
 import ganymedes01.headcrumbs.network.PacketHandler;
 import ganymedes01.headcrumbs.network.PacketHandler.PacketType;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
-
-import com.google.common.collect.Iterables;
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
-
-import cpw.mods.fml.common.network.ByteBufUtils;
 
 public class TextureRequestPacket extends CustomPacket {
 

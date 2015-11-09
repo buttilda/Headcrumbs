@@ -1,21 +1,6 @@
 package ganymedes01.headcrumbs.network;
 
-import ganymedes01.headcrumbs.libs.Reference;
-import ganymedes01.headcrumbs.network.packet.CustomPacket;
-import ganymedes01.headcrumbs.network.packet.TextureRequestPacket;
-import ganymedes01.headcrumbs.network.packet.TextureSendPacket;
-import io.netty.buffer.ByteBuf;
-import io.netty.channel.ChannelHandler.Sharable;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.SimpleChannelInboundHandler;
-
 import java.util.EnumMap;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.network.NetHandlerPlayServer;
-import net.minecraft.network.Packet;
 
 import com.google.common.collect.Maps;
 
@@ -26,6 +11,19 @@ import cpw.mods.fml.common.network.FMLOutboundHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ganymedes01.headcrumbs.libs.Reference;
+import ganymedes01.headcrumbs.network.packet.CustomPacket;
+import ganymedes01.headcrumbs.network.packet.TextureRequestPacket;
+import ganymedes01.headcrumbs.network.packet.TextureSendPacket;
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandler.Sharable;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.SimpleChannelInboundHandler;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.network.NetHandlerPlayServer;
+import net.minecraft.network.Packet;
 
 @Sharable
 public final class PacketHandler {

@@ -1,10 +1,5 @@
 package ganymedes01.headcrumbs.utils;
 
-import ganymedes01.headcrumbs.Headcrumbs;
-import ganymedes01.headcrumbs.entity.EntityHuman;
-import ganymedes01.headcrumbs.libs.SkullTypes;
-import ganymedes01.headcrumbs.utils.helpers.HeadDropHelper;
-
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -12,6 +7,12 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
+import com.mojang.authlib.GameProfile;
+
+import ganymedes01.headcrumbs.Headcrumbs;
+import ganymedes01.headcrumbs.entity.EntityHuman;
+import ganymedes01.headcrumbs.libs.SkullTypes;
+import ganymedes01.headcrumbs.utils.helpers.HeadDropHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -19,8 +20,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.util.Constants;
-
-import com.mojang.authlib.GameProfile;
 
 public class HeadUtils {
 

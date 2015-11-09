@@ -1,9 +1,9 @@
 package ganymedes01.headcrumbs.tileentities;
 
-import ganymedes01.headcrumbs.renderers.TileEntityBlockPlayerRenderer.PlayerForRendering;
-import net.minecraft.util.AxisAlignedBB;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ganymedes01.headcrumbs.renderers.TileEntityBlockPlayerRenderer.PlayerForRendering;
+import net.minecraft.util.AxisAlignedBB;
 
 public class TileEntityBlockPlayer extends TileEntityBlockSkull {
 

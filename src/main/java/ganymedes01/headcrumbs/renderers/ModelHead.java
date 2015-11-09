@@ -1,14 +1,14 @@
 package ganymedes01.headcrumbs.renderers;
 
+import org.lwjgl.opengl.GL11;
+
+import com.mojang.authlib.GameProfile;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
-
-import org.lwjgl.opengl.GL11;
-
-import com.mojang.authlib.GameProfile;
 
 public class ModelHead extends ModelBase {
 

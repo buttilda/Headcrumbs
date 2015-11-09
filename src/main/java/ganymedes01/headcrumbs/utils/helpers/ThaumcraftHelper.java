@@ -1,5 +1,7 @@
 package ganymedes01.headcrumbs.utils.helpers;
 
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.Optional;
 import ganymedes01.headcrumbs.ModBlocks;
 import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.libs.SkullTypes;
@@ -10,8 +12,6 @@ import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.common.entities.monster.EntityThaumicSlime;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Optional;
 
 public class ThaumcraftHelper extends HeadDropHelper {
 

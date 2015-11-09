@@ -1,11 +1,10 @@
 package ganymedes01.headcrumbs.utils.helpers;
 
-import ganymedes01.headcrumbs.libs.SkullTypes;
-import ganymedes01.headcrumbs.utils.HeadUtils;
-
 import java.util.Arrays;
 import java.util.List;
 
+import ganymedes01.headcrumbs.libs.SkullTypes;
+import ganymedes01.headcrumbs.utils.HeadUtils;
 import lycanite.lycanitesmobs.demonmobs.entity.EntityBehemoth;
 import lycanite.lycanitesmobs.demonmobs.entity.EntityBelph;
 import lycanite.lycanitesmobs.demonmobs.entity.EntityPinky;

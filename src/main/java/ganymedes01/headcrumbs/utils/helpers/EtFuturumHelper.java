@@ -1,11 +1,10 @@
 package ganymedes01.headcrumbs.utils.helpers;
 
+import java.util.Random;
+
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.utils.Utils;
-
-import java.util.Random;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.item.ItemStack;

@@ -1,5 +1,7 @@
 package ganymedes01.headcrumbs.renderers;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.api.IHumanEntity;
 import ganymedes01.headcrumbs.utils.TextureUtils;
@@ -11,8 +13,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderHuman extends RenderBiped {

@@ -1,11 +1,11 @@
 package ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia;
 
+import com.mojang.authlib.GameProfile;
+
 import ganymedes01.headcrumbs.renderers.ModelHead;
 import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
-
-import com.mojang.authlib.GameProfile;
 
 public class SludgeGirlHead extends ModelHead {
 

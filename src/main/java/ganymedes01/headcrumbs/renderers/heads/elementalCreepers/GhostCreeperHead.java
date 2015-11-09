@@ -1,11 +1,11 @@
 package ganymedes01.headcrumbs.renderers.heads.elementalCreepers;
 
-import ganymedes01.headcrumbs.renderers.ModelHead;
-import ganymedes01.headcrumbs.renderers.OpenGLHelper;
-
 import org.lwjgl.opengl.GL11;
 
 import com.mojang.authlib.GameProfile;
+
+import ganymedes01.headcrumbs.renderers.ModelHead;
+import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 
 public class GhostCreeperHead extends ModelHead {
 

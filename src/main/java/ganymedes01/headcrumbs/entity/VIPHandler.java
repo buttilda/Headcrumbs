@@ -1,15 +1,14 @@
 package ganymedes01.headcrumbs.entity;
 
-import ganymedes01.headcrumbs.Headcrumbs;
-
 import java.util.HashMap;
 import java.util.Map;
 
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-
 import com.google.common.reflect.ClassPath;
 import com.google.common.reflect.ClassPath.ClassInfo;
+
+import ganymedes01.headcrumbs.Headcrumbs;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 
 public class VIPHandler {
 

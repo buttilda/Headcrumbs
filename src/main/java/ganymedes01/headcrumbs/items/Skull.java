@@ -1,5 +1,11 @@
 package ganymedes01.headcrumbs.items;
 
+import java.util.List;
+
+import com.mojang.authlib.GameProfile;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.ModBlocks;
 import ganymedes01.headcrumbs.libs.CelebrityMap;
@@ -9,9 +15,6 @@ import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.Utils;
 import ganymedes01.headcrumbs.utils.helpers.LycanitesHelper;
 import ganymedes01.headcrumbs.utils.helpers.LycanitesHelperClient;
-
-import java.util.List;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -24,11 +27,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-
-import com.mojang.authlib.GameProfile;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class Skull extends ItemSkull {
 

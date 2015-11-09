@@ -1,10 +1,10 @@
 package ganymedes01.headcrumbs;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import ganymedes01.headcrumbs.blocks.BlockEmpty;
 import ganymedes01.headcrumbs.blocks.BlockPlayer;
 import ganymedes01.headcrumbs.blocks.BlockSkull;
 import net.minecraft.block.Block;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModBlocks {
 

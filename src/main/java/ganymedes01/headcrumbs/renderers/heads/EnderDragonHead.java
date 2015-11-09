@@ -1,13 +1,13 @@
 package ganymedes01.headcrumbs.renderers.heads;
 
+import com.mojang.authlib.GameProfile;
+
 import ganymedes01.headcrumbs.libs.Strings;
 import ganymedes01.headcrumbs.renderers.ModelHead;
 import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import ganymedes01.headcrumbs.utils.Utils;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
-
-import com.mojang.authlib.GameProfile;
 
 public class EnderDragonHead extends ModelHead {
 

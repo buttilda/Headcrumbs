@@ -1,5 +1,8 @@
 package ganymedes01.headcrumbs.libs;
 
+import com.mojang.authlib.GameProfile;
+
+import cpw.mods.fml.common.Loader;
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.renderers.ModelHead;
@@ -115,10 +118,6 @@ import ganymedes01.headcrumbs.utils.Utils;
 import ganymedes01.headcrumbs.utils.helpers.LycanitesHelperClient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-
-import com.mojang.authlib.GameProfile;
-
-import cpw.mods.fml.common.Loader;
 
 public enum SkullTypes {
 

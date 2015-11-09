@@ -1,5 +1,6 @@
 package ganymedes01.headcrumbs.entity.vip;
 
+import cpw.mods.fml.common.Loader;
 import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.entity.VIPHandler;
 import net.minecraft.init.Items;
@@ -7,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.StatCollector;
-import cpw.mods.fml.common.Loader;
 
 public class cpw11 extends VIPHandler {
 

@@ -1,5 +1,6 @@
 package ganymedes01.headcrumbs.blocks;
 
+import cpw.mods.fml.common.Optional;
 import ganymedes01.headcrumbs.ModBlocks;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockPlayer;
 import ganymedes01.headcrumbs.utils.Utils;
@@ -8,7 +9,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.Optional;
 
 public class BlockPlayer extends BlockSkull {
 

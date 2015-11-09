@@ -1,14 +1,7 @@
 package ganymedes01.headcrumbs.utils;
 
-import ganymedes01.headcrumbs.network.PacketHandler;
-import ganymedes01.headcrumbs.network.packet.TextureRequestPacket;
-
 import java.util.HashMap;
 import java.util.Map;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraft.util.ResourceLocation;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
@@ -16,6 +9,11 @@ import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ganymedes01.headcrumbs.network.PacketHandler;
+import ganymedes01.headcrumbs.network.packet.TextureRequestPacket;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraft.util.ResourceLocation;
 
 @SideOnly(Side.CLIENT)
 public class TextureUtils {

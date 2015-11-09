@@ -1,11 +1,11 @@
 package ganymedes01.headcrumbs.renderers.heads.twilightforest;
 
+import com.mojang.authlib.GameProfile;
+
 import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import ganymedes01.headcrumbs.renderers.heads.SheepHead;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.passive.EntitySheep;
-
-import com.mojang.authlib.GameProfile;
 
 public class BighornHead extends SheepHead {
 

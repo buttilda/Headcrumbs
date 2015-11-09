@@ -1,11 +1,11 @@
 package ganymedes01.headcrumbs.renderers.heads;
 
+import com.mojang.authlib.GameProfile;
+
 import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Blocks;
-
-import com.mojang.authlib.GameProfile;
 
 public class MooshroomHead extends CowHead {
 

@@ -1,16 +1,21 @@
 package ganymedes01.headcrumbs.entity;
 
-import ganymedes01.headcrumbs.Headcrumbs;
-import ganymedes01.headcrumbs.ModItems;
-import ganymedes01.headcrumbs.api.IHumanEntity;
-import ganymedes01.headcrumbs.utils.UsernameUtils;
-
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.mojang.authlib.GameProfile;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ganymedes01.headcrumbs.Headcrumbs;
+import ganymedes01.headcrumbs.ModItems;
+import ganymedes01.headcrumbs.api.IHumanEntity;
+import ganymedes01.headcrumbs.utils.UsernameUtils;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -45,13 +50,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.mojang.authlib.GameProfile;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEntity {
 
@@ -454,7 +452,6 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		getDataWatcher().updateObject(NAME, UsernameUtils.getFixedUsername(name));
 
 		if ("Herobrine".equals(name)) {
-			getEntityAttribute(SharedMonsterAttributes.maxHealth).applyModifier(new AttributeModifier("Herobrine Health Bonus", 10, 2));
 			getEntityAttribute(SharedMonsterAttributes.attackDamage).applyModifier(new AttributeModifier("Herobrine Damage Bonus", 1, 2));
 			getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(new AttributeModifier("Herobrine Speed Bonus", 0.5, 2));
 		}

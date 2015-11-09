@@ -1,10 +1,10 @@
 package ganymedes01.headcrumbs.nei;
 
+import codechicken.nei.api.API;
+import codechicken.nei.api.IConfigureNEI;
 import ganymedes01.headcrumbs.ModBlocks;
 import ganymedes01.headcrumbs.libs.Reference;
 import net.minecraft.item.ItemStack;
-import codechicken.nei.api.API;
-import codechicken.nei.api.IConfigureNEI;
 
 public class NEIHeadcrumbsConfig implements IConfigureNEI {
 

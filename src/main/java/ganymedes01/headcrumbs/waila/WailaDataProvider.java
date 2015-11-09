@@ -1,13 +1,12 @@
 package ganymedes01.headcrumbs.waila;
 
+import java.util.List;
+
 import ganymedes01.headcrumbs.ModBlocks;
 import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
 import ganymedes01.headcrumbs.utils.HeadUtils;
-
-import java.util.List;
-
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;

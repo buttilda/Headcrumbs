@@ -1,11 +1,11 @@
 package ganymedes01.headcrumbs.renderers.heads;
 
+import com.mojang.authlib.GameProfile;
+
 import ganymedes01.headcrumbs.libs.Strings;
 import ganymedes01.headcrumbs.renderers.ModelHead;
 import ganymedes01.headcrumbs.utils.Utils;
 import net.minecraft.client.model.ModelRenderer;
-
-import com.mojang.authlib.GameProfile;
 
 public class SheepHead extends ModelHead {
 

@@ -2,9 +2,9 @@ package ganymedes01.headcrumbs.configs;
 
 import java.util.Set;
 
+import cpw.mods.fml.client.IModGuiFactory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
-import cpw.mods.fml.client.IModGuiFactory;
 
 /**
  * Gany's End

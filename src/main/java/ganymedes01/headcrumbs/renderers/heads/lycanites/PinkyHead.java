@@ -1,10 +1,10 @@
 package ganymedes01.headcrumbs.renderers.heads.lycanites;
 
+import com.mojang.authlib.GameProfile;
+
 import ganymedes01.headcrumbs.renderers.ModelHead;
 import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import net.minecraft.client.model.ModelRenderer;
-
-import com.mojang.authlib.GameProfile;
 
 public class PinkyHead extends ModelHead {
 

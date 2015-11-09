@@ -1,10 +1,10 @@
 package ganymedes01.headcrumbs.renderers.heads.twilightforest;
 
+import com.mojang.authlib.GameProfile;
+
 import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import ganymedes01.headcrumbs.renderers.heads.WolfHead;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
-
-import com.mojang.authlib.GameProfile;
 
 public class MistWolfHead extends WolfHead {
 

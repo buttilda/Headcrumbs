@@ -1,17 +1,19 @@
 package ganymedes01.headcrumbs.eventHandlers;
 
-import ganymedes01.headcrumbs.Headcrumbs;
-import ganymedes01.headcrumbs.ModItems;
-import ganymedes01.headcrumbs.entity.EntityHuman;
-import ganymedes01.headcrumbs.libs.SkullTypes;
-import ganymedes01.headcrumbs.utils.HeadUtils;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.common.eventhandler.Event.Result;
+import cpw.mods.fml.common.eventhandler.EventPriority;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import ganymedes01.headcrumbs.Headcrumbs;
+import ganymedes01.headcrumbs.ModItems;
+import ganymedes01.headcrumbs.entity.EntityHuman;
+import ganymedes01.headcrumbs.libs.SkullTypes;
+import ganymedes01.headcrumbs.utils.HeadUtils;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -30,9 +32,6 @@ import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
-import cpw.mods.fml.common.eventhandler.Event.Result;
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class HandlerEvents {
 

@@ -1,9 +1,9 @@
 package ganymedes01.headcrumbs.utils;
 
-import ganymedes01.headcrumbs.libs.Reference;
-
 import java.awt.Color;
 
+import cpw.mods.fml.common.Loader;
+import ganymedes01.headcrumbs.libs.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
@@ -13,7 +13,6 @@ import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
-import cpw.mods.fml.common.Loader;
 
 public class Utils {
 

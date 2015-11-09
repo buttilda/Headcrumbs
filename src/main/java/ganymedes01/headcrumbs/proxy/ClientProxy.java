@@ -1,5 +1,7 @@
 package ganymedes01.headcrumbs.proxy;
 
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.eventHandlers.RenderPlayerHandler;
@@ -13,8 +15,6 @@ import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
 import net.minecraft.init.Items;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy {
 

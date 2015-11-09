@@ -1,11 +1,10 @@
 package ganymedes01.headcrumbs;
 
-import ganymedes01.headcrumbs.items.Skull;
-
 import java.lang.reflect.Field;
 
-import net.minecraft.item.Item;
 import cpw.mods.fml.common.registry.GameRegistry;
+import ganymedes01.headcrumbs.items.Skull;
+import net.minecraft.item.Item;
 
 public class ModItems {
 

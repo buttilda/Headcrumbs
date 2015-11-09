@@ -1,11 +1,11 @@
 package ganymedes01.headcrumbs.renderers.heads.enderzoo;
 
+import com.mojang.authlib.GameProfile;
+
 import ganymedes01.headcrumbs.libs.Strings;
 import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import ganymedes01.headcrumbs.renderers.heads.EndermanHead;
 import ganymedes01.headcrumbs.utils.Utils;
-
-import com.mojang.authlib.GameProfile;
 
 public class EnderminyHead extends EndermanHead {
 

@@ -1,11 +1,12 @@
 package ganymedes01.headcrumbs.blocks;
 
-import ganymedes01.headcrumbs.ModBlocks;
-import ganymedes01.headcrumbs.utils.Utils;
-
 import java.util.ArrayList;
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ganymedes01.headcrumbs.ModBlocks;
+import ganymedes01.headcrumbs.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -17,8 +18,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockEmpty extends Block {
 

@@ -1,5 +1,10 @@
 package ganymedes01.headcrumbs.renderers;
 
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.minecraft.MinecraftProfileTexture;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockPlayer;
 import ganymedes01.headcrumbs.utils.TextureUtils;
 import net.minecraft.client.entity.AbstractClientPlayer;
@@ -9,12 +14,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
-
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.minecraft.MinecraftProfileTexture;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityBlockPlayerRenderer extends TileEntityBlockSkullRenderer {

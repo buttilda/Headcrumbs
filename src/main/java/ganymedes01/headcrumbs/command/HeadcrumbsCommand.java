@@ -1,11 +1,10 @@
 package ganymedes01.headcrumbs.command;
 
+import java.util.List;
+
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.libs.Reference;
 import ganymedes01.headcrumbs.utils.HeadUtils;
-
-import java.util.List;
-
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
