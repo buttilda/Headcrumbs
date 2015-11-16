@@ -8,7 +8,6 @@ import ganymedes01.headcrumbs.utils.Utils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 
 public class EtFuturumHelper extends HeadDropHelper {
 
@@ -37,7 +36,7 @@ public class EtFuturumHelper extends HeadDropHelper {
 		String mobName = EntityList.getEntityString(entity);
 
 		if (mobName != null && mobName.equals("etfuturum.rabbit")) {
-			String name = EnumChatFormatting.getTextWithoutFormattingCodes(entity.getCommandSenderName());
+			String name = entity.getCommandSenderName();
 			if (name != null && name.equals("Toast"))
 				return SkullTypes.rabbitToast.getStack();
 
