@@ -9,7 +9,7 @@ import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.Items;
+import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
@@ -23,7 +23,7 @@ public class RenderHuman extends RenderBiped {
 
 	@Override
 	public void doRender(EntityLiving entity, double d0, double d1, double d2, float f0, float f1) {
-		if (entity.getHeldItem() != null && entity.getHeldItem().getItem() == Items.bow)
+		if (entity.getHeldItem() != null && entity.getHeldItem().getItem() instanceof ItemBow)
 			modelBipedMain.aimedBow = true;
 		else
 			modelBipedMain.aimedBow = false;
