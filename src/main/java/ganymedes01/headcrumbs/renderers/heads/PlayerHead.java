@@ -1,5 +1,7 @@
 package ganymedes01.headcrumbs.renderers.heads;
 
+import org.lwjgl.opengl.GL11;
+
 import com.mojang.authlib.GameProfile;
 
 import ganymedes01.headcrumbs.renderers.ModelHead;
@@ -22,6 +24,16 @@ public class PlayerHead extends ModelHead {
 		earLeft.addBox(-7.5F, -10.5F, -1.0F, 6, 6, 1);
 		earRight = new ModelRenderer(this, 24, 0);
 		earRight.addBox(1.5F, -10.5F, -1.0F, 6, 6, 1);
+	}
+
+	@Override
+	public void renderOverlay(float rotationX, float rotationY) {
+		overlay.rotateAngleY = rotationX / (180F / (float) Math.PI);
+		overlay.rotateAngleX = rotationY / (180F / (float) Math.PI);
+		OpenGLHelper.enableBlend();
+		OpenGLHelper.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		overlay.render(0.0625F);
+		OpenGLHelper.disableBlend();
 	}
 
 	@Override
