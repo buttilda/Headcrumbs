@@ -182,6 +182,7 @@ public class Headcrumbs {
 	public static boolean enablePlayerStatues = true;
 	public static boolean enableTooltips = true;
 	public static boolean enableHeadConversion = true;
+	public static boolean use18PlayerModel = false;
 
 	public static boolean enableHumanMobs = true, humansOpenDoors = true;
 	public static int celebrityProb = 80, celebrityMin = 4, celebrityMax = 4;

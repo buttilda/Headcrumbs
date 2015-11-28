@@ -2,6 +2,9 @@ package ganymedes01.headcrumbs.proxy;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.relauncher.ReflectionHelper;
+import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.eventHandlers.RenderPlayerHandler;
@@ -36,6 +39,14 @@ public class ClientProxy extends CommonProxy {
 	public void registerRenderers() {
 		MinecraftForgeClient.registerItemRenderer(ModItems.skull, new ItemSkullRender());
 		MinecraftForgeClient.registerItemRenderer(Items.skull, new ItemSkullRender());
+
+		if (Loader.isModLoaded("etfuturum"))
+			try {
+				boolean enabled = ReflectionHelper.getPrivateValue(Class.forName("ganymedes01.etfuturum.EtFuturum"), null, "enablePlayerSkinOverlay");
+				Headcrumbs.use18PlayerModel = enabled;
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityHuman.class, new RenderHuman());
 

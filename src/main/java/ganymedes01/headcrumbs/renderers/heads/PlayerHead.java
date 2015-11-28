@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.mojang.authlib.GameProfile;
 
+import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.renderers.ModelHead;
 import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import net.minecraft.client.model.ModelRenderer;
@@ -15,7 +16,8 @@ public class PlayerHead extends ModelHead {
 
 	private ModelRenderer earLeft, earRight;
 
-	protected PlayerHead() {
+	private PlayerHead() {
+		super(Headcrumbs.use18PlayerModel ? 64 : 32);
 	}
 
 	@Override
