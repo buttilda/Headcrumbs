@@ -19,6 +19,9 @@ public class ModelHuman extends ModelBiped {
 		super(0.0F, 0.0F, 64, Headcrumbs.use18PlayerModel ? 64 : 32);
 		boolean isAlex = false; // TODO Support for Alex model
 
+		if (!Headcrumbs.use18PlayerModel)
+			return;
+
 		bipedEars = new ModelRenderer(this, 24, 0);
 		bipedEars.addBox(-3.0F, -6.0F, -1.0F, 6, 6, 1);
 
