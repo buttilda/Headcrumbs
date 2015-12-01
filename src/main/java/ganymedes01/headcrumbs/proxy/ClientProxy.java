@@ -45,7 +45,6 @@ public class ClientProxy extends CommonProxy {
 				boolean enabled = ReflectionHelper.getPrivateValue(Class.forName("ganymedes01.etfuturum.EtFuturum"), null, "enablePlayerSkinOverlay");
 				Headcrumbs.use18PlayerModel = enabled;
 			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
 			}
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityHuman.class, new RenderHuman());
