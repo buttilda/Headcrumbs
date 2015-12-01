@@ -9,6 +9,8 @@ import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ganymedes01.headcrumbs.Headcrumbs;
+import ganymedes01.headcrumbs.libs.Reference;
 import ganymedes01.headcrumbs.network.PacketHandler;
 import ganymedes01.headcrumbs.network.packet.TextureRequestPacket;
 import net.minecraft.client.Minecraft;
@@ -17,6 +19,8 @@ import net.minecraft.util.ResourceLocation;
 
 @SideOnly(Side.CLIENT)
 public class TextureUtils {
+
+	private static final ResourceLocation LARGE_STEVE_TEXTURE = new ResourceLocation(Reference.MOD_ID, "textures/steve.png");
 
 	public static final Map<String, GameProfile> profiles = new HashMap<String, GameProfile>();
 
@@ -48,6 +52,6 @@ public class TextureUtils {
 			}
 		}
 
-		return type == Type.CAPE ? null : AbstractClientPlayer.locationStevePng;
+		return type == Type.CAPE ? null : Headcrumbs.use18PlayerModel ? LARGE_STEVE_TEXTURE : AbstractClientPlayer.locationStevePng;
 	}
 }

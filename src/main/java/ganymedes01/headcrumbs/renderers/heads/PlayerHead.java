@@ -17,11 +17,22 @@ public class PlayerHead extends ModelHead {
 	private ModelRenderer earLeft, earRight;
 
 	private PlayerHead() {
-		super(Headcrumbs.use18PlayerModel ? 64 : 32);
+		super(32);
 	}
 
 	@Override
 	public void init() {
+		if (Headcrumbs.use18PlayerModel) {
+			textureWidth = 64;
+			textureHeight = Headcrumbs.use18PlayerModel ? 64 : 32;
+			head = new ModelRenderer(this, 0, 0);
+			overlay = new ModelRenderer(this, 32, 0);
+			head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
+			head.setRotationPoint(0.0F, 0.0F, 0.0F);
+			overlay.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.5F);
+			overlay.setRotationPoint(0.0F, 0.0F, 0.0F);
+		}
+
 		earLeft = new ModelRenderer(this, 24, 0);
 		earLeft.addBox(-7.5F, -10.5F, -1.0F, 6, 6, 1);
 		earRight = new ModelRenderer(this, 24, 0);
