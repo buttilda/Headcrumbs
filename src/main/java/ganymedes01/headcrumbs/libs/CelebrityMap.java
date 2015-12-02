@@ -6,6 +6,7 @@ import java.util.Map;
 public class CelebrityMap {
 
 	private static Map<String, String> map = new HashMap<String, String>();
+
 	static {
 		initMap();
 	}
@@ -96,7 +97,7 @@ public class CelebrityMap {
 		map.put("amadornes", "BluePower");
 		map.put("Melonar", "MCUpdater");
 		map.put("DrZhark", "Mo' Creatures");
-		map.put("TheSarge", "Soul Shards: The Old Ways");
+		map.put("YorkAARGH", "Soul Shards: The Old Ways");
 		map.put("KeldonSlayer", "HxC-Mods");
 		map.put("KarelMikie3", "HxC-Mods");
 		map.put("Mfernflower", "Minechem, HxC-Mods");

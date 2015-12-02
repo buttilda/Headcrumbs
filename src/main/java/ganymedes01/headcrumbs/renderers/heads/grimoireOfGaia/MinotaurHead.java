@@ -4,8 +4,10 @@ import com.mojang.authlib.GameProfile;
 
 import ganymedes01.headcrumbs.libs.Strings;
 import ganymedes01.headcrumbs.renderers.ModelHead;
+import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import ganymedes01.headcrumbs.utils.Utils;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 public class MinotaurHead extends ModelHead {
 
@@ -26,11 +28,11 @@ public class MinotaurHead extends ModelHead {
 		head.setTextureSize(128, 64);
 		head.mirror = true;
 		setRotation(head, 0.0F, 0.0F, 0.0F);
-		overlay = new ModelRenderer(this, 50, 0);
-		overlay.addBox(-7.5F, -6.0F, -3.0F, 15, 2, 2);
-		overlay.setTextureSize(128, 64);
-		overlay.mirror = true;
-		setRotation(overlay, 0.0F, 0.0F, 0.0F);
+		ModelRenderer horn = new ModelRenderer(this, 50, 0);
+		horn.addBox(-7.5F, -6.0F, -3.0F, 15, 2, 2);
+		horn.setTextureSize(128, 64);
+		horn.mirror = true;
+		setRotation(horn, 0.0F, 0.0F, 0.0F);
 		ModelRenderer hornright = new ModelRenderer(this, 76, 4);
 		hornright.addBox(-7.5F, -10.0F, 1.0F, 2, 5, 2);
 		hornright.setTextureSize(128, 64);
@@ -41,7 +43,7 @@ public class MinotaurHead extends ModelHead {
 		hornleft.setTextureSize(128, 64);
 		hornleft.mirror = true;
 		setRotation(hornleft, 0.802852F, 0.0F, 0.0F);
-		ModelRenderer brow = new ModelRenderer(this, 34, 0);
+		ModelRenderer brow = new ModelRenderer(this, 30, 0);
 		brow.addBox(-3.0F, -6.0F, -6.0F, 6, 2, 2);
 		brow.setTextureSize(128, 64);
 		brow.mirror = true;
@@ -51,15 +53,28 @@ public class MinotaurHead extends ModelHead {
 		nose.setTextureSize(128, 64);
 		nose.mirror = true;
 		setRotation(nose, 0.0F, 0.0F, 0.0F);
+		ModelRenderer nosering = new ModelRenderer(this, 30, 13);
+		nosering.addBox(-2.0F, -1.0F, -10.0F, 4, 4, 1);
+		nosering.setTextureSize(128, 64);
+		nosering.mirror = true;
+		setRotation(nosering, 0.0F, 0.0F, 0.0F);
 
-		overlay.addChild(hornright);
-		overlay.addChild(hornleft);
-		head.addChild(nose);
+		head.addChild(horn);
+		head.addChild(hornright);
+		head.addChild(hornleft);
 		head.addChild(brow);
+		head.addChild(nose);
+		head.addChild(nosering);
+		hideOverlay();
 	}
 
 	@Override
 	public void renderSpecial(GameProfile profile, float skullRotation) {
 		renderLitUp(skullRotation);
+	}
+
+	@Override
+	public void preRenderItem(GameProfile profile, ItemRenderType type) {
+		OpenGLHelper.translate(-0.35F, 0.125F, 0);
 	}
 }

@@ -14,15 +14,16 @@ public class FleshLichHead extends ModelHead {
 	public void init() {
 		textureWidth = 128;
 		textureHeight = 64;
-		float f0 = -2;
 
 		head = new ModelRenderer(this, 0, 0);
-		head.addBox(-4.0F, -8.0F + f0, -4.0F, 8, 6, 8);
+		head.addBox(-4.0F, -8.0F, -4.0F, 8, 6, 8);
+		head.setRotationPoint(0.0F, 0.0F, 0.0F);
 		head.setTextureSize(64, 32);
 		head.mirror = true;
 		setRotation(head, 0.0F, 0.0F, 0.0F);
-		overlay = new ModelRenderer(this, 32, 0);
-		overlay.addBox(-4.0F, -2.0F + f0, -4.0F, 8, 4, 8);
+		overlay = new ModelRenderer(this, 56, 0);
+		overlay.addBox(-4.0F, -2.0F, -4.0F, 8, 4, 8);
+		overlay.setRotationPoint(0.0F, 0.0F, 0.0F);
 		overlay.setTextureSize(64, 32);
 		overlay.mirror = true;
 		setRotation(overlay, 0.0F, 0.0F, 0.0F);

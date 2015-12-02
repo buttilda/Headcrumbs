@@ -23,5 +23,7 @@ public class UsernameUtils {
 		map.put("hephinator", "Heph");
 		map.put("BigBagComplex", "BigBagChris");
 		map.put("shobu", "LuckyLucyF");
+		map.put("aivukuro", "aivu");
+		map.put("TheSarge", "YorkAARGH");
 	}
 }

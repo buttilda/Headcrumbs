@@ -111,7 +111,7 @@ public class Headcrumbs {
 	};
 
 	public static String[] modders = {
-		"sinkillerj", "Silentine", "techbrew", "Drullkus", "aidancbrady", "Melonar", "Cricket", "TheSarge",
+		"sinkillerj", "Silentine", "techbrew", "Drullkus", "aidancbrady", "Melonar", "Cricket", "YorkAARGH",
 		"spacetoad", "FyberOptic", "Vexatos", "Mineshopper", "AUTOMATIC_MAIDEN", "sanandreasMC", "FatherToast",
 		"Erasmus_Crowley", "Alblaka", "Emoniph", "Nuchaz", "Kobata", "powercrystals", "AbrarSyed", "sdkillen",
 		"Taelnia", "Lycanite", "asiekierka", "GregoriusT", "skyboy", "Flaxbeard", "Emasher", "joshiejack", "Reika",
@@ -155,7 +155,7 @@ public class Headcrumbs {
 		"LexManos", "TheMattaBase", "mDiyo", "Myrathi", "Morvelaira", "Pahimar", "sfPlayer1", "Arkember",
 		"Rorax", "Sacheverell", "sirsengir", "Soaryn", "x3n0ph0b3", "XCompWiz", "Vswe", "Vazkii", "ZeldoKavira", "AtomicBlom",
 		"neptunepink", "EddieRuckus", "LordDusk", "Kihira", "Vaygrim", "Kaelten", "MatrexsVigil", "tfox83", "jadedcat", "mezz",
-		"aivukuro", "ArashiDragon", "Binnie567", "c4ts", "Clairetic", "consolegrl", "Corosus", "electronicbird", "faunastar",
+		"aivu", "ArashiDragon", "Binnie567", "c4ts", "Clairetic", "consolegrl", "Corosus", "electronicbird", "faunastar",
 		"Forstride", "IceBladeRage", "Minakun", "odedex", "OvermindDL1", "RichardG867", "ted80", "Benimatic"
 	};
 
