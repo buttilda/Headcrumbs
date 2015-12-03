@@ -16,6 +16,7 @@ import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.api.IHumanEntity;
 import ganymedes01.headcrumbs.utils.UsernameUtils;
+import net.minecraft.command.IEntitySelector;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -85,7 +86,15 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		tasks.addTask(8, new EntityAILookIdle(this));
 		targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-		targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, new IEntitySelector() {
+			@Override
+			public boolean isEntityApplicable(Entity entity) {
+				if (!(entity instanceof EntityPlayer))
+					return false;
+				EntityPlayer player = (EntityPlayer) entity;
+				return Headcrumbs.humansAttackTwins || !player.getCommandSenderName().equals(getUsername());
+			}
+		}));
 		setSize(0.6F, 1.8F);
 	}
 
