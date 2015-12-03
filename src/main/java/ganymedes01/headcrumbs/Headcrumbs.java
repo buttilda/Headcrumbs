@@ -160,7 +160,7 @@ public class Headcrumbs {
 	};
 
 	public static String[] ftb = {
-		"eyamaz", "slowpoke101", "progwml6", "Captainnana", "Gideonseymour", "Watchful11"
+		"eyamaz", "slowpoke101", "progwml6", "Captainnana", "Gideonseymour", "Watchful11", "SnowShock35"
 	};
 
 	public static String[] technic = {
