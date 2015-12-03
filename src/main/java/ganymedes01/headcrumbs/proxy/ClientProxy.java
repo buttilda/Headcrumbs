@@ -3,7 +3,6 @@ package ganymedes01.headcrumbs.proxy;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.relauncher.ReflectionHelper;
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.entity.EntityHuman;
@@ -41,9 +40,10 @@ public class ClientProxy extends CommonProxy {
 
 		if (Loader.isModLoaded("etfuturum"))
 			try {
-				boolean enabled = ReflectionHelper.getPrivateValue(Class.forName("ganymedes01.etfuturum.EtFuturum"), null, "enablePlayerSkinOverlay");
+				Class<?> etFuturum = Class.forName("ganymedes01.etfuturum.EtFuturum");
+				boolean enabled = (boolean) etFuturum.getField("enablePlayerSkinOverlay").get(null);
 				Headcrumbs.use18PlayerModel = enabled;
-			} catch (ClassNotFoundException e) {
+			} catch (Exception e) {
 			}
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityHuman.class, new RenderHuman());
