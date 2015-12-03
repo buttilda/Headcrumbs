@@ -41,7 +41,7 @@ public class ClientProxy extends CommonProxy {
 		if (Loader.isModLoaded("etfuturum"))
 			try {
 				Class<?> etFuturum = Class.forName("ganymedes01.etfuturum.EtFuturum");
-				boolean enabled = (boolean) etFuturum.getField("enablePlayerSkinOverlay").get(null);
+				Boolean enabled = (Boolean) etFuturum.getField("enablePlayerSkinOverlay").get(null);
 				Headcrumbs.use18PlayerModel = enabled;
 			} catch (Exception e) {
 			}
