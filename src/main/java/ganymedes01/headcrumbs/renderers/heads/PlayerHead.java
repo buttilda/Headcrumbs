@@ -24,7 +24,7 @@ public class PlayerHead extends ModelHead {
 	public void init() {
 		if (Headcrumbs.use18PlayerModel) {
 			textureWidth = 64;
-			textureHeight = Headcrumbs.use18PlayerModel ? 64 : 32;
+			textureHeight = 64;
 			head = new ModelRenderer(this, 0, 0);
 			overlay = new ModelRenderer(this, 32, 0);
 			head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);

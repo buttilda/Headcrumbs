@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="libs/Thaumcraft-1.7.10-4.2.3.5.jar"/>
 	<classpathentry kind="lib" path="libs/LycanitesMobsComplete 1.10.13.0 [1.7.10].jar"/>
 	<classpathentry kind="lib" path="libs/Waila-1.5.10_1.7.10.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Et-Futurum"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

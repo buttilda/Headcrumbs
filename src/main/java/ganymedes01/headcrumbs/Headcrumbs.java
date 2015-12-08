@@ -107,7 +107,7 @@ public class Headcrumbs {
 	// @formatter:off
 	public static String[] others = {
 		"ez", "saukawolf", "Fullapple1991", "Kaisacles", "Cindric", "wiiv", "deadmau5", "muted79", "DrummingFish",
-		"Kyrinon", "vasili02", "Jeb_Jeb", "KingPurpleRaptor", "DylanGK", "sadris", "Herobrine"
+		"Kyrinon", "vasili02", "Jeb_Jeb", "KingPurpleRaptor", "DylanGK", "sadris", "Herobrine", "kehaan"
 	};
 
 	public static String[] modders = {

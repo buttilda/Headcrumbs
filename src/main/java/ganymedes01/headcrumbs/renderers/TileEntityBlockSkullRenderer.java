@@ -8,7 +8,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
-import ganymedes01.headcrumbs.utils.TextureUtils;
 import ganymedes01.headcrumbs.utils.helpers.LycanitesHelperClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
@@ -19,6 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.util.Constants;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
@@ -53,15 +53,10 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 
 		GameProfile profile = null;
 		if (head.hasTagCompound())
-			if (head.getTagCompound().hasKey("SkullOwner", 10))
+			if (head.getTagCompound().hasKey("SkullOwner", Constants.NBT.TAG_COMPOUND))
 				profile = NBTUtil.func_152459_a(head.getTagCompound().getCompoundTag("SkullOwner"));
-			else if (head.getTagCompound().hasKey("SkullOwner", 8)) {
-				String username = head.getTagCompound().getString("SkullOwner");
-				if (TextureUtils.profiles.containsKey(username))
-					profile = TextureUtils.profiles.get(username);
-				else
-					profile = new GameProfile(null, username);
-			}
+			else if (head.getTagCompound().hasKey("SkullOwner", Constants.NBT.TAG_STRING))
+				profile = new GameProfile(null, head.getTagCompound().getString("SkullOwner"));
 
 		renderHead(x, y, z + offset * 0.0625F, 1, 180.0F, head.getItemDamage(), profile);
 	}

@@ -48,6 +48,7 @@ public class TileEntityBlockPlayerRenderer extends TileEntityBlockSkullRenderer 
 		OpenGLHelper.popMatrix();
 	}
 
+	@SideOnly(Side.CLIENT)
 	public static class PlayerForRendering extends AbstractClientPlayer {
 
 		public PlayerForRendering(World world, GameProfile profile) {
@@ -69,7 +70,6 @@ public class TileEntityBlockPlayerRenderer extends TileEntityBlockSkullRenderer 
 		}
 
 		@Override
-		@SideOnly(Side.CLIENT)
 		public boolean isInvisibleToPlayer(EntityPlayer p_98034_1_) {
 			return true;
 		}

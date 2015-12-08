@@ -64,7 +64,7 @@ public class RenderHuman extends RenderBiped {
 			return;
 
 		// Ears
-		ResourceLocation skin = TextureUtils.getPlayerSkin(human.getProfile());
+		ResourceLocation skin = getEntityTexture(entity);
 		if (entity.getCommandSenderName().equals("deadmau5") && skin != AbstractClientPlayer.locationStevePng) {
 			bindTexture(skin);
 
