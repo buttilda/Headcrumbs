@@ -54,7 +54,8 @@ public class TextureUtils {
 				mappedTextures.put(profile.getName(), getDefault(type));
 
 				// Request texture from server
-				PacketHandler.sendToServer(new TextureRequestPacket(profile.getName()));
+				if (type == MinecraftProfileTexture.Type.SKIN)
+					PacketHandler.sendToServer(new TextureRequestPacket(profile.getName()));
 			}
 		}
 
