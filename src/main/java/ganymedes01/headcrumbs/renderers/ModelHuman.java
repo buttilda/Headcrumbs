@@ -78,6 +78,10 @@ public class ModelHuman extends ModelBiped {
 			OpenGLHelper.scale(1.5F / f6, 1.5F / f6, 1.5F / f6);
 			OpenGLHelper.translate(0.0F, 16.0F * scale, 0.0F);
 			bipedHead.render(scale);
+			OpenGLHelper.enableBlend();
+			OpenGLHelper.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+			bipedHeadwear.render(scale);
+			OpenGLHelper.disableBlend();
 			OpenGLHelper.popMatrix();
 			OpenGLHelper.pushMatrix();
 			OpenGLHelper.scale(1.0F / f6, 1.0F / f6, 1.0F / f6);
