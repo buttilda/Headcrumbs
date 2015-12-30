@@ -120,9 +120,6 @@ public class ModelHuman extends ModelBiped {
 				bipedRightArmwear.render(scale);
 				bipedBodyWear.render(scale);
 			} else {
-				if (entity.isSneaking())
-					OpenGLHelper.translate(0.0F, 0.2F, 0.0F);
-
 				bipedLeftLegwear.render(scale);
 				bipedRightLegwear.render(scale);
 				bipedLeftArmwear.render(scale);

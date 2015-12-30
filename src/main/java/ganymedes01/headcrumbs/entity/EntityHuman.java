@@ -435,7 +435,6 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 	public static List<String> getNames() {
 		if (names.isEmpty())
 			names.addAll(Headcrumbs.getAllNames());
-
 		return names;
 	}
 
