@@ -12,9 +12,11 @@ import ganymedes01.headcrumbs.renderers.ItemSkullRender;
 import ganymedes01.headcrumbs.renderers.RenderHuman;
 import ganymedes01.headcrumbs.renderers.TileEntityBlockPlayerRenderer;
 import ganymedes01.headcrumbs.renderers.TileEntityBlockSkullRenderer;
+import ganymedes01.headcrumbs.renderers.TileEntityVanillaSkullRenderer;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockPlayer;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
 import net.minecraft.init.Items;
+import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -31,6 +33,7 @@ public class ClientProxy extends CommonProxy {
 		super.registerTileEntities();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBlockSkull.class, new TileEntityBlockSkullRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBlockPlayer.class, new TileEntityBlockPlayerRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySkull.class, new TileEntityVanillaSkullRenderer());
 	}
 
 	@Override
