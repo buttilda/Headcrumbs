@@ -9,9 +9,6 @@ import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -62,18 +59,14 @@ public class HumanEgg extends Item {
 			if (side == 1 && block.getRenderType() == 11)
 				d0 = 0.5D;
 
-			Entity entity = spawnHuman(world, x + 0.5D, y + d0, z + 0.5D);
-
-			if (entity != null) {
-				if (entity instanceof EntityLivingBase && stack.hasDisplayName())
-					((EntityLiving) entity).setCustomNameTag(stack.getDisplayName());
-
-				if (!player.capabilities.isCreativeMode)
-					stack.stackSize--;
-			}
-
-			return true;
+			EntityHuman human = spawnHuman(world, x + 0.5D, y + d0, z + 0.5D);
+			if (stack.hasDisplayName())
+				human.setUsername(stack.getDisplayName());
+			if (!player.capabilities.isCreativeMode)
+				stack.stackSize--;
 		}
+
+		return true;
 	}
 
 	@Override
@@ -119,7 +112,6 @@ public class HumanEgg extends Item {
 		human.onSpawnWithEgg(null);
 		world.spawnEntityInWorld(human);
 		human.playLivingSound();
-
 		return human;
 	}
 
