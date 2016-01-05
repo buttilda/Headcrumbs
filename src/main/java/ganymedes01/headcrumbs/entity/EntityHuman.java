@@ -54,13 +54,8 @@ import net.minecraft.world.World;
 
 public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEntity {
 
-	// Cape related variables. Copied from EntityPlayer
-	private double field_71091_bM;
-	private double field_71096_bN;
-	private double field_71097_bO;
-	private double field_71094_bP;
-	private double field_71095_bQ;
-	private double field_71085_bR;
+	private double prevCapeX, prevCapeY, prevCapeZ;
+	private double capeX, capeY, capeZ;
 
 	private GameProfile profile;
 
@@ -110,30 +105,30 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 
 	@Override
 	public void onUpdate() {
-		field_71091_bM = field_71094_bP;
-		field_71096_bN = field_71095_bQ;
-		field_71097_bO = field_71085_bR;
-		double d3 = posX - field_71094_bP;
-		double d0 = posY - field_71095_bQ;
-		double d1 = posZ - field_71085_bR;
-		double d2 = 10.0D;
+		prevCapeX = capeX;
+		prevCapeY = capeY;
+		prevCapeZ = capeZ;
+		double x = posX - capeX;
+		double y = posY - capeY;
+		double z = posZ - capeZ;
+		double maxCapeAngle = 10.0;
 
-		if (d3 > d2)
-			field_71091_bM = field_71094_bP = posX;
-		if (d1 > d2)
-			field_71097_bO = field_71085_bR = posZ;
-		if (d0 > d2)
-			field_71096_bN = field_71095_bQ = posY;
-		if (d3 < -d2)
-			field_71091_bM = field_71094_bP = posX;
-		if (d1 < -d2)
-			field_71097_bO = field_71085_bR = posZ;
-		if (d0 < -d2)
-			field_71096_bN = field_71095_bQ = posY;
+		if (x > maxCapeAngle)
+			prevCapeX = capeX = posX;
+		if (z > maxCapeAngle)
+			prevCapeZ = capeZ = posZ;
+		if (y > maxCapeAngle)
+			prevCapeY = capeY = posY;
+		if (x < -maxCapeAngle)
+			prevCapeX = capeX = posX;
+		if (z < -maxCapeAngle)
+			prevCapeZ = capeZ = posZ;
+		if (y < -maxCapeAngle)
+			prevCapeY = capeY = posY;
 
-		field_71094_bP += d3 * 0.25D;
-		field_71085_bR += d1 * 0.25D;
-		field_71095_bQ += d0 * 0.25D;
+		capeX += x * 0.25;
+		capeZ += z * 0.25;
+		capeY += y * 0.25;
 
 		if (worldObj.isRemote) {
 			float w = dataWatcher.getWatchableObjectFloat(WIDTH);
@@ -467,17 +462,17 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 
 	@Override
 	public double getInterpolatedCapeX(float partialTickTime) {
-		return field_71091_bM + (field_71094_bP - field_71091_bM) * partialTickTime - (prevPosX + (posX - prevPosX) * partialTickTime);
+		return prevCapeX + (capeX - prevCapeX) * partialTickTime - (prevPosX + (posX - prevPosX) * partialTickTime);
 	}
 
 	@Override
 	public double getInterpolatedCapeY(float partialTickTime) {
-		return field_71096_bN + (field_71095_bQ - field_71096_bN) * partialTickTime - (prevPosY + (posY - prevPosY) * partialTickTime);
+		return prevCapeY + (capeY - prevCapeY) * partialTickTime - (prevPosY + (posY - prevPosY) * partialTickTime);
 	}
 
 	@Override
 	public double getInterpolatedCapeZ(float partialTickTime) {
-		return field_71097_bO + (field_71085_bR - field_71097_bO) * partialTickTime - (prevPosZ + (posZ - prevPosZ) * partialTickTime);
+		return prevCapeZ + (capeZ - prevCapeZ) * partialTickTime - (prevPosZ + (posZ - prevPosZ) * partialTickTime);
 	}
 
 	// Child stuff
