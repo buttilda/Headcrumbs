@@ -74,7 +74,7 @@ public class EtFuturumHelper extends HeadDropHelper {
 		return null;
 	}
 
-	public static SkinAvailableCallback getSkinDownloadCallback(String name) {
+	public static SkinAvailableCallback getSkinDownloadCallback(final String name) {
 		return new ISkinDownloadCallback() {
 			@Override
 			public void func_152121_a(Type texType, ResourceLocation texture) {
