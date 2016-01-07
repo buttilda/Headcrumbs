@@ -12,6 +12,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.network.PacketHandler;
 import ganymedes01.headcrumbs.network.packet.TextureRequestPacket;
+import ganymedes01.headcrumbs.utils.helpers.EtFuturumHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -64,5 +65,9 @@ public class TextureUtils {
 
 	public static ResourceLocation getDefault(MinecraftProfileTexture.Type type) {
 		return type == Type.CAPE ? null : Headcrumbs.use18PlayerModel ? LARGE_STEVE_TEXTURE : AbstractClientPlayer.locationStevePng;
+	}
+
+	public static boolean isAlexModel(ResourceLocation texture) {
+		return Headcrumbs.use18PlayerModel && EtFuturumHelper.isAlexModel(texture);
 	}
 }

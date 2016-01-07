@@ -9,6 +9,7 @@ import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.etfuturum.api.client.ISkinDownloadCallback;
+import ganymedes01.etfuturum.client.skins.PlayerModelManager;
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.renderers.TileEntityBlockPlayerRenderer.PlayerForRendering;
@@ -84,6 +85,10 @@ public class EtFuturumHelper extends HeadDropHelper {
 
 	public static AbstractClientPlayer getPlayer(World world, GameProfile profile) {
 		return new EtFuturumPlayerForRendering(world, profile);
+	}
+
+	public static boolean isAlexModel(ResourceLocation texture) {
+		return PlayerModelManager.isPlayerModelAlex(texture);
 	}
 
 	@SideOnly(Side.CLIENT)

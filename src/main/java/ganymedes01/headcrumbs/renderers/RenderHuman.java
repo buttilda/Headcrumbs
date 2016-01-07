@@ -2,6 +2,7 @@ package ganymedes01.headcrumbs.renderers;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.api.IHumanEntity;
 import ganymedes01.headcrumbs.utils.TextureUtils;
@@ -17,12 +18,23 @@ import net.minecraft.util.ResourceLocation;
 @SideOnly(Side.CLIENT)
 public class RenderHuman extends RenderBiped {
 
+	private static final ModelHuman STEVE = new ModelHuman(false);
+	private static final ModelHuman ALEX = new ModelHuman(true);
+
 	public RenderHuman() {
-		super(new ModelHuman(), 0.5F, 1.0F);
+		super(STEVE, 0.5F, 1.0F);
 	}
 
 	@Override
-	public void doRender(EntityLiving entity, double d0, double d1, double d2, float f0, float f1) {
+	protected int shouldRenderPass(EntityLiving entity, int pass, float partialTickTime) {
+		setModel(entity);
+		return super.shouldRenderPass(entity, pass, partialTickTime);
+	}
+
+	@Override
+	public void doRender(EntityLiving entity, double x, double y, double z, float f0, float partialTickTime) {
+		setModel(entity);
+
 		if (entity.getHeldItem() != null && entity.getHeldItem().getItem() instanceof ItemBow)
 			modelBipedMain.aimedBow = true;
 		else
@@ -32,7 +44,7 @@ public class RenderHuman extends RenderBiped {
 		modelBipedMain.bipedHead.isHidden = isWearingHead;
 		modelBipedMain.bipedHeadwear.isHidden = isWearingHead;
 
-		super.doRender(entity, d0, d1, d2, f0, f1);
+		super.doRender(entity, x, y, z, f0, partialTickTime);
 	}
 
 	@Override
@@ -42,6 +54,7 @@ public class RenderHuman extends RenderBiped {
 
 	@Override
 	protected void renderEquippedItems(EntityLiving entity, float partialTickTime) {
+		setModel(entity);
 		super.renderEquippedItems(entity, partialTickTime);
 
 		IHumanEntity human = (IHumanEntity) entity;
@@ -141,5 +154,12 @@ public class RenderHuman extends RenderBiped {
 	private boolean isWearingHelmet(EntityLiving entity) {
 		ItemStack helmet = entity.func_130225_q(3);
 		return helmet != null && helmet.getItem() == ModItems.skull;
+	}
+
+	private void setModel(EntityLiving human) {
+		if (Headcrumbs.use18PlayerModel) {
+			boolean isAlex = TextureUtils.isAlexModel(getEntityTexture(human));
+			mainModel = modelBipedMain = isAlex ? ALEX : STEVE;
+		}
 	}
 }

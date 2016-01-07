@@ -15,9 +15,8 @@ public class ModelHuman extends ModelBiped {
 	public ModelRenderer bipedRightLegwear;
 	public ModelRenderer bipedBodyWear;
 
-	public ModelHuman() {
+	public ModelHuman(boolean isAlex) {
 		super(0.0F, 0.0F, 64, Headcrumbs.use18PlayerModel ? 64 : 32);
-		boolean isAlex = false; // TODO Support for Alex model
 
 		if (!Headcrumbs.use18PlayerModel)
 			return;
