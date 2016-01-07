@@ -1,8 +1,8 @@
 package ganymedes01.headcrumbs.utils;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import com.google.common.collect.Maps;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
@@ -22,11 +22,11 @@ public class TextureUtils {
 
 	private static final ResourceLocation LARGE_STEVE_TEXTURE = new ResourceLocation("etfuturum", "textures/entity/steve.png");
 
-	public static final Map<MinecraftProfileTexture.Type, Map<String, ResourceLocation>> textures = Maps.newHashMap();
+	public static final Map<MinecraftProfileTexture.Type, Map<String, ResourceLocation>> textures = new HashMap<MinecraftProfileTexture.Type, Map<String, ResourceLocation>>();
 
 	static {
-		textures.put(Type.CAPE, Maps.newHashMap());
-		textures.put(Type.SKIN, Maps.newHashMap());
+		textures.put(Type.CAPE, new HashMap<String, ResourceLocation>());
+		textures.put(Type.SKIN, new HashMap<String, ResourceLocation>());
 	}
 
 	public static ResourceLocation getPlayerSkin(GameProfile profile) {
