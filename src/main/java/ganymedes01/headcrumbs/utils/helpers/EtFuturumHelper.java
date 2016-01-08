@@ -74,6 +74,7 @@ public class EtFuturumHelper extends HeadDropHelper {
 		return null;
 	}
 
+	@SideOnly(Side.CLIENT)
 	public static SkinAvailableCallback getSkinDownloadCallback(final String name) {
 		return new ISkinDownloadCallback() {
 			@Override
@@ -83,10 +84,12 @@ public class EtFuturumHelper extends HeadDropHelper {
 		};
 	}
 
+	@SideOnly(Side.CLIENT)
 	public static AbstractClientPlayer getPlayer(World world, GameProfile profile) {
 		return new EtFuturumPlayerForRendering(world, profile);
 	}
 
+	@SideOnly(Side.CLIENT)
 	public static boolean isAlexModel(ResourceLocation texture) {
 		return PlayerModelManager.isPlayerModelAlex(texture);
 	}
