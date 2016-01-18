@@ -4,68 +4,42 @@ import org.lwjgl.opengl.GL11;
 
 import com.mojang.authlib.GameProfile;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
 import ganymedes01.headcrumbs.utils.helpers.LycanitesHelperClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTUtil;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
+public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer<TileEntityBlockSkull> {
 
 	private ModelHead model;
-	public static TileEntityBlockSkullRenderer instance;
-
 	private static EntityLiving entity;
 
 	@Override
-	public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float partialTicks) {
-		TileEntityBlockSkull tileSkull = (TileEntityBlockSkull) tile;
-		renderHead((float) x, (float) y, (float) z, tileSkull.getBlockMetadata() & 7, tileSkull.func_145906_b() * 360 / 16.0F, tileSkull.func_145904_a(), tileSkull.func_152108_a());
+	public void renderTileEntityAt(TileEntityBlockSkull tile, double x, double y, double z, float partialTickTime, int destroyStage) {
+		renderHead((float) x, (float) y, (float) z, tile.getBlockMetadata() & 7, tile.getSkullRotation() * 360 / 16.0F, tile.getModel(), tile.getPlayerProfile());
 	}
 
-	@Override
-	public void func_147497_a(TileEntityRendererDispatcher renderer) {
-		super.func_147497_a(renderer);
-		instance = this;
-	}
+	//	public void renderHead(float x, float y, float z, ItemStack head) {
+	//		float offset = SkullTypes.values()[head.getItemDamage()].model().playerRenderOffset();
+	//
+	//		GameProfile profile = null;
+	//		if (head.hasTagCompound())
+	//			if (head.getTagCompound().hasKey("SkullOwner", Constants.NBT.TAG_COMPOUND))
+	//				profile = NBTUtil.readGameProfileFromNBT(head.getTagCompound().getCompoundTag("SkullOwner"));
+	//			else if (head.getTagCompound().hasKey("SkullOwner", Constants.NBT.TAG_STRING))
+	//				profile = new GameProfile(null, head.getTagCompound().getString("SkullOwner"));
+	//
+	//		renderHead(x, y, z + offset * 0.0625F, 1, 180.0F, head.getItemDamage(), profile);
+	//	}
 
-	private EntityLiving getEntity() {
-		if (entity == null)
-			entity = new EntityLiving(Minecraft.getMinecraft().theWorld) {
-			};
-
-		return entity;
-	}
-
-	public void renderHead(float x, float y, float z, ItemStack head) {
-		float offset = SkullTypes.values()[head.getItemDamage()].model().playerRenderOffset();
-
-		GameProfile profile = null;
-		if (head.hasTagCompound())
-			if (head.getTagCompound().hasKey("SkullOwner", Constants.NBT.TAG_COMPOUND))
-				profile = NBTUtil.func_152459_a(head.getTagCompound().getCompoundTag("SkullOwner"));
-			else if (head.getTagCompound().hasKey("SkullOwner", Constants.NBT.TAG_STRING))
-				profile = new GameProfile(null, head.getTagCompound().getString("SkullOwner"));
-
-		renderHead(x, y, z + offset * 0.0625F, 1, 180.0F, head.getItemDamage(), profile);
-	}
-
-	public void renderHead(float x, float y, float z, int meta, float skullRotation, int skullType, GameProfile profile) {
-		if (skullType < 0 || skullType >= SkullTypes.values().length)
-			return;
-
-		SkullTypes type = SkullTypes.values()[skullType];
+	public void renderHead(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile profile) {
 		if (type == SkullTypes.lycanites)
 			renderLycanites(x, y, z, meta, skullRotation, type, profile);
 		else
@@ -94,6 +68,14 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 
 			OpenGLHelper.popMatrix();
 		}
+	}
+
+	private EntityLiving getEntity() {
+		if (entity == null)
+			entity = new EntityLiving(Minecraft.getMinecraft().theWorld) {
+			};
+
+		return entity;
 	}
 
 	private void renderNormal(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile profile) {
@@ -146,7 +128,7 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer {
 		}
 	}
 
-	protected float adjustRotation(int meta, float rotation) {
+	private float adjustRotation(int meta, float rotation) {
 		switch (meta) {
 			case 1:
 			case 2:

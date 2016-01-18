@@ -33,7 +33,7 @@ public class UsercacheChecker {
 	private final static Logger logger = LogManager.getLogger(Reference.MOD_ID.toUpperCase());
 
 	public static void check() {
-		File file = MinecraftServer.field_152367_a;
+		File file = MinecraftServer.USER_CACHE_FILE;
 
 		if (file.exists())
 			try {
@@ -97,7 +97,7 @@ public class UsercacheChecker {
 			jsonobject.addProperty("name", p_152676_1_.func_152668_a().getName());
 			UUID uuid = p_152676_1_.func_152668_a().getId();
 			jsonobject.addProperty("uuid", uuid == null ? "" : uuid.toString());
-			jsonobject.addProperty("expiresOn", PlayerProfileCache.field_152659_a.format(p_152676_1_.func_152670_b()));
+			jsonobject.addProperty("expiresOn", PlayerProfileCache.dateFormat.format(p_152676_1_.func_152670_b()));
 			return jsonobject;
 		}
 
@@ -115,7 +115,7 @@ public class UsercacheChecker {
 
 					if (jsonelement3 != null)
 						try {
-							date = PlayerProfileCache.field_152659_a.parse(jsonelement3.getAsString());
+							date = PlayerProfileCache.dateFormat.parse(jsonelement3.getAsString());
 						} catch (ParseException parseexception) {
 							date = null;
 						}

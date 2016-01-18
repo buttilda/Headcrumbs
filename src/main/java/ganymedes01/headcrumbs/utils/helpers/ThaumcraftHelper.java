@@ -1,17 +1,10 @@
 package ganymedes01.headcrumbs.utils.helpers;
 
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Optional;
-import ganymedes01.headcrumbs.ModBlocks;
-import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
-import thaumcraft.api.ThaumcraftApi;
-import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.aspects.AspectList;
-import thaumcraft.common.entities.monster.EntityThaumicSlime;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Optional;
 
 public class ThaumcraftHelper extends HeadDropHelper {
 
@@ -39,10 +32,10 @@ public class ThaumcraftHelper extends HeadDropHelper {
 
 	@Optional.Method(modid = "Thaumcraft")
 	private void addAspects() {
-		AspectList aspects = new AspectList().add(Aspect.MAN, 4).add(Aspect.DEATH, 4).add(Aspect.SOUL, 4);
-		ThaumcraftApi.registerObjectTag(new ItemStack(ModBlocks.blockPlayer, 1, OreDictionary.WILDCARD_VALUE), aspects);
-		ThaumcraftApi.registerObjectTag(new ItemStack(ModBlocks.blockSkull, 1, OreDictionary.WILDCARD_VALUE), aspects);
-		ThaumcraftApi.registerObjectTag(new ItemStack(ModItems.skull, 1, OreDictionary.WILDCARD_VALUE), aspects);
+		//		AspectList aspects = new AspectList().add(Aspect.MAN, 4).add(Aspect.DEATH, 4).add(Aspect.SOUL, 4);
+		//		ThaumcraftApi.registerObjectTag(new ItemStack(ModBlocks.blockPlayer, 1, OreDictionary.WILDCARD_VALUE), aspects);
+		//		ThaumcraftApi.registerObjectTag(new ItemStack(ModBlocks.blockSkull, 1, OreDictionary.WILDCARD_VALUE), aspects);
+		//		ThaumcraftApi.registerObjectTag(new ItemStack(ModItems.skull, 1, OreDictionary.WILDCARD_VALUE), aspects);
 	}
 
 	@Override
@@ -58,8 +51,8 @@ public class ThaumcraftHelper extends HeadDropHelper {
 	}
 
 	private static int getThaumicSlimeSize(Entity entity) {
-		if (entity instanceof EntityThaumicSlime)
-			return ((EntityThaumicSlime) entity).getSlimeSize();
+		//		if (entity instanceof EntityThaumicSlime)
+		//			return ((EntityThaumicSlime) entity).getSlimeSize();
 		return -1;
 	}
 }

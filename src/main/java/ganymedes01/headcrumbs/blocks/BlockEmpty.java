@@ -1,20 +1,16 @@
 package ganymedes01.headcrumbs.blocks;
 
-import java.util.ArrayList;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.headcrumbs.ModBlocks;
 import ganymedes01.headcrumbs.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -25,19 +21,19 @@ public class BlockEmpty extends Block {
 		super(Material.clay);
 		setHardness(1.0F);
 		setStepSound(soundTypeStone);
-		setBlockName(Utils.getUnlocalisedName("empty"));
+		setUnlocalizedName(Utils.getUnlocalisedName("empty"));
 	}
 
 	@Override
-	public void setBlockBoundsBasedOnState(IBlockAccess access, int x, int y, int z) {
+	public void setBlockBoundsBasedOnState(IBlockAccess access, BlockPos pos) {
 		float f = 4F / 16F;
 		setBlockBounds(f, 0.0F, f, 1.0F - f, 1.0F, 1.0F - f);
 	}
 
 	@Override
-	public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbour) {
-		if (world.getBlock(x, y + 1, z) != ModBlocks.blockPlayer)
-			Utils.breakBlockWithParticles(world, x, y, z, 0);
+	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighbour) {
+		if (world.getBlockState(pos.add(0, 1, 0)).getBlock() != ModBlocks.player)
+			Utils.breakBlockWithParticles(world, pos, 0);
 	}
 
 	@Override
@@ -51,34 +47,16 @@ public class BlockEmpty extends Block {
 	}
 
 	@Override
-	public boolean renderAsNormalBlock() {
-		return false;
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player) {
+		pos = pos.add(0, 1, 0);
+		return world.getBlockState(pos).getBlock().getPickBlock(target, world, pos, player);
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public Item getItem(World world, int x, int y, int z) {
-		return world.getBlock(x, y + 1, z).getItem(world, x, y + 1, z);
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
-		return world.getBlock(x, y + 1, z).getPickBlock(target, world, x, y + 1, z, player);
-	}
-
-	@Override
-	public int getDamageValue(World world, int x, int y, int z) {
-		return world.getBlock(x, y + 1, z).getDamageValue(world, x, y + 1, z);
-	}
-
-	@Override
-	public void onBlockHarvested(World world, int x, int y, int z, int meta, EntityPlayer player) {
-		world.getBlock(x, y + 1, z).onBlockHarvested(world, x, y + 1, z, meta, player);
-	}
-
-	@Override
-	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int meta, int fortune) {
-		return world.getBlock(x, y + 1, z).getDrops(world, x, y + 1, z, meta, fortune);
+	public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
+		pos = pos.add(0, 1, 0);
+		state = world.getBlockState(pos);
+		state.getBlock().onBlockHarvested(world, pos, state, player);
 	}
 
 	@Override
@@ -87,24 +65,9 @@ public class BlockEmpty extends Block {
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-		return world.getBlock(x, y + 1, z).onBlockActivated(world, x, y + 1, z, player, side, hitX, hitY - 1.0F, hitZ);
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int meta) {
-		return Blocks.soul_sand.getBlockTextureFromSide(side);
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister reg) {
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public String getItemIconName() {
-		return Blocks.skull.getItemIconName();
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ) {
+		pos = pos.add(0, 1, 0);
+		state = world.getBlockState(pos);
+		return state.getBlock().onBlockActivated(world, pos, state, player, side, hitX, hitY - 1.0F, hitZ);
 	}
 }

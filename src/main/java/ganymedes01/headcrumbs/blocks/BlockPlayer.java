@@ -1,32 +1,27 @@
 package ganymedes01.headcrumbs.blocks;
 
-import cpw.mods.fml.common.Optional;
 import ganymedes01.headcrumbs.ModBlocks;
+import ganymedes01.headcrumbs.items.ItemStatue;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockPlayer;
 import ganymedes01.headcrumbs.utils.Utils;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockPlayer extends BlockSkull {
+public class BlockPlayer extends BlockHeadcrumbsSkull {
 
 	public BlockPlayer() {
-		super(Material.clay);
-		setBlockName(Utils.getUnlocalisedName("player"));
+		setUnlocalizedName(Utils.getUnlocalisedName("player"));
 	}
 
 	@Override
-	@Optional.Method(modid = "Thaumcraft")
-	public boolean canStabaliseInfusion(World world, int x, int y, int z) {
-		return false;
-	}
-
-	@Override
-	public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbour) {
-		if (world.getBlock(x, y - 1, z) != ModBlocks.blockEmpty)
-			Utils.breakBlockWithParticles(world, x, y, z, 0);
+	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighbour) {
+		if (world.getBlockState(pos.add(0, -1, 0)).getBlock() != ModBlocks.empty)
+			Utils.breakBlockWithParticles(world, pos, 0);
 	}
 
 	@Override
@@ -35,8 +30,13 @@ public class BlockPlayer extends BlockSkull {
 	}
 
 	@Override
-	public void setBlockBoundsBasedOnState(IBlockAccess access, int x, int y, int z) {
+	public void setBlockBoundsBasedOnState(IBlockAccess access, BlockPos pos) {
 		float f = 2F / 16F;
 		setBlockBounds(f, 0.0F, f, 1.0F - f, 1.0F, 1.0F - f);
+	}
+
+	@Override
+	public Class<? extends ItemBlock> getItemBlockClass() {
+		return ItemStatue.class;
 	}
 }

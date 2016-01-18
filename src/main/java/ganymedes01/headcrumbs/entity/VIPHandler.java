@@ -9,6 +9,7 @@ import com.google.common.reflect.ClassPath.ClassInfo;
 import ganymedes01.headcrumbs.Headcrumbs;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.DifficultyInstance;
 
 public class VIPHandler {
 
@@ -43,7 +44,7 @@ public class VIPHandler {
 		}
 	}
 
-	public void dropRare(EntityHuman entity, int looting) {
+	public void dropRare(EntityHuman entity) {
 	}
 
 	protected int minDropAmount() {
@@ -62,7 +63,7 @@ public class VIPHandler {
 		return entity.getRNG().nextBoolean() ? new ItemStack(Items.bone) : new ItemStack(Items.rotten_flesh);
 	}
 
-	public void onSpawn(EntityHuman entity) {
+	public void onSpawn(EntityHuman entity, DifficultyInstance difficulty) {
 	}
 
 	public String livingSound() {

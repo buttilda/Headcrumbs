@@ -5,6 +5,7 @@ import ganymedes01.headcrumbs.entity.VIPHandler;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.DifficultyInstance;
 
 public class Etho extends VIPHandler {
 
@@ -14,7 +15,7 @@ public class Etho extends VIPHandler {
 	}
 
 	@Override
-	public void onSpawn(EntityHuman entity) {
+	public void onSpawn(EntityHuman entity, DifficultyInstance difficulty) {
 		ItemStack axe = new ItemStack(Items.iron_axe);
 		axe.setStackDisplayName("Treetho's Choppa");
 		entity.setCurrentItemOrArmor(0, axe);

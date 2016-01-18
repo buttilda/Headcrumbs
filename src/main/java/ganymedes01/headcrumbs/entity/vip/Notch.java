@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 public class Notch extends VIPHandler {
 
 	@Override
-	public void dropRare(EntityHuman entity, int looting) {
+	public void dropRare(EntityHuman entity) {
 		if (entity.getRNG().nextBoolean())
 			entity.entityDropItem(getItem(entity), 0);
 	}

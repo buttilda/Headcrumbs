@@ -6,13 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.common.eventhandler.Event.Result;
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import ganymedes01.headcrumbs.Headcrumbs;
-import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.entity.EntityHuman;
-import ganymedes01.headcrumbs.libs.SkullTypes;
+import ganymedes01.headcrumbs.libs.CelebrityMap;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -28,21 +24,31 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.StringUtils;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class HandlerEvents {
 
+	public static final HandlerEvents INSTANCE = new HandlerEvents();
+
 	private static List<String> hardcodedBlacklist = Arrays.asList("Twilight Forest", "Erebus", "The Outer Lands");
 	private static Item cleaver;
+
+	private HandlerEvents() {
+	}
 
 	@SubscribeEvent
 	public void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
 		if (event.entityLiving instanceof EntityHuman) {
 			String name = event.world.provider.getDimensionName();
-			if (hardcodedBlacklist.contains(name) || isDimensionBlackListed(event.world.provider.dimensionId))
+			if (hardcodedBlacklist.contains(name) || isDimensionBlackListed(event.world.provider.getDimensionId()))
 				event.setResult(Result.DENY);
 		}
 	}
@@ -57,7 +63,7 @@ public class HandlerEvents {
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void playerDrop(LivingDeathEvent event) {
 		EntityLivingBase entity = event.entityLiving;
-		if (entity.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory") && entity instanceof EntityPlayerMP) {
+		if (entity.worldObj.getGameRules().getBoolean("keepInventory") && entity instanceof EntityPlayerMP) {
 			ArrayList<EntityItem> drops = new ArrayList<EntityItem>();
 
 			ItemStack weapon = getWeapon(event.source);
@@ -81,7 +87,7 @@ public class HandlerEvents {
 		if (entity.getHealth() > 0.0F)
 			return;
 
-		boolean isPoweredCreeper = Headcrumbs.enableChargedCreeperKills && isPoweredCreeper(source);
+		boolean isPoweredCreeper = isPoweredCreeper(source);
 		int beheading = getBeaheadingLevel(getWeapon(source));
 
 		if (isPoweredCreeper || shouldDoRandomDrop(entity.worldObj.rand, beheading, looting)) {
@@ -92,9 +98,7 @@ public class HandlerEvents {
 			if (beheading > 0 && stack.getItem() == Items.skull)
 				return; // Vanilla head drops will be handled by TiCon
 
-			if (stack.getItem() != Items.skull || Headcrumbs.enableVanillaHeadsDrop)
-				if (isPlayerHead(stack) || Headcrumbs.enableMobsAndAnimalHeads)
-					addDrop(stack, entity, drops);
+			addDrop(stack, entity, drops);
 		}
 	}
 
@@ -108,16 +112,10 @@ public class HandlerEvents {
 		return false;
 	}
 
-	private boolean isPlayerHead(ItemStack stack) {
-		return stack.getItem() == ModItems.skull && stack.getItemDamage() == SkullTypes.player.ordinal();
-	}
-
 	private boolean shouldDoRandomDrop(Random rand, int beheading, int looting) {
 		if (beheading > 0)
 			return rand.nextInt(100) < beheading * 10;
-
-		int chance = Math.max(1, Headcrumbs.headDropChance / Math.max(looting + 1, 1));
-		return Headcrumbs.enableRandomHeadDrop && rand.nextInt(chance) == 0;
+		return false;
 	}
 
 	private int getBeaheadingLevel(ItemStack weapon) {
@@ -169,7 +167,22 @@ public class HandlerEvents {
 		drops.removeAll(toRemove);
 
 		EntityItem entityItem = new EntityItem(entity.worldObj, entity.posX, entity.posY, entity.posZ, stack);
-		entityItem.delayBeforeCanPickup = 10;
+		entityItem.setDefaultPickupDelay();
 		drops.add(entityItem);
+	}
+
+	@SubscribeEvent
+	public void onTooltip(ItemTooltipEvent event) {
+		if (!Headcrumbs.enableTooltips)
+			return;
+		ItemStack stack = event.itemStack;
+		if (stack != null && stack.getItem() == Items.skull && stack.getMetadata() == 3) {
+			String name = HeadUtils.getName(stack);
+			if (name != null) {
+				String tip = CelebrityMap.getTooltip(name);
+				if (!StringUtils.isNullOrEmpty(tip))
+					event.toolTip.add(tip);
+			}
+		}
 	}
 }

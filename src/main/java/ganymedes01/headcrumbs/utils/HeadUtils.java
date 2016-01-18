@@ -5,7 +5,6 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 
 import com.mojang.authlib.GameProfile;
 
@@ -15,15 +14,16 @@ import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.utils.helpers.HeadDropHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
-import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.util.Constants;
 
 public class HeadUtils {
 
-	private static final String OWNER_TAG = "SkullOwner";
+	public static final String OWNER_TAG = "SkullOwner";
+	public static final String MODEL_TAG = "SkullModel";
 
 	public static final List<ItemStack> players = new LinkedList<ItemStack>();
 
@@ -60,7 +60,7 @@ public class HeadUtils {
 			return null;
 
 		if (target instanceof EntityHuman)
-			return createHeadFor(((EntityHuman) target).getUsername());
+			return createHeadFor(((EntityHuman) target).getProfile());
 
 		if (target instanceof EntityPlayer)
 			return createHeadFor((EntityPlayer) target);
@@ -81,12 +81,11 @@ public class HeadUtils {
 	}
 
 	public static ItemStack createHeadFor(GameProfile profile) {
-		ItemStack stack = SkullTypes.player.getStack();
+		ItemStack stack = new ItemStack(Items.skull, 1, 3);
 		stack.setTagCompound(new NBTTagCompound());
 		NBTTagCompound profileData = new NBTTagCompound();
-		NBTUtil.func_152460_a(profileData, profile);
+		NBTUtil.writeGameProfile(profileData, profile);
 		stack.getTagCompound().setTag(OWNER_TAG, profileData);
-
 		return stack;
 	}
 
@@ -97,13 +96,9 @@ public class HeadUtils {
 			if (stack.hasTagCompound()) {
 				NBTTagCompound nbt = stack.getTagCompound();
 				if (nbt.hasKey(OWNER_TAG, Constants.NBT.TAG_COMPOUND))
-					profile = NBTUtil.func_152459_a(nbt.getCompoundTag(OWNER_TAG));
+					profile = NBTUtil.readGameProfileFromNBT(nbt.getCompoundTag(OWNER_TAG));
 				else if (nbt.hasKey(OWNER_TAG, Constants.NBT.TAG_STRING))
 					profile = new GameProfile(null, nbt.getString(OWNER_TAG));
-				else if (nbt.hasKey("OwnerUUID", Constants.NBT.TAG_STRING)) {
-					profile = MinecraftServer.getServer().func_152358_ax().func_152652_a(UUID.fromString(nbt.getString("OwnerUUID")));
-					profile = MinecraftServer.getServer().func_147130_as().fillProfileProperties(profile, true);
-				}
 			}
 		} catch (IllegalArgumentException e) {
 		}
@@ -115,13 +110,24 @@ public class HeadUtils {
 		if (stack.hasTagCompound()) {
 			NBTTagCompound nbt = stack.getTagCompound();
 			if (nbt.hasKey(OWNER_TAG, Constants.NBT.TAG_COMPOUND)) {
-				GameProfile profile = NBTUtil.func_152459_a(nbt.getCompoundTag(OWNER_TAG));
+				GameProfile profile = NBTUtil.readGameProfileFromNBT(nbt.getCompoundTag(OWNER_TAG));
 				if (profile != null)
 					return profile.getName();
 			} else if (nbt.hasKey(OWNER_TAG, Constants.NBT.TAG_STRING))
 				return nbt.getString(OWNER_TAG);
 		}
-
 		return null;
+	}
+
+	public static SkullTypes getModel(ItemStack stack) {
+		return stack.hasTagCompound() ? getModel(stack.getTagCompound().getString(MODEL_TAG)) : SkullTypes.blaze;
+	}
+
+	public static SkullTypes getModel(String str) {
+		try {
+			return SkullTypes.valueOf(str);
+		} catch (Exception e) {
+			return SkullTypes.blaze;
+		}
 	}
 }

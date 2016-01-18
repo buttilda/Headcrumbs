@@ -1,4 +1,4 @@
-package ganymedes01.headcrumbs.renderers.heads.etfuturum;
+package ganymedes01.headcrumbs.renderers.heads;
 
 import ganymedes01.headcrumbs.renderers.ModelHead;
 import net.minecraft.client.model.ModelRenderer;

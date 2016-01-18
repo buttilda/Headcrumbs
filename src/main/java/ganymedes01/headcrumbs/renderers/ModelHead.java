@@ -4,11 +4,11 @@ import org.lwjgl.opengl.GL11;
 
 import com.mojang.authlib.GameProfile;
 
+import ganymedes01.headcrumbs.libs.ItemRenderType;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 public class ModelHead extends ModelBase {
 

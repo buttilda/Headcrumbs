@@ -8,24 +8,23 @@ import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.google.common.base.Predicate;
 import com.mojang.authlib.GameProfile;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.headcrumbs.Headcrumbs;
-import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.api.IHumanEntity;
 import ganymedes01.headcrumbs.utils.UsernameUtils;
-import net.minecraft.command.IEntitySelector;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIArrowAttack;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIBreakDoor;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
@@ -44,13 +43,17 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.pathfinding.PathNavigateGround;
+import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatStyle;
 import net.minecraft.util.IChatComponent;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEntity {
 
@@ -59,20 +62,20 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 
 	private GameProfile profile;
 
-	// Baby zombie stuff
 	private static final AttributeModifier babySpeedBoostModifier = new AttributeModifier(UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836"), "Baby speed boost", 0.5D, 1);
 
+	private final EntityAIBreakDoor breakDoorAI = new EntityAIBreakDoor(this);
 	private final EntityAIArrowAttack arrowAI = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F);
 	private static final int NAME = 13;
 	private static final int CHILD = 14;
-	private static final int WIDTH = 15;
-	private static final int HEIGHT = 16;
+	private static final int WIDTH = 16;
+	private static final int HEIGHT = 17;
 
 	public EntityHuman(World world) {
 		super(world);
-		getNavigator().setBreakDoors(true);
+		((PathNavigateGround) getNavigator()).setBreakDoors(true);
 		tasks.addTask(0, new EntityAISwimming(this));
-		if (Headcrumbs.humansOpenDoors && world.difficultySetting == EnumDifficulty.HARD)
+		if (world.getDifficulty() == EnumDifficulty.HARD)
 			tasks.addTask(1, new EntityAIOpenDoor(this, true));
 		tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
 		tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
@@ -81,21 +84,14 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		tasks.addTask(8, new EntityAILookIdle(this));
 		targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-		targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true, false, new IEntitySelector() {
+		targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, 0, true, false, new Predicate<EntityPlayer>() {
+
 			@Override
-			public boolean isEntityApplicable(Entity entity) {
-				if (!(entity instanceof EntityPlayer))
-					return false;
-				EntityPlayer player = (EntityPlayer) entity;
-				return Headcrumbs.humansAttackTwins || !player.getCommandSenderName().equals(getUsername());
+			public boolean apply(EntityPlayer input) {
+				return Headcrumbs.humansAttackTwins || !input.getName().equals(getUsername());
 			}
 		}));
 		setSize(0.6F, 1.8F);
-	}
-
-	@Override
-	protected boolean isAIEnabled() {
-		return true;
 	}
 
 	@Override
@@ -186,17 +182,17 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 	}
 
 	@Override
-	protected void dropRareDrop(int looting) {
-		getVIPHandler().dropRare(this, looting);
+	protected void addRandomDrop() {
+		getVIPHandler().dropRare(this);
 	}
 
 	/* EQUIPAMENT AND ITEMS */
 
 	@Override
-	protected void addRandomArmor() {
-		super.addRandomArmor();
+	protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
+		super.setEquipmentBasedOnDifficulty(difficulty);
 
-		if (rand.nextFloat() < (worldObj.difficultySetting == EnumDifficulty.HARD ? 0.1F : 0.05F)) {
+		if (rand.nextFloat() < (worldObj.getDifficulty() == EnumDifficulty.HARD ? 0.1F : 0.05F)) {
 			int i = rand.nextInt(3);
 
 			if (i == 0)
@@ -214,40 +210,45 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 
 	@Override
 	public ItemStack getPickedResult(MovingObjectPosition target) {
-		ItemStack stack = new ItemStack(Headcrumbs.spawnEgg);
-		stack.setStackDisplayName(getUsername());
+		ItemStack stack = new ItemStack(Items.spawn_egg);
+		NBTTagCompound nbt = new NBTTagCompound();
+		nbt.setString("entity_name", EntityList.classToStringMapping.get(getClass()));
+		stack.setTagCompound(nbt);
 		return stack;
 	}
 
 	/* SPAWN AND DESPAWN */
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData data) {
+	public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingdata) {
 		setUsername(getRandomUsername(rand));
-		addRandomArmor();
-		enchantEquipment();
+		setEquipmentBasedOnDifficulty(difficulty);
+		setEnchantmentBasedOnDifficulty(difficulty);
 		setCombatAI();
 
-		float f = worldObj.func_147462_b(posX, posY, posZ);
+		float additionalDifficulty = difficulty.getClampedAdditionalDifficulty();
 		getEntityAttribute(SharedMonsterAttributes.knockbackResistance).applyModifier(new AttributeModifier("Knockback Resistance Bonus", rand.nextDouble() * 0.05, 0));
-		double d0 = rand.nextDouble() * 1.5 * f;
 
-		if (d0 > 1.0)
-			getEntityAttribute(SharedMonsterAttributes.followRange).applyModifier(new AttributeModifier("Range Bonus", d0, 2));
+		double rangeBonus = rand.nextDouble() * 1.5 * additionalDifficulty;
+		if (rangeBonus > 1.0)
+			getEntityAttribute(SharedMonsterAttributes.followRange).applyModifier(new AttributeModifier("Range Bonus", rangeBonus, 2));
 
-		if (rand.nextFloat() < f * 0.05F)
+		if (rand.nextFloat() < additionalDifficulty * 0.05F)
 			getEntityAttribute(SharedMonsterAttributes.maxHealth).applyModifier(new AttributeModifier("Health Bonus", rand.nextDouble() * 3.0 + 1.0, 2));
 
-		if (rand.nextFloat() < f * 0.15F)
+		if (rand.nextFloat() < additionalDifficulty * 0.15F)
 			getEntityAttribute(SharedMonsterAttributes.attackDamage).applyModifier(new AttributeModifier("Damage Bonus", rand.nextDouble() + 0.5, 2));
 
-		if (rand.nextFloat() < f * 0.2F)
+		if (rand.nextFloat() < additionalDifficulty * 0.2F)
 			getEntityAttribute(SharedMonsterAttributes.movementSpeed).applyModifier(new AttributeModifier("Speed Bonus", rand.nextDouble() * 2.0 * 0.24 + 0.01, 2));
 
 		if (rand.nextDouble() < Headcrumbs.babyHumanChance)
 			setChild(true);
 
-		getVIPHandler().onSpawn(this);
+		if (rand.nextFloat() < additionalDifficulty * 0.1F)
+			tasks.addTask(1, breakDoorAI);
+
+		getVIPHandler().onSpawn(this, difficulty);
 
 		return null;
 	}
@@ -264,13 +265,6 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 	@Override
 	public double getYOffset() {
 		return -0.3;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	// This is so NBT sensible tools (a.k.a. TiC tools) render when being held by the celebrity
-	public IIcon getItemIcon(ItemStack stack, int pass) {
-		return stack.getItem().requiresMultipleRenderPasses() ? stack.getItem().getIcon(stack, pass) : stack.getIconIndex();
 	}
 
 	/* SAVE AND LOAD */
@@ -320,10 +314,10 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		if (!hasBow())
 			return;
 
-		EntityArrow arrow = new EntityArrow(worldObj, this, target, 1.6F, 14 - worldObj.difficultySetting.getDifficultyId() * 4);
+		EntityArrow arrow = new EntityArrow(worldObj, this, target, 1.6F, 14 - worldObj.getDifficulty().getDifficultyId() * 4);
 		int power = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, getHeldItem());
 		int punch = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, getHeldItem());
-		arrow.setDamage(damage * 2.0F + rand.nextGaussian() * 0.25D + worldObj.difficultySetting.getDifficultyId() * 0.11F);
+		arrow.setDamage(damage * 2.0F + rand.nextGaussian() * 0.25D + worldObj.getDifficulty().getDifficultyId() * 0.11F);
 
 		if (power > 0)
 			arrow.setDamage(arrow.getDamage() + power * 0.5D + 0.5D);
@@ -349,18 +343,6 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 			tasks.removeTask(arrowAI);
 	}
 
-	@Override
-	public void onLivingUpdate() {
-		super.onLivingUpdate();
-
-		ItemStack held = getHeldItem();
-		ItemStack helmet = func_130225_q(3);
-		if (held != null && held.getItem() == ModItems.skull && helmet == null) {
-			setCurrentItemOrArmor(4, held);
-			setCurrentItemOrArmor(0, null);
-		}
-	}
-
 	/* USERNAME */
 
 	private VIPHandler getVIPHandler() {
@@ -368,7 +350,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 	}
 
 	@Override
-	public String getCommandSenderName() {
+	public String getName() {
 		return getUsername();
 	}
 
@@ -378,13 +360,13 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 	}
 
 	@Override
-	public boolean hasCustomNameTag() {
+	public boolean hasCustomName() {
 		return true;
 	}
 
 	@Override
-	public IChatComponent func_145748_c_() {
-		return new ChatComponentText(getCommandSenderName()) {
+	public IChatComponent getDisplayName() {
+		return new ChatComponentText(getName()) {
 
 			private ChatStyle style;
 
@@ -433,12 +415,16 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		return names;
 	}
 
+	public void setProfile(GameProfile profile) {
+		this.profile = profile;
+	}
+
 	// IHumanEntity
 
 	@Override
 	public GameProfile getProfile() {
 		if (profile == null)
-			profile = new GameProfile(null, getUsername());
+			setProfile(TileEntitySkull.updateGameprofile(new GameProfile(null, getUsername())));
 		return profile;
 	}
 

@@ -11,38 +11,18 @@ import java.util.Set;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent;
-import cpw.mods.fml.common.event.FMLInterModComms.IMCMessage;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import ganymedes01.headcrumbs.command.HeadcrumbsCommand;
 import ganymedes01.headcrumbs.configs.ConfigHandler;
 import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.entity.VIPHandler;
-import ganymedes01.headcrumbs.items.HumanEgg;
 import ganymedes01.headcrumbs.libs.Reference;
 import ganymedes01.headcrumbs.libs.SkullTypes;
-import ganymedes01.headcrumbs.network.PacketHandler;
 import ganymedes01.headcrumbs.proxy.CommonProxy;
-import ganymedes01.headcrumbs.recipe.PlayerSkullRecipe;
+import ganymedes01.headcrumbs.recipes.StatueRecipe;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.UsercacheChecker;
 import ganymedes01.headcrumbs.utils.UsernameUtils;
 import ganymedes01.headcrumbs.utils.helpers.ElementalCreepersHelper;
 import ganymedes01.headcrumbs.utils.helpers.EnderZooHelper;
-import ganymedes01.headcrumbs.utils.helpers.EtFuturumHelper;
 import ganymedes01.headcrumbs.utils.helpers.GrimoireOfGaiaHelper;
 import ganymedes01.headcrumbs.utils.helpers.HeadDropHelper;
 import ganymedes01.headcrumbs.utils.helpers.LaserCreepersHelper;
@@ -53,9 +33,7 @@ import ganymedes01.headcrumbs.utils.helpers.TEHelper;
 import ganymedes01.headcrumbs.utils.helpers.ThaumcraftHelper;
 import ganymedes01.headcrumbs.utils.helpers.TwilightForestHelper;
 import ganymedes01.headcrumbs.utils.helpers.VanillaHelper;
-import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.init.Blocks;
@@ -63,12 +41,26 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.event.FMLInterModComms.IMCEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms.IMCMessage;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.RecipeSorter;
-import net.minecraftforge.oredict.RecipeSorter.Category;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, dependencies = Reference.DEPENDENCIES, guiFactory = Reference.GUI_FACTORY_CLASS)
 public class Headcrumbs {
@@ -86,7 +78,7 @@ public class Headcrumbs {
 
 		@Override
 		public Item getTabIconItem() {
-			return ModItems.skull;
+			return Items.skull;
 		}
 
 		@Override
@@ -96,9 +88,9 @@ public class Headcrumbs {
 				Random rand = new Random();
 				List<SkullTypes> types = new ArrayList<SkullTypes>();
 				for (SkullTypes type : SkullTypes.values())
-					if (type.canShow() && type != SkullTypes.lycanites && type != SkullTypes.player)
+					if (type.canShow() && !type.usesProfile())
 						types.add(type);
-				displayStack = types.isEmpty() ? new ItemStack(Items.skull) : types.get(rand.nextInt(types.size())).getStack();
+				displayStack = types.isEmpty() ? new ItemStack(Items.skull, 1, rand.nextInt(3)) : types.get(rand.nextInt(types.size())).getStack();
 			}
 			return displayStack;
 		}
@@ -171,78 +163,52 @@ public class Headcrumbs {
 	public static boolean enableModSent = true;
 	public static List<String> modsent = new ArrayList<String>();
 
-	public static boolean enableVanillaHeadsDrop = true;
-	public static boolean enableRandomHeadDrop = true;
-	public static int headDropChance = 200;
 	public static boolean addPlayerHeadsAsDungeonLoot = true;
-	public static boolean enableMobsAndAnimalHeads = true;
 	public static int headsDungeonLootMaxWeight = 1;
-	public static boolean hidePlayerHeadsFromTab = false;
-	public static boolean enableChargedCreeperKills = true;
 	public static boolean enablePlayerStatues = true;
 	public static boolean enableTooltips = true;
-	public static boolean enableHeadConversion = true;
 
-	public static boolean enableHumanMobs = true, humansOpenDoors = true;
+	public static boolean enableHumanMobs = true;
 	public static int celebrityProb = 80, celebrityMin = 4, celebrityMax = 4;
 	public static double babyHumanChance = 0.1;
 	public static boolean enableVIPs = true;
 	public static boolean enableBaarbra = true;
 	public static int[] blacklistedDimensions = { 1, -1 };
 	public static String humanNamePrefix = "";
-	public static boolean use18PlayerModel = false;
 	public static boolean humansAttackTwins = true;
 
 	public static boolean isTinkersConstructLoaded = false;
-
-	public static Item spawnEgg;
-	public static Block clay;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		ConfigHandler.INSTANCE.init(event.getSuggestedConfigurationFile());
 
 		ModBlocks.init();
-		ModItems.init();
 
 		UsernameUtils.initMap();
 
-		OreDictionary.registerOre("itemSkull", new ItemStack(ModItems.skull, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("itemSkull", new ItemStack(Items.skull, 1, OreDictionary.WILDCARD_VALUE));
-		for (SkullTypes type : SkullTypes.values())
-			OreDictionary.registerOre("skull" + type.name().substring(0, 1).toUpperCase() + type.name().substring(1), new ItemStack(ModItems.skull, 1, type.ordinal()));
 		OreDictionary.registerOre("skullSkeleton", new ItemStack(Items.skull, 1, 0));
 		OreDictionary.registerOre("skullWitherSkeleton", new ItemStack(Items.skull, 1, 1));
 		OreDictionary.registerOre("skullZombie", new ItemStack(Items.skull, 1, 2));
 		OreDictionary.registerOre("skullPlayer", new ItemStack(Items.skull, 1, 3));
 		OreDictionary.registerOre("skullCreeper", new ItemStack(Items.skull, 1, 4));
 
-		if (enableHeadConversion) {
-			RecipeSorter.register("headcrumbs.playerskullrecipe", PlayerSkullRecipe.class, Category.SHAPELESS, "after:minecraft:shapeless");
-			GameRegistry.addRecipe(new PlayerSkullRecipe(SkullTypes.player.getStack(), new ItemStack(Items.skull, 1, 3)));
-			GameRegistry.addRecipe(new PlayerSkullRecipe(new ItemStack(Items.skull, 1, 3), SkullTypes.player.getStack()));
+		if (enableHumanMobs) {
+			EntityRegistry.registerModEntity(EntityHuman.class, "Human", 0, instance, 512, 1, true);
+			EntityRegistry.registerEgg(EntityHuman.class, 0xFFF144, 0x69DFDA);
+			VIPHandler.init();
 		}
+
+		proxy.registerRenderers();
 	}
 
 	@EventHandler
-	@SuppressWarnings("unchecked")
 	public void init(FMLInitializationEvent event) {
-		PacketHandler.init();
 		proxy.registerEvents();
 		proxy.registerTileEntities();
-		proxy.registerRenderers();
 
 		FMLInterModComms.sendMessage("Waila", "register", "ganymedes01.headcrumbs.waila.WailaRegistrar.wailaCallback");
-
-		if (enableHumanMobs) {
-			EntityList.stringToClassMapping.put("Celebrity", EntityHuman.class);
-
-			EntityRegistry.registerModEntity(EntityHuman.class, "Human", 0, instance, 512, 1, true);
-			GameRegistry.registerItem(spawnEgg = new HumanEgg(), "egg");
-			OreDictionary.registerOre("mobEgg", spawnEgg);
-
-			VIPHandler.init();
-		}
 
 		isTinkersConstructLoaded = Loader.isModLoaded("TConstruct");
 
@@ -250,6 +216,9 @@ public class Headcrumbs {
 			addEnderFurnaceRecipe(new ItemStack(Blocks.dragon_egg), "skullEnderDragon");
 			addEnderFurnaceRecipe(new ItemStack(Items.nether_star), "skullWither");
 		}
+
+		if (enablePlayerStatues)
+			GameRegistry.addRecipe(StatueRecipe.getRecipe(new ItemStack(ModBlocks.player), "x", "y", "y", 'x', new ItemStack(Items.skull, 1, 3), 'y', new ItemStack(Blocks.clay)));
 	}
 
 	private void addEnderFurnaceRecipe(ItemStack output, Object... input) {
@@ -275,7 +244,6 @@ public class Headcrumbs {
 	public void postInit(FMLPostInitializationEvent event) {
 		HeadUtils.loadPlayerHeads();
 
-		HeadDropHelper.register(new EtFuturumHelper());
 		HeadDropHelper.register(new LaserCreepersHelper());
 		HeadDropHelper.register(new TwilightForestHelper());
 		HeadDropHelper.register(new TEHelper());
@@ -293,25 +261,19 @@ public class Headcrumbs {
 		if (enableHumanMobs)
 			addHumanSpawns();
 
-		if (enableHeadConversion)
-			if (Loader.isModLoaded("TwilightForest")) {
-				Item tropy = (Item) Item.itemRegistry.getObject("TwilightForest:item.trophy");
-				addConvertionRecipe(SkullTypes.hydra.getStack(), new ItemStack(tropy, 1, 0));
-				addConvertionRecipe(SkullTypes.nagaTF.getStack(), new ItemStack(tropy, 1, 1));
-				addConvertionRecipe(SkullTypes.lich.getStack(), new ItemStack(tropy, 1, 2));
-				addConvertionRecipe(SkullTypes.urGhast.getStack(), new ItemStack(tropy, 1, 3));
-				addConvertionRecipe(SkullTypes.snowQueen.getStack(), new ItemStack(tropy, 1, 4));
-			}
+		if (Loader.isModLoaded("TwilightForest")) {
+			Item tropy = Item.itemRegistry.getObject(new ResourceLocation("TwilightForest", "item.trophy"));
+			addConvertionRecipe(SkullTypes.hydra.getStack(), new ItemStack(tropy, 1, 0));
+			addConvertionRecipe(SkullTypes.nagaTF.getStack(), new ItemStack(tropy, 1, 1));
+			addConvertionRecipe(SkullTypes.lich.getStack(), new ItemStack(tropy, 1, 2));
+			addConvertionRecipe(SkullTypes.urGhast.getStack(), new ItemStack(tropy, 1, 3));
+			addConvertionRecipe(SkullTypes.snowQueen.getStack(), new ItemStack(tropy, 1, 4));
+		}
 	}
 
 	private void addConvertionRecipe(ItemStack output, ItemStack input) {
 		GameRegistry.addShapelessRecipe(output, input);
 		GameRegistry.addShapelessRecipe(input, output);
-	}
-
-	@EventHandler
-	public void serverStarting(FMLServerStartingEvent event) {
-		event.registerServerCommand(new HeadcrumbsCommand());
 	}
 
 	@EventHandler
@@ -369,7 +331,7 @@ public class Headcrumbs {
 						continue label;
 
 				// Check if zombies can spawn on this biome
-				for (Object obj : biome.getSpawnableList(EnumCreatureType.monster))
+				for (Object obj : biome.getSpawnableList(EnumCreatureType.MONSTER))
 					if (obj instanceof SpawnListEntry) {
 						SpawnListEntry entry = (SpawnListEntry) obj;
 						try {
@@ -386,6 +348,6 @@ public class Headcrumbs {
 					}
 			}
 
-		EntityRegistry.addSpawn(EntityHuman.class, celebrityProb, celebrityMin, celebrityMax, EnumCreatureType.monster, biomes.toArray(new BiomeGenBase[biomes.size()]));
+		EntityRegistry.addSpawn(EntityHuman.class, celebrityProb, celebrityMin, celebrityMax, EnumCreatureType.MONSTER, biomes.toArray(new BiomeGenBase[biomes.size()]));
 	}
 }

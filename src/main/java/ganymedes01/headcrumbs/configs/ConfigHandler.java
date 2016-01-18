@@ -2,13 +2,11 @@ package ganymedes01.headcrumbs.configs;
 
 import java.io.File;
 
-import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.libs.Reference;
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ConfigHandler {
 
@@ -23,18 +21,11 @@ public class ConfigHandler {
 	}
 
 	private void syncConfigs() {
-		Headcrumbs.enableRandomHeadDrop = configFile.get(Configuration.CATEGORY_GENERAL, "Heads drop randomly", Headcrumbs.enableRandomHeadDrop, "Heads will drop randomly when entities or players die").setRequiresMcRestart(false).getBoolean();
-		Headcrumbs.enableVanillaHeadsDrop = configFile.get(Configuration.CATEGORY_GENERAL, "Vanilla heads drop randomly", Headcrumbs.enableVanillaHeadsDrop, "Vanilla Heads (creeper, skeleton, zombie) will drop randomly when entities die").setRequiresMcRestart(false).getBoolean();
 		Headcrumbs.addPlayerHeadsAsDungeonLoot = configFile.get(Configuration.CATEGORY_GENERAL, "Add player heads as dungeon loot", Headcrumbs.addPlayerHeadsAsDungeonLoot).setRequiresMcRestart(false).getBoolean();
-		Headcrumbs.enableMobsAndAnimalHeads = configFile.get(Configuration.CATEGORY_GENERAL, "Enable mobs and animals heads", Headcrumbs.enableMobsAndAnimalHeads, "Setting this to false will cause only player heads to show in the creative tab and drop updon death").setRequiresMcRestart(false).getBoolean();
-		Headcrumbs.hidePlayerHeadsFromTab = configFile.get(Configuration.CATEGORY_GENERAL, "Hide player heads from tab", Headcrumbs.hidePlayerHeadsFromTab, "Setting this to true will hide the named player heads from the creative tab and NEI").setRequiresMcRestart(true).getBoolean();
-		Headcrumbs.enableChargedCreeperKills = configFile.get(Configuration.CATEGORY_GENERAL, "Enable charged creeper kills", Headcrumbs.enableChargedCreeperKills, "Setting this to true will cause heads to drop 100% of the time when an entity is killed by a charged creeper").setRequiresMcRestart(true).getBoolean();
-		Headcrumbs.enablePlayerStatues = configFile.get(Configuration.CATEGORY_GENERAL, "Enable player statues", Headcrumbs.enablePlayerStatues, "Setting this to true allow statues to be built (Turning this off won't destroy existing statues)").setRequiresMcRestart(false).getBoolean();
-		Headcrumbs.enableTooltips = configFile.get(Configuration.CATEGORY_GENERAL, "Enable head item tooltips", Headcrumbs.enableTooltips, "Enables tooltips with informations about certain names (mod authors mostly)").setRequiresMcRestart(false).getBoolean();
-		Headcrumbs.enableHeadConversion = configFile.get(Configuration.CATEGORY_GENERAL, "Enable head conversions", Headcrumbs.enableHeadConversion, "Enables recipes to convert from the vanilla player heads to the Headcrumbs' player head ad vice versa").setRequiresMcRestart(true).getBoolean();
-
-		Headcrumbs.headDropChance = configFile.get(Configuration.CATEGORY_GENERAL, "Chance of random head drop", Headcrumbs.headDropChance, "Random.nextInt(X / (fortune+1)) == 0").setRequiresMcRestart(false).getInt();
 		Headcrumbs.headsDungeonLootMaxWeight = configFile.get(Configuration.CATEGORY_GENERAL, "Player heads loot weight", Headcrumbs.headsDungeonLootMaxWeight, "The bigger this number the easier it will be to find heads in dungeons.\nSome heads will be rarer than others.\nExamples: Diamond is 1, Redstone is 10").setRequiresMcRestart(true).getInt();
+		Headcrumbs.enablePlayerStatues = configFile.get(Configuration.CATEGORY_GENERAL, "Enable player statues", Headcrumbs.enablePlayerStatues, "Setting this to true allow statues to be built (Turning this off won't destroy existing statues)").setRequiresMcRestart(false).getBoolean();
+
+		Headcrumbs.enableTooltips = configFile.get(Configuration.CATEGORY_GENERAL, "Enable head item tooltips", Headcrumbs.enableTooltips, "Enables tooltips with informations about certain names (mod authors mostly)").setRequiresMcRestart(false).getBoolean();
 
 		Headcrumbs.others = configFile.get("heads", "others", Headcrumbs.others).setRequiresMcRestart(true).getStringList();
 		Headcrumbs.modders = configFile.get("heads", "modders", Headcrumbs.modders).setRequiresMcRestart(true).getStringList();
@@ -55,14 +46,8 @@ public class ConfigHandler {
 		Headcrumbs.celebrityMax = configFile.get("mob", "Maximum group size", Headcrumbs.celebrityMax, "The maximum size of the group of mobs that will spawn at once").setRequiresMcRestart(true).getInt();
 		Headcrumbs.blacklistedDimensions = configFile.get("mob", "Dimension Blacklist", Headcrumbs.blacklistedDimensions).getIntList();
 		Headcrumbs.humanNamePrefix = configFile.get("mob", "prefix", Headcrumbs.humanNamePrefix, "This prefix will be shown in front of celebrities names in-world. Meant to be used to differentiate celebrities from real players.").getString();
-		Headcrumbs.humansOpenDoors = configFile.get("mob", "Allow celebrity mobs to open doors", Headcrumbs.humansOpenDoors).setRequiresMcRestart(true).getBoolean();
 		Headcrumbs.babyHumanChance = configFile.get("mob", "Baby human chance", Headcrumbs.babyHumanChance, "Chance that a human mob will spawn as a baby. Set to -1 to disable.").setRequiresMcRestart(false).getDouble(Headcrumbs.babyHumanChance);
 		Headcrumbs.humansAttackTwins = configFile.get("mob", "Humans attack twins", Headcrumbs.humansAttackTwins, "Setting this to false will force humans to not attack players with the same name as themselves").setRequiresMcRestart(true).getBoolean();
-
-		String block = configFile.get(Configuration.CATEGORY_GENERAL, "Statue block material", Block.blockRegistry.getNameForObject(Blocks.clay), "modId:name. Whatever block is set here will be the block used to make player statues (2 tall and right-click the top one with a player head)").getString();
-		Headcrumbs.clay = (Block) Block.blockRegistry.getObject(block);
-		if (Headcrumbs.clay == null || Headcrumbs.clay == Blocks.air)
-			Headcrumbs.clay = Blocks.clay;
 
 		if (configFile.hasChanged())
 			configFile.save();

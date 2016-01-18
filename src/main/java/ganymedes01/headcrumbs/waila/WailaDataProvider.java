@@ -22,7 +22,7 @@ public class WailaDataProvider implements IWailaDataProvider {
 	@Override
 	public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
 		TileEntity te;
-		if (accessor.getBlock() == ModBlocks.blockEmpty) {
+		if (accessor.getBlock() == ModBlocks.empty) {
 			World world = accessor.getWorld();
 			MovingObjectPosition mop = accessor.getPosition();
 			te = world.getTileEntity(mop.blockX, mop.blockY + 1, mop.blockZ);
@@ -32,7 +32,7 @@ public class WailaDataProvider implements IWailaDataProvider {
 		if (te instanceof TileEntityBlockSkull) {
 			TileEntityBlockSkull tile = (TileEntityBlockSkull) te;
 			if ((tile.func_145904_a() == SkullTypes.player.ordinal() || tile.func_145904_a() == SkullTypes.lycanites.ordinal()) && tile.func_152108_a() != null) {
-				ItemStack stack = new ItemStack(ModItems.skull, 1, ModBlocks.blockSkull.getDamageValue(tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord));
+				ItemStack stack = new ItemStack(ModItems.skull, 1, ModBlocks.skull.getDamageValue(tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord));
 				stack = HeadUtils.createHeadFor(tile.func_152108_a());
 				stack.setItemDamage(tile.func_145904_a());
 				return stack;

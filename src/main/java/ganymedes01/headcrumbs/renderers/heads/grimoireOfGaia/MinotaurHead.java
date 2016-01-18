@@ -2,12 +2,12 @@ package ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia;
 
 import com.mojang.authlib.GameProfile;
 
+import ganymedes01.headcrumbs.libs.ItemRenderType;
 import ganymedes01.headcrumbs.libs.Strings;
 import ganymedes01.headcrumbs.renderers.ModelHead;
 import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import ganymedes01.headcrumbs.utils.Utils;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 public class MinotaurHead extends ModelHead {
 

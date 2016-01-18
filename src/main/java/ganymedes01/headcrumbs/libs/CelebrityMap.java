@@ -3,6 +3,8 @@ package ganymedes01.headcrumbs.libs;
 import java.util.HashMap;
 import java.util.Map;
 
+import ganymedes01.headcrumbs.Headcrumbs;
+
 public class CelebrityMap {
 
 	private static Map<String, String> map = new HashMap<String, String>();
@@ -12,7 +14,36 @@ public class CelebrityMap {
 	}
 
 	public static String getTooltip(String name) {
-		return map.get(name);
+		String tip = map.get(name);
+		if (tip == null) {
+			if (arrayContains(Headcrumbs.modders, name))
+				tip = "Modders";
+			else if (arrayContains(Headcrumbs.youtubers, name))
+				tip = "YouTuber or Streamer";
+			else if (arrayContains(Headcrumbs.mojang, name))
+				tip = "Mojang";
+			else if (arrayContains(Headcrumbs.mindCrack, name))
+				tip = "MindCrack";
+			else if (arrayContains(Headcrumbs.hermitcraft, name))
+				tip = "Hermitcraft";
+			else if (arrayContains(Headcrumbs.forgeCraft, name))
+				tip = "ForgeCraft";
+			else if (arrayContains(Headcrumbs.ftb, name))
+				tip = "FTB";
+			else if (arrayContains(Headcrumbs.technic, name))
+				tip = "Technic";
+			else
+				tip = "";
+			map.put(name, tip);
+		}
+		return tip;
+	}
+
+	private static <T> boolean arrayContains(T[] array, T obj) {
+		for (T arrayObj : array)
+			if (obj.equals(arrayObj))
+				return true;
+		return false;
 	}
 
 	private static void initMap() {
@@ -103,6 +134,6 @@ public class CelebrityMap {
 		map.put("Mfernflower", "Minechem, HxC-Mods");
 		map.put("Benimatic", "Twilight Forest");
 
-		map.put("ganymedes01", "Gany's Mods");
+		map.put("ganymedes01", "Supreme Master of the Universe");
 	}
 }

@@ -9,10 +9,6 @@ import com.google.common.base.Strings;
 
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.utils.HeadUtils;
-import lycanite.lycanitesmobs.AssetManager;
-import lycanite.lycanitesmobs.ObjectManager;
-import lycanite.lycanitesmobs.api.info.GroupInfo;
-import lycanite.lycanitesmobs.api.info.MobInfo;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

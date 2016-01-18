@@ -3,11 +3,11 @@ package ganymedes01.headcrumbs.configs;
 import java.util.ArrayList;
 import java.util.List;
 
-import cpw.mods.fml.client.config.GuiConfig;
-import cpw.mods.fml.client.config.IConfigElement;
 import ganymedes01.headcrumbs.libs.Reference;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
+import net.minecraftforge.fml.client.config.GuiConfig;
+import net.minecraftforge.fml.client.config.IConfigElement;
 
 public class ConfigGUI extends GuiConfig {
 
@@ -15,7 +15,6 @@ public class ConfigGUI extends GuiConfig {
 		super(parent, getElements(), Reference.MOD_ID, Reference.MOD_ID, false, false, GuiConfig.getAbridgedConfigPath(ConfigHandler.INSTANCE.configFile.toString()));
 	}
 
-	@SuppressWarnings({ "rawtypes" })
 	private static List<IConfigElement> getElements() {
 		List<IConfigElement> list = new ArrayList<IConfigElement>();
 		for (String category : ConfigHandler.INSTANCE.usedCategories)

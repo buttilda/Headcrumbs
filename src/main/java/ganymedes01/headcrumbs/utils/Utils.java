@@ -2,17 +2,18 @@ package ganymedes01.headcrumbs.utils;
 
 import java.awt.Color;
 
-import cpw.mods.fml.common.Loader;
 import ganymedes01.headcrumbs.libs.Reference;
 import net.minecraft.block.Block;
-import net.minecraft.entity.item.EntityItem;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
+import net.minecraftforge.fml.common.Loader;
 
 public class Utils {
 
@@ -45,23 +46,11 @@ public class Utils {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static <T> T getTileEntity(IBlockAccess world, int x, int y, int z, Class<T> cls) {
-		TileEntity tile = world.getTileEntity(x, y, z);
+	public static <T> T getTileEntity(IBlockAccess world, BlockPos pos, Class<T> cls) {
+		TileEntity tile = world.getTileEntity(pos);
 		if (!cls.isInstance(tile))
 			return null;
 		return (T) tile;
-	}
-
-	public static void dropStack(World world, int x, int y, int z, ItemStack stack) {
-		if (!world.isRemote && stack != null && world.getGameRules().getGameRuleBooleanValue("doTileDrops")) {
-			float f = 0.7F;
-			double d0 = world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
-			double d1 = world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
-			double d2 = world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
-			EntityItem entityItem = new EntityItem(world, x + d0, y + d1, z + d2, stack);
-			entityItem.delayBeforeCanPickup = 10;
-			world.spawnEntityInWorld(entityItem);
-		}
 	}
 
 	public static void addDungeonLoot(ItemStack stack, int minChance, int maxChance, int weight) {
@@ -79,15 +68,15 @@ public class Utils {
 		ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CROSSING, new WeightedRandomChestContent(stack, minChance, maxChance, weight));
 	}
 
-	public static final void breakBlockWithParticles(World world, int x, int y, int z, int meta) {
-		Block block = world.getBlock(x, y, z);
-		if (block.isAir(world, x, y, z))
+	public static final void breakBlockWithParticles(World world, BlockPos pos, int meta) {
+		IBlockState state = world.getBlockState(pos);
+		if (state.getBlock().isAir(world, pos))
 			return;
-		world.setBlockToAir(x, y, z);
-		doBreakParticles(world, x, y, z, block, meta);
+		world.setBlockToAir(pos);
+		doBreakParticles(world, pos, state.getBlock(), meta);
 	}
 
-	public static final void doBreakParticles(World world, int x, int y, int z, Block block, int meta) {
-		world.playAuxSFXAtEntity(null, 2001, x, y, z, Block.getIdFromBlock(block) + (meta << 12));
+	public static final void doBreakParticles(World world, BlockPos pos, Block block, int meta) {
+		world.playAuxSFXAtEntity(null, 2001, pos, Block.getIdFromBlock(block) + (meta << 12));
 	}
 }

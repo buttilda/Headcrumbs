@@ -2,24 +2,25 @@ package ganymedes01.headcrumbs.libs;
 
 import com.mojang.authlib.GameProfile;
 
-import cpw.mods.fml.common.Loader;
-import ganymedes01.headcrumbs.Headcrumbs;
-import ganymedes01.headcrumbs.ModItems;
+import ganymedes01.headcrumbs.ModBlocks;
 import ganymedes01.headcrumbs.renderers.ModelHead;
 import ganymedes01.headcrumbs.renderers.heads.BatHead;
 import ganymedes01.headcrumbs.renderers.heads.ChickenHead;
 import ganymedes01.headcrumbs.renderers.heads.CowHead;
 import ganymedes01.headcrumbs.renderers.heads.EnderDragonHead;
 import ganymedes01.headcrumbs.renderers.heads.EndermanHead;
+import ganymedes01.headcrumbs.renderers.heads.EndermiteHead;
 import ganymedes01.headcrumbs.renderers.heads.GhastHead;
+import ganymedes01.headcrumbs.renderers.heads.GuardianHead;
 import ganymedes01.headcrumbs.renderers.heads.HorseHead;
 import ganymedes01.headcrumbs.renderers.heads.MagmaCubeHead;
 import ganymedes01.headcrumbs.renderers.heads.MooshroomHead;
 import ganymedes01.headcrumbs.renderers.heads.OcelotHead;
 import ganymedes01.headcrumbs.renderers.heads.PigHead;
 import ganymedes01.headcrumbs.renderers.heads.PigmanHead;
-import ganymedes01.headcrumbs.renderers.heads.PlayerHead;
+import ganymedes01.headcrumbs.renderers.heads.RabbitHead;
 import ganymedes01.headcrumbs.renderers.heads.SheepHead;
+import ganymedes01.headcrumbs.renderers.heads.ShulkerHead;
 import ganymedes01.headcrumbs.renderers.heads.SilverfishHead;
 import ganymedes01.headcrumbs.renderers.heads.SlimeHead;
 import ganymedes01.headcrumbs.renderers.heads.SnowmanHead;
@@ -33,10 +34,6 @@ import ganymedes01.headcrumbs.renderers.heads.ZombieVillagerHead;
 import ganymedes01.headcrumbs.renderers.heads.elementalCreepers.GhostCreeperHead;
 import ganymedes01.headcrumbs.renderers.heads.enderzoo.DireWolfHead;
 import ganymedes01.headcrumbs.renderers.heads.enderzoo.EnderminyHead;
-import ganymedes01.headcrumbs.renderers.heads.etfuturum.EndermiteHead;
-import ganymedes01.headcrumbs.renderers.heads.etfuturum.GuardianHead;
-import ganymedes01.headcrumbs.renderers.heads.etfuturum.RabbitHead;
-import ganymedes01.headcrumbs.renderers.heads.etfuturum.ShulkerHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.AnubisHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.BansheeHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.BaphometHead;
@@ -92,6 +89,7 @@ import ganymedes01.headcrumbs.renderers.heads.natura.ImpHead;
 import ganymedes01.headcrumbs.renderers.heads.primitivemobs.JuggernautHead;
 import ganymedes01.headcrumbs.renderers.heads.primitivemobs.LilyLurkerHead;
 import ganymedes01.headcrumbs.renderers.heads.primitivemobs.SheepmanHead;
+import ganymedes01.headcrumbs.renderers.heads.thaumcraft.CultistHead;
 import ganymedes01.headcrumbs.renderers.heads.thaumcraft.EldrichCrabHead;
 import ganymedes01.headcrumbs.renderers.heads.thaumcraft.EldrichGuardianHead;
 import ganymedes01.headcrumbs.renderers.heads.thaumcraft.PechHead;
@@ -113,16 +111,18 @@ import ganymedes01.headcrumbs.renderers.heads.twilightforest.SnowQueenHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.SquirrelHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.TowerGolemHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.WildBoarHead;
+import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.TextureUtils;
 import ganymedes01.headcrumbs.utils.Utils;
 import ganymedes01.headcrumbs.utils.helpers.LycanitesHelperClient;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.Loader;
 
 public enum SkullTypes {
 
 	// @formatter:off
-	player				(null, 														null, 					PlayerHead.INSTANCE),
 	blaze				(Strings.MC_PREFIX + "blaze", 								null, 					ModelHead.INSTANCE),
 	enderman			(Strings.MC_PREFIX + "enderman/enderman", 					null, 					EndermanHead.INSTANCE),
 	pigman				(Strings.MC_PREFIX + "zombie_pigman", 						null, 					PigmanHead.INSTANCE),
@@ -140,30 +140,9 @@ public enum SkullTypes {
 	ironGolem			(Strings.MC_PREFIX + "iron_golem", 							null, 					VillagerHead.INSTANCE128),
 	squid				(Strings.MC_PREFIX + "squid", 								null, 					SquidHead.INSTANCE),
 	wither				(Strings.MC_PREFIX + "wither/wither", 						null, 					WitherHead.INSTANCE),
-	bunnyDutch			(Strings.TF_PREFIX + "bunnydutch", 							"TwilightForest", 		BunnyHead.INSTANCE),
-	penguin				(Strings.TF_PREFIX + "penguin", 							"TwilightForest", 		PenguinHead.INSTANCE),
-	bighorn				(Strings.TF_PREFIX + "bighorn", 							"TwilightForest", 		BighornHead.INSTANCE),
-	wildDeer			(Strings.TF_PREFIX + "wilddeer", 							"TwilightForest", 		DeerHead.INSTANCE),
-	wildBoar			(Strings.TF_PREFIX + "wildboar", 							"TwilightForest", 		WildBoarHead.INSTANCE),
-	redcap				(Strings.TF_PREFIX + "redcap", 								"TwilightForest", 		RedcapHead.INSTANCE),
-	druid				(Strings.TF_PREFIX + "skeletondruid", 						"TwilightForest", 		ModelHead.INSTANCE),
-	hedgeSpider			(Strings.TF_PREFIX + "hedgespider", 						"TwilightForest", 		SpiderHead.INSTANCE),
 	ghast				(Strings.MC_PREFIX + "ghast/ghast", 						null, 					GhastHead.INSTANCE),
-	blizz				(Strings.TE_PREFIX + "Blizz", 								"ThermalFoundation",	ModelHead.INSTANCE),
-	mistWolf			(Strings.TF_PREFIX + "mistwolf", 							"TwilightForest", 		MistWolfHead.INSTANCE),
-	miniGhast			(Strings.TF_PREFIX + "towerghast", 							"TwilightForest",		GhastHead.INSTANCE),
-	guardGhast			(Strings.TF_PREFIX + "towerghast_openeyes", 				"TwilightForest", 		GhastHead.INSTANCE),
-	kingSpider			(Strings.TF_PREFIX + "kingspider", 							"TwilightForest", 		SpiderHead.INSTANCE),
-	kobold				(Strings.TF_PREFIX + "kobold", 								"TwilightForest", 		KoboldHead.INSTANCE),
-	slimeBeetle			(Strings.TF_PREFIX + "slimebeetle", 						"TwilightForest", 		SlimeBeetleHead.INSTANCE),
-	fireBeetle			(Strings.TF_PREFIX + "firebeetle", 							"TwilightForest", 		FireBeetleHead.INSTANCE),
-	pinchBeetle			(Strings.TF_PREFIX + "pinchbeetle", 						"TwilightForest", 		PinchBeetle.INSTANCE),
-	towerGolem			(Strings.TF_PREFIX + "carminitegolem", 						"TwilightForest", 		TowerGolemHead.INSTANCE),
 	enderDragon			(Strings.MC_PREFIX + "enderdragon/dragon", 					null, 					EnderDragonHead.INSTANCE),
 	hostileWolf			(Strings.MC_PREFIX + "wolf/wolf_angry", 					"TwilightForest", 		WolfHead.INSTANCE),
-	bunnyBrown			(Strings.TF_PREFIX + "bunnybrown", 							"TwilightForest", 		BunnyHead.INSTANCE),
-	bunnyWhite			(Strings.TF_PREFIX + "bunnywhite", 							"TwilightForest", 		BunnyHead.INSTANCE),
-	squirrel			(Strings.TF_PREFIX + "squirrel2", 							"TwilightForest", 		SquirrelHead.INSTANCE),
 	ocelot				(Strings.MC_PREFIX + "cat/ocelot", 							null, 					OcelotHead.INSTANCE),
 	ocelotBlack			(Strings.MC_PREFIX + "cat/black", 							null, 					OcelotHead.INSTANCE),
 	ocelotRed			(Strings.MC_PREFIX + "cat/red", 							null, 					OcelotHead.INSTANCE),
@@ -184,14 +163,57 @@ public enum SkullTypes {
 	horseSkeleton		(Strings.MC_PREFIX + "horse/horse_skeleton", 				null, 					HorseHead.INSTANCE_HORSE),
 	snowMan				(Strings.MC_PREFIX + "snowman", 							null, 					SnowmanHead.INSTANCE),
 	silverfish			(Strings.MC_PREFIX + "silverfish", 							null, 					SilverfishHead.INSTANCE),
+	endermite			(Strings.MC_PREFIX + "endermite",			 				"etfuturum", 			EndermiteHead.INSTANCE),
+	guardian			(Strings.MC_PREFIX + "guardian",			 				"etfuturum", 			GuardianHead.INSTANCE),
+	guardianElder		(Strings.MC_PREFIX + "guardian_elder",			 			"etfuturum", 			GuardianHead.INSTANCE),
+	shulker				(Strings.MC_PREFIX + "shulker/endergolem",			 		"etfuturum", 			ShulkerHead.INSTANCE),
+	rabbitBlack			(Strings.MC_PREFIX + "rabbit/black",			 			"etfuturum", 			RabbitHead.INSTANCE),
+	rabbitBrown			(Strings.MC_PREFIX + "rabbit/brown",			 			"etfuturum", 			RabbitHead.INSTANCE),
+	rabbitGold			(Strings.MC_PREFIX + "rabbit/gold",			 				"etfuturum", 			RabbitHead.INSTANCE),
+	rabbitSalt			(Strings.MC_PREFIX + "rabbit/salt",			 				"etfuturum", 			RabbitHead.INSTANCE),
+	rabbitToast			(Strings.MC_PREFIX + "rabbit/toast",		 				"etfuturum", 			RabbitHead.INSTANCE),
+	rabbitSplotched		(Strings.MC_PREFIX + "rabbit/white_splotched",				"etfuturum", 			RabbitHead.INSTANCE),
+	rabbitWhite			(Strings.MC_PREFIX + "rabbit/white",			 			"etfuturum", 			RabbitHead.INSTANCE),
+
+	blizz				(Strings.TE_PREFIX + "Blizz", 								"ThermalFoundation",	ModelHead.INSTANCE),
+	blitz				(Strings.TE_PREFIX + "Blitz", 								"ThermalFoundation",	ModelHead.INSTANCE),
+	basalz				(Strings.TE_PREFIX + "Basalz", 								"ThermalFoundation",	ModelHead.INSTANCE),
+
+	bunnyDutch			(Strings.TF_PREFIX + "bunnydutch", 							"TwilightForest", 		BunnyHead.INSTANCE),
+	penguin				(Strings.TF_PREFIX + "penguin", 							"TwilightForest", 		PenguinHead.INSTANCE),
+	bighorn				(Strings.TF_PREFIX + "bighorn", 							"TwilightForest", 		BighornHead.INSTANCE),
+	wildDeer			(Strings.TF_PREFIX + "wilddeer", 							"TwilightForest", 		DeerHead.INSTANCE),
+	wildBoar			(Strings.TF_PREFIX + "wildboar", 							"TwilightForest", 		WildBoarHead.INSTANCE),
+	redcap				(Strings.TF_PREFIX + "redcap", 								"TwilightForest", 		RedcapHead.INSTANCE),
+	druid				(Strings.TF_PREFIX + "skeletondruid", 						"TwilightForest", 		ModelHead.INSTANCE),
+	hedgeSpider			(Strings.TF_PREFIX + "hedgespider", 						"TwilightForest", 		SpiderHead.INSTANCE),
+	mistWolf			(Strings.TF_PREFIX + "mistwolf", 							"TwilightForest", 		MistWolfHead.INSTANCE),
+	miniGhast			(Strings.TF_PREFIX + "towerghast", 							"TwilightForest",		GhastHead.INSTANCE),
+	guardGhast			(Strings.TF_PREFIX + "towerghast_openeyes", 				"TwilightForest", 		GhastHead.INSTANCE),
+	kingSpider			(Strings.TF_PREFIX + "kingspider", 							"TwilightForest", 		SpiderHead.INSTANCE),
+	kobold				(Strings.TF_PREFIX + "kobold", 								"TwilightForest", 		KoboldHead.INSTANCE),
+	slimeBeetle			(Strings.TF_PREFIX + "slimebeetle", 						"TwilightForest", 		SlimeBeetleHead.INSTANCE),
+	fireBeetle			(Strings.TF_PREFIX + "firebeetle", 							"TwilightForest", 		FireBeetleHead.INSTANCE),
+	pinchBeetle			(Strings.TF_PREFIX + "pinchbeetle", 						"TwilightForest", 		PinchBeetle.INSTANCE),
+	towerGolem			(Strings.TF_PREFIX + "carminitegolem", 						"TwilightForest", 		TowerGolemHead.INSTANCE),
+	bunnyBrown			(Strings.TF_PREFIX + "bunnybrown", 							"TwilightForest", 		BunnyHead.INSTANCE),
+	bunnyWhite			(Strings.TF_PREFIX + "bunnywhite", 							"TwilightForest", 		BunnyHead.INSTANCE),
+	squirrel			(Strings.TF_PREFIX + "squirrel2", 							"TwilightForest", 		SquirrelHead.INSTANCE),
 	swarmSpider			(Strings.TF_PREFIX + "swarmspider", 						"TwilightForest", 		SpiderHead.INSTANCE),
 	towerBroodling		(Strings.TF_PREFIX + "towerbroodling", 						"TwilightForest", 		SpiderHead.INSTANCE),
 	winterWolf			(Strings.TF_PREFIX + "winterwolf", 							"TwilightForest", 		MistWolfHead.INSTANCE),
 	mazeSlime			(Strings.TF_PREFIX + "mazeslime", 							"TwilightForest", 		SlimeHead.INSTANCE),
 	towerwoodBorer		(Strings.TF_PREFIX + "towertermite", 						"TwilightForest", 		SilverfishHead.INSTANCE),
+	hydra				(Strings.TF_PREFIX + "hydra4", 								"TwilightForest", 		HydraHead.INSTANCE),
+	nagaTF				(Strings.TF_PREFIX + "nagahead", 							"TwilightForest", 		NagaTFHead.INSTANCE),
+	lich				(Strings.TF_PREFIX + "twilightlich64", 						"TwilightForest", 		LichHead.INSTANCE),
+	snowQueen			(Strings.TF_PREFIX + "snowqueen", 							"TwilightForest", 		SnowQueenHead.INSTANCE),
+	urGhast				(Strings.TF_PREFIX + "towerboss", 							"TwilightForest", 		GhastHead.INSTANCE),
+
 	imp					(Strings.NA_PREFIX + "imp", 								"Natura", 				ImpHead.INSTANCE),
 	nitroCreeper		(Strings.NA_PREFIX + "creeperunstable", 					"Natura", 				ModelHead.INSTANCE_NO_OVERLAY),
 	heatscarSpider		(Strings.NA_PREFIX + "flamespider", 						"Natura", 				SpiderHead.INSTANCE),
+
 	angryZombie			(Strings.TC_PREFIX + "bzombievil", 							"Thaumcraft", 			WitherHead.INSTANCE),
 	fireBat				(Strings.TC_PREFIX + "firebat", 							"Thaumcraft", 			BatHead.INSTANCE),
 	thaumicSlime		(Strings.TC_PREFIX + "tslime", 								"Thaumcraft", 			SlimeHead.INSTANCE),
@@ -203,16 +225,21 @@ public enum SkullTypes {
 	taintedSheep		(Strings.TC_PREFIX + "sheep", 								"Thaumcraft", 			TaintedSheepHead.INSTANCE),
 	pech				(Strings.TC_PREFIX + "pech_forage", 						"Thaumcraft", 			PechHead.INSTANCE),
 	eldritchGuardian	(Strings.TC_PREFIX + "eldritch_guardian", 					"Thaumcraft", 			EldrichGuardianHead.INSTANCE),
+	cultist				(Strings.TC_PREFIX + "cultist", 							"Thaumcraft", 			CultistHead.INSTANCE),
+	eldritchCrab		(Strings.TC_PREFIX + "crab",			 					"Thaumcraft", 			EldrichCrabHead.INSTANCE),
+
 	lycanites			("", 														"lycanitesmobs", 		LycaniteHead.INSTANCE),
 	pinky				(Strings.LY_PREFIX + "pinky", 								"lycanitesmobs", 		PinkyHead.INSTANCE),
 	behemoth			(Strings.LY_PREFIX + "behemoth", 							"lycanitesmobs", 		BehemothHead.INSTANCE),
 	belph				(Strings.LY_PREFIX + "belph", 								"lycanitesmobs", 		BelphHead.INSTANCE),
+
 	concussionCreeper	(Strings.EZ_PREFIX + "concussionCreeper", 					"EnderZoo", 			ModelHead.INSTANCE_NO_OVERLAY),
 	enderminy			(Strings.EZ_PREFIX + "enderminy", 							"EnderZoo", 			EnderminyHead.INSTANCE),
 	fallenKnight		(Strings.EZ_PREFIX + "fallen_knight", 						"EnderZoo", 			ModelHead.INSTANCE_NO_OVERLAY),
 	witherWitch			(Strings.EZ_PREFIX + "wither_witch", 						"EnderZoo", 			WitchHead.INSTANCE),
 	direWolf			(Strings.EZ_PREFIX + "dire_wolf", 							"EnderZoo", 			DireWolfHead.INSTANCE),
 	witherCat			(Strings.EZ_PREFIX + "wither_cat_angry", 					"EnderZoo", 			OcelotHead.INSTANCE),
+
 	rocketCreeper		(Strings.PM_PREFIX + "rocketcreeper/rocketcreeper", 		"primitivemobs", 		ModelHead.INSTANCE_NO_OVERLAY),
 	festiveCreeper		(Strings.PM_PREFIX + "festivecreeper/festivecreeper", 		"primitivemobs", 		ModelHead.INSTANCE_NO_OVERLAY),
 	supportCreeper		(Strings.PM_PREFIX + "supportcreeper/supportcreeper", 		"primitivemobs", 		ModelHead.INSTANCE_NO_OVERLAY),
@@ -225,6 +252,7 @@ public enum SkullTypes {
 	babySpider			(Strings.PM_PREFIX + "spiderfamily/babyspider",				"primitivemobs", 		SpiderHead.INSTANCE),
 	skeletonWarrior		(Strings.PM_PREFIX + "skeletonwarrior/skeletonwarrior",		"primitivemobs", 		ModelHead.INSTANCE_NO_OVERLAY),
 	brainSlime			(Strings.PM_PREFIX + "brainslime/brainslime",				"primitivemobs", 		SlimeHead.INSTANCE),
+
 	anubis				(Strings.GOG_PREFIX + "Anubis",								"GrimoireOfGaia", 		AnubisHead.INSTANCE),
 	banshee				(Strings.GOG_PREFIX + "Banshee",							"GrimoireOfGaia", 		BansheeHead.INSTANCE),
 	baphomet			(Strings.GOG_PREFIX + "Baphomet",							"GrimoireOfGaia", 		BaphometHead.INSTANCE),
@@ -270,12 +298,11 @@ public enum SkullTypes {
 	witherCow			(Strings.GOG_PREFIX + "Wither_Cow",							"GrimoireOfGaia", 		WitherCowHead.INSTANCE),
 	yeti				(Strings.GOG_PREFIX + "Yeti",								"GrimoireOfGaia", 		YetiHead.INSTANCE),
 	yukiOnna			(Strings.GOG_PREFIX + "Yuki_Onna",							"GrimoireOfGaia", 		YukiOnnaHead.INSTANCE),
-	cultist				(Strings.TC_PREFIX + "cultist", 							"Thaumcraft", 			PlayerHead.INSTANCE),
-	eldritchCrab		(Strings.TC_PREFIX + "crab",			 					"Thaumcraft", 			EldrichCrabHead.INSTANCE),
+
 	fireCreeper			(Strings.EC_PREFIX + "firecreeper",			 				"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
 	waterCreeper		(Strings.EC_PREFIX + "watercreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
 	electricCreeper		(Strings.EC_PREFIX + "electriccreeper",		 				"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
-	ghostCreeper		(Strings.MC_PREFIX + "creeper/creeper",					 	"ElementalCreepers", 	GhostCreeperHead.INSTANCE),
+	ghostCreeper		(Strings.EC_PREFIX + "creeper/creeper",					 	"ElementalCreepers", 	GhostCreeperHead.INSTANCE),
 	cookieCreeper		(Strings.EC_PREFIX + "cookiecreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
 	darkCreeper			(Strings.EC_PREFIX + "darkcreeper",			 				"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
 	lightCreeper		(Strings.EC_PREFIX + "lightcreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
@@ -295,27 +322,10 @@ public enum SkullTypes {
 	cakeCreeper			(Strings.EC_PREFIX + "cakecreeper",			 				"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
 	fireworkCreeper		(Strings.EC_PREFIX + "fireworkcreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
 	springCreeper		(Strings.EC_PREFIX + "springcreeper",			 			"ElementalCreepers", 	ModelHead.INSTANCE_NO_OVERLAY),
+
 	laserCreeper		(Strings.LC_PREFIX + "laserCreeper",			 			"lasercreepers", 		LaserCreeperHead.INSTANCE),
 	roboDino			(Strings.LC_PREFIX + "roboDino",			 				"lasercreepers", 		RoboDinoHead.INSTANCE),
-	jetPackSpider		(Strings.LC_PREFIX + "jetPackSpider",			 			"lasercreepers", 		JetPackSpiderHead.INSTANCE),
-	endermite			(Strings.MC_PREFIX + "endermite",			 				"etfuturum", 			EndermiteHead.INSTANCE),
-	guardian			(Strings.MC_PREFIX + "guardian",			 				"etfuturum", 			GuardianHead.INSTANCE),
-	guardianElder		(Strings.MC_PREFIX + "guardian_elder",			 			"etfuturum", 			GuardianHead.INSTANCE),
-	shulker				(Strings.MC_PREFIX + "shulker/endergolem",			 		"etfuturum", 			ShulkerHead.INSTANCE),
-	rabbitBlack			(Strings.MC_PREFIX + "rabbit/black",			 			"etfuturum", 			RabbitHead.INSTANCE),
-	rabbitBrown			(Strings.MC_PREFIX + "rabbit/brown",			 			"etfuturum", 			RabbitHead.INSTANCE),
-	rabbitGold			(Strings.MC_PREFIX + "rabbit/gold",			 				"etfuturum", 			RabbitHead.INSTANCE),
-	rabbitSalt			(Strings.MC_PREFIX + "rabbit/salt",			 				"etfuturum", 			RabbitHead.INSTANCE),
-	rabbitToast			(Strings.MC_PREFIX + "rabbit/toast",		 				"etfuturum", 			RabbitHead.INSTANCE),
-	rabbitSplotched		(Strings.MC_PREFIX + "rabbit/white_splotched",				"etfuturum", 			RabbitHead.INSTANCE),
-	rabbitWhite			(Strings.MC_PREFIX + "rabbit/white",			 			"etfuturum", 			RabbitHead.INSTANCE),
-	hydra				(Strings.TF_PREFIX + "hydra4", 								"TwilightForest", 		HydraHead.INSTANCE),
-	nagaTF				(Strings.TF_PREFIX + "nagahead", 							"TwilightForest", 		NagaTFHead.INSTANCE),
-	lich				(Strings.TF_PREFIX + "twilightlich64", 						"TwilightForest", 		LichHead.INSTANCE),
-	snowQueen			(Strings.TF_PREFIX + "snowqueen", 							"TwilightForest", 		SnowQueenHead.INSTANCE),
-	urGhast				(Strings.TF_PREFIX + "towerboss", 							"TwilightForest", 		GhastHead.INSTANCE),
-	blitz				(Strings.TE_PREFIX + "Blitz", 								"ThermalFoundation",	ModelHead.INSTANCE),
-	basalz				(Strings.TE_PREFIX + "Basalz", 								"ThermalFoundation",	ModelHead.INSTANCE);
+	jetPackSpider		(Strings.LC_PREFIX + "jetPackSpider",			 			"lasercreepers", 		JetPackSpiderHead.INSTANCE);
 	// @formatter:on
 
 	private final String mod;
@@ -331,15 +341,19 @@ public enum SkullTypes {
 			throw new IllegalArgumentException("Head model for " + this + " cannot be null!");
 	}
 
-	public boolean canShow() {
-		return this != player && !Headcrumbs.enableMobsAndAnimalHeads ? false : isModLoaded();
+	public boolean usesProfile() {
+		return this == lycanites;
 	}
 
-	public ResourceLocation getTexture(GameProfile name) {
-		if (this == player || !isModLoaded())
-			return TextureUtils.getPlayerSkin(name);
+	public boolean canShow() {
+		return isModLoaded();
+	}
+
+	public ResourceLocation getTexture(GameProfile profile) {
+		if (!isModLoaded())
+			return TextureUtils.getPlayerSkin(profile);
 		if (this == lycanites)
-			return LycanitesHelperClient.getTexture(name.getName());
+			return LycanitesHelperClient.getTexture(profile.getName());
 		return texture;
 	}
 
@@ -358,6 +372,10 @@ public enum SkullTypes {
 	}
 
 	public ItemStack getStack(int size) {
-		return new ItemStack(ModItems.skull, size, ordinal());
+		ItemStack stack = new ItemStack(ModBlocks.skull, size);
+		NBTTagCompound nbt = new NBTTagCompound();
+		stack.setTagCompound(nbt);
+		nbt.setString(HeadUtils.MODEL_TAG, name());
+		return stack;
 	}
 }

@@ -5,9 +5,6 @@ import java.util.List;
 
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.utils.HeadUtils;
-import lycanite.lycanitesmobs.demonmobs.entity.EntityBehemoth;
-import lycanite.lycanitesmobs.demonmobs.entity.EntityBelph;
-import lycanite.lycanitesmobs.demonmobs.entity.EntityPinky;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.item.ItemStack;

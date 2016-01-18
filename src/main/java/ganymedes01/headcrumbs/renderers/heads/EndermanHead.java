@@ -18,7 +18,7 @@ public class EndermanHead extends ModelHead {
 	public void init() {
 		setSecondTexture(Utils.getResource(Strings.MC_PREFIX + "enderman/enderman_eyes.png"));
 
-		ModelEnderman model = new ModelEnderman();
+		ModelEnderman model = new ModelEnderman(0.0F);
 		head = model.bipedHead;
 		overlay = model.bipedHeadwear;
 		head.setRotationPoint(0F, 0F, 0F);

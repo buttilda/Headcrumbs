@@ -6,6 +6,7 @@ import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import ganymedes01.headcrumbs.renderers.heads.SheepHead;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.item.EnumDyeColor;
 
 public class BighornHead extends SheepHead {
 
@@ -40,8 +41,8 @@ public class BighornHead extends SheepHead {
 
 	@Override
 	public void renderSpecial(GameProfile profile, float skullRotation) {
-		int colour = 12;
-		OpenGLHelper.colour(EntitySheep.fleeceColorTable[colour][0], EntitySheep.fleeceColorTable[colour][1], EntitySheep.fleeceColorTable[colour][2]);
+		float[] colour = EntitySheep.func_175513_a(EnumDyeColor.BROWN);
+		OpenGLHelper.colour(colour[0], colour[1], colour[2]);
 		renderOverlay(skullRotation);
 	}
 }
