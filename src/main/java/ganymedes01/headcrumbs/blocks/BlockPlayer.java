@@ -1,5 +1,8 @@
 package ganymedes01.headcrumbs.blocks;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ganymedes01.headcrumbs.ModBlocks;
 import ganymedes01.headcrumbs.items.ItemStatue;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockPlayer;
@@ -22,6 +25,20 @@ public class BlockPlayer extends BlockHeadcrumbsSkull {
 
 	public BlockPlayer() {
 		setUnlocalizedName(Utils.getUnlocalisedName("player"));
+	}
+
+	@Override
+	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+		List<ItemStack> list = new ArrayList<ItemStack>();
+		TileEntityBlockPlayer tile = Utils.getTileEntity(world, pos, TileEntityBlockPlayer.class);
+		if (tile != null) {
+			ItemStack stack = new ItemStack(this);
+			stack.setTagCompound(new NBTTagCompound());
+			NBTTagCompound nbt = NBTUtil.writeGameProfile(new NBTTagCompound(), tile.getPlayerProfile());
+			stack.getTagCompound().setTag(HeadUtils.OWNER_TAG, nbt);
+			list.add(stack);
+		}
+		return list;
 	}
 
 	@Override
