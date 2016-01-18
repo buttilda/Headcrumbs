@@ -5,6 +5,7 @@ import com.mojang.authlib.GameProfile;
 import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockPlayer;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraftforge.fml.relauncher.Side;
@@ -31,15 +32,15 @@ public class TileEntityBlockPlayerRenderer extends TileEntitySpecialRenderer<Til
 		RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
 		renderManager.setRenderPosition(human.posX, human.posY, human.posZ);
 
-		OpenGLHelper.pushMatrix();
-		OpenGLHelper.translate(x + 0.5, y, z + 0.5);
-		OpenGLHelper.scale(1.0F, -1.0F, -1.0F);
-		OpenGLHelper.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-		OpenGLHelper.rotate(adjustRotation(tile.getBlockMetadata() & 7, -tile.getSkullRotation() * 360 / 16.0F), 0, 1, 0);
+		GlStateManager.pushMatrix();
+		GlStateManager.translate(x + 0.5, y - 1, z + 0.5);
+		GlStateManager.scale(1.0F, -1.0F, -1.0F);
+		GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
+		GlStateManager.rotate(adjustRotation(tile.getBlockMetadata() & 7, -tile.getSkullRotation() * 360 / 16.0F), 0, 1, 0);
 
 		renderManager.renderEntitySimple(human, 0);
 
-		OpenGLHelper.popMatrix();
+		GlStateManager.popMatrix();
 	}
 
 	private float adjustRotation(int meta, float rotation) {

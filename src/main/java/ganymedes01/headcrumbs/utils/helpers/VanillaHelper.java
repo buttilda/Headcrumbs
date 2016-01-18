@@ -8,7 +8,9 @@ import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityCaveSpider;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.monster.EntityEndermite;
 import net.minecraft.entity.monster.EntityGhast;
+import net.minecraft.entity.monster.EntityGuardian;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.monster.EntityMob;
@@ -28,6 +30,7 @@ import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityMooshroom;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.passive.EntityRabbit;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.passive.EntityVillager;
@@ -73,6 +76,10 @@ public class VanillaHelper extends HeadDropHelper {
 				return SkullTypes.wither.getStack(1 + (entity.worldObj.rand.nextInt(100) == 0 ? 1 + entity.worldObj.rand.nextInt(2) : 0));
 			else if (entity instanceof EntitySilverfish)
 				return SkullTypes.silverfish.getStack();
+			else if (entity instanceof EntityGuardian)
+				return (((EntityGuardian) entity).isElder() ? SkullTypes.guardianElder : SkullTypes.guardian).getStack();
+			else if (entity instanceof EntityEndermite)
+				return SkullTypes.endermite.getStack();
 		} else if (entity instanceof EntityAnimal) {
 			if (entity instanceof EntityPig)
 				return SkullTypes.pig.getStack();
@@ -126,6 +133,26 @@ public class VanillaHelper extends HeadDropHelper {
 					return SkullTypes.horseUndead.getStack();
 				else if (type == 4)
 					return SkullTypes.horseSkeleton.getStack();
+			} else if (entity instanceof EntityRabbit) {
+				String name = entity.getName();
+				if (name != null && name.equals("Toast"))
+					return SkullTypes.rabbitToast.getStack();
+
+				int rabbitType = ((EntityRabbit) entity).getRabbitType();
+				switch (rabbitType) {
+					case 0:
+						return SkullTypes.rabbitBrown.getStack();
+					case 1:
+						return SkullTypes.rabbitWhite.getStack();
+					case 2:
+						return SkullTypes.rabbitBlack.getStack();
+					case 3:
+						return SkullTypes.rabbitSplotched.getStack();
+					case 4:
+						return SkullTypes.rabbitGold.getStack();
+					case 5:
+						return SkullTypes.rabbitSalt.getStack();
+				}
 			}
 		} else if (entity instanceof EntityVillager)
 			return SkullTypes.villager.getStack();

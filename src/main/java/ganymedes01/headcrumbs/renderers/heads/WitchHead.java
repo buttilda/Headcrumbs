@@ -4,8 +4,8 @@ import com.mojang.authlib.GameProfile;
 
 import ganymedes01.headcrumbs.libs.ItemRenderType;
 import ganymedes01.headcrumbs.renderers.ModelHead;
-import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 
 public class WitchHead extends ModelHead {
 
@@ -60,7 +60,7 @@ public class WitchHead extends ModelHead {
 
 	@Override
 	public void preRenderItem(GameProfile profile, ItemRenderType type) {
-		OpenGLHelper.scale(0.75, 0.75, 0.75);
-		OpenGLHelper.translate(0, -0.45, 0);
+		GlStateManager.scale(0.75, 0.75, 0.75);
+		GlStateManager.translate(0, -0.45, 0);
 	}
 }

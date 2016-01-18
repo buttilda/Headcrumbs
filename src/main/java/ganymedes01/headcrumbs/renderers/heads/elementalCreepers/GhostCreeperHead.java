@@ -5,7 +5,7 @@ import org.lwjgl.opengl.GL11;
 import com.mojang.authlib.GameProfile;
 
 import ganymedes01.headcrumbs.renderers.ModelHead;
-import ganymedes01.headcrumbs.renderers.OpenGLHelper;
+import net.minecraft.client.renderer.GlStateManager;
 
 public class GhostCreeperHead extends ModelHead {
 
@@ -18,8 +18,8 @@ public class GhostCreeperHead extends ModelHead {
 
 	@Override
 	public void preRender(GameProfile profile) {
-		OpenGLHelper.enableBlend();
-		OpenGLHelper.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		OpenGLHelper.colour(1, 1, 1, 0.3F);
+		GlStateManager.enableBlend();
+		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GlStateManager.color(1, 1, 1, 0.3F);
 	}
 }

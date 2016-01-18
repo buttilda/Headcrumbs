@@ -7,6 +7,7 @@ import com.mojang.authlib.GameProfile;
 import ganymedes01.headcrumbs.libs.ItemRenderType;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.util.ResourceLocation;
 
@@ -96,12 +97,12 @@ public class ModelHead extends ModelBase {
 	public void renderLitUp(float skullRotation) {
 		boolean isAlphaEnabled = GL11.glIsEnabled(GL11.GL_ALPHA_TEST);
 
-		OpenGLHelper.pushMatrix();
-		OpenGLHelper.enableBlend();
+		GlStateManager.pushMatrix();
+		GlStateManager.enableBlend();
 		if (isAlphaEnabled)
 			GL11.glDisable(GL11.GL_ALPHA_TEST);
-		OpenGLHelper.blendFunc(GL11.GL_ONE, GL11.GL_ONE);
-		OpenGLHelper.depthMask(true);
+		GlStateManager.blendFunc(GL11.GL_ONE, GL11.GL_ONE);
+		GlStateManager.depthMask(true);
 		float brightnessX = OpenGlHelper.lastBrightnessX;
 		float brightnessY = OpenGlHelper.lastBrightnessY;
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 61680, 0);
@@ -109,10 +110,10 @@ public class ModelHead extends ModelBase {
 		render(skullRotation);
 
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, brightnessX, brightnessY);
-		OpenGLHelper.disableBlend();
-		OpenGLHelper.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GlStateManager.disableBlend();
+		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		if (isAlphaEnabled)
-			OpenGLHelper.enableAlpha();
-		OpenGLHelper.popMatrix();
+			GlStateManager.enableAlpha();
+		GlStateManager.popMatrix();
 	}
 }

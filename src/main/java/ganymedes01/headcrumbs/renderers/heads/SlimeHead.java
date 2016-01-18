@@ -5,8 +5,8 @@ import org.lwjgl.opengl.GL11;
 import com.mojang.authlib.GameProfile;
 
 import ganymedes01.headcrumbs.renderers.ModelHead;
-import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 
 public class SlimeHead extends ModelHead {
 
@@ -37,8 +37,8 @@ public class SlimeHead extends ModelHead {
 
 	@Override
 	public void preRender(GameProfile profile) {
-		OpenGLHelper.enableNormalise();
-		OpenGLHelper.enableBlend();
-		OpenGLHelper.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GlStateManager.enableNormalize();
+		GlStateManager.enableBlend();
+		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 	}
 }

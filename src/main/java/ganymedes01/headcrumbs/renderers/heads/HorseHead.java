@@ -4,8 +4,8 @@ import com.mojang.authlib.GameProfile;
 
 import ganymedes01.headcrumbs.libs.ItemRenderType;
 import ganymedes01.headcrumbs.renderers.ModelHead;
-import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 
 public class HorseHead extends ModelHead {
 
@@ -69,8 +69,8 @@ public class HorseHead extends ModelHead {
 
 	@Override
 	public void preRenderItem(GameProfile profile, ItemRenderType type) {
-		OpenGLHelper.scale(0.75, 0.75, 0.75);
+		GlStateManager.scale(0.75, 0.75, 0.75);
 		if (type != ItemRenderType.EQUIPPED_FIRST_PERSON)
-			OpenGLHelper.translate(0, -0.45, 0);
+			GlStateManager.translate(0, -0.45, 0);
 	}
 }

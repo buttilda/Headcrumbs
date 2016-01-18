@@ -2,9 +2,9 @@ package ganymedes01.headcrumbs.renderers.heads.twilightforest;
 
 import com.mojang.authlib.GameProfile;
 
-import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import ganymedes01.headcrumbs.renderers.heads.SheepHead;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.item.EnumDyeColor;
 
@@ -42,7 +42,7 @@ public class BighornHead extends SheepHead {
 	@Override
 	public void renderSpecial(GameProfile profile, float skullRotation) {
 		float[] colour = EntitySheep.func_175513_a(EnumDyeColor.BROWN);
-		OpenGLHelper.colour(colour[0], colour[1], colour[2]);
+		GlStateManager.color(colour[0], colour[1], colour[2]);
 		renderOverlay(skullRotation);
 	}
 }

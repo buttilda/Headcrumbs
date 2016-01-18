@@ -33,4 +33,9 @@ public class TileEntityBlockPlayer extends TileEntitySkull {
 		}
 		return human;
 	}
+
+	@Override
+	public boolean canRenderBreaking() {
+		return false;
+	}
 }

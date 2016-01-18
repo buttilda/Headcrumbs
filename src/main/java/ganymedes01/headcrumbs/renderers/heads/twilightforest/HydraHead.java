@@ -4,8 +4,8 @@ import com.mojang.authlib.GameProfile;
 
 import ganymedes01.headcrumbs.libs.ItemRenderType;
 import ganymedes01.headcrumbs.renderers.ModelHead;
-import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 
 public class HydraHead extends ModelHead {
 
@@ -16,7 +16,7 @@ public class HydraHead extends ModelHead {
 
 	@Override
 	public void preRender(GameProfile profile) {
-		OpenGLHelper.scale(0.25, 0.25, 0.25);
+		GlStateManager.scale(0.25, 0.25, 0.25);
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class HydraHead extends ModelHead {
 
 	@Override
 	public void preRenderItem(GameProfile profile, ItemRenderType type) {
-		OpenGLHelper.translate(0, -0.125, 0);
-		OpenGLHelper.scale(0.75, 0.75, 0.75);
+		GlStateManager.translate(0, -0.125, 0);
+		GlStateManager.scale(0.75, 0.75, 0.75);
 	}
 }

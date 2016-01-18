@@ -3,8 +3,8 @@ package ganymedes01.headcrumbs.renderers.heads;
 import com.mojang.authlib.GameProfile;
 
 import ganymedes01.headcrumbs.renderers.ModelHead;
-import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.MathHelper;
 
 public class GuardianHead extends ModelHead {
@@ -16,7 +16,7 @@ public class GuardianHead extends ModelHead {
 
 	@Override
 	public void preRender(GameProfile profile) {
-		OpenGLHelper.scale(0.5F, 0.5F, 0.5F);
+		GlStateManager.scale(0.5F, 0.5F, 0.5F);
 	}
 
 	@Override

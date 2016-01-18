@@ -9,6 +9,7 @@ import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
 import ganymedes01.headcrumbs.utils.helpers.LycanitesHelperClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
@@ -23,7 +24,7 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer<Tile
 
 	@Override
 	public void renderTileEntityAt(TileEntityBlockSkull tile, double x, double y, double z, float partialTickTime, int destroyStage) {
-		renderHead((float) x, (float) y, (float) z, tile.getBlockMetadata() & 7, tile.getSkullRotation() * 360 / 16.0F, tile.getModel(), tile.getPlayerProfile());
+		renderHead((float) x, (float) y, (float) z, tile.getBlockMetadata() & 7, tile.getSkullRotation() * 360 / 16.0F, tile.getModel(), tile.getPlayerProfile(), destroyStage);
 	}
 
 	//	public void renderHead(float x, float y, float z, ItemStack head) {
@@ -39,34 +40,34 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer<Tile
 	//		renderHead(x, y, z + offset * 0.0625F, 1, 180.0F, head.getItemDamage(), profile);
 	//	}
 
-	public void renderHead(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile profile) {
+	public void renderHead(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile profile, int destroyStage) {
 		if (type == SkullTypes.lycanites)
-			renderLycanites(x, y, z, meta, skullRotation, type, profile);
+			renderLycanites(x, y, z, meta, skullRotation, type, profile, destroyStage);
 		else
-			renderNormal(x, y, z, meta, skullRotation, type, profile);
+			renderNormal(x, y, z, meta, skullRotation, type, profile, destroyStage);
 	}
 
-	private void renderLycanites(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile profile) {
+	private void renderLycanites(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile profile, int destroyStage) {
 		if (profile == null || !SkullTypes.lycanites.canShow()) {
-			renderNormal(x, y, z, meta, skullRotation, SkullTypes.blaze, profile); // So that the heads are visible after an eventual removal of Lycanites
+			renderNormal(x, y, z, meta, skullRotation, SkullTypes.blaze, profile, destroyStage); // So that the heads are visible after an eventual removal of Lycanites
 			return;
 		}
 
 		ModelBase model = LycanitesHelperClient.getModel(profile.getName());
 		ResourceLocation tex = type.getTexture(profile);
 		if (model != null && tex != null) {
-			OpenGLHelper.pushMatrix();
-			OpenGLHelper.disableCull();
-			OpenGLHelper.enableAlpha();
+			GlStateManager.pushMatrix();
+			GlStateManager.disableCull();
+			GlStateManager.enableAlpha();
 
 			translateHead(x, y + 1.75F, z, meta);
 			skullRotation = adjustRotation(meta, skullRotation);
-			OpenGLHelper.scale(-1, -1, 1);
-			OpenGLHelper.rotate(skullRotation, 0, 1, 0);
+			GlStateManager.scale(-1, -1, 1);
+			GlStateManager.rotate(skullRotation, 0, 1, 0);
 			bindTexture(tex);
 			model.render(getEntity(), 0, 0, 0, 0, 0, -1F);
 
-			OpenGLHelper.popMatrix();
+			GlStateManager.popMatrix();
 		}
 	}
 
@@ -78,26 +79,40 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer<Tile
 		return entity;
 	}
 
-	private void renderNormal(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile profile) {
-		bindTexture(type.getTexture(profile));
+	private void renderNormal(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile profile, int destroyStage) {
+		if (destroyStage >= 0) {
+			bindTexture(DESTROY_STAGES[destroyStage]);
+			GlStateManager.matrixMode(5890);
+			GlStateManager.pushMatrix();
+			GlStateManager.scale(4.0F, 2.0F, 1.0F);
+			GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
+			GlStateManager.matrixMode(5888);
+		} else
+			bindTexture(type.getTexture(profile));
 
-		OpenGLHelper.pushMatrix();
-		OpenGLHelper.disableCull();
-		OpenGLHelper.enableRescaleNormal();
-		OpenGLHelper.enableAlpha();
+		GlStateManager.pushMatrix();
+		GlStateManager.disableCull();
+		GlStateManager.enableRescaleNormal();
+		GlStateManager.enableAlpha();
 
 		translateHead(x, y, z, meta);
 		skullRotation = adjustRotation(meta, skullRotation);
 
-		OpenGLHelper.scale(-1.0F, -1.0F, 1.0F);
+		GlStateManager.scale(-1.0F, -1.0F, 1.0F);
 		model = type.model();
 		model.preRender(profile);
 		model.render(skullRotation);
 		renderSpecial(profile, skullRotation);
 
 		if (GL11.glIsEnabled(GL11.GL_BLEND))
-			OpenGLHelper.enableBlend();
-		OpenGLHelper.popMatrix();
+			GlStateManager.enableBlend();
+		GlStateManager.popMatrix();
+
+		if (destroyStage >= 0) {
+			GlStateManager.matrixMode(5890);
+			GlStateManager.popMatrix();
+			GlStateManager.matrixMode(5888);
+		}
 	}
 
 	private void renderSpecial(GameProfile profile, float skullRotation) {
@@ -111,19 +126,19 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer<Tile
 	private void translateHead(float x, float y, float z, int meta) {
 		switch (meta) {
 			case 1:
-				OpenGLHelper.translate(x + 0.5F, y, z + 0.5F);
+				GlStateManager.translate(x + 0.5F, y, z + 0.5F);
 				break;
 			case 2:
-				OpenGLHelper.translate(x + 0.5F, y + 0.25F, z + 0.74F);
+				GlStateManager.translate(x + 0.5F, y + 0.25F, z + 0.74F);
 				break;
 			case 3:
-				OpenGLHelper.translate(x + 0.5F, y + 0.25F, z + 0.26F);
+				GlStateManager.translate(x + 0.5F, y + 0.25F, z + 0.26F);
 				break;
 			case 4:
-				OpenGLHelper.translate(x + 0.74F, y + 0.25F, z + 0.5F);
+				GlStateManager.translate(x + 0.74F, y + 0.25F, z + 0.5F);
 				break;
 			default:
-				OpenGLHelper.translate(x + 0.26F, y + 0.25F, z + 0.5F);
+				GlStateManager.translate(x + 0.26F, y + 0.25F, z + 0.5F);
 				break;
 		}
 	}

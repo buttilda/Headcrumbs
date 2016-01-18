@@ -4,8 +4,8 @@ import com.mojang.authlib.GameProfile;
 
 import ganymedes01.headcrumbs.libs.ItemRenderType;
 import ganymedes01.headcrumbs.renderers.ModelHead;
-import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 
 public class BansheeHead extends ModelHead {
 
@@ -58,7 +58,7 @@ public class BansheeHead extends ModelHead {
 
 	@Override
 	public void preRenderItem(GameProfile profile, ItemRenderType type) {
-		OpenGLHelper.scale(0.75F, 0.75F, 0.75F);
-		OpenGLHelper.translate(0, -0.5F, -0.5F);
+		GlStateManager.scale(0.75F, 0.75F, 0.75F);
+		GlStateManager.translate(0, -0.5F, -0.5F);
 	}
 }

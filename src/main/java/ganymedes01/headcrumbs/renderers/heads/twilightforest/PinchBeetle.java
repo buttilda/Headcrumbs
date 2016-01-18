@@ -4,8 +4,8 @@ import com.mojang.authlib.GameProfile;
 
 import ganymedes01.headcrumbs.libs.ItemRenderType;
 import ganymedes01.headcrumbs.renderers.ModelHead;
-import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 
 public class PinchBeetle extends ModelHead {
 
@@ -94,9 +94,9 @@ public class PinchBeetle extends ModelHead {
 
 	@Override
 	public void preRenderItem(GameProfile profile, ItemRenderType type) {
-		OpenGLHelper.scale(0.65, 0.65, 0.65);
+		GlStateManager.scale(0.65, 0.65, 0.65);
 		if (type == ItemRenderType.INVENTORY)
-			OpenGLHelper.translate(0, 0.5, 0.5);
+			GlStateManager.translate(0, 0.5, 0.5);
 	}
 
 	@Override

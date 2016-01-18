@@ -3,8 +3,8 @@ package ganymedes01.headcrumbs.renderers.heads;
 import com.mojang.authlib.GameProfile;
 
 import ganymedes01.headcrumbs.renderers.ModelHead;
-import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 
 public class SquidHead extends ModelHead {
 
@@ -23,6 +23,6 @@ public class SquidHead extends ModelHead {
 
 	@Override
 	public void preRender(GameProfile profile) {
-		OpenGLHelper.scale(2F / 3F, 2F / 3F, 2F / 3F);
+		GlStateManager.scale(2F / 3F, 2F / 3F, 2F / 3F);
 	}
 }

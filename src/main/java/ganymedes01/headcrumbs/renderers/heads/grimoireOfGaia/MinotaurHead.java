@@ -5,9 +5,9 @@ import com.mojang.authlib.GameProfile;
 import ganymedes01.headcrumbs.libs.ItemRenderType;
 import ganymedes01.headcrumbs.libs.Strings;
 import ganymedes01.headcrumbs.renderers.ModelHead;
-import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import ganymedes01.headcrumbs.utils.Utils;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 
 public class MinotaurHead extends ModelHead {
 
@@ -75,6 +75,6 @@ public class MinotaurHead extends ModelHead {
 
 	@Override
 	public void preRenderItem(GameProfile profile, ItemRenderType type) {
-		OpenGLHelper.translate(-0.35F, 0.125F, 0);
+		GlStateManager.translate(-0.35F, 0.125F, 0);
 	}
 }

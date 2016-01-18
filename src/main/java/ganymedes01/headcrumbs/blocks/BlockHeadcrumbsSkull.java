@@ -14,6 +14,7 @@ import ganymedes01.headcrumbs.utils.helpers.LycanitesHelperClient;
 import net.minecraft.block.BlockSkull;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -21,6 +22,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -33,6 +35,21 @@ public class BlockHeadcrumbsSkull extends BlockSkull implements IHasCustomItem {
 		setStepSound(soundTypePiston);
 		setCreativeTab(Headcrumbs.tab);
 		setUnlocalizedName(Utils.getUnlocalisedName("skull"));
+	}
+
+	@Override
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player) {
+		TileEntityBlockSkull tile = Utils.getTileEntity(world, pos, TileEntityBlockSkull.class);
+		if (tile != null) {
+			SkullTypes model = tile.getModel();
+			ItemStack stack = model.getStack();
+			if (model.usesProfile()) {
+				NBTTagCompound nbt = NBTUtil.writeGameProfile(new NBTTagCompound(), tile.getPlayerProfile());
+				stack.getTagCompound().setTag(HeadUtils.OWNER_TAG, nbt);
+			}
+			return stack;
+		}
+		return null;
 	}
 
 	@Override
@@ -70,12 +87,10 @@ public class BlockHeadcrumbsSkull extends BlockSkull implements IHasCustomItem {
 			if (tile != null) {
 				SkullTypes model = tile.getModel();
 				ItemStack stack = model.getStack();
-
 				if (model.usesProfile()) {
 					NBTTagCompound nbt = NBTUtil.writeGameProfile(new NBTTagCompound(), tile.getPlayerProfile());
 					stack.getTagCompound().setTag(HeadUtils.OWNER_TAG, nbt);
 				}
-
 				list.add(stack);
 			}
 		}

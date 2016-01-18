@@ -3,8 +3,8 @@ package ganymedes01.headcrumbs.renderers.heads;
 import com.mojang.authlib.GameProfile;
 
 import ganymedes01.headcrumbs.renderers.ModelHead;
-import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 
 public class BatHead extends ModelHead {
 
@@ -33,7 +33,7 @@ public class BatHead extends ModelHead {
 
 	@Override
 	public void preRender(GameProfile profile) {
-		OpenGLHelper.scale(0.5, 0.5, 0.5);
+		GlStateManager.scale(0.5, 0.5, 0.5);
 	}
 
 	@Override

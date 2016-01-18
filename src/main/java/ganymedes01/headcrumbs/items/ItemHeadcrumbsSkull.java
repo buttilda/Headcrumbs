@@ -62,8 +62,6 @@ public class ItemHeadcrumbsSkull extends FixedItemBlock {
 
 					TileEntity tile = world.getTileEntity(pos);
 					populateTile(stack, side, player, tile);
-
-					stack.stackSize--;
 				}
 
 				return true;

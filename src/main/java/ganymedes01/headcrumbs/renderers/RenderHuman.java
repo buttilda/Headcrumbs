@@ -156,7 +156,7 @@ public class RenderHuman extends RenderBiped<EntityHuman> {
 
 	@Override
 	protected void preRenderCallback(EntityHuman entity, float float0) {
-		OpenGLHelper.scale(0.9375F, 0.9375F, 0.9375F);
+		GlStateManager.scale(0.9375F, 0.9375F, 0.9375F);
 	}
 
 	private void setModel(EntityHuman human) {

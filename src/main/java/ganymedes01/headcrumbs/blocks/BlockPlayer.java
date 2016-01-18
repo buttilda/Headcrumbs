@@ -3,12 +3,18 @@ package ganymedes01.headcrumbs.blocks;
 import ganymedes01.headcrumbs.ModBlocks;
 import ganymedes01.headcrumbs.items.ItemStatue;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockPlayer;
+import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -16,6 +22,19 @@ public class BlockPlayer extends BlockHeadcrumbsSkull {
 
 	public BlockPlayer() {
 		setUnlocalizedName(Utils.getUnlocalisedName("player"));
+	}
+
+	@Override
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player) {
+		TileEntityBlockPlayer tile = Utils.getTileEntity(world, pos, TileEntityBlockPlayer.class);
+		if (tile != null) {
+			ItemStack stack = new ItemStack(this);
+			stack.setTagCompound(new NBTTagCompound());
+			NBTTagCompound nbt = NBTUtil.writeGameProfile(new NBTTagCompound(), tile.getPlayerProfile());
+			stack.getTagCompound().setTag(HeadUtils.OWNER_TAG, nbt);
+			return stack;
+		}
+		return null;
 	}
 
 	@Override

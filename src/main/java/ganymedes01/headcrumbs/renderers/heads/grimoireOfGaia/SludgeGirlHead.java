@@ -6,9 +6,9 @@ import com.mojang.authlib.GameProfile;
 
 import ganymedes01.headcrumbs.libs.Strings;
 import ganymedes01.headcrumbs.renderers.ModelHead;
-import ganymedes01.headcrumbs.renderers.OpenGLHelper;
 import ganymedes01.headcrumbs.utils.Utils;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 
 public class SludgeGirlHead extends ModelHead {
 
@@ -64,9 +64,9 @@ public class SludgeGirlHead extends ModelHead {
 
 	@Override
 	public void renderSpecial(GameProfile profile, float skullRotation) {
-		OpenGLHelper.enableBlend();
-		OpenGLHelper.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GlStateManager.enableBlend();
+		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		renderOverlay(skullRotation);
-		OpenGLHelper.disableBlend();
+		GlStateManager.disableBlend();
 	}
 }
