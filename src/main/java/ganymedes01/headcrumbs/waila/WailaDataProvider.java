@@ -3,7 +3,6 @@ package ganymedes01.headcrumbs.waila;
 import java.util.List;
 
 import ganymedes01.headcrumbs.ModBlocks;
-import ganymedes01.headcrumbs.ModItems;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
 import ganymedes01.headcrumbs.utils.HeadUtils;
@@ -13,8 +12,9 @@ import mcp.mobius.waila.api.IWailaDataProvider;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 public class WailaDataProvider implements IWailaDataProvider {
@@ -24,17 +24,20 @@ public class WailaDataProvider implements IWailaDataProvider {
 		TileEntity te;
 		if (accessor.getBlock() == ModBlocks.empty) {
 			World world = accessor.getWorld();
-			MovingObjectPosition mop = accessor.getPosition();
-			te = world.getTileEntity(mop.blockX, mop.blockY + 1, mop.blockZ);
+			BlockPos pos = accessor.getPosition();
+			te = world.getTileEntity(pos);
 		} else
 			te = accessor.getTileEntity();
 
 		if (te instanceof TileEntityBlockSkull) {
 			TileEntityBlockSkull tile = (TileEntityBlockSkull) te;
-			if ((tile.func_145904_a() == SkullTypes.player.ordinal() || tile.func_145904_a() == SkullTypes.lycanites.ordinal()) && tile.func_152108_a() != null) {
-				ItemStack stack = new ItemStack(ModItems.skull, 1, ModBlocks.skull.getDamageValue(tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord));
-				stack = HeadUtils.createHeadFor(tile.func_152108_a());
-				stack.setItemDamage(tile.func_145904_a());
+			if (tile != null) {
+				SkullTypes model = tile.getModel();
+				ItemStack stack = model.getStack();
+				if (model.usesProfile()) {
+					NBTTagCompound nbt = NBTUtil.writeGameProfile(new NBTTagCompound(), tile.getPlayerProfile());
+					stack.getTagCompound().setTag(HeadUtils.OWNER_TAG, nbt);
+				}
 				return stack;
 			}
 		}
@@ -57,7 +60,7 @@ public class WailaDataProvider implements IWailaDataProvider {
 	}
 
 	@Override
-	public NBTTagCompound getNBTData(EntityPlayerMP player, TileEntity te, NBTTagCompound tag, World world, int x, int y, int z) {
+	public NBTTagCompound getNBTData(EntityPlayerMP player, TileEntity te, NBTTagCompound tag, World world, BlockPos pos) {
 		return tag;
 	}
 }

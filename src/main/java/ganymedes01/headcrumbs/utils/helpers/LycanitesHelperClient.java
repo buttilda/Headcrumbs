@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.base.Strings;
-
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 import net.minecraft.client.model.ModelBase;
@@ -18,14 +16,14 @@ public class LycanitesHelperClient {
 	private static final Map<String, ResourceLocation> map = new HashMap<String, ResourceLocation>();
 
 	public static ModelBase getModel(String name) {
-		return AssetManager.getModel(name);
+		return null;//AssetManager.getModel(name);
 	}
 
 	public static ResourceLocation getTexture(String name) {
 		if (!SkullTypes.lycanites.canShow())
 			return null;
 		ResourceLocation tex = map.get(name);
-		if (tex == null) {
+		/*if (tex == null) {
 			MobInfo info = ObjectManager.getMobInfo(name);
 			if (info != null) {
 				GroupInfo group = info.group;
@@ -34,17 +32,17 @@ public class LycanitesHelperClient {
 					map.put(name, tex);
 				}
 			}
-		}
+		}*/
 		return tex;
 	}
 
 	public static List<ItemStack> getStacks() {
 		List<ItemStack> list = new ArrayList<ItemStack>();
-		for (String mob : ObjectManager.mobs.keySet()) {
+		/*for (String mob : ObjectManager.mobs.keySet()) {
 			if (Strings.isNullOrEmpty(mob) || LycanitesHelper.blacklist.contains(mob.toLowerCase()))
 				continue;
 			list.add(getStackFor(mob));
-		}
+		}*/
 
 		return list;
 	}

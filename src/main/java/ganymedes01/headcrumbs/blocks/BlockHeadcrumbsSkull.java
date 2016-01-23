@@ -25,10 +25,13 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import thaumcraft.api.crafting.IInfusionStabiliser;
 
-public class BlockHeadcrumbsSkull extends BlockSkull implements IHasCustomItem {
+@Optional.Interface(iface = "thaumcraft.api.crafting.IInfusionStabiliser", modid = "Thaumcraft")
+public class BlockHeadcrumbsSkull extends BlockSkull implements IHasCustomItem, IInfusionStabiliser {
 
 	public BlockHeadcrumbsSkull() {
 		setHardness(1.0F);
@@ -100,5 +103,11 @@ public class BlockHeadcrumbsSkull extends BlockSkull implements IHasCustomItem {
 	@Override
 	public Class<? extends ItemBlock> getItemBlockClass() {
 		return ItemHeadcrumbsSkull.class;
+	}
+
+	@Override
+	@Optional.Method(modid = "Thaumcraft")
+	public boolean canStabaliseInfusion(World world, BlockPos pos) {
+		return true;
 	}
 }

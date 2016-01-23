@@ -6,7 +6,6 @@ import java.util.List;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.item.ItemStack;
 
 public class LycanitesHelper extends HeadDropHelper {
@@ -24,10 +23,10 @@ public class LycanitesHelper extends HeadDropHelper {
 
 	@Override
 	protected ItemStack getHeadForEntity(Entity entity) {
-		String mobName = EntityList.getEntityString(entity);
+		/*String mobName = EntityList.getEntityString(entity);
 		if (mobName == null)
 			return null;
-
+		
 		if (entity instanceof EntityPinky)
 			return SkullTypes.pinky.getStack();
 		else if (entity instanceof EntityBehemoth)
@@ -43,7 +42,7 @@ public class LycanitesHelper extends HeadDropHelper {
 					return !blacklist.contains(mobName) ? getStackFor(mobName) : null;
 				}
 			}
-		}
+		}*/
 		return null;
 	}
 
