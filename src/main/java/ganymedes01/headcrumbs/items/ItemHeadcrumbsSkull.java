@@ -33,10 +33,6 @@ public class ItemHeadcrumbsSkull extends FixedItemBlock {
 
 	@Override
 	public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState) {
-		if (world.getBlockState(pos).getBlock().isReplaceable(world, pos) && side != EnumFacing.DOWN) {
-			side = EnumFacing.UP;
-			pos = pos.down();
-		}
 		if (side == EnumFacing.DOWN)
 			return false;
 		else {

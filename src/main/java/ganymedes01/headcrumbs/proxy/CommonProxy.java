@@ -20,6 +20,9 @@ public class CommonProxy {
 		GameRegistry.registerTileEntity(TileEntityBlockPlayer.class, Utils.getUnlocalisedName("player"));
 	}
 
+	public void registerEntityRenderers() {
+	}
+
 	public void registerRenderers() {
 	}
 }

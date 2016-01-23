@@ -20,13 +20,13 @@ public class ModBlocks {
 	}
 
 	private static void registerBlock(Block block) {
-		String name = block.getUnlocalizedName();
-		String[] strings = name.split("\\.");
+		String[] strings = block.getUnlocalizedName().split("\\.");
+		final String name = strings[strings.length - 1];
 
 		if (block instanceof IHasCustomItem)
-			GameRegistry.registerBlock(block, ((IHasCustomItem) block).getItemBlockClass(), strings[strings.length - 1]);
+			GameRegistry.registerBlock(block, ((IHasCustomItem) block).getItemBlockClass(), name);
 		else
-			GameRegistry.registerBlock(block, strings[strings.length - 1]);
+			GameRegistry.registerBlock(block, name);
 	}
 
 	public static interface IHasCustomItem {

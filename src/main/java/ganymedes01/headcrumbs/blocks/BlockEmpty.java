@@ -5,7 +5,10 @@ import java.util.Random;
 import ganymedes01.headcrumbs.ModBlocks;
 import ganymedes01.headcrumbs.utils.Utils;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSkull;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -22,6 +25,22 @@ public class BlockEmpty extends Block {
 		setHardness(1.0F);
 		setStepSound(soundTypeStone);
 		setUnlocalizedName(Utils.getUnlocalisedName("empty"));
+		setDefaultState(blockState.getBaseState().withProperty(BlockSkull.NODROP, false));
+	}
+
+	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		return getDefaultState().withProperty(BlockSkull.NODROP, meta == 1);
+	}
+
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(BlockSkull.NODROP).booleanValue() ? 1 : 0;
+	}
+
+	@Override
+	protected BlockState createBlockState() {
+		return new BlockState(this, new IProperty[] { BlockSkull.NODROP });
 	}
 
 	@Override
@@ -32,7 +51,7 @@ public class BlockEmpty extends Block {
 
 	@Override
 	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighbour) {
-		if (world.getBlockState(pos.add(0, 1, 0)).getBlock() != ModBlocks.player)
+		if (world.getBlockState(pos.up()).getBlock() != ModBlocks.player)
 			Utils.breakBlockWithParticles(world, pos, 0);
 	}
 
@@ -48,13 +67,13 @@ public class BlockEmpty extends Block {
 
 	@Override
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player) {
-		pos = pos.add(0, 1, 0);
+		pos = pos.up();
 		return world.getBlockState(pos).getBlock().getPickBlock(target, world, pos, player);
 	}
 
 	@Override
 	public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
-		pos = pos.add(0, 1, 0);
+		pos = pos.up();
 		state = world.getBlockState(pos);
 		state.getBlock().onBlockHarvested(world, pos, state, player);
 	}
@@ -66,7 +85,7 @@ public class BlockEmpty extends Block {
 
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ) {
-		pos = pos.add(0, 1, 0);
+		pos = pos.up();
 		state = world.getBlockState(pos);
 		return state.getBlock().onBlockActivated(world, pos, state, player, side, hitX, hitY - 1.0F, hitZ);
 	}

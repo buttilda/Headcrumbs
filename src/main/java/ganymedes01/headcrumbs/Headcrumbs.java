@@ -200,11 +200,12 @@ public class Headcrumbs {
 			VIPHandler.init();
 		}
 
-		proxy.registerRenderers();
+		proxy.registerEntityRenderers();
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
+		proxy.registerRenderers();
 		proxy.registerEvents();
 		proxy.registerTileEntities();
 

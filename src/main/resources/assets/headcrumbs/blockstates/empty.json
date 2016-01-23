@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "nodrop=false":  { "model": "soul_sand" },
+        "nodrop=true": { "model": "soul_sand" }
+    }
+}

@@ -3,6 +3,8 @@ package ganymedes01.headcrumbs.blocks;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mojang.authlib.GameProfile;
+
 import ganymedes01.headcrumbs.ModBlocks;
 import ganymedes01.headcrumbs.items.ItemStatue;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockPlayer;
@@ -28,17 +30,34 @@ public class BlockPlayer extends BlockHeadcrumbsSkull {
 	}
 
 	@Override
+	public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
+		if (player.capabilities.isCreativeMode) {
+			state = state.withProperty(NODROP, true);
+			world.setBlockState(pos, state, 4);
+		}
+
+		super.onBlockHarvested(world, pos, state, player);
+	}
+
+	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-		List<ItemStack> list = new ArrayList<ItemStack>();
+		List<ItemStack> drops = new ArrayList<ItemStack>();
+
+		if (state.getValue(NODROP).booleanValue())
+			return drops;
+
 		TileEntityBlockPlayer tile = Utils.getTileEntity(world, pos, TileEntityBlockPlayer.class);
 		if (tile != null) {
 			ItemStack stack = new ItemStack(this);
 			stack.setTagCompound(new NBTTagCompound());
-			NBTTagCompound nbt = NBTUtil.writeGameProfile(new NBTTagCompound(), tile.getPlayerProfile());
+			GameProfile profile = tile.getPlayerProfile();
+			if (profile == null)
+				return drops;
+			NBTTagCompound nbt = NBTUtil.writeGameProfile(new NBTTagCompound(), profile);
 			stack.getTagCompound().setTag(HeadUtils.OWNER_TAG, nbt);
-			list.add(stack);
+			drops.add(stack);
 		}
-		return list;
+		return drops;
 	}
 
 	@Override
@@ -47,8 +66,11 @@ public class BlockPlayer extends BlockHeadcrumbsSkull {
 		if (tile != null) {
 			ItemStack stack = new ItemStack(this);
 			stack.setTagCompound(new NBTTagCompound());
-			NBTTagCompound nbt = NBTUtil.writeGameProfile(new NBTTagCompound(), tile.getPlayerProfile());
-			stack.getTagCompound().setTag(HeadUtils.OWNER_TAG, nbt);
+			GameProfile profile = tile.getPlayerProfile();
+			if (profile != null) {
+				NBTTagCompound nbt = NBTUtil.writeGameProfile(new NBTTagCompound(), profile);
+				stack.getTagCompound().setTag(HeadUtils.OWNER_TAG, nbt);
+			}
 			return stack;
 		}
 		return null;
