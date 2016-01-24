@@ -7,6 +7,8 @@ import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
 
 import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.network.PacketHandler.PacketType;
 import ganymedes01.headcrumbs.utils.TextureUtils;
@@ -62,6 +64,7 @@ public class TextureSendPacket extends CustomPacket {
 	public void handleServerSide(World world, EntityPlayer player) {
 	}
 
+	@SideOnly(Side.CLIENT)
 	private SkinAvailableCallback getCallback(Type type) {
 		if (Headcrumbs.use18PlayerModel)
 			return EtFuturumHelper.getSkinDownloadCallback(profile.getName());
