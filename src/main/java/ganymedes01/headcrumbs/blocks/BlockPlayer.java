@@ -27,6 +27,8 @@ public class BlockPlayer extends BlockHeadcrumbsSkull {
 
 	public BlockPlayer() {
 		setUnlocalizedName(Utils.getUnlocalisedName("player"));
+		float f = 2F / 16F;
+		setBlockBounds(f, 0.0F, f, 1.0F - f, 1.0F, 1.0F - f);
 	}
 
 	@Override
@@ -89,8 +91,6 @@ public class BlockPlayer extends BlockHeadcrumbsSkull {
 
 	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess access, BlockPos pos) {
-		float f = 2F / 16F;
-		setBlockBounds(f, 0.0F, f, 1.0F - f, 1.0F, 1.0F - f);
 	}
 
 	@Override

@@ -15,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockEmpty extends Block {
@@ -26,6 +25,8 @@ public class BlockEmpty extends Block {
 		setStepSound(soundTypeStone);
 		setUnlocalizedName(Utils.getUnlocalisedName("empty"));
 		setDefaultState(blockState.getBaseState().withProperty(BlockSkull.NODROP, false));
+		float f = 4F / 16F;
+		setBlockBounds(f, 0.0F, f, 1.0F - f, 1.0F, 1.0F - f);
 	}
 
 	@Override
@@ -41,12 +42,6 @@ public class BlockEmpty extends Block {
 	@Override
 	protected BlockState createBlockState() {
 		return new BlockState(this, new IProperty[] { BlockSkull.NODROP });
-	}
-
-	@Override
-	public void setBlockBoundsBasedOnState(IBlockAccess access, BlockPos pos) {
-		float f = 4F / 16F;
-		setBlockBounds(f, 0.0F, f, 1.0F - f, 1.0F, 1.0F - f);
 	}
 
 	@Override
