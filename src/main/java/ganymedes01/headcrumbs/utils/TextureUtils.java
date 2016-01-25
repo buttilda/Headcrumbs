@@ -6,7 +6,9 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
 
+import ganymedes01.headcrumbs.api.IHumanEntity;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.SkinManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -17,23 +19,31 @@ public class TextureUtils {
 	private static final ResourceLocation TEXTURE_STEVE = new ResourceLocation("textures/entity/steve.png");
 	private static final ResourceLocation TEXTURE_ALEX = new ResourceLocation("textures/entity/alex.png");
 
-	public static ResourceLocation getPlayerSkin(GameProfile profile) {
-		return getPlayerTexture(profile, MinecraftProfileTexture.Type.SKIN);
+	public static ResourceLocation getPlayerSkin(IHumanEntity human) {
+		return getTextureForHuman(human, MinecraftProfileTexture.Type.SKIN);
 	}
 
-	public static ResourceLocation getPlayerCape(GameProfile profile) {
-		return getPlayerTexture(profile, MinecraftProfileTexture.Type.CAPE);
+	public static ResourceLocation getPlayerCape(IHumanEntity human) {
+		return getTextureForHuman(human, MinecraftProfileTexture.Type.CAPE);
 	}
 
-	private static ResourceLocation getPlayerTexture(GameProfile profile, MinecraftProfileTexture.Type type) {
+	private static ResourceLocation getTextureForHuman(IHumanEntity human, MinecraftProfileTexture.Type type) {
+		if (human.isTextureAvailable(type))
+			return human.getTexture(type);
+
+		if (!human.isProfileReady())
+			return getDefault(human.getProfile(), type);
+
+		return getPlayerTexture(human.getProfile(), type, human.getCallback());
+	}
+
+	private static ResourceLocation getPlayerTexture(GameProfile profile, MinecraftProfileTexture.Type type, SkinManager.SkinAvailableCallback callBack) {
 		if (profile != null && profile.getName() != null) {
 			Minecraft minecraft = Minecraft.getMinecraft();
 			Map<Type, MinecraftProfileTexture> map = minecraft.getSkinManager().loadSkinFromCache(profile);
-
 			if (map.containsKey(type))
-				return minecraft.getSkinManager().loadSkin(map.get(type), type);
+				return minecraft.getSkinManager().loadSkin(map.get(type), type, callBack);
 		}
-
 		return getDefault(profile, type);
 	}
 

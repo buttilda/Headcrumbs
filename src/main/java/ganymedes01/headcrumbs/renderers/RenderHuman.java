@@ -1,6 +1,5 @@
 package ganymedes01.headcrumbs.renderers;
 
-import ganymedes01.headcrumbs.api.IHumanEntity;
 import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.utils.TextureUtils;
 import net.minecraft.client.model.ModelPlayer;
@@ -57,7 +56,7 @@ public class RenderHuman extends RenderBiped<EntityHuman> {
 
 	@Override
 	protected ResourceLocation getEntityTexture(EntityHuman entity) {
-		return TextureUtils.getPlayerSkin(((IHumanEntity) entity).getProfile());
+		return TextureUtils.getPlayerSkin(entity);
 	}
 
 	@Override

@@ -11,18 +11,19 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
     }
 }
 
 apply plugin: 'forge'
 
-version = "1.7.2"
+version = "2.0.0"
 group = "ganymedes01.headcrumbs"
 archivesBaseName = "Headcrumbs"
 
 minecraft {
-    version = "1.7.10-10.13.4.1558-1.7.10"
+    version = "1.8.9-11.15.1.1722"
+    mappings = "stable_20"
     runDir = "eclipse/assets"
 }
 

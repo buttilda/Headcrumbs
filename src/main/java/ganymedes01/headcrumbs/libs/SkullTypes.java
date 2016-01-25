@@ -112,7 +112,6 @@ import ganymedes01.headcrumbs.renderers.heads.twilightforest.SquirrelHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.TowerGolemHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.WildBoarHead;
 import ganymedes01.headcrumbs.utils.HeadUtils;
-import ganymedes01.headcrumbs.utils.TextureUtils;
 import ganymedes01.headcrumbs.utils.Utils;
 import ganymedes01.headcrumbs.utils.helpers.LycanitesHelperClient;
 import net.minecraft.item.ItemStack;
@@ -351,8 +350,6 @@ public enum SkullTypes {
 	}
 
 	public ResourceLocation getTexture(GameProfile profile) {
-		if (!isModLoaded())
-			return TextureUtils.getPlayerSkin(profile);
 		if (this == lycanites)
 			return LycanitesHelperClient.getTexture(profile.getName());
 		return texture;

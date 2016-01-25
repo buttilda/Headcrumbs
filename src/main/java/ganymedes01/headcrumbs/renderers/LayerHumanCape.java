@@ -20,7 +20,7 @@ public class LayerHumanCape implements LayerRenderer<EntityHuman> {
 
 	@Override
 	public void doRenderLayer(EntityHuman human, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale) {
-		ResourceLocation cape = TextureUtils.getPlayerCape(human.getProfile());
+		ResourceLocation cape = TextureUtils.getPlayerCape(human);
 
 		if (!human.isInvisible() && cape != null) {
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -46,6 +46,11 @@ public class LayerHumanCape implements LayerRenderer<EntityHuman> {
 
 			if (human.isSneaking())
 				f1 += 25.0F;
+
+			if (human.isChild()) {
+				GlStateManager.scale(0.5F, 0.5F, 0.5F);
+				GlStateManager.translate(0.0F, 24.0F * scale, -2F * scale);
+			}
 
 			GlStateManager.rotate(6.0F + f2 / 2.0F + f1, 1.0F, 0.0F, 0.0F);
 			GlStateManager.rotate(f3 / 2.0F, 0.0F, 0.0F, 1.0F);

@@ -10,10 +10,13 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.base.Predicate;
 import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.api.IHumanEntity;
+import ganymedes01.headcrumbs.utils.ThreadedProfileFiller;
 import ganymedes01.headcrumbs.utils.UsernameUtils;
+import net.minecraft.client.resources.SkinManager;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -44,11 +47,11 @@ import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigateGround;
-import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatStyle;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
@@ -57,15 +60,23 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEntity {
 
+	// Cape stuff
 	private double prevCapeX, prevCapeY, prevCapeZ;
 	private double capeX, capeY, capeZ;
 
+	// Texture stuff
 	private GameProfile profile;
+	private ResourceLocation skin, cape;
+	private boolean skinAvailable = false, capeAvailable = false, profileReady = false;
 
+	// Attributes
 	private static final AttributeModifier babySpeedBoostModifier = new AttributeModifier(UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836"), "Baby speed boost", 0.5D, 1);
 
+	// AI
 	private final EntityAIBreakDoor breakDoorAI = new EntityAIBreakDoor(this);
 	private final EntityAIArrowAttack arrowAI = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F);
+
+	// Data watcher
 	private static final int NAME = 13;
 	private static final int CHILD = 14;
 	private static final int WIDTH = 16;
@@ -415,25 +426,26 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		return names;
 	}
 
-	public void setProfile(GameProfile profile) {
-		this.profile = profile;
-	}
-
 	// IHumanEntity
 
 	@Override
 	public GameProfile getProfile() {
-		if (profile == null)
-			setProfile(TileEntitySkull.updateGameprofile(new GameProfile(null, getUsername())));
+		if (profile == null) {
+			profile = new GameProfile(null, getUsername());
+			ThreadedProfileFiller.updateProfile(this);
+		}
 		return profile;
 	}
 
 	@Override
+	public void setProfile(GameProfile profile) {
+		this.profile = profile;
+		profileReady = true;
+	}
+
+	@Override
 	public String getUsername() {
-		String username = getDataWatcher().getWatchableObjectString(NAME);
-		if (StringUtils.isBlank(username))
-			getDataWatcher().updateObject(NAME, getRandomUsername(rand));
-		return username;
+		return getDataWatcher().getWatchableObjectString(NAME);
 	}
 
 	@Override
@@ -459,6 +471,71 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 	@Override
 	public double getInterpolatedCapeZ(float partialTickTime) {
 		return prevCapeZ + (capeZ - prevCapeZ) * partialTickTime - (prevPosZ + (posZ - prevPosZ) * partialTickTime);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public SkinManager.SkinAvailableCallback getCallback() {
+		return new SkinManager.SkinAvailableCallback() {
+
+			@Override
+			public void skinAvailable(MinecraftProfileTexture.Type type, ResourceLocation location, MinecraftProfileTexture profileTexture) {
+				switch (type) {
+					case CAPE:
+						cape = location;
+						break;
+					case SKIN:
+					default:
+						skin = location;
+						break;
+				}
+				setTextureAvailable(type);
+			}
+		};
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean isTextureAvailable(MinecraftProfileTexture.Type type) {
+		switch (type) {
+			case CAPE:
+				return capeAvailable;
+			case SKIN:
+			default:
+				return skinAvailable;
+		}
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void setTextureAvailable(MinecraftProfileTexture.Type type) {
+		switch (type) {
+			case CAPE:
+				capeAvailable = true;
+				break;
+			case SKIN:
+			default:
+				skinAvailable = true;
+				break;
+		}
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public ResourceLocation getTexture(MinecraftProfileTexture.Type type) {
+		switch (type) {
+			case CAPE:
+				return cape;
+			case SKIN:
+			default:
+				return skin;
+		}
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean isProfileReady() {
+		return profileReady;
 	}
 
 	// Child stuff
