@@ -446,7 +446,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 	public String getUsername() {
 		String username = getDataWatcher().getWatchableObjectString(NAME);
 		if (StringUtils.isBlank(username))
-			getDataWatcher().updateObject(NAME, getRandomUsername(rand));
+			getDataWatcher().updateObject(NAME, username = getRandomUsername(rand));
 		return username;
 	}
 

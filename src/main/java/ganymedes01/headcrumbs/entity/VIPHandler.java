@@ -37,7 +37,7 @@ public class VIPHandler {
 
 		amount = Math.min(maxDropAmount(), amount);
 		for (int i = 0; i < amount; i++) {
-			ItemStack stack = getItem(entity);
+			ItemStack stack = entity.isChild() ? getDefaultDropItem(entity) : getItem(entity);
 			if (stack != null)
 				entity.entityDropItem(stack, 0);
 		}
@@ -59,6 +59,10 @@ public class VIPHandler {
 	}
 
 	protected ItemStack getItem(EntityHuman entity) {
+		return getDefaultDropItem(entity);
+	}
+
+	private ItemStack getDefaultDropItem(EntityHuman entity) {
 		return entity.getRNG().nextBoolean() ? new ItemStack(Items.bone) : new ItemStack(Items.rotten_flesh);
 	}
 
