@@ -22,7 +22,7 @@ group = "ganymedes01.headcrumbs"
 archivesBaseName = "Headcrumbs"
 
 minecraft {
-    version = "1.8.9-11.15.1.1722"
+    version = "1.8.9-11.15.1.1794"
     mappings = "stable_20"
     runDir = "eclipse/assets"
 }

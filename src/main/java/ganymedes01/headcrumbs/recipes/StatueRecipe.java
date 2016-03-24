@@ -21,9 +21,13 @@ public class StatueRecipe extends ShapedRecipes {
 	public ItemStack getCraftingResult(InventoryCrafting inv) {
 		ItemStack stack = super.getCraftingResult(inv);
 
-		ItemStack head = inv.getStackInSlot(0);
-		if (head.hasTagCompound())
-			stack.setTagCompound((NBTTagCompound) head.getTagCompound().copy());
+		for (int i = 0; i < 3; i++) {
+			ItemStack head = inv.getStackInSlot(i);
+			if (head != null && head.hasTagCompound()) {
+				stack.setTagCompound((NBTTagCompound) head.getTagCompound().copy());
+				break;
+			}
+		}
 
 		return stack;
 	}

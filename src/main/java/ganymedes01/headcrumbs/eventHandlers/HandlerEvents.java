@@ -1,7 +1,6 @@
 package ganymedes01.headcrumbs.eventHandlers;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -10,14 +9,11 @@ import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.libs.CelebrityMap;
 import ganymedes01.headcrumbs.utils.HeadUtils;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,7 +22,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.StringUtils;
 import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -61,27 +56,11 @@ public class HandlerEvents {
 	}
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
-	public void playerDrop(LivingDeathEvent event) {
-		EntityLivingBase entity = event.entityLiving;
-		if (entity.worldObj.getGameRules().getBoolean("keepInventory") && entity instanceof EntityPlayerMP) {
-			ArrayList<EntityItem> drops = new ArrayList<EntityItem>();
-
-			ItemStack weapon = getWeapon(event.source);
-			int looting = EnchantmentHelper.getEnchantmentLevel(Enchantment.looting.effectId, weapon);
-			drop(event.entityLiving, event.source, looting, drops);
-
-			if (!drops.isEmpty())
-				for (EntityItem item : drops)
-					((EntityPlayerMP) entity).joinEntityItemWithWorld(item);
-		}
-	}
-
-	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void dropEvent(LivingDropsEvent event) {
-		drop(event.entityLiving, event.source, event.lootingLevel, event.drops);
+		drop(event.entityLiving, event.source, event.drops);
 	}
 
-	private void drop(EntityLivingBase entity, DamageSource source, int looting, List<EntityItem> drops) {
+	private void drop(EntityLivingBase entity, DamageSource source, List<EntityItem> drops) {
 		if (entity.worldObj.isRemote)
 			return;
 		if (entity.getHealth() > 0.0F)
@@ -90,15 +69,14 @@ public class HandlerEvents {
 		boolean isPoweredCreeper = isPoweredCreeper(source);
 		int beheading = getBeaheadingLevel(getWeapon(source));
 
-		if (isPoweredCreeper || shouldDoRandomDrop(entity.worldObj.rand, beheading, looting)) {
+		if (isPoweredCreeper || shouldDoRandomDrop(entity.worldObj.rand, beheading)) {
 			ItemStack stack = HeadUtils.getHeadfromEntity(entity);
-			if (stack == null)
+			if (stack == null || stack.getItem() == Items.skull)
 				return;
 
-			if (beheading > 0 && stack.getItem() == Items.skull)
-				return; // Vanilla head drops will be handled by TiCon
-
-			addDrop(stack, entity, drops);
+			EntityItem entityItem = new EntityItem(entity.worldObj, entity.posX, entity.posY, entity.posZ, stack);
+			entityItem.setDefaultPickupDelay();
+			drops.add(entityItem);
 		}
 	}
 
@@ -112,7 +90,7 @@ public class HandlerEvents {
 		return false;
 	}
 
-	private boolean shouldDoRandomDrop(Random rand, int beheading, int looting) {
+	private boolean shouldDoRandomDrop(Random rand, int beheading) {
 		if (beheading > 0)
 			return rand.nextInt(100) < beheading * 10;
 		return false;
@@ -153,22 +131,6 @@ public class HandlerEvents {
 				return ((EntityPlayer) entity).getCurrentEquippedItem();
 		}
 		return null;
-	}
-
-	private void addDrop(ItemStack stack, EntityLivingBase entity, List<EntityItem> drops) {
-		if (stack.stackSize <= 0)
-			return;
-		List<EntityItem> toRemove = new ArrayList<EntityItem>();
-		for (EntityItem drop : drops) {
-			ItemStack dropStack = drop.getEntityItem();
-			if (dropStack.getItem() == Items.skull && dropStack.getItemDamage() != 1) // Remove any head that isn't the wither skeleton's head
-				toRemove.add(drop);
-		}
-		drops.removeAll(toRemove);
-
-		EntityItem entityItem = new EntityItem(entity.worldObj, entity.posX, entity.posY, entity.posZ, stack);
-		entityItem.setDefaultPickupDelay();
-		drops.add(entityItem);
 	}
 
 	@SubscribeEvent

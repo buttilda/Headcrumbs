@@ -12,7 +12,9 @@ import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -22,6 +24,8 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockPlayer extends BlockHeadcrumbsSkull {
 
@@ -29,6 +33,11 @@ public class BlockPlayer extends BlockHeadcrumbsSkull {
 		setUnlocalizedName(Utils.getUnlocalisedName("player"));
 		float f = 2F / 16F;
 		setBlockBounds(f, 0.0F, f, 1.0F - f, 1.0F, 1.0F - f);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
 	}
 
 	@Override
