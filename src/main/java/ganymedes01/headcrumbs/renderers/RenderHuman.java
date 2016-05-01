@@ -46,19 +46,21 @@ public class RenderHuman extends RenderBiped<EntityHuman> {
 	}
 
 	@Override
-	public void doRender(EntityHuman entity, double x, double y, double z, float f0, float partialTickTime) {
+	public void doRender(EntityHuman entity, double x, double y, double z, float entityYaw, float partialTickTime) {
 		setModel(entity);
 
 		ItemStack held = entity.getHeldItem(EnumHand.MAIN_HAND);
 		if (held != null)
-			if (held.getItem() instanceof ItemBow)
-				modelBipedMain.leftArmPose = ArmPose.BOW_AND_ARROW;
+			if (held.getItem() instanceof ItemBow && entity.isDrawingBow())
+				modelBipedMain.rightArmPose = ArmPose.BOW_AND_ARROW;
 			else
-				modelBipedMain.leftArmPose = ArmPose.ITEM;
+				modelBipedMain.rightArmPose = ArmPose.ITEM;
 		else
-			modelBipedMain.leftArmPose = ArmPose.EMPTY;
+			modelBipedMain.rightArmPose = ArmPose.EMPTY;
 
-		super.doRender(entity, x, y, z, f0, partialTickTime);
+		modelBipedMain.leftArmPose = ArmPose.EMPTY;
+
+		super.doRender(entity, x, y, z, entityYaw, partialTickTime);
 	}
 
 	@Override

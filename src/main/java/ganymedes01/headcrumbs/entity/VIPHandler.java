@@ -46,9 +46,6 @@ public class VIPHandler {
 		}
 	}
 
-	public void dropRare(EntityHuman entity) {
-	}
-
 	protected int minDropAmount() {
 		return 0;
 	}

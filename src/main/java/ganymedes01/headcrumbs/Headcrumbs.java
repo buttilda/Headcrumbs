@@ -3,7 +3,6 @@ package ganymedes01.headcrumbs;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -62,6 +61,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.RecipeSorter;
+import net.minecraftforge.oredict.RecipeSorter.Category;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, dependencies = Reference.DEPENDENCIES, guiFactory = Reference.GUI_FACTORY_CLASS)
 public class Headcrumbs {
@@ -219,8 +220,10 @@ public class Headcrumbs {
 			addEnderFurnaceRecipe(new ItemStack(Items.nether_star), "skullWither");
 		}
 
-		if (enablePlayerStatues)
+		if (enablePlayerStatues) {
 			GameRegistry.addRecipe(StatueRecipe.getRecipe(new ItemStack(ModBlocks.player), "x", "y", "y", 'x', new ItemStack(Items.skull, 1, 3), 'y', new ItemStack(Blocks.clay)));
+			RecipeSorter.register("statue", StatueRecipe.class, Category.SHAPED, "after:minecraft:shaped");
+		}
 	}
 
 	private void addEnderFurnaceRecipe(ItemStack output, Object... input) {
@@ -321,9 +324,7 @@ public class Headcrumbs {
 		List<String> blacklistedBiomeNames = Arrays.asList("Tainted Land");
 
 		List<BiomeGenBase> biomes = new LinkedList<BiomeGenBase>();
-		Iterator<BiomeGenBase> iterator = BiomeGenBase.biomeRegistry.iterator();
-		label: while (iterator.hasNext()) {
-			BiomeGenBase biome = iterator.next();
+		label: for (BiomeGenBase biome : BiomeGenBase.biomeRegistry)
 			if (biome != null) {
 				// Check if the biome name is blacklisted
 				if (blacklistedBiomeNames.contains(biome.getBiomeName()))
@@ -351,7 +352,6 @@ public class Headcrumbs {
 						}
 					}
 			}
-		}
 
 		EntityRegistry.addSpawn(EntityHuman.class, celebrityProb, celebrityMin, celebrityMax, EnumCreatureType.MONSTER, biomes.toArray(new BiomeGenBase[biomes.size()]));
 	}

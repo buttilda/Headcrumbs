@@ -29,7 +29,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockHeadcrumbsSkull extends BlockSkull implements IHasCustomItem {
+//@Optional.Interface(iface = "thaumcraft.api.crafting.IInfusionStabiliser", modid = "Thaumcraft")
+public class BlockHeadcrumbsSkull extends BlockSkull implements IHasCustomItem/*, IInfusionStabiliser*/ {
 
 	public BlockHeadcrumbsSkull() {
 		setHardness(1.0F);

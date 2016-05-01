@@ -37,25 +37,21 @@ public class ItemHeadcrumbsSkull extends FixedItemBlock {
 		if (side == EnumFacing.DOWN)
 			return false;
 		else {
-			IBlockState state = world.getBlockState(pos);
-			Block block = state.getBlock();
-
-			if (!block.isReplaceable(world, pos)) {
-				if (!block.getMaterial(state).isSolid() && !world.isSideSolid(pos, side, true))
-					return false;
-
-				pos = pos.offset(side);
-			}
+			BlockPos clickedPos = pos.offset(side.getOpposite());
+			IBlockState clickedState = world.getBlockState(clickedPos);
+			Block clickedBlock = clickedState.getBlock();
+			if (!clickedBlock.getMaterial(clickedState).isSolid() || !world.isSideSolid(clickedPos, side, true))
+				return false;
 
 			if (!player.canPlayerEdit(pos, side, stack))
 				return false;
-			else if (!this.block.canPlaceBlockAt(world, pos))
+			else if (!block.canPlaceBlockAt(world, pos))
 				return false;
 			else {
 				if (!world.isRemote) {
-					if (!this.block.canPlaceBlockOnSide(world, pos, side))
+					if (!block.canPlaceBlockOnSide(world, pos, side))
 						return false;
-					world.setBlockState(pos, this.block.getDefaultState().withProperty(BlockSkull.FACING, side), 3);
+					world.setBlockState(pos, block.getDefaultState().withProperty(BlockSkull.FACING, side), 3);
 
 					TileEntity tile = world.getTileEntity(pos);
 					populateTile(stack, side, player, tile);

@@ -1,5 +1,6 @@
 package ganymedes01.headcrumbs.entity;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,6 +25,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAttackMelee;
+import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIBreakDoor;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -34,12 +37,11 @@ import net.minecraft.entity.ai.EntityAIOpenDoor;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.ai.EntityAIZombieAttack;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -51,9 +53,12 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigateGround;
+import net.minecraft.potion.PotionType;
+import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.Style;
@@ -79,14 +84,15 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 	private static final AttributeModifier babySpeedBoostModifier = new AttributeModifier(UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836"), "Baby speed boost", 0.5D, 1);
 
 	// AI
-	private final EntityAIBreakDoor breakDoorAI = new EntityAIBreakDoor(this);
-	private final EntityAIArrowAttack arrowAI = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F);
+	private final EntityAIBase breakDoorAI = new EntityAIBreakDoor(this);
+	private final EntityAIBase arrowAI = new EntityAIAttackBow(this, 1.0D, 20, 15.0F);
 
 	// Data watcher
 	private static final DataParameter<String> NAME = EntityDataManager.<String> createKey(EntityHuman.class, DataSerializers.STRING);
 	private static final DataParameter<Boolean> CHILD = EntityDataManager.<Boolean> createKey(EntityHuman.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Float> WIDTH = EntityDataManager.<Float> createKey(EntityHuman.class, DataSerializers.FLOAT);
 	private static final DataParameter<Float> HEIGHT = EntityDataManager.<Float> createKey(EntityHuman.class, DataSerializers.FLOAT);
+	private static final DataParameter<Boolean> DRAWING_BOW = EntityDataManager.<Boolean> createKey(EntityHuman.class, DataSerializers.BOOLEAN);
 
 	public EntityHuman(World world) {
 		super(world);
@@ -94,7 +100,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		tasks.addTask(0, new EntityAISwimming(this));
 		if (world.getDifficulty() == EnumDifficulty.HARD)
 			tasks.addTask(1, new EntityAIOpenDoor(this, true));
-		tasks.addTask(2, new EntityAIZombieAttack(this, EntityPlayer.class, 1.0D, false));
+		tasks.addTask(2, new EntityAIAttackMelee(this, 1.0D, false));
 		tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
 		tasks.addTask(6, new EntityAIMoveThroughVillage(this, 1.0D, false));
 		tasks.addTask(7, new EntityAIWander(this, 1.0D));
@@ -172,6 +178,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		dataWatcher.register(CHILD, false);
 		dataWatcher.register(WIDTH, width);
 		dataWatcher.register(HEIGHT, height);
+		dataWatcher.register(DRAWING_BOW, false);
 	}
 
 	/* SOUNDS */
@@ -198,11 +205,6 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		getVIPHandler().dropItems(this, looting);
 	}
 
-	@Override
-	protected void addRandomDrop() {
-		getVIPHandler().dropRare(this);
-	}
-
 	/* EQUIPAMENT AND ITEMS */
 
 	@Override
@@ -212,10 +214,23 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		if (rand.nextFloat() < (worldObj.getDifficulty() == EnumDifficulty.HARD ? 0.1F : 0.05F)) {
 			int i = rand.nextInt(3);
 
-			if (i == 0)
+			if (i == 0) {
 				setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.stone_sword));
-			else if (i == 1)
+				if (worldObj.getDifficulty() == EnumDifficulty.HARD)
+					if (rand.nextFloat() > 0.5F) {
+						setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(Items.shield));
+						getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).applyModifier(new AttributeModifier("Shield Bonus", rand.nextDouble() * 3.0 + 1.0, 2));
+					}
+			} else if (i == 1) {
 				setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.bow));
+				if (worldObj.getDifficulty() == EnumDifficulty.HARD)
+					if (rand.nextFloat() > 0.5F) {
+						List<ResourceLocation> keys = new ArrayList<ResourceLocation>(PotionType.potionTypeRegistry.getKeys());
+						ResourceLocation key = keys.get(rand.nextInt(keys.size()));
+						PotionType potion = PotionType.potionTypeRegistry.getObject(key);
+						setItemStackToSlot(EntityEquipmentSlot.OFFHAND, PotionUtils.addPotionToItemStack(new ItemStack(Items.tipped_arrow), potion));
+					}
+			}
 		}
 	}
 
@@ -332,22 +347,30 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		if (!hasBow())
 			return;
 
-		ItemStack held = getHeldItem(EnumHand.MAIN_HAND);
-		EntityArrow arrow = new EntityArrow(worldObj, this, target, 1.6F, 14 - worldObj.getDifficulty().getDifficultyId() * 4);
-		int power = EnchantmentHelper.getEnchantmentLevel(Enchantments.power, held);
-		int punch = EnchantmentHelper.getEnchantmentLevel(Enchantments.punch, held);
-		arrow.setDamage(damage * 2.0F + rand.nextGaussian() * 0.25D + worldObj.getDifficulty().getDifficultyId() * 0.11F);
+		EntityTippedArrow arrow = new EntityTippedArrow(worldObj, this);
+		ItemStack offHandStack = getItemStackFromSlot(EntityEquipmentSlot.OFFHAND);
+		if (offHandStack != null && offHandStack.getItem() == Items.tipped_arrow)
+			arrow.setPotionEffect(offHandStack);
+
+		double x = target.posX - posX;
+		double y = target.getEntityBoundingBox().minY + target.height / 3.0F - arrow.posY;
+		double z = target.posZ - posZ;
+		double d0 = MathHelper.sqrt_double(x * x + z * z);
+		arrow.setThrowableHeading(x, y + d0 * 0.2, z, 1.6F, 14 - worldObj.getDifficulty().getDifficultyId() * 4);
+		int power = EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.power, this);
+		int punch = EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.punch, this);
+		arrow.setDamage(damage * 2.0F + rand.nextGaussian() * 0.25 + worldObj.getDifficulty().getDifficultyId() * 0.11F);
 
 		if (power > 0)
-			arrow.setDamage(arrow.getDamage() + power * 0.5D + 0.5D);
+			arrow.setDamage(arrow.getDamage() + power * 0.5 + 0.5);
 
 		if (punch > 0)
 			arrow.setKnockbackStrength(punch);
 
-		if (EnchantmentHelper.getEnchantmentLevel(Enchantments.flame, held) > 0)
+		if (EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.flame, this) > 0)
 			arrow.setFire(100);
 
-		playSound(SoundEvents.entity_skeleton_shoot, 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 0.8F));
+		playSound(SoundEvents.entity_skeleton_shoot, 1.0F, 1.0F / (getRNG().nextFloat() * 0.4F + 0.8F));
 		worldObj.spawnEntityInWorld(arrow);
 	}
 
@@ -361,6 +384,15 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 			tasks.addTask(1, arrowAI);
 		else
 			tasks.removeTask(arrowAI);
+	}
+
+	@SideOnly(Side.CLIENT)
+	public boolean isDrawingBow() {
+		return dataWatcher.get(DRAWING_BOW).booleanValue();
+	}
+
+	public void setDrawingBow(boolean flag) {
+		dataWatcher.set(DRAWING_BOW, flag);
 	}
 
 	/* USERNAME */
