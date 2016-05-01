@@ -38,7 +38,7 @@ public class TileEntityBlockPlayerRenderer extends TileEntitySpecialRenderer<Til
 		GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
 		GlStateManager.rotate(adjustRotation(tile.getBlockMetadata() & 7, -tile.getSkullRotation() * 360 / 16.0F), 0, 1, 0);
 
-		renderManager.renderEntitySimple(human, 0);
+		renderManager.renderMultipass(human, 0);
 
 		GlStateManager.popMatrix();
 	}

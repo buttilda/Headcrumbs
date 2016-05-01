@@ -38,7 +38,7 @@ public class ItemStatue extends FixedItemBlock {
 			Block block = state.getBlock();
 
 			if (!block.isReplaceable(world, pos)) {
-				if (!world.getBlockState(pos).getBlock().getMaterial().isSolid() && !world.isSideSolid(pos, side, true))
+				if (!block.getMaterial(state).isSolid() && !world.isSideSolid(pos, side, true))
 					return false;
 
 				pos = pos.offset(side);

@@ -3,6 +3,7 @@ package ganymedes01.headcrumbs;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -320,10 +321,12 @@ public class Headcrumbs {
 		List<String> blacklistedBiomeNames = Arrays.asList("Tainted Land");
 
 		List<BiomeGenBase> biomes = new LinkedList<BiomeGenBase>();
-		label: for (BiomeGenBase biome : BiomeGenBase.getBiomeGenArray())
+		Iterator<BiomeGenBase> iterator = BiomeGenBase.biomeRegistry.iterator();
+		label: while (iterator.hasNext()) {
+			BiomeGenBase biome = iterator.next();
 			if (biome != null) {
 				// Check if the biome name is blacklisted
-				if (blacklistedBiomeNames.contains(biome.biomeName))
+				if (blacklistedBiomeNames.contains(biome.getBiomeName()))
 					continue;
 
 				// Check if the biome type is blacklisted
@@ -348,6 +351,7 @@ public class Headcrumbs {
 						}
 					}
 			}
+		}
 
 		EntityRegistry.addSpawn(EntityHuman.class, celebrityProb, celebrityMin, celebrityMax, EnumCreatureType.MONSTER, biomes.toArray(new BiomeGenBase[biomes.size()]));
 	}

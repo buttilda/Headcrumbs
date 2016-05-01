@@ -4,7 +4,9 @@ import java.util.List;
 
 import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.entity.VIPHandler;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class jadedcat extends VIPHandler {
@@ -16,17 +18,17 @@ public class jadedcat extends VIPHandler {
 	}
 
 	@Override
-	public String livingSound() {
-		return "mob.cat.meow";
+	public SoundEvent getAmbientSound() {
+		return SoundEvents.entity_cat_purreow;
 	}
 
 	@Override
-	protected String hurtSound() {
-		return "mob.cat.hitt";
+	protected SoundEvent hurtSound() {
+		return SoundEvents.entity_cat_hurt;
 	}
 
 	@Override
-	protected String deathSound() {
-		return "mob.cat.hitt";
+	protected SoundEvent deathSound() {
+		return SoundEvents.entity_cat_death;
 	}
 }

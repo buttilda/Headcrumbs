@@ -12,6 +12,7 @@ import net.minecraft.block.BlockSkull;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
@@ -19,6 +20,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 
@@ -39,7 +41,7 @@ public class ItemHeadcrumbsSkull extends FixedItemBlock {
 			Block block = state.getBlock();
 
 			if (!block.isReplaceable(world, pos)) {
-				if (!world.getBlockState(pos).getBlock().getMaterial().isSolid() && !world.isSideSolid(pos, side, true))
+				if (!block.getMaterial(state).isSolid() && !world.isSideSolid(pos, side, true))
 					return false;
 
 				pos = pos.offset(side);
@@ -101,15 +103,15 @@ public class ItemHeadcrumbsSkull extends FixedItemBlock {
 	}
 
 	@Override
-	public boolean isValidArmor(ItemStack stack, int armorType, Entity entity) {
-		return armorType == 0;
+	public boolean isValidArmor(ItemStack stack, EntityEquipmentSlot armorType, Entity entity) {
+		return armorType == EntityEquipmentSlot.HEAD;
 	}
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		String name = HeadUtils.getName(stack);
 		if (name != null && HeadUtils.getModel(stack) == SkullTypes.lycanites)
-			return StatCollector.translateToLocalFormatted("item.skull.player.name", LycanitesHelper.capitaliseString(name));
+			return I18n.translateToLocalFormatted("item.skull.player.name", LycanitesHelper.capitaliseString(name));
 		return super.getItemStackDisplayName(stack);
 	}
 }

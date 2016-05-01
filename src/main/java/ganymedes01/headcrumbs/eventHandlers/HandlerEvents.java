@@ -21,6 +21,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.StringUtils;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -44,8 +45,8 @@ public class HandlerEvents {
 	public void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
 		if (event.getEntityLiving() instanceof EntityHuman) {
 			World world = event.getWorld();
-			String name = world.provider.getDimensionName();
-			if (hardcodedBlacklist.contains(name) || isDimensionBlackListed(world.provider.getDimensionId()))
+			DimensionType dimType = world.provider.getDimensionType();
+			if (hardcodedBlacklist.contains(dimType.getName()) || isDimensionBlackListed(dimType.getId()))
 				event.setResult(Result.DENY);
 		}
 	}
@@ -130,7 +131,7 @@ public class HandlerEvents {
 		if (source instanceof EntityDamageSource) {
 			Entity entity = ((EntityDamageSource) source).getEntity();
 			if (entity instanceof EntityPlayer)
-				return ((EntityPlayer) entity).getCurrentEquippedItem();
+				return ((EntityPlayer) entity).getHeldItemMainhand();
 		}
 		return null;
 	}

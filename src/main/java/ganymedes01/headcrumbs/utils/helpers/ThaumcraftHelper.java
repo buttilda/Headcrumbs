@@ -1,15 +1,10 @@
 package ganymedes01.headcrumbs.utils.helpers;
 
-import ganymedes01.headcrumbs.ModBlocks;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional;
-import net.minecraftforge.oredict.OreDictionary;
-import thaumcraft.api.ThaumcraftApi;
-import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.aspects.AspectList;
 
 public class ThaumcraftHelper extends HeadDropHelper {
 
@@ -37,9 +32,9 @@ public class ThaumcraftHelper extends HeadDropHelper {
 
 	@Optional.Method(modid = "Thaumcraft")
 	private void addAspects() {
-		AspectList aspects = new AspectList().add(Aspect.MAN, 4).add(Aspect.DEATH, 4).add(Aspect.SOUL, 4);
-		ThaumcraftApi.registerObjectTag(new ItemStack(ModBlocks.player, 1, OreDictionary.WILDCARD_VALUE), aspects);
-		ThaumcraftApi.registerObjectTag(new ItemStack(ModBlocks.skull, 1, OreDictionary.WILDCARD_VALUE), aspects);
+		//		AspectList aspects = new AspectList().add(Aspect.MAN, 4).add(Aspect.DEATH, 4).add(Aspect.SOUL, 4);
+		//		ThaumcraftApi.registerObjectTag(new ItemStack(ModBlocks.player, 1, OreDictionary.WILDCARD_VALUE), aspects);
+		//		ThaumcraftApi.registerObjectTag(new ItemStack(ModBlocks.skull, 1, OreDictionary.WILDCARD_VALUE), aspects);
 	}
 
 	@Override

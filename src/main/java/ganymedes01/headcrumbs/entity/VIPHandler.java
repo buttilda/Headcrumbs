@@ -8,7 +8,9 @@ import com.google.common.reflect.ClassPath.ClassInfo;
 
 import ganymedes01.headcrumbs.Headcrumbs;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
 
 public class VIPHandler {
@@ -70,16 +72,16 @@ public class VIPHandler {
 	public void onSpawn(EntityHuman entity, DifficultyInstance difficulty) {
 	}
 
-	public String livingSound() {
+	public SoundEvent getAmbientSound() {
 		return null;
 	}
 
-	protected String hurtSound() {
-		return "game.hostile.hurt";
+	protected SoundEvent hurtSound() {
+		return SoundEvents.entity_hostile_hurt;
 	}
 
-	protected String deathSound() {
-		return "game.hostile.die";
+	protected SoundEvent deathSound() {
+		return SoundEvents.entity_hostile_death;
 	}
 
 	public static void init() {

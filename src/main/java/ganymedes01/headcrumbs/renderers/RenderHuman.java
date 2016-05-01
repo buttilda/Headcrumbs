@@ -2,6 +2,7 @@ package ganymedes01.headcrumbs.renderers;
 
 import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.utils.TextureUtils;
+import net.minecraft.client.model.ModelBiped.ArmPose;
 import net.minecraft.client.model.ModelPlayer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderBiped;
@@ -11,6 +12,8 @@ import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
 import net.minecraft.client.renderer.entity.layers.LayerCustomHead;
 import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.item.ItemBow;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -46,10 +49,14 @@ public class RenderHuman extends RenderBiped<EntityHuman> {
 	public void doRender(EntityHuman entity, double x, double y, double z, float f0, float partialTickTime) {
 		setModel(entity);
 
-		if (entity.getHeldItem() != null && entity.getHeldItem().getItem() instanceof ItemBow)
-			modelBipedMain.aimedBow = true;
+		ItemStack held = entity.getHeldItem(EnumHand.MAIN_HAND);
+		if (held != null)
+			if (held.getItem() instanceof ItemBow)
+				modelBipedMain.leftArmPose = ArmPose.BOW_AND_ARROW;
+			else
+				modelBipedMain.leftArmPose = ArmPose.ITEM;
 		else
-			modelBipedMain.aimedBow = false;
+			modelBipedMain.leftArmPose = ArmPose.EMPTY;
 
 		super.doRender(entity, x, y, z, f0, partialTickTime);
 	}

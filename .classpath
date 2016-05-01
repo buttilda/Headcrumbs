@@ -3,5 +3,6 @@
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/forge19"/>
+	<classpathentry kind="lib" path="libs/Waila-1.7.0-B2_1.9.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

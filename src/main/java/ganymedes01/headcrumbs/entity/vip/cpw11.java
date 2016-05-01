@@ -6,7 +6,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.common.Loader;
 
 public class cpw11 extends VIPHandler {
@@ -37,12 +37,12 @@ public class cpw11 extends VIPHandler {
 			NBTTagList pages = new NBTTagList();
 
 			if (Loader.isModLoaded("IronChest")) {
-				dirtChest9000GuideBook.setTagInfo("title", new NBTTagString(StatCollector.translateToLocal("book.ironchest:dirtchest9000.title")));
-				pages.appendTag(new NBTTagString(StatCollector.translateToLocal("book.ironchest:dirtchest9000.page1")));
-				pages.appendTag(new NBTTagString(StatCollector.translateToLocal("book.ironchest:dirtchest9000.page2")));
-				pages.appendTag(new NBTTagString(StatCollector.translateToLocal("book.ironchest:dirtchest9000.page3")));
-				pages.appendTag(new NBTTagString(StatCollector.translateToLocal("book.ironchest:dirtchest9000.page4")));
-				pages.appendTag(new NBTTagString(StatCollector.translateToLocal("book.ironchest:dirtchest9000.page5")));
+				dirtChest9000GuideBook.setTagInfo("title", new NBTTagString(I18n.translateToLocal("book.ironchest:dirtchest9000.title")));
+				pages.appendTag(new NBTTagString(I18n.translateToLocal("book.ironchest:dirtchest9000.page1")));
+				pages.appendTag(new NBTTagString(I18n.translateToLocal("book.ironchest:dirtchest9000.page2")));
+				pages.appendTag(new NBTTagString(I18n.translateToLocal("book.ironchest:dirtchest9000.page3")));
+				pages.appendTag(new NBTTagString(I18n.translateToLocal("book.ironchest:dirtchest9000.page4")));
+				pages.appendTag(new NBTTagString(I18n.translateToLocal("book.ironchest:dirtchest9000.page5")));
 			} else {
 				dirtChest9000GuideBook.setTagInfo("title", new NBTTagString(title));
 				pages.appendTag(new NBTTagString(page1));
