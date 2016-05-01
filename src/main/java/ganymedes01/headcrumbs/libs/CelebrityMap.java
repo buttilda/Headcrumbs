@@ -105,7 +105,6 @@ public class CelebrityMap {
 		map.put("_phi", "Botania");
 		map.put("Vswe", "Steve's Carts");
 		map.put("WayofFlowingTime", "BloodMagic");
-		map.put("x3n0ph0b3", "Equivalent Exchange");
 		map.put("XCompWiz", "Mystcraft");
 		map.put("ZeldoKavira", "Thermal Expansion");
 		map.put("calclavia", "Universal Electricity");
