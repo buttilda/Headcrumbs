@@ -18,7 +18,7 @@ public class LayerHumanDeadmau5Head implements LayerRenderer<EntityHuman> {
 	}
 
 	@Override
-	public void doRenderLayer(EntityHuman human, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale) {
+	public void doRenderLayer(EntityHuman human, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 		ResourceLocation skin = TextureUtils.getPlayerSkin(human);
 
 		if (human.getName().equals("deadmau5") && !human.isInvisible()) {

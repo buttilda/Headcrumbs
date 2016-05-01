@@ -75,7 +75,6 @@ public class CelebrityMap {
 		map.put("joshiejack", "Mariculture");
 		map.put("Kihira", "Player Beacons");
 		map.put("KingLemming", "Thermal Expansion");
-		map.put("Kobata", "InventoryTweaks");
 		map.put("Krapht", "LogisticsPipes");
 		map.put("LexManos", "Forge");
 		map.put("MatrexsVigil", "Pam's Harvestcraft");

@@ -73,7 +73,7 @@ public class HeadUtils {
 	}
 
 	public static ItemStack createHeadFor(String username) {
-		return createHeadFor(new GameProfile(null, UsernameUtils.getFixedUsername(username)));
+		return createHeadFor(new GameProfile(null, username));
 	}
 
 	public static ItemStack createHeadFor(EntityPlayer player) {

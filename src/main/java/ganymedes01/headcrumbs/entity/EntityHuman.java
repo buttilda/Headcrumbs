@@ -16,7 +16,6 @@ import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.api.IHumanEntity;
 import ganymedes01.headcrumbs.utils.ThreadedProfileFiller;
-import ganymedes01.headcrumbs.utils.UsernameUtils;
 import net.minecraft.client.resources.SkinManager;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -491,7 +490,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 
 	@Override
 	public void setUsername(String name) {
-		dataWatcher.set(NAME, UsernameUtils.getFixedUsername(name));
+		dataWatcher.set(NAME, name);
 
 		if ("Herobrine".equals(name)) {
 			getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).applyModifier(new AttributeModifier("Herobrine Damage Bonus", 1, 2));

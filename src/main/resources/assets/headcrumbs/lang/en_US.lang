@@ -231,3 +231,4 @@ entity.headcrumbs.Human.name=Human
 # Creative Tab #
 ################
 itemGroup.headcrumbs=Headcrumbs
+itemGroup.headcrumbs.players=Players

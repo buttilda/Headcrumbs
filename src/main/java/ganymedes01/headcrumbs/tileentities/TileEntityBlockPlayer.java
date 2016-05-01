@@ -28,7 +28,22 @@ public class TileEntityBlockPlayer extends TileEntitySkull {
 			return null;
 		}
 		if (human == null) {
-			human = new EntityHuman(worldObj);
+			human = new EntityHuman(worldObj) {
+				@Override
+				public double getInterpolatedCapeX(float partialTickTime) {
+					return 0;
+				}
+
+				@Override
+				public double getInterpolatedCapeY(float partialTickTime) {
+					return 0;
+				}
+
+				@Override
+				public double getInterpolatedCapeZ(float partialTickTime) {
+					return 0;
+				}
+			};
 			human.setProfile(profile);
 		}
 		return human;

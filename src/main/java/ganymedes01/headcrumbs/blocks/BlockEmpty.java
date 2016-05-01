@@ -13,6 +13,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -31,6 +32,11 @@ public class BlockEmpty extends Block {
 		setStepSound(SoundType.STONE);
 		setUnlocalizedName(Utils.getUnlocalisedName("empty"));
 		setDefaultState(blockState.getBaseState().withProperty(BlockSkull.NODROP, false));
+	}
+
+	@Override
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.INVISIBLE;
 	}
 
 	@Override

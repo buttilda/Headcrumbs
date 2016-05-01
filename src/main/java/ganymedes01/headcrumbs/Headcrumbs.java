@@ -20,7 +20,6 @@ import ganymedes01.headcrumbs.proxy.CommonProxy;
 import ganymedes01.headcrumbs.recipes.StatueRecipe;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.UsercacheChecker;
-import ganymedes01.headcrumbs.utils.UsernameUtils;
 import ganymedes01.headcrumbs.utils.helpers.ElementalCreepersHelper;
 import ganymedes01.headcrumbs.utils.helpers.EnderZooHelper;
 import ganymedes01.headcrumbs.utils.helpers.GrimoireOfGaiaHelper;
@@ -98,6 +97,43 @@ public class Headcrumbs {
 		}
 	};
 
+	public static CreativeTabs playersTab = new CreativeTabs(Reference.MOD_ID + ".players") {
+
+		@SideOnly(Side.CLIENT)
+		private ItemStack displayStack;
+
+		@Override
+		public Item getTabIconItem() {
+			return Items.skull;
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public ItemStack getIconItemStack() {
+			if (displayStack == null) {
+				Random rand = new Random();
+				List<String> names = getAllNames();
+				NBTTagCompound nbt = new NBTTagCompound();
+				nbt.setString("SkullOwner", names.get(rand.nextInt(names.size())));
+				displayStack = new ItemStack(Items.skull, 1, 3);
+				displayStack.setTagCompound(nbt);
+			}
+			return displayStack;
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public void displayAllRelevantItems(List<ItemStack> list) {
+			for (String name : Headcrumbs.getAllNames()) {
+				NBTTagCompound nbt = new NBTTagCompound();
+				nbt.setString("SkullOwner", name);
+				ItemStack skull = new ItemStack(Items.skull, 1, 3);
+				skull.setTagCompound(nbt);
+				list.add(skull);
+			}
+		}
+	};
+
 	// @formatter:off
 	public static String[] others = {
 		"ez", "saukawolf", "Fullapple1991", "Kaisacles", "Cindric", "wiiv", "deadmau5", "muted79", "DrummingFish",
@@ -107,7 +143,7 @@ public class Headcrumbs {
 	public static String[] modders = {
 		"sinkillerj", "Silentine", "techbrew", "Drullkus", "aidancbrady", "Melonar", "Cricket", "YorkAARGH",
 		"spacetoad", "FyberOptic", "Vexatos", "Mineshopper", "AUTOMATIC_MAIDEN", "sanandreasMC", "FatherToast",
-		"Erasmus_Crowley", "Alblaka", "Emoniph", "Nuchaz", "Kobata", "powercrystals", "AbrarSyed", "sdkillen",
+		"Erasmus_Crowley", "Alblaka", "Emoniph", "Nuchaz", "powercrystals", "AbrarSyed", "sdkillen",
 		"Taelnia", "Lycanite", "asiekierka", "GregoriusT", "skyboy", "Flaxbeard", "Emasher", "joshiejack", "Reika",
 		"ganymedes01", "Pokefenn", "chylex", "vadis365", "jakimfett", "Lunatrius", "copygirl", "amadornes", "DrZhark",
 		"KeldonSlayer", "KarelMikie3", "Mfernflower", "LuckyLucyF", "Tristaric", "fry_"
@@ -147,7 +183,7 @@ public class Headcrumbs {
 		"WayofFlowingTime", "TTFTCUTS", "bspkrs", "amnet", "azanor", "chicken_bones", "Cloudhunter", "RazzleberryFox",
 		"CovertJaguar", "cpw11", "dan200", "Eloraam", "florastar", "iChun", "KingLemming", "Krapht", "peterixxx", "Adubbz",
 		"LexManos", "TheMattaBase", "mDiyo", "Myrathi", "Morvelaira", "Pahimar", "sfPlayer1", "Arkember",
-		"Rorax", "Sacheverell", "sirsengir", "Soaryn", "x3n0ph0b3", "XCompWiz", "Vswe", "Vazkii", "ZeldoKavira", "AtomicBlom",
+		"Rorax", "Sacheverell", "sirsengir", "Soaryn", "XCompWiz", "Vswe", "Vazkii", "ZeldoKavira", "AtomicBlom",
 		"neptunepink", "EddieRuckus", "LordDusk", "Kihira", "Vaygrim", "Kaelten", "MatrexsVigil", "tfox83", "jadedcat", "mezz",
 		"aivu", "ArashiDragon", "Binnie567", "c4ts", "Clairetic", "consolegrl", "Corosus", "electronicbird", "faunastar",
 		"Forstride", "IceBladeRage", "Minakun", "odedex", "OvermindDL1", "RichardG867", "ted80", "Benimatic", "MrFlamegoat"
@@ -179,15 +215,11 @@ public class Headcrumbs {
 	public static String humanNamePrefix = "";
 	public static boolean humansAttackTwins = true;
 
-	public static boolean isTinkersConstructLoaded = false;
-
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		ConfigHandler.INSTANCE.init(event.getSuggestedConfigurationFile());
 
 		ModBlocks.init();
-
-		UsernameUtils.initMap();
 
 		OreDictionary.registerOre("itemSkull", new ItemStack(Items.skull, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("skullSkeleton", new ItemStack(Items.skull, 1, 0));
@@ -212,8 +244,6 @@ public class Headcrumbs {
 		proxy.registerTileEntities();
 
 		FMLInterModComms.sendMessage("Waila", "register", "ganymedes01.headcrumbs.waila.WailaRegistrar.wailaCallback");
-
-		isTinkersConstructLoaded = Loader.isModLoaded("TConstruct");
 
 		if (Loader.isModLoaded("ganysend")) {
 			addEnderFurnaceRecipe(new ItemStack(Blocks.dragon_egg), "skullEnderDragon");
