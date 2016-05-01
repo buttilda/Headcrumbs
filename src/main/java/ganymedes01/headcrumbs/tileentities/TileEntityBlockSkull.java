@@ -4,7 +4,7 @@ import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntitySkull;
-import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

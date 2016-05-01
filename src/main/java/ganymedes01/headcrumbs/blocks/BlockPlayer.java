@@ -20,8 +20,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -29,10 +30,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockPlayer extends BlockHeadcrumbsSkull {
 
+	private static final AxisAlignedBB BOUNDS = new AxisAlignedBB(0.125, 0, 0.125, 0.875, 1, 0.875);
+
 	public BlockPlayer() {
 		setUnlocalizedName(Utils.getUnlocalisedName("player"));
-		float f = 2F / 16F;
-		setBlockBounds(f, 0.0F, f, 1.0F - f, 1.0F, 1.0F - f);
 	}
 
 	@Override
@@ -72,7 +73,7 @@ public class BlockPlayer extends BlockHeadcrumbsSkull {
 	}
 
 	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player) {
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		TileEntityBlockPlayer tile = Utils.getTileEntity(world, pos, TileEntityBlockPlayer.class);
 		if (tile != null) {
 			ItemStack stack = new ItemStack(this);
@@ -99,7 +100,8 @@ public class BlockPlayer extends BlockHeadcrumbsSkull {
 	}
 
 	@Override
-	public void setBlockBoundsBasedOnState(IBlockAccess access, BlockPos pos) {
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+		return BOUNDS;
 	}
 
 	@Override

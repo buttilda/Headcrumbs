@@ -41,7 +41,7 @@ public class BighornHead extends SheepHead {
 
 	@Override
 	public void renderSpecial(GameProfile profile, float skullRotation) {
-		float[] colour = EntitySheep.func_175513_a(EnumDyeColor.BROWN);
+		float[] colour = EntitySheep.getDyeRgb(EnumDyeColor.BROWN);
 		GlStateManager.color(colour[0], colour[1], colour[2]);
 		renderOverlay(skullRotation);
 	}

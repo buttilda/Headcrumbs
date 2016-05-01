@@ -106,7 +106,7 @@ public class VanillaHelper extends HeadDropHelper {
 						return SkullTypes.ocelotSiamese.getStack();
 				}
 			else if (entity instanceof EntityHorse) {
-				int type = ((EntityHorse) entity).getHorseType();
+				int type = ((EntityHorse) entity).getHorseVariant();
 
 				if (type == 0)
 					switch (((EntityHorse) entity).getHorseVariant() & 255) {

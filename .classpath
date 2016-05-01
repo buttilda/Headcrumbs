@@ -2,8 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/forge18"/>
-	<classpathentry kind="lib" path="libs/Waila-1.6.0-B3_1.8.8.jar"/>
-	<classpathentry kind="lib" path="libs/Thaumcraft-1.8.9-5.1.4.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/forge19"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

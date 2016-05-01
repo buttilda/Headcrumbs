@@ -12,6 +12,7 @@ import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.Utils;
 import ganymedes01.headcrumbs.utils.helpers.LycanitesHelperClient;
 import net.minecraft.block.BlockSkull;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,27 +22,24 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import thaumcraft.api.crafting.IInfusionStabiliser;
 
-@Optional.Interface(iface = "thaumcraft.api.crafting.IInfusionStabiliser", modid = "Thaumcraft")
-public class BlockHeadcrumbsSkull extends BlockSkull implements IHasCustomItem, IInfusionStabiliser {
+public class BlockHeadcrumbsSkull extends BlockSkull implements IHasCustomItem {
 
 	public BlockHeadcrumbsSkull() {
 		setHardness(1.0F);
-		setStepSound(soundTypePiston);
+		setStepSound(SoundType.STONE);
 		setCreativeTab(Headcrumbs.tab);
 		setUnlocalizedName(Utils.getUnlocalisedName("skull"));
 	}
 
 	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player) {
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		TileEntityBlockSkull tile = Utils.getTileEntity(world, pos, TileEntityBlockSkull.class);
 		if (tile != null) {
 			SkullTypes model = tile.getModel();
@@ -76,12 +74,6 @@ public class BlockHeadcrumbsSkull extends BlockSkull implements IHasCustomItem, 
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public Item getItem(World world, BlockPos pos) {
-		return Item.getItemFromBlock(this);
-	}
-
-	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		List<ItemStack> list = new ArrayList<ItemStack>();
 		if (!state.getValue(NODROP).booleanValue()) {
@@ -103,11 +95,5 @@ public class BlockHeadcrumbsSkull extends BlockSkull implements IHasCustomItem, 
 	@Override
 	public Class<? extends ItemBlock> getItemBlockClass() {
 		return ItemHeadcrumbsSkull.class;
-	}
-
-	@Override
-	@Optional.Method(modid = "Thaumcraft")
-	public boolean canStabaliseInfusion(World world, BlockPos pos) {
-		return true;
 	}
 }

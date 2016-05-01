@@ -6,27 +6,31 @@ import ganymedes01.headcrumbs.ModBlocks;
 import ganymedes01.headcrumbs.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSkull;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockEmpty extends Block {
 
+	private static final AxisAlignedBB BOUNDS = new AxisAlignedBB(0.25, 0, 0.25, 0.75, 1, 0.75);
+
 	public BlockEmpty() {
 		super(Material.clay);
 		setHardness(1.0F);
-		setStepSound(soundTypeStone);
+		setStepSound(SoundType.STONE);
 		setUnlocalizedName(Utils.getUnlocalisedName("empty"));
 		setDefaultState(blockState.getBaseState().withProperty(BlockSkull.NODROP, false));
-		float f = 4F / 16F;
-		setBlockBounds(f, 0.0F, f, 1.0F - f, 1.0F, 1.0F - f);
 	}
 
 	@Override
@@ -40,8 +44,8 @@ public class BlockEmpty extends Block {
 	}
 
 	@Override
-	protected BlockState createBlockState() {
-		return new BlockState(this, new IProperty[] { BlockSkull.NODROP });
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] { BlockSkull.NODROP });
 	}
 
 	@Override
@@ -51,19 +55,19 @@ public class BlockEmpty extends Block {
 	}
 
 	@Override
-	public int getRenderType() {
-		return -1;
-	}
-
-	@Override
-	public boolean isOpaqueCube() {
+	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player) {
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
+
+	@Override
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		pos = pos.up();
-		return world.getBlockState(pos).getBlock().getPickBlock(target, world, pos, player);
+		return world.getBlockState(pos).getBlock().getPickBlock(state, target, world, pos, player);
 	}
 
 	@Override
@@ -79,9 +83,14 @@ public class BlockEmpty extends Block {
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
 		pos = pos.up();
 		state = world.getBlockState(pos);
-		return state.getBlock().onBlockActivated(world, pos, state, player, side, hitX, hitY - 1.0F, hitZ);
+		return state.getBlock().onBlockActivated(world, pos, state, player, hand, heldItem, side, hitX, hitY - 1.0F, hitZ);
+	}
+
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+		return BOUNDS;
 	}
 }

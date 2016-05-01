@@ -4,7 +4,7 @@ import com.mojang.authlib.GameProfile;
 
 import ganymedes01.headcrumbs.entity.EntityHuman;
 import net.minecraft.tileentity.TileEntitySkull;
-import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

@@ -55,7 +55,7 @@ public class ConfigHandler {
 
 	@SubscribeEvent
 	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) {
-		if (Reference.MOD_ID.equals(eventArgs.modID))
+		if (Reference.MOD_ID.equals(eventArgs.getModID()))
 			syncConfigs();
 	}
 }

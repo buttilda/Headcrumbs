@@ -21,6 +21,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.StringUtils;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
@@ -41,9 +42,10 @@ public class HandlerEvents {
 
 	@SubscribeEvent
 	public void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
-		if (event.entityLiving instanceof EntityHuman) {
-			String name = event.world.provider.getDimensionName();
-			if (hardcodedBlacklist.contains(name) || isDimensionBlackListed(event.world.provider.getDimensionId()))
+		if (event.getEntityLiving() instanceof EntityHuman) {
+			World world = event.getWorld();
+			String name = world.provider.getDimensionName();
+			if (hardcodedBlacklist.contains(name) || isDimensionBlackListed(world.provider.getDimensionId()))
 				event.setResult(Result.DENY);
 		}
 	}
@@ -57,10 +59,10 @@ public class HandlerEvents {
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void dropEvent(LivingDropsEvent event) {
-		drop(event.entityLiving, event.source, event.drops);
-	}
+		EntityLivingBase entity = event.getEntityLiving();
+		DamageSource source = event.getSource();
+		List<EntityItem> drops = event.getDrops();
 
-	private void drop(EntityLivingBase entity, DamageSource source, List<EntityItem> drops) {
 		if (entity.worldObj.isRemote)
 			return;
 		if (entity.getHealth() > 0.0F)
@@ -137,13 +139,13 @@ public class HandlerEvents {
 	public void onTooltip(ItemTooltipEvent event) {
 		if (!Headcrumbs.enableTooltips)
 			return;
-		ItemStack stack = event.itemStack;
+		ItemStack stack = event.getItemStack();
 		if (stack != null && stack.getItem() == Items.skull && stack.getMetadata() == 3) {
 			String name = HeadUtils.getName(stack);
 			if (name != null) {
 				String tip = CelebrityMap.getTooltip(name);
 				if (!StringUtils.isNullOrEmpty(tip))
-					event.toolTip.add(tip);
+					event.getToolTip().add(tip);
 			}
 		}
 	}

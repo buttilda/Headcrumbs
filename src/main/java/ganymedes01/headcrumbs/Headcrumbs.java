@@ -99,7 +99,7 @@ public class Headcrumbs {
 	// @formatter:off
 	public static String[] others = {
 		"ez", "saukawolf", "Fullapple1991", "Kaisacles", "Cindric", "wiiv", "deadmau5", "muted79", "DrummingFish",
-		"Kyrinon", "vasili02", "Jeb_Jeb", "KingPurpleRaptor", "DylanGK", "sadris", "Herobrine", "kehaan"
+		"Kyrinon", "KingPurpleRaptor", "DylanGK", "sadris", "Herobrine", "kehaan"
 	};
 
 	public static String[] modders = {
@@ -148,7 +148,7 @@ public class Headcrumbs {
 		"Rorax", "Sacheverell", "sirsengir", "Soaryn", "x3n0ph0b3", "XCompWiz", "Vswe", "Vazkii", "ZeldoKavira", "AtomicBlom",
 		"neptunepink", "EddieRuckus", "LordDusk", "Kihira", "Vaygrim", "Kaelten", "MatrexsVigil", "tfox83", "jadedcat", "mezz",
 		"aivu", "ArashiDragon", "Binnie567", "c4ts", "Clairetic", "consolegrl", "Corosus", "electronicbird", "faunastar",
-		"Forstride", "IceBladeRage", "Minakun", "odedex", "OvermindDL1", "RichardG867", "ted80", "Benimatic"
+		"Forstride", "IceBladeRage", "Minakun", "odedex", "OvermindDL1", "RichardG867", "ted80", "Benimatic", "MrFlamegoat"
 	};
 
 	public static String[] ftb = {
