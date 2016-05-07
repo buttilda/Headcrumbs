@@ -209,7 +209,6 @@ public class Headcrumbs {
 	public static int celebrityProb = 80, celebrityMin = 4, celebrityMax = 4;
 	public static double babyHumanChance = 0.1;
 	public static boolean enableVIPs = true;
-	public static boolean enableBaarbra = true;
 	public static int[] blacklistedDimensions = { 1, -1 };
 	public static String humanNamePrefix = "";
 	public static boolean humansAttackTwins = true;
@@ -226,6 +225,7 @@ public class Headcrumbs {
 		OreDictionary.registerOre("skullZombie", new ItemStack(Items.skull, 1, 2));
 		OreDictionary.registerOre("skullPlayer", new ItemStack(Items.skull, 1, 3));
 		OreDictionary.registerOre("skullCreeper", new ItemStack(Items.skull, 1, 4));
+		OreDictionary.registerOre("skullEnderDragon", new ItemStack(Items.skull, 1, 5));
 
 		if (enableHumanMobs) {
 			EntityRegistry.registerModEntity(EntityHuman.class, "Human", 0, instance, 512, 1, true);
@@ -244,10 +244,8 @@ public class Headcrumbs {
 
 		FMLInterModComms.sendMessage("Waila", "register", "ganymedes01.headcrumbs.waila.WailaRegistrar.wailaCallback");
 
-		if (Loader.isModLoaded("ganysend")) {
-			addEnderFurnaceRecipe(new ItemStack(Blocks.dragon_egg), "skullEnderDragon");
+		if (Loader.isModLoaded("ganysend"))
 			addEnderFurnaceRecipe(new ItemStack(Items.nether_star), "skullWither");
-		}
 
 		if (enablePlayerStatues) {
 			GameRegistry.addRecipe(StatueRecipe.getRecipe(new ItemStack(ModBlocks.player), "x", "y", "y", 'x', new ItemStack(Items.skull, 1, 3), 'y', new ItemStack(Blocks.clay)));

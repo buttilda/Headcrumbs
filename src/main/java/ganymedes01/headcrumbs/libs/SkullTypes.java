@@ -7,7 +7,6 @@ import ganymedes01.headcrumbs.renderers.ModelHead;
 import ganymedes01.headcrumbs.renderers.heads.BatHead;
 import ganymedes01.headcrumbs.renderers.heads.ChickenHead;
 import ganymedes01.headcrumbs.renderers.heads.CowHead;
-import ganymedes01.headcrumbs.renderers.heads.EnderDragonHead;
 import ganymedes01.headcrumbs.renderers.heads.EndermanHead;
 import ganymedes01.headcrumbs.renderers.heads.EndermiteHead;
 import ganymedes01.headcrumbs.renderers.heads.GhastHead;
@@ -140,7 +139,6 @@ public enum SkullTypes {
 	squid				(Strings.MC_PREFIX + "squid", 								null, 					SquidHead.INSTANCE),
 	wither				(Strings.MC_PREFIX + "wither/wither", 						null, 					WitherHead.INSTANCE),
 	ghast				(Strings.MC_PREFIX + "ghast/ghast", 						null, 					GhastHead.INSTANCE),
-	enderDragon			(Strings.MC_PREFIX + "enderdragon/dragon", 					null, 					EnderDragonHead.INSTANCE),
 	ocelot				(Strings.MC_PREFIX + "cat/ocelot", 							null, 					OcelotHead.INSTANCE),
 	ocelotBlack			(Strings.MC_PREFIX + "cat/black", 							null, 					OcelotHead.INSTANCE),
 	ocelotRed			(Strings.MC_PREFIX + "cat/red", 							null, 					OcelotHead.INSTANCE),

@@ -2,7 +2,6 @@ package ganymedes01.headcrumbs.utils.helpers;
 
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityCaveSpider;
@@ -162,8 +161,6 @@ public class VanillaHelper extends HeadDropHelper {
 			return SkullTypes.squid.getStack();
 		else if (entity instanceof EntityGhast)
 			return SkullTypes.ghast.getStack();
-		else if (entity instanceof EntityDragon)
-			return SkullTypes.enderDragon.getStack();
 		else if (entity instanceof EntityBat)
 			return SkullTypes.bat.getStack();
 		else if (entity instanceof EntitySlime && ((EntitySlime) entity).getSlimeSize() == 1) {

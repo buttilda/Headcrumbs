@@ -40,7 +40,6 @@ public class ConfigHandler {
 
 		Headcrumbs.enableHumanMobs = configFile.get("mob", "Enable celebrity mobs", Headcrumbs.enableHumanMobs).setRequiresMcRestart(true).getBoolean();
 		Headcrumbs.enableVIPs = configFile.get("mob", "Enable VIP drops", Headcrumbs.enableVIPs, "Setting this to false will disable special drops/weapons for certain celebrities. Existing mobs will still hold the weapons they spawned with.").setRequiresMcRestart(true).getBoolean();
-		Headcrumbs.enableBaarbra = configFile.get("mob", "Disable Baarbra", Headcrumbs.enableBaarbra, "Setting this to false will cause Baarbra (or other mobs that VIPs mount) to no longer show up )=").setRequiresMcRestart(false).getBoolean();
 		Headcrumbs.celebrityProb = configFile.get("mob", "Spawn probability", Headcrumbs.celebrityProb, "The change the mob will spawn. Base values: zombies, skeletons, spider, creepers = 100, endermen = 10, witches = 5").setRequiresMcRestart(true).getInt();
 		Headcrumbs.celebrityMin = configFile.get("mob", "Minimum group size", Headcrumbs.celebrityMin, "The minimum size of the group of mobs that will spawn at once").setRequiresMcRestart(true).getInt();
 		Headcrumbs.celebrityMax = configFile.get("mob", "Maximum group size", Headcrumbs.celebrityMax, "The maximum size of the group of mobs that will spawn at once").setRequiresMcRestart(true).getInt();
