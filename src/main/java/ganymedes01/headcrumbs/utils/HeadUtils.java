@@ -1,7 +1,6 @@
 package ganymedes01.headcrumbs.utils;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -31,13 +30,7 @@ public class HeadUtils {
 		Random rand = new Random();
 
 		List<String> allNames = Headcrumbs.getAllNames();
-		Collections.sort(allNames, new Comparator<String>() {
-
-			@Override
-			public int compare(String s1, String s2) {
-				return s1.compareTo(s2);
-			}
-		});
+		Collections.sort(allNames);
 
 		for (String name : allNames) {
 			name = name.trim();

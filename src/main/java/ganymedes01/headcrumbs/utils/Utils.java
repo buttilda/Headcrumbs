@@ -1,7 +1,5 @@
 package ganymedes01.headcrumbs.utils;
 
-import java.awt.Color;
-
 import ganymedes01.headcrumbs.libs.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -16,26 +14,6 @@ public class Utils {
 
 	public static String getUnlocalisedName(String name) {
 		return Reference.MOD_ID + "." + name;
-	}
-
-	public static String getBlockTexture(String name) {
-		return Reference.ITEM_BLOCK_TEXTURE_PATH + name;
-	}
-
-	public static String getItemTexture(String name) {
-		return Reference.ITEM_BLOCK_TEXTURE_PATH + name;
-	}
-
-	public static String getEntityTexture(String name) {
-		return Reference.ENTITY_TEXTURE_PATH + name + ".png";
-	}
-
-	public static String getConainerName(String name) {
-		return "container." + Reference.MOD_ID + "." + name;
-	}
-
-	public static int getColour(int R, int G, int B) {
-		return new Color(R < 0 ? 0 : R, G < 0 ? 0 : G, B < 0 ? 0 : B).getRGB() & 0x00ffffff;
 	}
 
 	public static ResourceLocation getResource(String path) {
