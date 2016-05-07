@@ -3,14 +3,18 @@ package ganymedes01.headcrumbs.utils.helpers;
 import java.util.Arrays;
 import java.util.List;
 
+import com.mojang.authlib.GameProfile;
+
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTUtil;
 
 public class LycanitesHelper extends HeadDropHelper {
 
-	public static final List<String> blacklist = Arrays.asList("pinky", "behemoth", "belph");
 	public static final List<String> prefixes = Arrays.asList("arcticmobs", "demonmobs", "desertmobs", "forestmobs", "freshwatermobs", "infernomobs", "junglemobs", "mountainmobs", "plainsmobs", "saltwatermobs", "swampmobs", "shadowmobs");
 
 	public LycanitesHelper() {
@@ -23,32 +27,26 @@ public class LycanitesHelper extends HeadDropHelper {
 
 	@Override
 	protected ItemStack getHeadForEntity(Entity entity) {
-		/*String mobName = EntityList.getEntityString(entity);
+		String mobName = EntityList.getEntityString(entity);
 		if (mobName == null)
 			return null;
-		
-		if (entity instanceof EntityPinky)
-			return SkullTypes.pinky.getStack();
-		else if (entity instanceof EntityBehemoth)
-			return SkullTypes.behemoth.getStack();
-		else if (entity instanceof EntityBelph)
-			return SkullTypes.belph.getStack();
-		else {
-			int dot = mobName.indexOf('.') + 1;
-			if (dot > 1) {
-				String prefix = mobName.substring(0, dot - 1);
-				if (prefixes.contains(prefix)) {
-					mobName = mobName.substring(dot).toLowerCase();
-					return !blacklist.contains(mobName) ? getStackFor(mobName) : null;
-				}
+
+		int dot = mobName.indexOf('.') + 1;
+		if (dot > 1) {
+			String prefix = mobName.substring(0, dot - 1);
+			if (prefixes.contains(prefix)) {
+				mobName = mobName.substring(dot).toLowerCase();
+				return getStackFor(mobName);
 			}
-		}*/
+		}
 		return null;
 	}
 
-	private static ItemStack getStackFor(String mob) {
-		ItemStack stack = HeadUtils.createHeadFor(mob);
-		stack.setItemDamage(SkullTypes.lycanites.ordinal());
+	public static ItemStack getStackFor(String mob) {
+		ItemStack stack = SkullTypes.lycanites.getStack();
+		NBTTagCompound profileData = new NBTTagCompound();
+		NBTUtil.writeGameProfile(profileData, new GameProfile(null, mob));
+		stack.getTagCompound().setTag(HeadUtils.OWNER_TAG, profileData);
 		return stack;
 	}
 }

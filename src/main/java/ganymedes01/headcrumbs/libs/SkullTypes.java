@@ -80,10 +80,7 @@ import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.YukiOnnaHead;
 import ganymedes01.headcrumbs.renderers.heads.lasercreeper.JetPackSpiderHead;
 import ganymedes01.headcrumbs.renderers.heads.lasercreeper.LaserCreeperHead;
 import ganymedes01.headcrumbs.renderers.heads.lasercreeper.RoboDinoHead;
-import ganymedes01.headcrumbs.renderers.heads.lycanites.BehemothHead;
-import ganymedes01.headcrumbs.renderers.heads.lycanites.BelphHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.LycaniteHead;
-import ganymedes01.headcrumbs.renderers.heads.lycanites.PinkyHead;
 import ganymedes01.headcrumbs.renderers.heads.natura.ImpHead;
 import ganymedes01.headcrumbs.renderers.heads.primitivemobs.JuggernautHead;
 import ganymedes01.headcrumbs.renderers.heads.primitivemobs.LilyLurkerHead;
@@ -227,9 +224,6 @@ public enum SkullTypes {
 	eldritchCrab		(Strings.TC_PREFIX + "crab",			 					"Thaumcraft", 			EldrichCrabHead.INSTANCE),
 
 	lycanites			("", 														"lycanitesmobs", 		LycaniteHead.INSTANCE),
-	pinky				(Strings.LY_PREFIX + "pinky", 								"lycanitesmobs", 		PinkyHead.INSTANCE),
-	behemoth			(Strings.LY_PREFIX + "behemoth", 							"lycanitesmobs", 		BehemothHead.INSTANCE),
-	belph				(Strings.LY_PREFIX + "belph", 								"lycanitesmobs", 		BelphHead.INSTANCE),
 
 	concussionCreeper	(Strings.EZ_PREFIX + "concussionCreeper", 					"EnderZoo", 			ModelHead.INSTANCE_NO_OVERLAY),
 	enderminy			(Strings.EZ_PREFIX + "enderminy", 							"EnderZoo", 			EnderminyHead.INSTANCE),

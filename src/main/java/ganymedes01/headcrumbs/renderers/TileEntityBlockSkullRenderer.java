@@ -27,19 +27,6 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer<Tile
 		renderHead((float) x, (float) y, (float) z, tile.getBlockMetadata() & 7, tile.getSkullRotation() * 360 / 16.0F, tile.getModel(), tile.getPlayerProfile(), destroyStage);
 	}
 
-	//	public void renderHead(float x, float y, float z, ItemStack head) {
-	//		float offset = SkullTypes.values()[head.getItemDamage()].model().playerRenderOffset();
-	//
-	//		GameProfile profile = null;
-	//		if (head.hasTagCompound())
-	//			if (head.getTagCompound().hasKey("SkullOwner", Constants.NBT.TAG_COMPOUND))
-	//				profile = NBTUtil.readGameProfileFromNBT(head.getTagCompound().getCompoundTag("SkullOwner"));
-	//			else if (head.getTagCompound().hasKey("SkullOwner", Constants.NBT.TAG_STRING))
-	//				profile = new GameProfile(null, head.getTagCompound().getString("SkullOwner"));
-	//
-	//		renderHead(x, y, z + offset * 0.0625F, 1, 180.0F, head.getItemDamage(), profile);
-	//	}
-
 	public void renderHead(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile profile, int destroyStage) {
 		if (type == SkullTypes.lycanites)
 			renderLycanites(x, y, z, meta, skullRotation, type, profile, destroyStage);
@@ -48,11 +35,6 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer<Tile
 	}
 
 	private void renderLycanites(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile profile, int destroyStage) {
-		if (profile == null || !SkullTypes.lycanites.canShow()) {
-			renderNormal(x, y, z, meta, skullRotation, SkullTypes.blaze, profile, destroyStage); // So that the heads are visible after an eventual removal of Lycanites
-			return;
-		}
-
 		ModelBase model = LycanitesHelperClient.getModel(profile.getName());
 		ResourceLocation tex = type.getTexture(profile);
 		if (model != null && tex != null) {
