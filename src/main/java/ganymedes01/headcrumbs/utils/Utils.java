@@ -42,6 +42,10 @@ public class Utils {
 		return new ResourceLocation(path);
 	}
 
+	public static ResourceLocation getResource(String mod, String path) {
+		return new ResourceLocation(mod, path);
+	}
+
 	@SuppressWarnings("unchecked")
 	public static <T> T getTileEntity(IBlockAccess world, BlockPos pos, Class<T> cls) {
 		TileEntity tile = world.getTileEntity(pos);

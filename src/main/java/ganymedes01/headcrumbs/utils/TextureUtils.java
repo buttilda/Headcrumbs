@@ -34,7 +34,16 @@ public class TextureUtils {
 		if (!human.isProfileReady())
 			return getDefault(human.getProfile(), type);
 
-		return getPlayerTexture(human.getProfile(), type, human.getCallback());
+		GameProfile profile = human.getProfile();
+		if (type == MinecraftProfileTexture.Type.CAPE) {
+			ResourceLocation cape = CapeUtils.getCape(profile);
+			if (cape != null) {
+				human.getCallback().skinAvailable(type, cape, null);
+				return cape;
+			}
+		}
+
+		return getPlayerTexture(profile, type, human.getCallback());
 	}
 
 	private static ResourceLocation getPlayerTexture(GameProfile profile, MinecraftProfileTexture.Type type, SkinManager.SkinAvailableCallback callBack) {

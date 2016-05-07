@@ -31,9 +31,6 @@ public interface IHumanEntity {
 	boolean isTextureAvailable(MinecraftProfileTexture.Type type);
 
 	@SideOnly(Side.CLIENT)
-	void setTextureAvailable(MinecraftProfileTexture.Type type);
-
-	@SideOnly(Side.CLIENT)
 	ResourceLocation getTexture(MinecraftProfileTexture.Type type);
 
 	@SideOnly(Side.CLIENT)

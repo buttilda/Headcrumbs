@@ -24,9 +24,8 @@ public class ModBlocks {
 		final String name = strings[strings.length - 1];
 
 		GameRegistry.register(block.setRegistryName(name));
-		
 		if (block instanceof IHasCustomItem)
-			GameRegistry.register( ((IHasCustomItem) block).getItemBlock(block).setRegistryName(name));
+			GameRegistry.register(((IHasCustomItem) block).getItemBlock(block).setRegistryName(name));
 	}
 
 	public static interface IHasCustomItem {

@@ -546,9 +546,8 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		}
 	}
 
-	@Override
 	@SideOnly(Side.CLIENT)
-	public void setTextureAvailable(MinecraftProfileTexture.Type type) {
+	private void setTextureAvailable(MinecraftProfileTexture.Type type) {
 		switch (type) {
 			case CAPE:
 				capeAvailable = true;
