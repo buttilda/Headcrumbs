@@ -105,7 +105,7 @@ public class BlockPlayer extends BlockHeadcrumbsSkull {
 	}
 
 	@Override
-	public Class<? extends ItemBlock> getItemBlockClass() {
-		return ItemStatue.class;
+	public ItemBlock getItemBlock(Block block) {
+		return new ItemStatue(block);
 	}
 }

@@ -5,14 +5,14 @@ import ganymedes01.headcrumbs.entity.VIPHandler;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class direwolf20 extends VIPHandler {
 
 	@Override
 	public void onSpawn(EntityHuman entity, DifficultyInstance difficulty) {
-		Item wrench = GameRegistry.findItem("BuildCraft|Core", "wrenchItem");
+		Item wrench = Item.itemRegistry.getObject(new ResourceLocation("BuildCraft|Core", "wrenchItem"));
 		if (wrench != null)
 			entity.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(wrench));
 	}

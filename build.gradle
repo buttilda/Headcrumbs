@@ -17,9 +17,19 @@ group = "ganymedes01.headcrumbs"
 archivesBaseName = "Headcrumbs"
 
 minecraft {
-    version = "1.9-12.16.0.1868-1.9"
+    version = "1.9-12.16.1.1887"
     mappings = "snapshot_20160312"
     runDir = "run"
+}
+
+repositories {
+    maven {
+        url "http://mobiusstrip.eu/maven"
+    }
+}
+
+dependencies {
+    compile "mcp.mobius.waila:Waila:1.7.0-B2_1.9"
 }
 
 processResources {

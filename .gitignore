@@ -4,3 +4,8 @@
 build
 /libs
 .gradle
+run/
+Headcrumbs_Client.launch
+Headcrumbs_Server.launch
+.classpath
+.project

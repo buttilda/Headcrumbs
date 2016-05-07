@@ -11,6 +11,7 @@ import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.Utils;
 import ganymedes01.headcrumbs.utils.helpers.LycanitesHelperClient;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockSkull;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -94,7 +95,7 @@ public class BlockHeadcrumbsSkull extends BlockSkull implements IHasCustomItem/*
 	}
 
 	@Override
-	public Class<? extends ItemBlock> getItemBlockClass() {
-		return ItemHeadcrumbsSkull.class;
+	public ItemBlock getItemBlock(Block block) {
+		return new ItemHeadcrumbsSkull(block);
 	}
 }
