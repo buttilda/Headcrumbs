@@ -46,6 +46,7 @@ import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemBow;
+import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -242,9 +243,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 	@Override
 	public ItemStack getPickedResult(RayTraceResult target) {
 		ItemStack stack = new ItemStack(Items.spawn_egg);
-		NBTTagCompound nbt = new NBTTagCompound();
-		nbt.setString("entity_name", EntityList.classToStringMapping.get(getClass()));
-		stack.setTagCompound(nbt);
+		ItemMonsterPlacer.applyEntityIdToItemStack(stack, EntityList.classToStringMapping.get(getClass()));
 		return stack;
 	}
 
