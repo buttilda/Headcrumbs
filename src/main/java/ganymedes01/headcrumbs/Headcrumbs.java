@@ -110,12 +110,8 @@ public class Headcrumbs {
 		@SideOnly(Side.CLIENT)
 		public ItemStack getIconItemStack() {
 			if (displayStack == null) {
-				Random rand = new Random();
 				List<String> names = getAllNames();
-				NBTTagCompound nbt = new NBTTagCompound();
-				nbt.setString("SkullOwner", names.get(rand.nextInt(names.size())));
-				displayStack = new ItemStack(Items.skull, 1, 3);
-				displayStack.setTagCompound(nbt);
+				displayStack = HeadUtils.createHeadFor(names.get(new Random().nextInt(names.size())));
 			}
 			return displayStack;
 		}
@@ -123,13 +119,8 @@ public class Headcrumbs {
 		@Override
 		@SideOnly(Side.CLIENT)
 		public void displayAllRelevantItems(List<ItemStack> list) {
-			for (String name : Headcrumbs.getAllNames()) {
-				NBTTagCompound nbt = new NBTTagCompound();
-				nbt.setString("SkullOwner", name);
-				ItemStack skull = new ItemStack(Items.skull, 1, 3);
-				skull.setTagCompound(nbt);
-				list.add(skull);
-			}
+			for (String name : Headcrumbs.getAllNames())
+				list.add(HeadUtils.createHeadFor(name));
 		}
 	};
 
