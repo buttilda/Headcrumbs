@@ -1,7 +1,6 @@
 package ganymedes01.headcrumbs.utils;
 
-import java.util.Collections;
-import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -9,6 +8,7 @@ import com.mojang.authlib.GameProfile;
 
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.entity.EntityHuman;
+import ganymedes01.headcrumbs.libs.Reference;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.utils.helpers.HeadDropHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,34 +17,60 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.LootContext;
+import net.minecraft.world.storage.loot.LootEntryItem;
+import net.minecraft.world.storage.loot.LootPool;
+import net.minecraft.world.storage.loot.LootTableList;
+import net.minecraft.world.storage.loot.conditions.LootCondition;
+import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.event.LootTableLoadEvent;
 
 public class HeadUtils {
 
 	public static final String OWNER_TAG = "SkullOwner";
 	public static final String MODEL_TAG = "SkullModel";
 
-	public static final List<ItemStack> players = new LinkedList<ItemStack>();
+	private static final List<ResourceLocation> overworldLoot = Arrays.asList(LootTableList.CHESTS_SIMPLE_DUNGEON, LootTableList.CHESTS_ABANDONED_MINESHAFT, LootTableList.CHESTS_DESERT_PYRAMID, LootTableList.CHESTS_JUNGLE_TEMPLE, LootTableList.CHESTS_IGLOO_CHEST);
+	private static final List<ResourceLocation> specialLoot = Arrays.asList(LootTableList.CHESTS_NETHER_BRIDGE, LootTableList.CHESTS_STRONGHOLD_LIBRARY, LootTableList.CHESTS_STRONGHOLD_CROSSING, LootTableList.CHESTS_STRONGHOLD_CORRIDOR, LootTableList.CHESTS_END_CITY_TREASURE);
 
-	public static void loadPlayerHeads() {
-		Random rand = new Random();
+	private static class HeadLootFunction extends LootFunction {
 
-		List<String> allNames = Headcrumbs.getAllNames();
-		Collections.sort(allNames);
+		private static List<String> allNames = null;
 
-		for (String name : allNames) {
-			name = name.trim();
-			if (name == null || name.isEmpty())
-				continue;
+		protected HeadLootFunction() {
+			super(null);
+		}
 
-			ItemStack head = createHeadFor(name);
-			if (Headcrumbs.addPlayerHeadsAsDungeonLoot) {
-				rand.setSeed(name.hashCode());
-				Utils.addDungeonLoot(head.copy(), 1, 1, 1 + rand.nextInt(Headcrumbs.headsDungeonLootMaxWeight));
-				Utils.addStrongholdLoot(head.copy(), 1, 1, 2 + rand.nextInt(Math.max(1, Headcrumbs.headsDungeonLootMaxWeight - 1)));
+		@Override
+		public ItemStack apply(ItemStack stack, Random rand, LootContext context) {
+			if (allNames == null || allNames.isEmpty())
+				allNames = Headcrumbs.getAllNames();
+
+			String name = allNames.get(rand.nextInt(allNames.size()));
+			allNames.remove(name);
+			return HeadUtils.createHeadFor(name);
+		}
+	}
+
+	public static void onRegisterLootTable(LootTableLoadEvent event) {
+		if (Headcrumbs.addPlayerHeadsAsDungeonLoot) {
+			LootPool main = event.getTable().getPool("main");
+			if (main == null)
+				return;
+
+			int weight = -1;
+			if (specialLoot.contains(event.getName()))
+				weight = Headcrumbs.headsDungeonLootWeight + 1;
+			else if (overworldLoot.contains(event.getName()))
+				weight = Headcrumbs.headsDungeonLootWeight;
+
+			if (weight > 0) {
+				main.addEntry(new LootEntryItem(Items.skull, weight, 0, new LootFunction[] { new HeadLootFunction() }, new LootCondition[0], Reference.MOD_ID + ":player_heads0"));
+				main.addEntry(new LootEntryItem(Items.skull, weight, 0, new LootFunction[] { new HeadLootFunction() }, new LootCondition[0], Reference.MOD_ID + ":player_heads1"));
+				main.addEntry(new LootEntryItem(Items.skull, weight, 0, new LootFunction[] { new HeadLootFunction() }, new LootCondition[0], Reference.MOD_ID + ":player_heads2"));
 			}
-
-			players.add(head);
 		}
 	}
 

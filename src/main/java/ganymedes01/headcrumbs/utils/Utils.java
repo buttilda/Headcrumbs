@@ -3,7 +3,6 @@ package ganymedes01.headcrumbs.utils;
 import ganymedes01.headcrumbs.libs.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -30,21 +29,6 @@ public class Utils {
 		if (!cls.isInstance(tile))
 			return null;
 		return (T) tile;
-	}
-
-	public static void addDungeonLoot(ItemStack stack, int minChance, int maxChance, int weight) {
-		//		ChestGenHooks.addItem(ChestGenHooks.DUNGEON_CHEST, new WeightedRandomChestContent(stack, minChance, maxChance, weight));
-		//		ChestGenHooks.addItem(ChestGenHooks.MINESHAFT_CORRIDOR, new WeightedRandomChestContent(stack, minChance, maxChance, weight));
-		//		ChestGenHooks.addItem(ChestGenHooks.PYRAMID_DESERT_CHEST, new WeightedRandomChestContent(stack, minChance, maxChance, weight));
-		//		ChestGenHooks.addItem(ChestGenHooks.PYRAMID_JUNGLE_CHEST, new WeightedRandomChestContent(stack, minChance, maxChance, weight));
-		//		if (Loader.isModLoaded("ganysnether"))
-		//			ChestGenHooks.addItem("ganysnether.undertaker", new WeightedRandomChestContent(stack, minChance, maxChance, weight));
-	}
-
-	public static void addStrongholdLoot(ItemStack stack, int minChance, int maxChance, int weight) {
-		//		ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CORRIDOR, new WeightedRandomChestContent(stack, minChance, maxChance, weight));
-		//		ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_LIBRARY, new WeightedRandomChestContent(stack, minChance, maxChance, weight));
-		//		ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CROSSING, new WeightedRandomChestContent(stack, minChance, maxChance, weight));
 	}
 
 	public static final void breakBlockWithParticles(World world, BlockPos pos, int meta) {

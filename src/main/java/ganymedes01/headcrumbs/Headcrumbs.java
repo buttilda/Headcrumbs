@@ -192,7 +192,7 @@ public class Headcrumbs {
 	public static List<String> modsent = new ArrayList<String>();
 
 	public static boolean addPlayerHeadsAsDungeonLoot = true;
-	public static int headsDungeonLootMaxWeight = 1;
+	public static int headsDungeonLootWeight = 1;
 	public static boolean enablePlayerStatues = true;
 	public static boolean enableTooltips = true;
 
@@ -265,8 +265,6 @@ public class Headcrumbs {
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		HeadUtils.loadPlayerHeads();
-
 		HeadDropHelper.register(new LaserCreepersHelper());
 		HeadDropHelper.register(new TwilightForestHelper());
 		HeadDropHelper.register(new TEHelper());

@@ -22,7 +22,7 @@ public class ConfigHandler {
 
 	private void syncConfigs() {
 		Headcrumbs.addPlayerHeadsAsDungeonLoot = configFile.get(Configuration.CATEGORY_GENERAL, "Add player heads as dungeon loot", Headcrumbs.addPlayerHeadsAsDungeonLoot).setRequiresMcRestart(false).getBoolean();
-		Headcrumbs.headsDungeonLootMaxWeight = configFile.get(Configuration.CATEGORY_GENERAL, "Player heads loot weight", Headcrumbs.headsDungeonLootMaxWeight, "The bigger this number the easier it will be to find heads in dungeons.\nSome heads will be rarer than others.\nExamples: Diamond is 1, Redstone is 10").setRequiresMcRestart(true).getInt();
+		Headcrumbs.headsDungeonLootWeight = configFile.get(Configuration.CATEGORY_GENERAL, "Player heads loot weight", Headcrumbs.headsDungeonLootWeight, "The bigger this number the easier it will be to find heads in dungeons.\nSome heads will be rarer than others.\nExamples: Diamond is 1, Redstone is 10").setRequiresMcRestart(true).getInt();
 		Headcrumbs.enablePlayerStatues = configFile.get(Configuration.CATEGORY_GENERAL, "Enable player statues", Headcrumbs.enablePlayerStatues, "Setting this to true allow statues to be built (Turning this off won't destroy existing statues)").setRequiresMcRestart(false).getBoolean();
 
 		Headcrumbs.enableTooltips = configFile.get(Configuration.CATEGORY_GENERAL, "Enable head item tooltips", Headcrumbs.enableTooltips, "Enables tooltips with informations about certain names (mod authors mostly)").setRequiresMcRestart(false).getBoolean();

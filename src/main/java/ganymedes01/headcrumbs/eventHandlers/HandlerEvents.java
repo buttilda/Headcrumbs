@@ -5,19 +5,24 @@ import java.util.List;
 
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.entity.EntityHuman;
+import ganymedes01.headcrumbs.entity.vip.direwolf20;
 import ganymedes01.headcrumbs.libs.CelebrityMap;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.StringUtils;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
+import net.minecraftforge.event.LootTableLoadEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -32,6 +37,29 @@ public class HandlerEvents {
 	private static List<String> hardcodedBlacklist = Arrays.asList("Twilight Forest", "Erebus", "The Outer Lands");
 
 	private HandlerEvents() {
+	}
+
+	@SubscribeEvent
+	public void onRegisterLootTable(LootTableLoadEvent event) {
+		HeadUtils.onRegisterLootTable(event);
+	}
+
+	@SubscribeEvent
+	public void onAttack(LivingAttackEvent event) {
+		EntityLivingBase entity = event.getEntityLiving();
+		DamageSource dmgSrc = event.getSource();
+		if (dmgSrc != null && entity instanceof EntityHuman) {
+			Entity attacker = dmgSrc.getEntity();
+			if (attacker instanceof EntityPlayer) {
+				EntityPlayer player = (EntityPlayer) attacker;
+				ItemStack stack = player.getHeldItem(EnumHand.MAIN_HAND);
+				if (stack != null && stack.getItem() == Items.stick)
+					if (stack.hasTagCompound() && stack.getTagCompound().getBoolean("IsDirestick"))
+						direwolf20.takeItEasy(player);
+					else
+						direwolf20.makeDirestick((EntityHuman) entity, player, stack);
+			}
+		}
 	}
 
 	@SubscribeEvent
