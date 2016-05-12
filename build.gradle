@@ -17,7 +17,7 @@ group = "ganymedes01.headcrumbs"
 archivesBaseName = "Headcrumbs"
 
 minecraft {
-    version = "1.9-12.16.1.1887"
+    version = "1.9-12.16.1.1901"
     mappings = "snapshot_20160312"
     runDir = "run"
 }
