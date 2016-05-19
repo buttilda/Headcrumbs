@@ -39,8 +39,7 @@ public class ItemHeadcrumbsSkull extends FixedItemBlock {
 		else {
 			BlockPos clickedPos = pos.offset(side.getOpposite());
 			IBlockState clickedState = world.getBlockState(clickedPos);
-			Block clickedBlock = clickedState.getBlock();
-			if (!clickedBlock.getMaterial(clickedState).isSolid() || !world.isSideSolid(clickedPos, side, true))
+			if (!clickedState.getMaterial().isSolid() || !world.isSideSolid(clickedPos, side, true))
 				return false;
 
 			if (!player.canPlayerEdit(pos, side, stack))
