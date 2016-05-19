@@ -23,9 +23,10 @@ public class TileEntityBlockSkull extends TileEntitySkull {
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound nbt) {
-		super.writeToNBT(nbt);
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		nbt = super.writeToNBT(nbt);
 		nbt.setString(HeadUtils.OWNER_TAG, type.name());
+		return nbt;
 	}
 
 	@Override

@@ -53,7 +53,7 @@ public class HandlerEvents {
 			if (attacker instanceof EntityPlayer) {
 				EntityPlayer player = (EntityPlayer) attacker;
 				ItemStack stack = player.getHeldItem(EnumHand.MAIN_HAND);
-				if (stack != null && stack.getItem() == Items.stick)
+				if (stack != null && stack.getItem() == Items.STICK)
 					if (stack.hasTagCompound() && stack.getTagCompound().getBoolean("IsDirestick"))
 						direwolf20.takeItEasy(player);
 					else
@@ -92,7 +92,7 @@ public class HandlerEvents {
 
 		if (isPoweredCreeper(source)) {
 			ItemStack stack = HeadUtils.getHeadfromEntity(entity);
-			if (stack == null || stack.getItem() == Items.skull)
+			if (stack == null || stack.getItem() == Items.SKULL)
 				return;
 
 			EntityItem entityItem = new EntityItem(entity.worldObj, entity.posX, entity.posY, entity.posZ, stack);
@@ -115,7 +115,7 @@ public class HandlerEvents {
 		if (!Headcrumbs.enableTooltips)
 			return;
 		ItemStack stack = event.getItemStack();
-		if (stack != null && stack.getItem() == Items.skull && stack.getMetadata() == 3) {
+		if (stack != null && stack.getItem() == Items.SKULL && stack.getMetadata() == 3) {
 			String name = HeadUtils.getName(stack);
 			if (name != null) {
 				String tip = CelebrityMap.getTooltip(name);

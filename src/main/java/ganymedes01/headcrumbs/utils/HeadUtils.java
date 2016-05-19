@@ -67,9 +67,9 @@ public class HeadUtils {
 				weight = Headcrumbs.headsDungeonLootWeight;
 
 			if (weight > 0) {
-				main.addEntry(new LootEntryItem(Items.skull, weight, 0, new LootFunction[] { new HeadLootFunction() }, new LootCondition[0], Reference.MOD_ID + ":player_heads0"));
-				main.addEntry(new LootEntryItem(Items.skull, weight, 0, new LootFunction[] { new HeadLootFunction() }, new LootCondition[0], Reference.MOD_ID + ":player_heads1"));
-				main.addEntry(new LootEntryItem(Items.skull, weight, 0, new LootFunction[] { new HeadLootFunction() }, new LootCondition[0], Reference.MOD_ID + ":player_heads2"));
+				main.addEntry(new LootEntryItem(Items.SKULL, weight, 0, new LootFunction[] { new HeadLootFunction() }, new LootCondition[0], Reference.MOD_ID + ":player_heads0"));
+				main.addEntry(new LootEntryItem(Items.SKULL, weight, 0, new LootFunction[] { new HeadLootFunction() }, new LootCondition[0], Reference.MOD_ID + ":player_heads1"));
+				main.addEntry(new LootEntryItem(Items.SKULL, weight, 0, new LootFunction[] { new HeadLootFunction() }, new LootCondition[0], Reference.MOD_ID + ":player_heads2"));
 			}
 		}
 	}
@@ -100,7 +100,7 @@ public class HeadUtils {
 	}
 
 	public static ItemStack createHeadFor(GameProfile profile) {
-		ItemStack stack = new ItemStack(Items.skull, 1, 3);
+		ItemStack stack = new ItemStack(Items.SKULL, 1, 3);
 		stack.setTagCompound(new NBTTagCompound());
 		NBTTagCompound profileData = new NBTTagCompound();
 		NBTUtil.writeGameProfile(profileData, profile);

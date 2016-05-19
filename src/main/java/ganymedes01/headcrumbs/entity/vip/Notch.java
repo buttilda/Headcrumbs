@@ -12,6 +12,6 @@ public class Notch extends VIPHandler {
 		super.dropItems(entity, looting);
 
 		if (entity.getRNG().nextFloat() > 0.80F)
-			entity.entityDropItem(new ItemStack(Items.golden_apple, 1, 1), 0);
+			entity.entityDropItem(new ItemStack(Items.GOLDEN_APPLE, 1, 1), 0);
 	}
 }

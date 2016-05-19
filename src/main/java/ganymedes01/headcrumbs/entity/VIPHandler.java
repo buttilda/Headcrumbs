@@ -59,11 +59,11 @@ public class VIPHandler {
 	}
 
 	protected ItemStack getItem(EntityHuman entity) {
-		return entity.getRNG().nextBoolean() ? new ItemStack(Items.bone) : new ItemStack(Items.rotten_flesh);
+		return entity.getRNG().nextBoolean() ? new ItemStack(Items.BONE) : new ItemStack(Items.ROTTEN_FLESH);
 	}
 
 	private ItemStack getDefaultDropItem(EntityHuman entity) {
-		return entity.getRNG().nextBoolean() ? new ItemStack(Items.bone) : new ItemStack(Items.rotten_flesh);
+		return entity.getRNG().nextBoolean() ? new ItemStack(Items.BONE) : new ItemStack(Items.ROTTEN_FLESH);
 	}
 
 	public void onSpawn(EntityHuman entity, DifficultyInstance difficulty) {
@@ -74,11 +74,11 @@ public class VIPHandler {
 	}
 
 	protected SoundEvent hurtSound() {
-		return SoundEvents.entity_hostile_hurt;
+		return SoundEvents.ENTITY_HOSTILE_HURT;
 	}
 
 	protected SoundEvent deathSound() {
-		return SoundEvents.entity_hostile_death;
+		return SoundEvents.ENTITY_HOSTILE_DEATH;
 	}
 
 	public static void init() {

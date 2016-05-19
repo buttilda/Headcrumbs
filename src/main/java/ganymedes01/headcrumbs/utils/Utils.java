@@ -40,6 +40,6 @@ public class Utils {
 	}
 
 	public static final void doBreakParticles(World world, BlockPos pos, Block block, int meta) {
-		world.playAuxSFXAtEntity(null, 2001, pos, Block.getIdFromBlock(block) + (meta << 12));
+		world.playEvent(null, 2001, pos, Block.getIdFromBlock(block) + (meta << 12));
 	}
 }

@@ -14,6 +14,6 @@ public class joshiejack extends VIPHandler {
 	public void onSpawn(EntityHuman entity, DifficultyInstance difficulty) {
 		if (entity.getHeldItem(EnumHand.MAIN_HAND) != null)
 			return;
-		entity.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.fishing_rod));
+		entity.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.FISHING_ROD));
 	}
 }

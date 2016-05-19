@@ -14,8 +14,8 @@ public class Jarrenitis extends VIPHandler {
 
 	@Override
 	public void onSpawn(EntityHuman entity, DifficultyInstance difficulty) {
-		held = new ItemStack(Items.iron_sword);
-		held.addEnchantment(Enchantments.knockback, 1);
+		held = new ItemStack(Items.IRON_SWORD);
+		held.addEnchantment(Enchantments.KNOCKBACK, 1);
 		held.setStackDisplayName("Ultimus?");
 
 		entity.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemStack.copyItemStack(held));

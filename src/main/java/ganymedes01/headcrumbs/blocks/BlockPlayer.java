@@ -89,7 +89,7 @@ public class BlockPlayer extends BlockHeadcrumbsSkull {
 	}
 
 	@Override
-	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighbour) {
+	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighbour) {
 		if (world.getBlockState(pos.add(0, -1, 0)).getBlock() != ModBlocks.empty)
 			Utils.breakBlockWithParticles(world, pos, 0);
 	}

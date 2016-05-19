@@ -41,7 +41,7 @@ public abstract class FixedItemBlock extends ItemBlock {
 			IBlockState newState = this.block.onBlockPlaced(world, pos, side, hitX, hitY, hitZ, meta, player);
 
 			if (placeBlockAt(stack, player, world, pos, side, hitX, hitY, hitZ, newState)) {
-				SoundType soundtype = this.block.getStepSound();
+				SoundType soundtype = this.block.getSoundType();
 				world.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
 				stack.stackSize--;
 			}
@@ -56,7 +56,7 @@ public abstract class FixedItemBlock extends ItemBlock {
 	public boolean canPlaceBlockOnSide(World world, BlockPos pos, EnumFacing side, EntityPlayer player, ItemStack stack) {
 		Block block = world.getBlockState(pos).getBlock();
 
-		if (block == Blocks.snow_layer && block.isReplaceable(world, pos))
+		if (block == Blocks.SNOW_LAYER && block.isReplaceable(world, pos))
 			side = EnumFacing.UP;
 		else if (!block.isReplaceable(world, pos))
 			pos = pos.offset(side);
@@ -65,8 +65,9 @@ public abstract class FixedItemBlock extends ItemBlock {
 	}
 
 	public boolean canBlockBePlaced(World world, Block blockToPlace, BlockPos pos, boolean useBounds, EnumFacing side, Entity entity, ItemStack stack) {
-		Block block = world.getBlockState(pos).getBlock();
-		AxisAlignedBB bb = useBounds ? null : block.getCollisionBoundingBox(blockToPlace.getDefaultState(), world, pos);
+		IBlockState state = world.getBlockState(pos);
+		Block block = state.getBlock();
+		AxisAlignedBB bb = useBounds ? null : state.getBoundingBox(world, pos);
 		if (bb != null && !world.checkNoEntityCollision(bb, entity))
 			return false;
 		return block.isReplaceable(world, pos) && blockToPlace.canReplace(world, pos, side, stack);

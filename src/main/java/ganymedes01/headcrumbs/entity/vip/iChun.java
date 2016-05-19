@@ -9,6 +9,6 @@ public class iChun extends VIPHandler {
 
 	@Override
 	protected ItemStack getItem(EntityHuman entity) {
-		return new ItemStack(entity.isBurning() ? Items.cooked_porkchop : Items.porkchop);
+		return new ItemStack(entity.isBurning() ? Items.COOKED_PORKCHOP : Items.PORKCHOP);
 	}
 }

@@ -9,6 +9,6 @@ public class SethBling extends VIPHandler {
 
 	@Override
 	protected ItemStack getItem(EntityHuman entity) {
-		return new ItemStack(Items.redstone);
+		return new ItemStack(Items.REDSTONE);
 	}
 }

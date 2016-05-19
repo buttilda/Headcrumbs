@@ -15,8 +15,8 @@ public class C418 extends VIPHandler {
 
 	@Override
 	protected ItemStack getItem(EntityHuman entity) {
-		int i = Item.getIdFromItem(Items.record_13);
-		int j = Item.getIdFromItem(Items.record_wait);
+		int i = Item.getIdFromItem(Items.RECORD_13);
+		int j = Item.getIdFromItem(Items.RECORD_WAIT);
 
 		return new ItemStack(Item.getItemById(i + entity.getRNG().nextInt(j - i + 1)));
 	}

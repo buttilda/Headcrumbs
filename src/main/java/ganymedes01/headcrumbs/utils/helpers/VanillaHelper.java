@@ -50,17 +50,17 @@ public class VanillaHelper extends HeadDropHelper {
 
 		if (entity instanceof EntityMob) {
 			if (entity instanceof EntityCreeper)
-				return new ItemStack(Items.skull, 1, 4);
+				return new ItemStack(Items.SKULL, 1, 4);
 			else if (entity instanceof EntitySkeleton) {
 				if (((EntitySkeleton) entity).getSkeletonType() == 0) // Only drop normal skeleton's head. Vanilla handles withers
-					return new ItemStack(Items.skull, 1, 0);
+					return new ItemStack(Items.SKULL, 1, 0);
 			} else if (entity instanceof EntityZombie) {
 				if (entity instanceof EntityPigZombie)
 					return SkullTypes.pigman.getStack();
 				else if (((EntityZombie) entity).isVillager())
 					return SkullTypes.zombieVillager.getStack();
 				else
-					return new ItemStack(Items.skull, 1, 2);
+					return new ItemStack(Items.SKULL, 1, 2);
 			} else if (entity instanceof EntityEnderman)
 				return SkullTypes.enderman.getStack();
 			else if (entity instanceof EntityBlaze)

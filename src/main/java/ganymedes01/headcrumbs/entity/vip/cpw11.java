@@ -32,7 +32,7 @@ public class cpw11 extends VIPHandler {
 	@Override
 	protected ItemStack getItem(EntityHuman entity) {
 		if (dirtChest9000GuideBook == null) {
-			dirtChest9000GuideBook = new ItemStack(Items.written_book);
+			dirtChest9000GuideBook = new ItemStack(Items.WRITTEN_BOOK);
 			dirtChest9000GuideBook.setTagInfo("author", new NBTTagString("cpw"));
 			NBTTagList pages = new NBTTagList();
 

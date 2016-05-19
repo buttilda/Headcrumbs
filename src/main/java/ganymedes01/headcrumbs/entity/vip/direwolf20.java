@@ -28,7 +28,7 @@ public class direwolf20 extends VIPHandler {
 
 	@Override
 	public void onSpawn(EntityHuman entity, DifficultyInstance difficulty) {
-		Item wrench = Item.itemRegistry.getObject(new ResourceLocation("BuildCraft|Core", "wrenchItem"));
+		Item wrench = Item.REGISTRY.getObject(new ResourceLocation("BuildCraft|Core", "wrenchItem"));
 		if (wrench != null)
 			entity.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(wrench));
 	}
@@ -50,7 +50,7 @@ public class direwolf20 extends VIPHandler {
 
 	public static void makeDirestick(EntityHuman human, EntityPlayer player, ItemStack stack) {
 		if (!"direwolf20".equals(human.getUsername())) {
-			ItemStack stick = new ItemStack(Items.stick);
+			ItemStack stick = new ItemStack(Items.STICK);
 			stick.setStackDisplayName("Direstick");
 			stick.getTagCompound().setBoolean("IsDirestick", true);
 

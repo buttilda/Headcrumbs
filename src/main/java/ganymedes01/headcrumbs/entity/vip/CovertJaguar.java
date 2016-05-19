@@ -14,6 +14,6 @@ public class CovertJaguar extends VIPHandler {
 
 	@Override
 	protected ItemStack getItem(EntityHuman entity) {
-		return new ItemStack(Blocks.rail);
+		return new ItemStack(Blocks.RAIL);
 	}
 }

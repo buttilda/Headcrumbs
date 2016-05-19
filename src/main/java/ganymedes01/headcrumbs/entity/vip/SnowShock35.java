@@ -9,6 +9,6 @@ public class SnowShock35 extends VIPHandler {
 
 	@Override
 	protected ItemStack getItem(EntityHuman entity) {
-		return new ItemStack(Items.snowball);
+		return new ItemStack(Items.SNOWBALL);
 	}
 }

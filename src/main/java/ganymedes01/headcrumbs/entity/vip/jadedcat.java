@@ -19,16 +19,16 @@ public class jadedcat extends VIPHandler {
 
 	@Override
 	public SoundEvent getAmbientSound() {
-		return SoundEvents.entity_cat_purreow;
+		return SoundEvents.ENTITY_CAT_PURREOW;
 	}
 
 	@Override
 	protected SoundEvent hurtSound() {
-		return SoundEvents.entity_cat_hurt;
+		return SoundEvents.ENTITY_CAT_HURT;
 	}
 
 	@Override
 	protected SoundEvent deathSound() {
-		return SoundEvents.entity_cat_death;
+		return SoundEvents.ENTITY_CAT_DEATH;
 	}
 }

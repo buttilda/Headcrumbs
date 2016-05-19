@@ -27,9 +27,9 @@ public class BlockEmpty extends Block {
 	private static final AxisAlignedBB BOUNDS = new AxisAlignedBB(0.25, 0, 0.25, 0.75, 1, 0.75);
 
 	public BlockEmpty() {
-		super(Material.clay);
+		super(Material.CLAY);
 		setHardness(1.0F);
-		setStepSound(SoundType.STONE);
+		setSoundType(SoundType.STONE);
 		setUnlocalizedName(Utils.getUnlocalisedName("empty"));
 		setDefaultState(blockState.getBaseState().withProperty(BlockSkull.NODROP, false));
 	}
@@ -55,7 +55,7 @@ public class BlockEmpty extends Block {
 	}
 
 	@Override
-	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighbour) {
+	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighbour) {
 		if (world.getBlockState(pos.up()).getBlock() != ModBlocks.player)
 			Utils.breakBlockWithParticles(world, pos, 0);
 	}

@@ -13,34 +13,38 @@ public class EntityAIAttackBow extends EntityAIBase {
 
 	private final EntityHuman entity;
 	private final double moveSpeedAmp;
-	private final int field_188501_c;
+	private int attackCooldown;
 	private final float maxAttackDistance;
-	private int field_188503_e = -1;
-	private int field_188504_f;
-	private boolean field_188505_g;
-	private boolean field_188506_h;
-	private int field_188507_i = -1;
+	private int attackTime = -1;
+	private int seeTime;
+	private boolean strafingClockwise;
+	private boolean strafingBackwards;
+	private int strafingTime = -1;
 
-	public EntityAIAttackBow(EntityHuman entity, double moveSpeedAmp, int field_188501_c, float maxAttackDistance) {
-		this.entity = entity;
-		this.moveSpeedAmp = moveSpeedAmp;
-		this.field_188501_c = field_188501_c;
-		this.maxAttackDistance = maxAttackDistance * maxAttackDistance;
+	public EntityAIAttackBow(EntityHuman human, double speedAmplifier, int delay, float maxDistance) {
+		entity = human;
+		moveSpeedAmp = speedAmplifier;
+		attackCooldown = delay;
+		maxAttackDistance = maxDistance * maxDistance;
 		setMutexBits(3);
+	}
+
+	public void setAttackCooldown(int p_189428_1_) {
+		attackCooldown = p_189428_1_;
 	}
 
 	@Override
 	public boolean shouldExecute() {
-		return entity.getAttackTarget() == null ? false : func_188498_f();
+		return entity.getAttackTarget() == null ? false : isBowInMainhand();
 	}
 
-	protected boolean func_188498_f() {
-		return entity.getHeldItemMainhand() != null && entity.getHeldItemMainhand().getItem() == Items.bow;
+	protected boolean isBowInMainhand() {
+		return entity.getHeldItemMainhand() != null && entity.getHeldItemMainhand().getItem() == Items.BOW;
 	}
 
 	@Override
 	public boolean continueExecuting() {
-		return (shouldExecute() || !entity.getNavigator().noPath()) && func_188498_f();
+		return (shouldExecute() || !entity.getNavigator().noPath()) && isBowInMainhand();
 	}
 
 	@Override
@@ -53,8 +57,8 @@ public class EntityAIAttackBow extends EntityAIBase {
 	public void resetTask() {
 		super.startExecuting();
 		entity.setDrawingBow(false);
-		field_188504_f = 0;
-		field_188503_e = -1;
+		seeTime = 0;
+		attackTime = -1;
 		entity.resetActiveHand();
 	}
 
@@ -65,58 +69,58 @@ public class EntityAIAttackBow extends EntityAIBase {
 		if (entitylivingbase != null) {
 			double d0 = entity.getDistanceSq(entitylivingbase.posX, entitylivingbase.getEntityBoundingBox().minY, entitylivingbase.posZ);
 			boolean flag = entity.getEntitySenses().canSee(entitylivingbase);
-			boolean flag1 = field_188504_f > 0;
+			boolean flag1 = seeTime > 0;
 
 			if (flag != flag1)
-				field_188504_f = 0;
+				seeTime = 0;
 
 			if (flag)
-				++field_188504_f;
+				++seeTime;
 			else
-				--field_188504_f;
+				--seeTime;
 
-			if (d0 <= maxAttackDistance && field_188504_f >= 20) {
+			if (d0 <= maxAttackDistance && seeTime >= 20) {
 				entity.getNavigator().clearPathEntity();
-				++field_188507_i;
+				++strafingTime;
 			} else {
 				entity.getNavigator().tryMoveToEntityLiving(entitylivingbase, moveSpeedAmp);
-				field_188507_i = -1;
+				strafingTime = -1;
 			}
 
-			if (field_188507_i >= 20) {
+			if (strafingTime >= 20) {
 				if (entity.getRNG().nextFloat() < 0.3D)
-					field_188505_g = !field_188505_g;
+					strafingClockwise = !strafingClockwise;
 
 				if (entity.getRNG().nextFloat() < 0.3D)
-					field_188506_h = !field_188506_h;
+					strafingBackwards = !strafingBackwards;
 
-				field_188507_i = 0;
+				strafingTime = 0;
 			}
 
-			if (field_188507_i > -1) {
+			if (strafingTime > -1) {
 				if (d0 > maxAttackDistance * 0.75F)
-					field_188506_h = false;
+					strafingBackwards = false;
 				else if (d0 < maxAttackDistance * 0.25F)
-					field_188506_h = true;
+					strafingBackwards = true;
 
-				entity.getMoveHelper().func_188488_a(field_188506_h ? -0.5F : 0.5F, field_188505_g ? 0.5F : -0.5F);
+				entity.getMoveHelper().strafe(strafingBackwards ? -0.5F : 0.5F, strafingClockwise ? 0.5F : -0.5F);
 				entity.faceEntity(entitylivingbase, 30.0F, 30.0F);
 			} else
 				entity.getLookHelper().setLookPositionWithEntity(entitylivingbase, 30.0F, 30.0F);
 
 			if (entity.isHandActive()) {
-				if (!flag && field_188504_f < -60)
+				if (!flag && seeTime < -60)
 					entity.resetActiveHand();
 				else if (flag) {
 					int i = entity.getItemInUseMaxCount();
 
 					if (i >= 20) {
 						entity.resetActiveHand();
-						entity.attackEntityWithRangedAttack(entitylivingbase, ItemBow.func_185059_b(i));
-						field_188503_e = field_188501_c;
+						entity.attackEntityWithRangedAttack(entitylivingbase, ItemBow.getArrowVelocity(i));
+						attackTime = attackCooldown;
 					}
 				}
-			} else if (--field_188503_e <= 0 && field_188504_f >= -60)
+			} else if (--attackTime <= 0 && seeTime >= -60)
 				entity.setActiveHand(EnumHand.MAIN_HAND);
 		}
 	}

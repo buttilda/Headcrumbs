@@ -40,8 +40,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -78,7 +78,7 @@ public class Headcrumbs {
 
 		@Override
 		public Item getTabIconItem() {
-			return Items.skull;
+			return Items.SKULL;
 		}
 
 		@Override
@@ -90,7 +90,7 @@ public class Headcrumbs {
 				for (SkullTypes type : SkullTypes.values())
 					if (type.canShow() && !type.usesProfile())
 						types.add(type);
-				displayStack = types.isEmpty() ? new ItemStack(Items.skull, 1, rand.nextInt(3)) : types.get(rand.nextInt(types.size())).getStack();
+				displayStack = types.isEmpty() ? new ItemStack(Items.SKULL, 1, rand.nextInt(3)) : types.get(rand.nextInt(types.size())).getStack();
 			}
 			return displayStack;
 		}
@@ -103,7 +103,7 @@ public class Headcrumbs {
 
 		@Override
 		public Item getTabIconItem() {
-			return Items.skull;
+			return Items.SKULL;
 		}
 
 		@Override
@@ -210,13 +210,13 @@ public class Headcrumbs {
 
 		ModBlocks.init();
 
-		OreDictionary.registerOre("itemSkull", new ItemStack(Items.skull, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("skullSkeleton", new ItemStack(Items.skull, 1, 0));
-		OreDictionary.registerOre("skullWitherSkeleton", new ItemStack(Items.skull, 1, 1));
-		OreDictionary.registerOre("skullZombie", new ItemStack(Items.skull, 1, 2));
-		OreDictionary.registerOre("skullPlayer", new ItemStack(Items.skull, 1, 3));
-		OreDictionary.registerOre("skullCreeper", new ItemStack(Items.skull, 1, 4));
-		OreDictionary.registerOre("skullEnderDragon", new ItemStack(Items.skull, 1, 5));
+		OreDictionary.registerOre("itemSkull", new ItemStack(Items.SKULL, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("skullSkeleton", new ItemStack(Items.SKULL, 1, 0));
+		OreDictionary.registerOre("skullWitherSkeleton", new ItemStack(Items.SKULL, 1, 1));
+		OreDictionary.registerOre("skullZombie", new ItemStack(Items.SKULL, 1, 2));
+		OreDictionary.registerOre("skullPlayer", new ItemStack(Items.SKULL, 1, 3));
+		OreDictionary.registerOre("skullCreeper", new ItemStack(Items.SKULL, 1, 4));
+		OreDictionary.registerOre("skullEnderDragon", new ItemStack(Items.SKULL, 1, 5));
 
 		if (enableHumanMobs) {
 			EntityRegistry.registerModEntity(EntityHuman.class, "Human", 0, instance, 512, 1, true);
@@ -236,10 +236,10 @@ public class Headcrumbs {
 		FMLInterModComms.sendMessage("Waila", "register", "ganymedes01.headcrumbs.waila.WailaRegistrar.wailaCallback");
 
 		if (Loader.isModLoaded("ganysend"))
-			addEnderFurnaceRecipe(new ItemStack(Items.nether_star), "skullWither");
+			addEnderFurnaceRecipe(new ItemStack(Items.NETHER_STAR), "skullWither");
 
 		if (enablePlayerStatues) {
-			GameRegistry.addRecipe(StatueRecipe.getRecipe(new ItemStack(ModBlocks.player), "x", "y", "y", 'x', new ItemStack(Items.skull, 1, 3), 'y', new ItemStack(Blocks.clay)));
+			GameRegistry.addRecipe(StatueRecipe.getRecipe(new ItemStack(ModBlocks.player), "x", "y", "y", 'x', new ItemStack(Items.SKULL, 1, 3), 'y', new ItemStack(Blocks.CLAY)));
 			RecipeSorter.register("statue", StatueRecipe.class, Category.SHAPED, "after:minecraft:shaped");
 		}
 	}
@@ -281,7 +281,7 @@ public class Headcrumbs {
 			addHumanSpawns();
 
 		if (Loader.isModLoaded("TwilightForest")) {
-			Item tropy = Item.itemRegistry.getObject(new ResourceLocation("TwilightForest", "item.trophy"));
+			Item tropy = Item.REGISTRY.getObject(new ResourceLocation("TwilightForest", "item.trophy"));
 			addConvertionRecipe(SkullTypes.hydra.getStack(), new ItemStack(tropy, 1, 0));
 			addConvertionRecipe(SkullTypes.nagaTF.getStack(), new ItemStack(tropy, 1, 1));
 			addConvertionRecipe(SkullTypes.lich.getStack(), new ItemStack(tropy, 1, 2));
@@ -337,8 +337,8 @@ public class Headcrumbs {
 		List<BiomeDictionary.Type> blacklistedBiomes = Arrays.asList(BiomeDictionary.Type.MUSHROOM);
 		List<String> blacklistedBiomeNames = Arrays.asList("Tainted Land");
 
-		List<BiomeGenBase> biomes = new LinkedList<BiomeGenBase>();
-		label: for (BiomeGenBase biome : BiomeGenBase.biomeRegistry)
+		List<Biome> biomes = new LinkedList<Biome>();
+		label: for (Biome biome : Biome.REGISTRY)
 			if (biome != null) {
 				// Check if the biome name is blacklisted
 				if (blacklistedBiomeNames.contains(biome.getBiomeName()))
@@ -367,6 +367,6 @@ public class Headcrumbs {
 					}
 			}
 
-		EntityRegistry.addSpawn(EntityHuman.class, celebrityProb, celebrityMin, celebrityMax, EnumCreatureType.MONSTER, biomes.toArray(new BiomeGenBase[biomes.size()]));
+		EntityRegistry.addSpawn(EntityHuman.class, celebrityProb, celebrityMin, celebrityMax, EnumCreatureType.MONSTER, biomes.toArray(new Biome[biomes.size()]));
 	}
 }

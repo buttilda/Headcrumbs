@@ -150,10 +150,10 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		capeY += y * 0.25;
 
 		if (worldObj.isRemote) {
-			float w = dataWatcher.get(WIDTH);
+			float w = dataManager.get(WIDTH);
 			if (w != width)
 				width = w;
-			float h = dataWatcher.get(HEIGHT);
+			float h = dataManager.get(HEIGHT);
 			if (h != height)
 				height = h;
 		}
@@ -174,11 +174,11 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 	@Override
 	protected void entityInit() {
 		super.entityInit();
-		dataWatcher.register(NAME, "");
-		dataWatcher.register(CHILD, false);
-		dataWatcher.register(WIDTH, width);
-		dataWatcher.register(HEIGHT, height);
-		dataWatcher.register(DRAWING_BOW, false);
+		dataManager.register(NAME, "");
+		dataManager.register(CHILD, false);
+		dataManager.register(WIDTH, width);
+		dataManager.register(HEIGHT, height);
+		dataManager.register(DRAWING_BOW, false);
 	}
 
 	/* SOUNDS */
@@ -215,20 +215,20 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 			int i = rand.nextInt(3);
 
 			if (i == 0) {
-				setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.stone_sword));
+				setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD));
 				if (worldObj.getDifficulty() == EnumDifficulty.HARD)
 					if (rand.nextFloat() > 0.5F) {
-						setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(Items.shield));
+						setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(Items.SHIELD));
 						getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).applyModifier(new AttributeModifier("Shield Bonus", rand.nextDouble() * 3.0 + 1.0, 2));
 					}
 			} else if (i == 1) {
-				setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.bow));
+				setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
 				if (worldObj.getDifficulty() == EnumDifficulty.HARD)
 					if (rand.nextFloat() > 0.5F) {
-						List<ResourceLocation> keys = new ArrayList<ResourceLocation>(PotionType.potionTypeRegistry.getKeys());
+						List<ResourceLocation> keys = new ArrayList<ResourceLocation>(PotionType.REGISTRY.getKeys());
 						ResourceLocation key = keys.get(rand.nextInt(keys.size()));
-						PotionType potion = PotionType.potionTypeRegistry.getObject(key);
-						setItemStackToSlot(EntityEquipmentSlot.OFFHAND, PotionUtils.addPotionToItemStack(new ItemStack(Items.tipped_arrow), potion));
+						PotionType potion = PotionType.REGISTRY.getObject(key);
+						setItemStackToSlot(EntityEquipmentSlot.OFFHAND, PotionUtils.addPotionToItemStack(new ItemStack(Items.TIPPED_ARROW), potion));
 					}
 			}
 		}
@@ -242,8 +242,8 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 
 	@Override
 	public ItemStack getPickedResult(RayTraceResult target) {
-		ItemStack stack = new ItemStack(Items.spawn_egg);
-		ItemMonsterPlacer.applyEntityIdToItemStack(stack, EntityList.classToStringMapping.get(getClass()));
+		ItemStack stack = new ItemStack(Items.SPAWN_EGG);
+		ItemMonsterPlacer.applyEntityIdToItemStack(stack, EntityList.CLASS_TO_NAME.get(getClass()));
 		return stack;
 	}
 
@@ -347,7 +347,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 
 		EntityTippedArrow arrow = new EntityTippedArrow(worldObj, this);
 		ItemStack offHandStack = getItemStackFromSlot(EntityEquipmentSlot.OFFHAND);
-		if (offHandStack != null && offHandStack.getItem() == Items.tipped_arrow)
+		if (offHandStack != null && offHandStack.getItem() == Items.TIPPED_ARROW)
 			arrow.setPotionEffect(offHandStack);
 
 		double x = target.posX - posX;
@@ -355,8 +355,8 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		double z = target.posZ - posZ;
 		double d0 = MathHelper.sqrt_double(x * x + z * z);
 		arrow.setThrowableHeading(x, y + d0 * 0.2, z, 1.6F, 14 - worldObj.getDifficulty().getDifficultyId() * 4);
-		int power = EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.power, this);
-		int punch = EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.punch, this);
+		int power = EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.POWER, this);
+		int punch = EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.PUNCH, this);
 		arrow.setDamage(damage * 2.0F + rand.nextGaussian() * 0.25 + worldObj.getDifficulty().getDifficultyId() * 0.11F);
 
 		if (power > 0)
@@ -365,10 +365,10 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		if (punch > 0)
 			arrow.setKnockbackStrength(punch);
 
-		if (EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.flame, this) > 0)
+		if (EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.FLAME, this) > 0)
 			arrow.setFire(100);
 
-		playSound(SoundEvents.entity_skeleton_shoot, 1.0F, 1.0F / (getRNG().nextFloat() * 0.4F + 0.8F));
+		playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (getRNG().nextFloat() * 0.4F + 0.8F));
 		worldObj.spawnEntityInWorld(arrow);
 	}
 
@@ -386,11 +386,11 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 
 	@SideOnly(Side.CLIENT)
 	public boolean isDrawingBow() {
-		return dataWatcher.get(DRAWING_BOW).booleanValue();
+		return dataManager.get(DRAWING_BOW).booleanValue();
 	}
 
 	public void setDrawingBow(boolean flag) {
-		dataWatcher.set(DRAWING_BOW, flag);
+		dataManager.set(DRAWING_BOW, flag);
 	}
 
 	/* USERNAME */
@@ -421,7 +421,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 			private Style style;
 
 			@Override
-			public Style getChatStyle() {
+			public Style getStyle() {
 				if (style == null) {
 					style = new Style() {
 
@@ -436,7 +436,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 
 					while (iterator.hasNext()) {
 						ITextComponent ichatcomponent = iterator.next();
-						ichatcomponent.getChatStyle().setParentStyle(style);
+						ichatcomponent.getStyle().setParentStyle(style);
 					}
 				}
 
@@ -484,12 +484,12 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 
 	@Override
 	public String getUsername() {
-		return dataWatcher.get(NAME);
+		return dataManager.get(NAME);
 	}
 
 	@Override
 	public void setUsername(String name) {
-		dataWatcher.set(NAME, name);
+		dataManager.set(NAME, name);
 
 		if ("Herobrine".equals(name)) {
 			getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).applyModifier(new AttributeModifier("Herobrine Damage Bonus", 1, 2));
@@ -580,11 +580,11 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 
 	@Override
 	public boolean isChild() {
-		return dataWatcher.get(CHILD);
+		return dataManager.get(CHILD);
 	}
 
 	public void setChild(boolean isChild) {
-		dataWatcher.set(CHILD, isChild);
+		dataManager.set(CHILD, isChild);
 
 		if (worldObj != null && !worldObj.isRemote) {
 			IAttributeInstance speed = getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
@@ -600,7 +600,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 	@Override
 	protected void setSize(float width, float height) {
 		super.setSize(width, height);
-		dataWatcher.set(WIDTH, this.width);
-		dataWatcher.set(HEIGHT, this.height);
+		dataManager.set(WIDTH, this.width);
+		dataManager.set(HEIGHT, this.height);
 	}
 }

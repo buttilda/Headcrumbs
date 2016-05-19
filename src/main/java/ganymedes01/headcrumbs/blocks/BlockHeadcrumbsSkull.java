@@ -35,7 +35,7 @@ public class BlockHeadcrumbsSkull extends BlockSkull implements IHasCustomItem/*
 
 	public BlockHeadcrumbsSkull() {
 		setHardness(1.0F);
-		setStepSound(SoundType.STONE);
+		setSoundType(SoundType.STONE);
 		setCreativeTab(Headcrumbs.tab);
 		setUnlocalizedName(Utils.getUnlocalisedName("skull"));
 	}

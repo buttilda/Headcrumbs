@@ -12,12 +12,12 @@ public class Etho extends VIPHandler {
 
 	@Override
 	protected ItemStack getItem(EntityHuman entity) {
-		return new ItemStack(Blocks.redstone_torch);
+		return new ItemStack(Blocks.REDSTONE_TORCH);
 	}
 
 	@Override
 	public void onSpawn(EntityHuman entity, DifficultyInstance difficulty) {
-		ItemStack axe = new ItemStack(Items.iron_axe);
+		ItemStack axe = new ItemStack(Items.IRON_AXE);
 		axe.setStackDisplayName("Treetho's Choppa");
 		entity.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, axe);
 	}

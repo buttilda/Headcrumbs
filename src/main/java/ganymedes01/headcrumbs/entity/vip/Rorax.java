@@ -9,6 +9,6 @@ public class Rorax extends VIPHandler {
 
 	@Override
 	protected ItemStack getItem(EntityHuman entity) {
-		return new ItemStack(Items.ender_pearl);
+		return new ItemStack(Items.ENDER_PEARL);
 	}
 }

@@ -9,6 +9,6 @@ public class Soaryn extends VIPHandler {
 
 	@Override
 	protected ItemStack getItem(EntityHuman entity) {
-		return new ItemStack(Blocks.chest);
+		return new ItemStack(Blocks.CHEST);
 	}
 }
