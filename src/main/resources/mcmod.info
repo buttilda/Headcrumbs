@@ -1,20 +1,18 @@
 [
-{
-  "modid": "headcrumbs",
-  "name": "Headcrumbs",
-  "description": "Adds heads (and stuff)!",
-  "version": "2.0.0",
-  "url": "",
-  "updateUrl": "",
-  "authorList": [
-    "ganymedes01"
-  ],
-  "credits": "",
-  "logoFile": "",
-  "screenshots": [
-  ],
-  "parent":"",
-  "dependencies": [
-  ]
-}
+	{
+		"modid": "headcrumbs",
+		"name": "Headcrumbs",
+		"description": "Adds heads (and stuff)!",
+		"version": "2.0.0",
+		"url": "",
+		"updateUrl": "",
+		"authorList": [
+			"ganymedes01"
+		],
+		"credits": "",
+		"logoFile": "",
+		"screenshots": [],
+		"parent":"",
+		"dependencies": []
+	}
 ]

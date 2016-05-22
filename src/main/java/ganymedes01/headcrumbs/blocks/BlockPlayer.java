@@ -32,10 +32,6 @@ public class BlockPlayer extends BlockHeadcrumbsSkull {
 
 	private static final AxisAlignedBB BOUNDS = new AxisAlignedBB(0.125, 0, 0.125, 0.875, 1, 0.875);
 
-	public BlockPlayer() {
-		setUnlocalizedName(Utils.getUnlocalisedName("player"));
-	}
-
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
@@ -105,7 +101,7 @@ public class BlockPlayer extends BlockHeadcrumbsSkull {
 	}
 
 	@Override
-	public ItemBlock getItemBlock(Block block) {
-		return new ItemStatue(block);
+	public ItemBlock getItemBlock() {
+		return new ItemStatue(this);
 	}
 }

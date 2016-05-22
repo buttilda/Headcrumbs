@@ -30,7 +30,6 @@ public class BlockEmpty extends Block {
 		super(Material.CLAY);
 		setHardness(1.0F);
 		setSoundType(SoundType.STONE);
-		setUnlocalizedName(Utils.getUnlocalisedName("empty"));
 		setDefaultState(blockState.getBaseState().withProperty(BlockSkull.NODROP, false));
 	}
 
