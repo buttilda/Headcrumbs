@@ -24,6 +24,7 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 
+@SuppressWarnings("deprecation")
 public class ItemHeadcrumbsSkull extends FixedItemBlock {
 
 	public ItemHeadcrumbsSkull(Block block) {

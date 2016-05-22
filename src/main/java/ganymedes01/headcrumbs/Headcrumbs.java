@@ -18,7 +18,6 @@ import ganymedes01.headcrumbs.libs.Reference;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.proxy.CommonProxy;
 import ganymedes01.headcrumbs.recipes.StatueRecipe;
-import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.helpers.ElementalCreepersHelper;
 import ganymedes01.headcrumbs.utils.helpers.EnderZooHelper;
 import ganymedes01.headcrumbs.utils.helpers.GrimoireOfGaiaHelper;
@@ -96,37 +95,9 @@ public class Headcrumbs {
 		}
 	};
 
-	public static CreativeTabs playersTab = new CreativeTabs(Reference.MOD_ID + ".players") {
-
-		@SideOnly(Side.CLIENT)
-		private ItemStack displayStack;
-
-		@Override
-		public Item getTabIconItem() {
-			return Items.SKULL;
-		}
-
-		@Override
-		@SideOnly(Side.CLIENT)
-		public ItemStack getIconItemStack() {
-			if (displayStack == null) {
-				List<String> names = getAllNames();
-				displayStack = HeadUtils.createHeadFor(names.get(new Random().nextInt(names.size())));
-			}
-			return displayStack;
-		}
-
-		@Override
-		@SideOnly(Side.CLIENT)
-		public void displayAllRelevantItems(List<ItemStack> list) {
-			for (String name : Headcrumbs.getAllNames())
-				list.add(HeadUtils.createHeadFor(name));
-		}
-	};
-
 	// @formatter:off
 	public static String[] others = {
-		"ez", "saukawolf", "Fullapple1991", "Kaisacles", "Cindric", "wiiv", "deadmau5", "muted79", "DrummingFish",
+		"ez", "saukawolf", "Fullapple1991", "Cindric", "wiiv", "deadmau5", "muted79", "DrummingFish",
 		"Kyrinon", "KingPurpleRaptor", "DylanGK", "sadris", "Herobrine", "kehaan"
 	};
 

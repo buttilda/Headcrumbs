@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.common.Loader;
 
+@SuppressWarnings("deprecation")
 public class cpw11 extends VIPHandler {
 
 	private static String title = "How to use your DirtChest 9000!";
