@@ -8,9 +8,7 @@ import ganymedes01.headcrumbs.ModBlocks.IHasCustomItem;
 import ganymedes01.headcrumbs.items.ItemHeadcrumbsSkull;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
-import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.Utils;
-import ganymedes01.headcrumbs.utils.helpers.LycanitesHelperClient;
 import net.minecraft.block.BlockSkull;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -19,8 +17,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -43,12 +39,7 @@ public class BlockHeadcrumbsSkull extends BlockSkull implements IHasCustomItem/*
 		TileEntityBlockSkull tile = Utils.getTileEntity(world, pos, TileEntityBlockSkull.class);
 		if (tile != null) {
 			SkullTypes model = tile.getModel();
-			ItemStack stack = model.getStack();
-			if (model.usesProfile()) {
-				NBTTagCompound nbt = NBTUtil.writeGameProfile(new NBTTagCompound(), tile.getPlayerProfile());
-				stack.getTagCompound().setTag(HeadUtils.OWNER_TAG, nbt);
-			}
-			return stack;
+			return model.getStack();
 		}
 		return null;
 	}
@@ -57,10 +48,8 @@ public class BlockHeadcrumbsSkull extends BlockSkull implements IHasCustomItem/*
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
 		for (SkullTypes skull : SkullTypes.values())
-			if (skull.canShow() && skull != SkullTypes.lycanites)
+			if (skull.canShow())
 				list.add(skull.getStack());
-		if (SkullTypes.lycanites.canShow())
-			list.addAll(LycanitesHelperClient.getStacks());
 	}
 
 	@Override
@@ -81,12 +70,7 @@ public class BlockHeadcrumbsSkull extends BlockSkull implements IHasCustomItem/*
 
 			if (tile != null) {
 				SkullTypes model = tile.getModel();
-				ItemStack stack = model.getStack();
-				if (model.usesProfile()) {
-					NBTTagCompound nbt = NBTUtil.writeGameProfile(new NBTTagCompound(), tile.getPlayerProfile());
-					stack.getTagCompound().setTag(HeadUtils.OWNER_TAG, nbt);
-				}
-				list.add(stack);
+				list.add(model.getStack());
 			}
 		}
 		return list;

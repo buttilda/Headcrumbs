@@ -92,7 +92,7 @@ public class HandlerEvents {
 
 		if (isPoweredCreeper(source)) {
 			ItemStack stack = HeadUtils.getHeadfromEntity(entity);
-			if (stack == null || stack.getItem() == Items.SKULL)
+			if (stack == null)
 				return;
 
 			EntityItem entityItem = new EntityItem(entity.worldObj, entity.posX, entity.posY, entity.posZ, stack);

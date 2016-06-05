@@ -23,7 +23,6 @@ import ganymedes01.headcrumbs.utils.helpers.EnderZooHelper;
 import ganymedes01.headcrumbs.utils.helpers.GrimoireOfGaiaHelper;
 import ganymedes01.headcrumbs.utils.helpers.HeadDropHelper;
 import ganymedes01.headcrumbs.utils.helpers.LaserCreepersHelper;
-import ganymedes01.headcrumbs.utils.helpers.LycanitesHelper;
 import ganymedes01.headcrumbs.utils.helpers.NaturaHelper;
 import ganymedes01.headcrumbs.utils.helpers.PrimitiveMobsHelper;
 import ganymedes01.headcrumbs.utils.helpers.TEHelper;
@@ -87,7 +86,7 @@ public class Headcrumbs {
 				Random rand = new Random();
 				List<SkullTypes> types = new ArrayList<SkullTypes>();
 				for (SkullTypes type : SkullTypes.values())
-					if (type.canShow() && !type.usesProfile())
+					if (type.canShow())
 						types.add(type);
 				displayStack = types.isEmpty() ? new ItemStack(Items.SKULL, 1, rand.nextInt(3)) : types.get(rand.nextInt(types.size())).getStack();
 			}
@@ -241,7 +240,6 @@ public class Headcrumbs {
 		HeadDropHelper.register(new TEHelper());
 		HeadDropHelper.register(new NaturaHelper());
 		HeadDropHelper.register(new ThaumcraftHelper());
-		HeadDropHelper.register(new LycanitesHelper());
 		HeadDropHelper.register(new EnderZooHelper());
 		HeadDropHelper.register(new PrimitiveMobsHelper());
 		HeadDropHelper.register(new GrimoireOfGaiaHelper());

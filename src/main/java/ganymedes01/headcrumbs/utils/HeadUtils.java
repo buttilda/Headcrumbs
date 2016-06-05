@@ -84,11 +84,7 @@ public class HeadUtils {
 		if (target instanceof EntityPlayer)
 			return createHeadFor((EntityPlayer) target);
 
-		ItemStack head = HeadDropHelper.getHead(target);
-		if (head != null)
-			return head;
-
-		return null;
+		return HeadDropHelper.getHead(target);
 	}
 
 	public static ItemStack createHeadFor(String username) {

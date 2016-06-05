@@ -495,6 +495,8 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 			getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).applyModifier(new AttributeModifier("Herobrine Damage Bonus", 1, 2));
 			getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).applyModifier(new AttributeModifier("Herobrine Speed Bonus", 0.5, 2));
 		}
+
+		getProfile();
 	}
 
 	@Override

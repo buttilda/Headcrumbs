@@ -6,12 +6,8 @@ import com.mojang.authlib.GameProfile;
 
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
-import ganymedes01.headcrumbs.utils.helpers.LycanitesHelperClient;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -20,48 +16,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer<TileEntityBlockSkull> {
 
 	private ModelHead model;
-	private static EntityLiving entity;
 
 	@Override
 	public void renderTileEntityAt(TileEntityBlockSkull tile, double x, double y, double z, float partialTickTime, int destroyStage) {
 		renderHead((float) x, (float) y, (float) z, tile.getBlockMetadata() & 7, tile.getSkullRotation() * 360 / 16.0F, tile.getModel(), tile.getPlayerProfile(), destroyStage);
 	}
 
-	public void renderHead(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile profile, int destroyStage) {
-		if (type == SkullTypes.lycanites)
-			renderLycanites(x, y, z, meta, skullRotation, type, profile, destroyStage);
-		else
-			renderNormal(x, y, z, meta, skullRotation, type, profile, destroyStage);
-	}
-
-	private void renderLycanites(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile profile, int destroyStage) {
-		ModelBase model = LycanitesHelperClient.getModel(profile.getName());
-		ResourceLocation tex = type.getTexture(profile);
-		if (model != null && tex != null) {
-			GlStateManager.pushMatrix();
-			GlStateManager.disableCull();
-			GlStateManager.enableAlpha();
-
-			translateHead(x, y + 1.75F, z, meta);
-			skullRotation = adjustRotation(meta, skullRotation);
-			GlStateManager.scale(-1, -1, 1);
-			GlStateManager.rotate(skullRotation, 0, 1, 0);
-			bindTexture(tex);
-			model.render(getEntity(), 0, 0, 0, 0, 0, -1F);
-
-			GlStateManager.popMatrix();
-		}
-	}
-
-	private EntityLiving getEntity() {
-		if (entity == null)
-			entity = new EntityLiving(Minecraft.getMinecraft().theWorld) {
-			};
-
-		return entity;
-	}
-
-	private void renderNormal(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile profile, int destroyStage) {
+	private void renderHead(float x, float y, float z, int meta, float skullRotation, SkullTypes type, GameProfile profile, int destroyStage) {
 		if (destroyStage >= 0) {
 			bindTexture(DESTROY_STAGES[destroyStage]);
 			GlStateManager.matrixMode(5890);

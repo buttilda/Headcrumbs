@@ -5,7 +5,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityCaveSpider;
-import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityEndermite;
 import net.minecraft.entity.monster.EntityGhast;
@@ -15,7 +14,6 @@ import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntitySilverfish;
-import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.monster.EntitySnowman;
 import net.minecraft.entity.monster.EntitySpider;
@@ -34,7 +32,6 @@ import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.passive.EntityWolf;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class VanillaHelper extends HeadDropHelper {
@@ -49,18 +46,11 @@ public class VanillaHelper extends HeadDropHelper {
 		// but it would stop heads from dropping from other mod's mobs that extend the vanilla ones
 
 		if (entity instanceof EntityMob) {
-			if (entity instanceof EntityCreeper)
-				return new ItemStack(Items.SKULL, 1, 4);
-			else if (entity instanceof EntitySkeleton) {
-				if (((EntitySkeleton) entity).getSkeletonType() == 0) // Only drop normal skeleton's head. Vanilla handles withers
-					return new ItemStack(Items.SKULL, 1, 0);
-			} else if (entity instanceof EntityZombie) {
+			if (entity instanceof EntityZombie) {
 				if (entity instanceof EntityPigZombie)
 					return SkullTypes.pigman.getStack();
 				else if (((EntityZombie) entity).isVillager())
 					return SkullTypes.zombieVillager.getStack();
-				else
-					return new ItemStack(Items.SKULL, 1, 2);
 			} else if (entity instanceof EntityEnderman)
 				return SkullTypes.enderman.getStack();
 			else if (entity instanceof EntityBlaze)

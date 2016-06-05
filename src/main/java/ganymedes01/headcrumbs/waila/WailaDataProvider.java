@@ -5,14 +5,12 @@ import java.util.List;
 import ganymedes01.headcrumbs.ModBlocks;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
-import ganymedes01.headcrumbs.utils.HeadUtils;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -33,12 +31,7 @@ public class WailaDataProvider implements IWailaDataProvider {
 			TileEntityBlockSkull tile = (TileEntityBlockSkull) te;
 			if (tile != null) {
 				SkullTypes model = tile.getModel();
-				ItemStack stack = model.getStack();
-				if (model.usesProfile()) {
-					NBTTagCompound nbt = NBTUtil.writeGameProfile(new NBTTagCompound(), tile.getPlayerProfile());
-					stack.getTagCompound().setTag(HeadUtils.OWNER_TAG, nbt);
-				}
-				return stack;
+				return model.getStack();
 			}
 		}
 		return null;
