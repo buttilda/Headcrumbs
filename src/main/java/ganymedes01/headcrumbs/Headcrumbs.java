@@ -122,7 +122,7 @@ public class Headcrumbs {
 	public static String[] mojang = {
 		"Notch", "jeb_", "C418", "Dinnerbone", "Grumm", "Searge", "EvilSeph", "Marc_IRL", "FruktHamster", "ProfMobius",
 		"carlmanneh", "vubui", "_tommo_", "kappe", "geuder", "mollstam", "xlson", "KrisJelbring", "amir343", "NeonMaster",
-		"carnalizer", "eldrone", "MinecraftChick", "Bopogamel", "Hideous", "MidnightEnforcer"
+		"carnalizer", "eldrone", "MinecraftChick", "Bopogamel", "Hideous", "MidnightEnforcer", "Morre"
 	};
 
 	public static String[] mindCrack = {
