@@ -17,8 +17,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class LayerCustomCape implements LayerRenderer<AbstractClientPlayer> {
 
-	private final Field playerInfoField = ReflectionHelper.findField(AbstractClientPlayer.class, "playerInfo");
-	private final Field playerTexturesField = ReflectionHelper.findField(NetworkPlayerInfo.class, "playerTextures");
+	private final Field playerInfoField = ReflectionHelper.findField(AbstractClientPlayer.class, "playerInfo", "field_175157_a");
+	private final Field playerTexturesField = ReflectionHelper.findField(NetworkPlayerInfo.class, "playerTextures", "field_187107_a");
 
 	public LayerCustomCape() {
 		playerInfoField.setAccessible(true);
