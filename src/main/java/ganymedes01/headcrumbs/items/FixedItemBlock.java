@@ -72,4 +72,5 @@ public abstract class FixedItemBlock extends ItemBlock {
 			return false;
 		return block.isReplaceable(world, pos) && blockToPlace.canReplace(world, pos, side, stack);
 	}
+
 }

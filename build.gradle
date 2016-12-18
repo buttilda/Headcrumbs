@@ -12,13 +12,14 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "2.0.1"
+version = "${mod_version}"
 group = "ganymedes01.headcrumbs"
 archivesBaseName = "Headcrumbs"
 
 minecraft {
-    version = "1.9.4-12.17.0.1954"
-    runDir = "run"
+    version = "${mc_version}-${forge_version}"
+    runDir = "run-1.10"
+	
     mappings = "snapshot_20160518"
 }
 
@@ -29,7 +30,7 @@ repositories {
 }
 
 dependencies {
-    compile "mcp.mobius.waila:Waila:1.7.0-B2_1.9"
+    compile "mcp.mobius.waila:Waila:1.7.0-B3_1.9.4"
 }
 
 processResources {

@@ -132,7 +132,8 @@ public class CelebrityMap {
 		map.put("Mfernflower", "Minechem, HxC-Mods");
 		map.put("Benimatic", "Twilight Forest");
 		map.put("x3n0ph0b3", "Equivalent Exchange");
-
+		map.put("Turkey2349", "Chance Cubes");
+		
 		map.put("ganymedes01", "Supreme Master of the Universe");
 	}
 }
