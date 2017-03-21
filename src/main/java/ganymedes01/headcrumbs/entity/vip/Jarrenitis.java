@@ -10,14 +10,14 @@ import net.minecraft.world.DifficultyInstance;
 
 public class Jarrenitis extends VIPHandler {
 
-	private ItemStack held = null;
+    private ItemStack held = null;
 
-	@Override
-	public void onSpawn(EntityHuman entity, DifficultyInstance difficulty) {
-		held = new ItemStack(Items.IRON_SWORD);
-		held.addEnchantment(Enchantments.KNOCKBACK, 1);
-		held.setStackDisplayName("Ultimus?");
+    @Override
+    public void onSpawn(EntityHuman entity, DifficultyInstance difficulty) {
+	held = new ItemStack(Items.IRON_SWORD);
+	held.addEnchantment(Enchantments.KNOCKBACK, 1);
+	held.setStackDisplayName("Ultimus?");
 
-		entity.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemStack.copyItemStack(held));
-	}
+	entity.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, held.copy());
+    }
 }

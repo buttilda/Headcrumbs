@@ -15,6 +15,6 @@ public class Vazkii extends VIPHandler {
 	protected ItemStack getItem(EntityHuman entity) {
 		String petal = PETAL[entity.getRNG().nextInt(PETAL.length)];
 		List<ItemStack> stacks = OreDictionary.getOres(petal);
-		return !stacks.isEmpty() ? ItemStack.copyItemStack(stacks.get(0)) : super.getItem(entity);
-	}
+	return !stacks.isEmpty() ? stacks.get(0).copy() : super.getItem(entity);
+    }
 }

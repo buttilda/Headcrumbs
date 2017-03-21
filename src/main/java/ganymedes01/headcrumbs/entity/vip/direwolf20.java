@@ -54,7 +54,8 @@ public class direwolf20 extends VIPHandler {
 			stick.setStackDisplayName("Direstick");
 			stick.getTagCompound().setBoolean("IsDirestick", true);
 
-			if (--stack.stackSize <= 0)
+			stack.func_190917_f(-1);
+			if (stack.func_190916_E() <= 0)
 				player.setHeldItem(EnumHand.MAIN_HAND, stick);
 			else
 				player.inventory.addItemStackToInventory(stick);

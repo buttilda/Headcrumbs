@@ -26,58 +26,60 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 //@Optional.Interface(iface = "thaumcraft.api.crafting.IInfusionStabiliser", modid = "Thaumcraft")
-public class BlockHeadcrumbsSkull extends BlockSkull implements IHasCustomItem/*, IInfusionStabiliser*/ {
+public class BlockHeadcrumbsSkull extends BlockSkull
+	implements IHasCustomItem/* , IInfusionStabiliser */ {
 
-	public BlockHeadcrumbsSkull() {
-		setHardness(1.0F);
-		setSoundType(SoundType.STONE);
-		setCreativeTab(Headcrumbs.tab);
+    public BlockHeadcrumbsSkull() {
+	setHardness(1.0F);
+	setSoundType(SoundType.STONE);
+	setCreativeTab(Headcrumbs.tab);
+    }
+
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos,
+	    EntityPlayer player) {
+	TileEntityBlockSkull tile = Utils.getTileEntity(world, pos, TileEntityBlockSkull.class);
+	if (tile != null) {
+	    SkullTypes model = tile.getModel();
+	    return model.getStack();
 	}
+	return null;
+    }
 
-	@Override
-	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-		TileEntityBlockSkull tile = Utils.getTileEntity(world, pos, TileEntityBlockSkull.class);
-		if (tile != null) {
-			SkullTypes model = tile.getModel();
-			return model.getStack();
-		}
-		return null;
+    /*
+     * @Override
+     * 
+     * @SideOnly(Side.CLIENT) public void getSubBlocks(Item item, CreativeTabs
+     * tab, List<ItemStack> list) { for (SkullTypes skull : SkullTypes.values())
+     * if (skull.canShow()) list.add(skull.getStack()); }
+     */
+
+    @Override
+    public TileEntity createNewTileEntity(World world, int meta) {
+	return new TileEntityBlockSkull();
+    }
+
+    @Override
+    public boolean canDispenserPlace(World world, BlockPos pos, ItemStack stack) {
+	return false;
+    }
+
+    @Override
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+	List<ItemStack> list = new ArrayList<ItemStack>();
+	if (!state.getValue(NODROP).booleanValue()) {
+	    TileEntityBlockSkull tile = Utils.getTileEntity(world, pos, TileEntityBlockSkull.class);
+
+	    if (tile != null) {
+		SkullTypes model = tile.getModel();
+		list.add(model.getStack());
+	    }
 	}
+	return list;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
-		for (SkullTypes skull : SkullTypes.values())
-			if (skull.canShow())
-				list.add(skull.getStack());
-	}
-
-	@Override
-	public TileEntity createNewTileEntity(World world, int meta) {
-		return new TileEntityBlockSkull();
-	}
-
-	@Override
-	public boolean canDispenserPlace(World world, BlockPos pos, ItemStack stack) {
-		return false;
-	}
-
-	@Override
-	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-		List<ItemStack> list = new ArrayList<ItemStack>();
-		if (!state.getValue(NODROP).booleanValue()) {
-			TileEntityBlockSkull tile = Utils.getTileEntity(world, pos, TileEntityBlockSkull.class);
-
-			if (tile != null) {
-				SkullTypes model = tile.getModel();
-				list.add(model.getStack());
-			}
-		}
-		return list;
-	}
-
-	@Override
-	public ItemBlock getItemBlock() {
-		return new ItemHeadcrumbsSkull(this);
-	}
+    @Override
+    public ItemBlock getItemBlock() {
+	return new ItemHeadcrumbsSkull(this);
+    }
 }

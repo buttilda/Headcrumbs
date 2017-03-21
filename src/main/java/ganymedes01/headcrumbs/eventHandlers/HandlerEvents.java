@@ -173,7 +173,7 @@ public class HandlerEvents {
 					if (tile != null) {
 						tile.setPlayerProfile(profile);
 						tile.setSkullRotation(MathHelper.floor_double(event.getPlayer().rotationYaw * 16.0F / 360.0F + 0.5D) & 15);
-						world.notifyBlockOfStateChange(pos.add(0, -1, 0), ModBlocks.player);
+						world.notifyNeighborsOfStateChange(pos.add(0, -1, 0), ModBlocks.player, true);
 					}
 				}
 			}
