@@ -106,7 +106,7 @@ public class Headcrumbs {
 		"Erasmus_Crowley", "Alblaka", "Emoniph", "Nuchaz", "powercrystals", "AbrarSyed", "sdkillen",
 		"Taelnia", "Lycanite", "asiekierka", "GregoriusT", "skyboy", "Flaxbeard", "Emasher", "joshiejack", "Reika",
 		"ganymedes01", "Pokefenn", "chylex", "vadis365", "jakimfett", "Lunatrius", "copygirl", "amadornes", "DrZhark",
-		"KeldonSlayer", "KarelMikie3", "Mfernflower", "LuckyLucyF", "Tristaric", "fry_", "turkey2349", "Funwayguy"
+		"KeldonSlayer", "KarelMikie3", "Mfernflower", "LuckyLucyF", "Tristaric", "fry_", "Turkey2349", "Funwayguy"
 	};
 
 	public static String[] youtubers = {
