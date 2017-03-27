@@ -10,7 +10,7 @@ public class Darkosto extends VIPHandler {
     @Override
     protected ItemStack getItem(EntityHuman entity) {
 	ItemStack cake = new ItemStack(Items.CAKE);
-	cake.setStackDisplayName("Happy Birthday!");
+	cake.setStackDisplayName("Happy Birthday Darkosto!");
 	return cake;
     }
 }
