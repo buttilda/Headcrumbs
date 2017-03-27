@@ -106,7 +106,7 @@ public class Headcrumbs {
 		"Erasmus_Crowley", "Alblaka", "Emoniph", "Nuchaz", "powercrystals", "AbrarSyed", "sdkillen",
 		"Taelnia", "Lycanite", "asiekierka", "GregoriusT", "skyboy", "Flaxbeard", "Emasher", "joshiejack", "Reika",
 		"ganymedes01", "Pokefenn", "chylex", "vadis365", "jakimfett", "Lunatrius", "copygirl", "amadornes", "DrZhark",
-		"KeldonSlayer", "KarelMikie3", "Mfernflower", "LuckyLucyF", "Tristaric", "fry_"
+		"KeldonSlayer", "KarelMikie3", "Mfernflower", "LuckyLucyF", "Tristaric", "fry_", "turkey2349", "Funwayguy"
 	};
 
 	public static String[] youtubers = {
@@ -150,7 +150,7 @@ public class Headcrumbs {
 	};
 
 	public static String[] ftb = {
-		"eyamaz", "slowpoke101", "progwml6", "Captainnana", "Gideonseymour", "Watchful11", "SnowShock35"
+		"eyamaz", "slowpoke101", "progwml6", "Captainnana", "Gideonseymour", "Watchful11", "SnowShock35", "Darkosto"
 	};
 
 	public static String[] technic = {
