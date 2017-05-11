@@ -24,71 +24,70 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemHeadcrumbsSkull extends FixedItemBlock {
 
-    public ItemHeadcrumbsSkull(Block block) {
-	super(block);
-	setMaxDamage(0);
-	setHasSubtypes(true);
-    }
+	public ItemHeadcrumbsSkull(Block block) {
+		super(block);
+		setMaxDamage(0);
+		setHasSubtypes(true);
+	}
 
-    @SideOnly(Side.CLIENT)
-    public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
-	for (SkullTypes skull : SkullTypes.values())
-	    if (skull.canShow())
-		subItems.add(skull.getStack());
-    }
+	@SideOnly(Side.CLIENT)
+	public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
+		for (SkullTypes skull : SkullTypes.values())
+			if (skull.canShow())
+				subItems.add(skull.getStack());
+	}
 
-    @Override
-    public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side,
-	    float hitX, float hitY, float hitZ, IBlockState newState) {
-	if (side == EnumFacing.DOWN)
-	    return false;
-	else {
-	    BlockPos clickedPos = pos.offset(side.getOpposite());
-	    IBlockState clickedState = world.getBlockState(clickedPos);
-	    if (!clickedState.getMaterial().isSolid() || !world.isSideSolid(clickedPos, side, true))
-		return false;
-
-	    if (!player.canPlayerEdit(pos, side, stack))
-		return false;
-	    else if (!block.canPlaceBlockAt(world, pos))
-		return false;
-	    else {
-		if (!world.isRemote) {
-		    if (!block.canPlaceBlockOnSide(world, pos, side))
+	@Override
+	public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState) {
+		if (side == EnumFacing.DOWN)
 			return false;
-		    world.setBlockState(pos, block.getDefaultState().withProperty(BlockSkull.FACING, side), 3);
+		else {
+			BlockPos clickedPos = pos.offset(side.getOpposite());
+			IBlockState clickedState = world.getBlockState(clickedPos);
+			if (!clickedState.getMaterial().isSolid() || !world.isSideSolid(clickedPos, side, true))
+				return false;
 
-		    TileEntity tile = world.getTileEntity(pos);
-		    populateTile(stack, side, player, tile);
+			if (!player.canPlayerEdit(pos, side, stack))
+				return false;
+			else if (!block.canPlaceBlockAt(world, pos))
+				return false;
+			else {
+				if (!world.isRemote) {
+					if (!block.canPlaceBlockOnSide(world, pos, side))
+						return false;
+					world.setBlockState(pos, block.getDefaultState().withProperty(BlockSkull.FACING, side), 3);
+
+					TileEntity tile = world.getTileEntity(pos);
+					populateTile(stack, side, player, tile);
+				}
+
+				return true;
+			}
 		}
-
-		return true;
-	    }
 	}
-    }
 
-    protected void populateTile(ItemStack stack, EnumFacing side, EntityPlayer player, TileEntity tile) {
-	if (tile instanceof TileEntityBlockSkull) {
-	    TileEntityBlockSkull tileSkull = (TileEntityBlockSkull) tile;
-	    SkullTypes model = HeadUtils.getModel(stack);
-	    tileSkull.setType(stack.getMetadata());
-	    tileSkull.setSkullModel(model);
+	protected void populateTile(ItemStack stack, EnumFacing side, EntityPlayer player, TileEntity tile) {
+		if (tile instanceof TileEntityBlockSkull) {
+			TileEntityBlockSkull tileSkull = (TileEntityBlockSkull) tile;
+			SkullTypes model = HeadUtils.getModel(stack);
+			tileSkull.setType(stack.getMetadata());
+			tileSkull.setSkullModel(model);
 
-	    int rotation = 0;
-	    if (side == EnumFacing.UP)
-		rotation = MathHelper.floor_double(player.rotationYaw * 16.0F / 360.0F + 0.5D) & 15;
-	    tileSkull.setSkullRotation(rotation);
+			int rotation = 0;
+			if (side == EnumFacing.UP)
+				rotation = MathHelper.floor_double(player.rotationYaw * 16.0F / 360.0F + 0.5D) & 15;
+			tileSkull.setSkullRotation(rotation);
+		}
 	}
-    }
 
-    @Override
-    public String getUnlocalizedName(ItemStack stack) {
-	SkullTypes type = HeadUtils.getModel(stack);
-	return "item." + Utils.getUnlocalisedName(type.name());
-    }
+	@Override
+	public String getUnlocalizedName(ItemStack stack) {
+		SkullTypes type = HeadUtils.getModel(stack);
+		return "item." + Utils.getUnlocalisedName(type.name());
+	}
 
-    @Override
-    public boolean isValidArmor(ItemStack stack, EntityEquipmentSlot armorType, Entity entity) {
-	return armorType == EntityEquipmentSlot.HEAD;
-    }
+	@Override
+	public boolean isValidArmor(ItemStack stack, EntityEquipmentSlot armorType, Entity entity) {
+		return armorType == EntityEquipmentSlot.HEAD;
+	}
 }

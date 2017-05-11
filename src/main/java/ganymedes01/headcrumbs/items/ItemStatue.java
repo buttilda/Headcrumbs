@@ -23,6 +23,7 @@ public class ItemStatue extends FixedItemBlock {
 
 	public ItemStatue(Block block) {
 		super(block);
+		setCreativeTab(null);
 	}
 
 	@Override

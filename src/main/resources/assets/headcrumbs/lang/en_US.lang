@@ -225,7 +225,7 @@ item.headcrumbs.shulker.name=Shulker Head
 # Entity #
 ##########
 entity.Celebrity.name=Human
-entity.headcrumbs.Human.name=Human
+entity.Human.name=Human
 
 ################
 # Creative Tab #

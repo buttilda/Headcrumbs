@@ -16,6 +16,11 @@ version = "${mod_version}"
 group = "ganymedes01.headcrumbs"
 archivesBaseName = "Headcrumbs"
 
+sourceCompatibility = targetCompatibility = "1.8"
+compileJava {
+    sourceCompatibility = targetCompatibility = "1.8"
+}
+
 minecraft {
     version = "${mc_version}-${forge_version}"
     runDir = "run-1.11"
@@ -24,13 +29,9 @@ minecraft {
 }
 
 repositories {
-    maven {
-        url "http://mobiusstrip.eu/maven"
-    }
 }
 
 dependencies {
-    compile "mcp.mobius.waila:Waila:1.7.0-B3_1.9.4"
 }
 
 processResources {
