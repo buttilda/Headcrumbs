@@ -161,6 +161,8 @@ public class Headcrumbs {
 	public static boolean enableModSent = true;
 	public static List<String> modsent = new ArrayList<String>();
 
+	public static boolean enableRandomHeadDrop = false;
+	public static int headDropChance = 200;
 	public static boolean addPlayerHeadsAsDungeonLoot = true;
 	public static int headsDungeonLootWeight = 1;
 	public static boolean enablePlayerStatues = true;
