@@ -41,7 +41,7 @@ public abstract class FixedItemBlock extends ItemBlock {
 			IBlockState newState = this.block.onBlockPlaced(world, pos, side, hitX, hitY, hitZ, meta, player);
 
 			if (placeBlockAt(stack, player, world, pos, side, hitX, hitY, hitZ, newState)) {
-				SoundType soundtype = this.block.getSoundType();
+				SoundType soundtype = this.block.getSoundType(state, world, pos, player);
 				world.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
 				stack.stackSize--;
 			}

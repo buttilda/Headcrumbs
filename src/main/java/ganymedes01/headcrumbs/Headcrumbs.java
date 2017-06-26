@@ -161,9 +161,11 @@ public class Headcrumbs {
 	public static boolean enableModSent = true;
 	public static List<String> modsent = new ArrayList<String>();
 
+	public static boolean enableVanillaHeadsDrop = false;
 	public static boolean enableRandomHeadDrop = false;
 	public static int headDropChance = 200;
 	public static boolean addPlayerHeadsAsDungeonLoot = true;
+	public static boolean enableMobsAndAnimalHeads = false;
 	public static int headsDungeonLootWeight = 1;
 	public static boolean enablePlayerStatues = true;
 	public static boolean enableTooltips = true;
@@ -176,6 +178,8 @@ public class Headcrumbs {
 	public static String humanNamePrefix = "";
 	public static boolean humansAttackTwins = true;
 
+	public static boolean isTinkersConstructLoaded = false;
+	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		ConfigHandler.INSTANCE.init(event.getSuggestedConfigurationFile());
