@@ -11,6 +11,7 @@ buildscript {
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'maven-publish'
 
 version = "${mod_version}"
 group = "ganymedes01.headcrumbs"
@@ -42,4 +43,27 @@ processResources {
      from(sourceSets.main.resources.srcDirs) {
           exclude 'mcmod.info'
      }
+}
+
+build.dependsOn sourceJar
+ 
+ publishing {
+    tasks.publish.dependsOn 'build'
+    publications {
+        mavenJava(MavenPublication) {
+        	artifactId 'Headcrumbs'
+            from components.java
+ 
+            artifact sourceJar
+        }
+    }
+
+    repositories {
+        if (project.hasProperty('mavendir')) {
+            maven { url mavendir }
+        }
+        else{
+        	logger.error('Failed to find maven directory')
+        }
+    }
 }
