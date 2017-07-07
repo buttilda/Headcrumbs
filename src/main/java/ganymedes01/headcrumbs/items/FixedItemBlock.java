@@ -33,7 +33,7 @@ public abstract class FixedItemBlock extends ItemBlock {
 		if (!block.isReplaceable(world, pos))
 			pos = pos.offset(facing);
 
-		if (stack.func_190916_E() == 0)
+		if (stack.getCount() == 0)
 			return EnumActionResult.FAIL;
 		else if (!player.canPlayerEdit(pos, facing, stack))
 			return EnumActionResult.FAIL;
@@ -44,7 +44,7 @@ public abstract class FixedItemBlock extends ItemBlock {
 			if (placeBlockAt(stack, player, world, pos, facing, hitX, hitY, hitZ, newState)) {
 				SoundType soundtype = this.block.getSoundType(state, world, pos, player);
 				world.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-				stack.func_190917_f(-1);
+				stack.shrink(1);
 			}
 
 			return EnumActionResult.SUCCESS;

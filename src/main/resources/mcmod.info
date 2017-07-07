@@ -3,12 +3,12 @@
 		"modid": "headcrumbs",
 		"name": "Headcrumbs",
 		"description": "Adds heads (and stuff)!",
-		"version": "2.0.2",
-		"mcversion": "1.11.2",
+		"version": "2.0.4",
+		"mcversion": "1.12",
 		"url": "",
 		"updateUrl": "",
 		"authorList": [
-			"ganymedes01"
+			"ganymedes01",
 			"Turkey2349"
 		],
 		"credits": "",

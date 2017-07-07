@@ -36,6 +36,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
@@ -57,8 +58,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.RecipeSorter;
-import net.minecraftforge.oredict.RecipeSorter.Category;
+import net.minecraftforge.registries.GameData;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, guiFactory = Reference.GUI_FACTORY_CLASS)
 public class Headcrumbs {
@@ -168,12 +168,10 @@ public class Headcrumbs {
 	public static boolean humansAttackTwins = true;
 
 	public static boolean isTinkersConstructLoaded = false;
-	
+
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		ConfigHandler.INSTANCE.init(event.getSuggestedConfigurationFile());
-
-		ModBlocks.init();
 
 		OreDictionary.registerOre("itemSkull", new ItemStack(Items.SKULL, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("skullSkeleton", new ItemStack(Items.SKULL, 1, 0));
@@ -203,8 +201,9 @@ public class Headcrumbs {
 			addEnderFurnaceRecipe(new ItemStack(Items.NETHER_STAR), "skullWither");
 
 		if (enablePlayerStatues) {
-			GameRegistry.addRecipe(StatueRecipe.getRecipe(new ItemStack(ModBlocks.player), "x", "y", "y", 'x', new ItemStack(Items.SKULL, 1, 3), 'y', new ItemStack(Blocks.CLAY)));
-			RecipeSorter.register("statue", StatueRecipe.class, Category.SHAPED, "after:minecraft:shaped");
+			GameData.register_impl(StatueRecipe.getRecipe("Statue recipe", new ItemStack(ModBlocks.player), "x", "y", "y", 'x', new ItemStack(Items.SKULL, 1, 3), 'y', new ItemStack(Blocks.CLAY)));
+			// RecipeSorter.register("statue", StatueRecipe.class,
+			// Category.SHAPED, "after:minecraft:shaped");
 		}
 	}
 
@@ -245,17 +244,17 @@ public class Headcrumbs {
 
 		if (Loader.isModLoaded("TwilightForest")) {
 			Item tropy = Item.REGISTRY.getObject(new ResourceLocation("TwilightForest", "item.trophy"));
-			addConvertionRecipe(SkullTypes.hydra.getStack(), new ItemStack(tropy, 1, 0));
-			addConvertionRecipe(SkullTypes.nagaTF.getStack(), new ItemStack(tropy, 1, 1));
-			addConvertionRecipe(SkullTypes.lich.getStack(), new ItemStack(tropy, 1, 2));
-			addConvertionRecipe(SkullTypes.urGhast.getStack(), new ItemStack(tropy, 1, 3));
-			addConvertionRecipe(SkullTypes.snowQueen.getStack(), new ItemStack(tropy, 1, 4));
+			addConvertionRecipe("Hydra recipe", SkullTypes.hydra.getStack(), new ItemStack(tropy, 1, 0));
+			addConvertionRecipe("Naga recipe", SkullTypes.nagaTF.getStack(), new ItemStack(tropy, 1, 1));
+			addConvertionRecipe("Lich recipe", SkullTypes.lich.getStack(), new ItemStack(tropy, 1, 2));
+			addConvertionRecipe("Ur Ghast recipe", SkullTypes.urGhast.getStack(), new ItemStack(tropy, 1, 3));
+			addConvertionRecipe("Snow Queen recipe", SkullTypes.snowQueen.getStack(), new ItemStack(tropy, 1, 4));
 		}
 	}
 
-	private void addConvertionRecipe(ItemStack output, ItemStack input) {
-		GameRegistry.addShapelessRecipe(output, input);
-		GameRegistry.addShapelessRecipe(input, output);
+	private void addConvertionRecipe(String name, ItemStack output, ItemStack input) {
+		GameRegistry.addShapelessRecipe(new ResourceLocation(Reference.MOD_ID, "Recipes"), new ResourceLocation(Reference.MOD_ID, name), output, Ingredient.func_193369_a(input));
+		GameRegistry.addShapelessRecipe(new ResourceLocation(Reference.MOD_ID, "Recipes"), new ResourceLocation(Reference.MOD_ID, name + " reversed"), input, Ingredient.func_193369_a(output));
 	}
 
 	@EventHandler

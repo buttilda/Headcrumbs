@@ -18,7 +18,7 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer<Tile
 	private ModelHead model;
 
 	@Override
-	public void renderTileEntityAt(TileEntityBlockSkull tile, double x, double y, double z, float partialTickTime, int destroyStage) {
+	public void func_192841_a(TileEntityBlockSkull tile, double x, double y, double z, float partialTickTime, int destroyStage, float p_192841_10_) {
 		renderHead((float) x, (float) y, (float) z, tile.getBlockMetadata() & 7, tile.getSkullRotation() * 360 / 16.0F, tile.getModel(), tile.getPlayerProfile(), destroyStage);
 	}
 
@@ -68,35 +68,35 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer<Tile
 
 	private void translateHead(float x, float y, float z, int meta) {
 		switch (meta) {
-			case 1:
-				GlStateManager.translate(x + 0.5F, y, z + 0.5F);
-				break;
-			case 2:
-				GlStateManager.translate(x + 0.5F, y + 0.25F, z + 0.74F);
-				break;
-			case 3:
-				GlStateManager.translate(x + 0.5F, y + 0.25F, z + 0.26F);
-				break;
-			case 4:
-				GlStateManager.translate(x + 0.74F, y + 0.25F, z + 0.5F);
-				break;
-			default:
-				GlStateManager.translate(x + 0.26F, y + 0.25F, z + 0.5F);
-				break;
+		case 1:
+			GlStateManager.translate(x + 0.5F, y, z + 0.5F);
+			break;
+		case 2:
+			GlStateManager.translate(x + 0.5F, y + 0.25F, z + 0.74F);
+			break;
+		case 3:
+			GlStateManager.translate(x + 0.5F, y + 0.25F, z + 0.26F);
+			break;
+		case 4:
+			GlStateManager.translate(x + 0.74F, y + 0.25F, z + 0.5F);
+			break;
+		default:
+			GlStateManager.translate(x + 0.26F, y + 0.25F, z + 0.5F);
+			break;
 		}
 	}
 
 	private float adjustRotation(int meta, float rotation) {
 		switch (meta) {
-			case 1:
-			case 2:
-				return rotation;
-			case 3:
-				return 180.0F;
-			case 4:
-				return 270.0F;
-			default:
-				return 90.0F;
+		case 1:
+		case 2:
+			return rotation;
+		case 3:
+			return 180.0F;
+		case 4:
+			return 270.0F;
+		default:
+			return 90.0F;
 		}
 	}
 }

@@ -4,8 +4,8 @@ public class Reference {
 
 	public static final String MOD_ID = "headcrumbs";
 	public static final String MOD_NAME = "Headcrumbs";
-	public static final String DEPENDENCIES = "required-after:Forge@[13.20.0.2228,);";
-	public static final String VERSION_NUMBER = "2.0.2";
+	public static final String DEPENDENCIES = "";
+	public static final String VERSION_NUMBER = "2.0.4";
 
 	public static final String ITEM_BLOCK_TEXTURE_PATH = MOD_ID + ":";
 	public static final String ENTITY_TEXTURE_PATH = ITEM_BLOCK_TEXTURE_PATH + "textures/entities/";

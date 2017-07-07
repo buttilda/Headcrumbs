@@ -65,7 +65,7 @@ public class GrimoireOfGaiaHelper extends HeadDropHelper {
 		if ("GrimoireOfGaia.Bone Knight".equals(mobName))
 			return new ItemStack(Items.SKULL);
 		else if ("GrimoireOfGaia.Creep".equals(mobName))
-			return new ItemStack(Items.SKULL, 1 + entity.worldObj.rand.nextInt(3), 4);
+			return new ItemStack(Items.SKULL, 1 + entity.world.rand.nextInt(3), 4);
 
 		return super.getHeadForEntity(entity);
 	}

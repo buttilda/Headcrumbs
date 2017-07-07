@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.GameData;
 
 public class direwolf20 extends VIPHandler {
 
@@ -23,7 +23,7 @@ public class direwolf20 extends VIPHandler {
 		ResourceLocation resLoc = Utils.getResource(Reference.MOD_ID, "takeiteasy");
 		takeItEasy = new SoundEvent(resLoc);
 		takeItEasy.setRegistryName(resLoc);
-		GameRegistry.register(takeItEasy);
+		GameData.register_impl(takeItEasy);
 	}
 
 	@Override
@@ -54,8 +54,8 @@ public class direwolf20 extends VIPHandler {
 			stick.setStackDisplayName("Direstick");
 			stick.getTagCompound().setBoolean("IsDirestick", true);
 
-			stack.func_190917_f(-1);
-			if (stack.func_190916_E() <= 0)
+			stack.shrink(1);
+			if (stack.getCount() <= 0)
 				player.setHeldItem(EnumHand.MAIN_HAND, stick);
 			else
 				player.inventory.addItemStackToInventory(stick);
@@ -63,7 +63,7 @@ public class direwolf20 extends VIPHandler {
 	}
 
 	public static void takeItEasy(EntityPlayer player) {
-		if (!player.worldObj.isRemote)
-			player.worldObj.playSound(null, player.posX, player.posY, player.posZ, takeItEasy, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+		if (!player.world.isRemote)
+			player.world.playSound(null, player.posX, player.posY, player.posZ, takeItEasy, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 	}
 }

@@ -1,5 +1,6 @@
 package ganymedes01.headcrumbs.proxy;
 
+import ganymedes01.headcrumbs.ModBlocks;
 import ganymedes01.headcrumbs.configs.ConfigHandler;
 import ganymedes01.headcrumbs.eventHandlers.HandlerEvents;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockPlayer;
@@ -13,6 +14,7 @@ public class CommonProxy {
 	public void registerEvents() {
 		MinecraftForge.EVENT_BUS.register(ConfigHandler.INSTANCE);
 		MinecraftForge.EVENT_BUS.register(HandlerEvents.INSTANCE);
+		MinecraftForge.EVENT_BUS.register(new ModBlocks());
 	}
 
 	public void registerTileEntities() {

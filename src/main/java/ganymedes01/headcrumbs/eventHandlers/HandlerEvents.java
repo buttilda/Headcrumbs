@@ -60,7 +60,7 @@ public class HandlerEvents {
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void playerDrop(LivingDeathEvent event) {
 		EntityLivingBase entity = event.getEntityLiving();
-		if (entity.worldObj.getGameRules().getBoolean("keepInventory") && entity instanceof EntityPlayerMP) {
+		if (entity.world.getGameRules().getBoolean("keepInventory") && entity instanceof EntityPlayerMP) {
 			ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
 
 			ItemStack weapon = getWeapon(event.getSource());
@@ -84,12 +84,12 @@ public class HandlerEvents {
 		if (!drops.isEmpty()) {
 			Entity ent = event.getEntity();
 			for (ItemStack item : drops)
-				event.getDrops().add(new EntityItem(ent.worldObj, ent.posX, ent.posY, ent.posZ, item));
+				event.getDrops().add(new EntityItem(ent.world, ent.posX, ent.posY, ent.posZ, item));
 		}
 	}
 
 	private void drop(EntityLivingBase entity, DamageSource source, int looting, List<ItemStack> drops) {
-		if (entity.worldObj.isRemote)
+		if (entity.world.isRemote)
 			return;
 		if (entity.getHealth() > 0.0F)
 			return;
@@ -97,7 +97,7 @@ public class HandlerEvents {
 		boolean isPoweredCreeper = isPoweredCreeper(source);
 		int beheading = getBeaheadingLevel(getWeapon(source));
 
-		if (isPoweredCreeper || shouldDoRandomDrop(entity.worldObj.rand, beheading, looting)) {
+		if (isPoweredCreeper || shouldDoRandomDrop(entity.world.rand, beheading, looting)) {
 			ItemStack stack = HeadUtils.getHeadfromEntity(entity);
 			if (stack == null)
 				return;

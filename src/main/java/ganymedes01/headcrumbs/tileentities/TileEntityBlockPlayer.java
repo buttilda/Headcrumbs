@@ -28,7 +28,7 @@ public class TileEntityBlockPlayer extends TileEntitySkull {
 			return null;
 		}
 		if (human == null) {
-			human = new EntityHuman(worldObj) {
+			human = new EntityHuman(world) {
 				@Override
 				public double getInterpolatedCapeX(float partialTickTime) {
 					return 0;

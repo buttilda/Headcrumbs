@@ -4,17 +4,21 @@ import java.util.Map;
 
 import com.google.common.collect.Maps;
 
+import ganymedes01.headcrumbs.libs.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 
 public class StatueRecipe extends ShapedRecipes {
 
-	public StatueRecipe(int width, int height, ItemStack[] input, ItemStack output) {
-		super(width, height, input, output);
+	public StatueRecipe(String name, int width, int height, NonNullList<Ingredient> input, ItemStack output) {
+		super(name, width, height, input, output);
 	}
 
 	@Override
@@ -32,7 +36,7 @@ public class StatueRecipe extends ShapedRecipes {
 		return stack;
 	}
 
-	public static StatueRecipe getRecipe(ItemStack stack, Object... input) {
+	public static StatueRecipe getRecipe(String name, ItemStack stack, Object... input) {
 		String s = "";
 		int i = 0;
 		int j = 0;
@@ -71,17 +75,17 @@ public class StatueRecipe extends ShapedRecipes {
 			map.put(character, itemstack);
 		}
 
-		ItemStack[] aitemstack = new ItemStack[j * k];
+		NonNullList<Ingredient> ingredients = NonNullList.create();
 
 		for (int i1 = 0; i1 < j * k; ++i1) {
 			char c0 = s.charAt(i1);
 
 			if (map.containsKey(Character.valueOf(c0)))
-				aitemstack[i1] = map.get(Character.valueOf(c0)).copy();
-			else
-				aitemstack[i1] = null;
+				ingredients.add(Ingredient.func_193369_a(map.get(Character.valueOf(c0)).copy()));
 		}
 
-		return new StatueRecipe(j, k, aitemstack, stack);
+		StatueRecipe recipe = new StatueRecipe(name, j, k, ingredients, stack);
+		recipe.setRegistryName(new ResourceLocation(Reference.MOD_ID, name));
+		return recipe;
 	}
 }

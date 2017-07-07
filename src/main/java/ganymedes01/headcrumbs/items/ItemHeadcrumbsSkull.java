@@ -75,7 +75,7 @@ public class ItemHeadcrumbsSkull extends FixedItemBlock {
 
 			int rotation = 0;
 			if (side == EnumFacing.UP)
-				rotation = MathHelper.floor_double(player.rotationYaw * 16.0F / 360.0F + 0.5D) & 15;
+				rotation = MathHelper.floor(player.rotationYaw * 16.0F / 360.0F + 0.5D) & 15;
 			tileSkull.setSkullRotation(rotation);
 		}
 	}

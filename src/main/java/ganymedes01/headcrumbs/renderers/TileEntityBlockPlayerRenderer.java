@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class TileEntityBlockPlayerRenderer extends TileEntitySpecialRenderer<TileEntityBlockPlayer> {
 
 	@Override
-	public void renderTileEntityAt(TileEntityBlockPlayer tile, double x, double y, double z, float partialTicks, int destroyStage) {
+	public void func_192841_a(TileEntityBlockPlayer tile, double x, double y, double z, float partialTickTime, int destroyStage, float p_192841_10_) {
 		GameProfile profile = tile.getPlayerProfile();
 
 		if (profile == null)
@@ -45,15 +45,15 @@ public class TileEntityBlockPlayerRenderer extends TileEntitySpecialRenderer<Til
 
 	private float adjustRotation(int meta, float rotation) {
 		switch (meta) {
-			case 1:
-			case 2:
-				return rotation;
-			case 3:
-				return 180.0F;
-			case 4:
-				return 270.0F;
-			default:
-				return 90.0F;
+		case 1:
+		case 2:
+			return rotation;
+		case 3:
+			return 180.0F;
+		case 4:
+			return 270.0F;
+		default:
+			return 90.0F;
 		}
 	}
 }
