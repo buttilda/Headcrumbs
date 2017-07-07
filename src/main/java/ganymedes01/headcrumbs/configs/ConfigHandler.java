@@ -21,10 +21,14 @@ public class ConfigHandler {
 	}
 
 	private void syncConfigs() {
+		Headcrumbs.enableRandomHeadDrop = configFile.get(Configuration.CATEGORY_GENERAL, "Heads drop randomly", Headcrumbs.enableRandomHeadDrop, "Heads will drop randomly when entities or players die").setRequiresMcRestart(false).getBoolean();
+		Headcrumbs.enableVanillaHeadsDrop = configFile.get(Configuration.CATEGORY_GENERAL, "Vanilla heads drop randomly", Headcrumbs.enableVanillaHeadsDrop, "Vanilla Heads (creeper, skeleton, zombie) will drop randomly when entities die").setRequiresMcRestart(false).getBoolean();
+		Headcrumbs.enableMobsAndAnimalHeads = configFile.get(Configuration.CATEGORY_GENERAL, "Enable mobs and animals heads", Headcrumbs.enableMobsAndAnimalHeads, "Setting this to false will cause only player heads to show in the creative tab and drop updon death").setRequiresMcRestart(false).getBoolean();
 		Headcrumbs.addPlayerHeadsAsDungeonLoot = configFile.get(Configuration.CATEGORY_GENERAL, "Add player heads as dungeon loot", Headcrumbs.addPlayerHeadsAsDungeonLoot).setRequiresMcRestart(false).getBoolean();
 		Headcrumbs.headsDungeonLootWeight = configFile.get(Configuration.CATEGORY_GENERAL, "Player heads loot weight", Headcrumbs.headsDungeonLootWeight, "The bigger this number the easier it will be to find heads in dungeons.\nSome heads will be rarer than others.\nExamples: Diamond is 1, Redstone is 10").setRequiresMcRestart(true).getInt();
 		Headcrumbs.enablePlayerStatues = configFile.get(Configuration.CATEGORY_GENERAL, "Enable player statues", Headcrumbs.enablePlayerStatues, "Setting this to true allow statues to be built (Turning this off won't destroy existing statues)").setRequiresMcRestart(false).getBoolean();
 
+		Headcrumbs.headDropChance = configFile.get(Configuration.CATEGORY_GENERAL, "Chance of random head drop", Headcrumbs.headDropChance, "Random.nextInt(X / (fortune+1)) == 0").setRequiresMcRestart(false).getInt();
 		Headcrumbs.enableTooltips = configFile.get(Configuration.CATEGORY_GENERAL, "Enable head item tooltips", Headcrumbs.enableTooltips, "Enables tooltips with informations about certain names (mod authors mostly)").setRequiresMcRestart(false).getBoolean();
 
 		Headcrumbs.others = configFile.get("heads", "others", Headcrumbs.others).setRequiresMcRestart(true).getStringList();

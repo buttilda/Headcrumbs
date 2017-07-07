@@ -60,40 +60,39 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.RecipeSorter.Category;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, /*dependencies = Reference.DEPENDENCIES,*/ guiFactory = Reference.GUI_FACTORY_CLASS)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, guiFactory = Reference.GUI_FACTORY_CLASS)
 public class Headcrumbs {
 
-    @Instance(Reference.MOD_ID)
-    public static Headcrumbs instance;
+	@Instance(Reference.MOD_ID)
+	public static Headcrumbs instance;
 
-    @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
-    public static CommonProxy proxy;
+	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
+	public static CommonProxy proxy;
 
-    public static CreativeTabs tab = new CreativeTabs(Reference.MOD_ID) {
+	public static CreativeTabs tab = new CreativeTabs(Reference.MOD_ID) {
 
-	@SideOnly(Side.CLIENT)
-	private ItemStack displayStack;
+		@SideOnly(Side.CLIENT)
+		private ItemStack displayStack;
 
-	@Override
-	public ItemStack getTabIconItem() {
-	    return new ItemStack(Items.SKULL);
-	}
+		@Override
+		public ItemStack getTabIconItem() {
+			return new ItemStack(Items.SKULL);
+		}
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public ItemStack getIconItemStack() {
-	    if (displayStack == null) {
-		Random rand = new Random();
-		List<SkullTypes> types = new ArrayList<SkullTypes>();
-		for (SkullTypes type : SkullTypes.values())
-		    if (type.canShow())
-			types.add(type);
-		displayStack = types.isEmpty() ? new ItemStack(Items.SKULL, 1, rand.nextInt(3))
-			: types.get(rand.nextInt(types.size())).getStack();
-	    }
-	    return displayStack;
-	}
-    };
+		@Override
+		@SideOnly(Side.CLIENT)
+		public ItemStack getIconItemStack() {
+			if (displayStack == null) {
+				Random rand = new Random();
+				List<SkullTypes> types = new ArrayList<SkullTypes>();
+				for (SkullTypes type : SkullTypes.values())
+					if (type.canShow())
+						types.add(type);
+				displayStack = types.isEmpty() ? new ItemStack(Items.SKULL, 1, rand.nextInt(3)) : types.get(rand.nextInt(types.size())).getStack();
+			}
+			return displayStack;
+		}
+	};
 
     // @formatter:off
     public static String[] others = { "ez", "saukawolf", "Fullapple1991", "Cindric", "wiiv", "deadmau5", "muted79",
@@ -148,192 +147,189 @@ public class Headcrumbs {
     public static String[] technic = { "GenPage", "Slink730", "sct", "KakerMix", "Skuli_Steinulf", "Talonos" };
     // @formatter:on
 
-    public static boolean enableModSent = true;
-    public static List<String> modsent = new ArrayList<String>();
+	public static boolean enableModSent = true;
+	public static List<String> modsent = new ArrayList<String>();
 
-    public static boolean addPlayerHeadsAsDungeonLoot = true;
-    public static int headsDungeonLootWeight = 1;
-    public static boolean enablePlayerStatues = true;
-    public static boolean enableTooltips = true;
+	public static boolean enableVanillaHeadsDrop = false;
+	public static boolean enableRandomHeadDrop = false;
+	public static int headDropChance = 200;
+	public static boolean addPlayerHeadsAsDungeonLoot = true;
+	public static boolean enableMobsAndAnimalHeads = false;
+	public static int headsDungeonLootWeight = 1;
+	public static boolean enablePlayerStatues = true;
+	public static boolean enableTooltips = true;
 
-    public static boolean enableHumanMobs = true;
-    public static int celebrityProb = 80, celebrityMin = 4, celebrityMax = 4;
-    public static double babyHumanChance = 0.1;
-    public static boolean enableVIPs = true;
-    public static int[] blacklistedDimensions = { 1, -1 };
-    public static String humanNamePrefix = "";
-    public static boolean humansAttackTwins = true;
+	public static boolean enableHumanMobs = true;
+	public static int celebrityProb = 80, celebrityMin = 4, celebrityMax = 4;
+	public static double babyHumanChance = 0.1;
+	public static boolean enableVIPs = true;
+	public static int[] blacklistedDimensions = { 1, -1 };
+	public static String humanNamePrefix = "";
+	public static boolean humansAttackTwins = true;
 
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-	ConfigHandler.INSTANCE.init(event.getSuggestedConfigurationFile());
+	public static boolean isTinkersConstructLoaded = false;
+	
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		ConfigHandler.INSTANCE.init(event.getSuggestedConfigurationFile());
 
-	ModBlocks.init();
+		ModBlocks.init();
 
-	OreDictionary.registerOre("itemSkull", new ItemStack(Items.SKULL, 1, OreDictionary.WILDCARD_VALUE));
-	OreDictionary.registerOre("skullSkeleton", new ItemStack(Items.SKULL, 1, 0));
-	OreDictionary.registerOre("skullWitherSkeleton", new ItemStack(Items.SKULL, 1, 1));
-	OreDictionary.registerOre("skullZombie", new ItemStack(Items.SKULL, 1, 2));
-	OreDictionary.registerOre("skullPlayer", new ItemStack(Items.SKULL, 1, 3));
-	OreDictionary.registerOre("skullCreeper", new ItemStack(Items.SKULL, 1, 4));
-	OreDictionary.registerOre("skullEnderDragon", new ItemStack(Items.SKULL, 1, 5));
+		OreDictionary.registerOre("itemSkull", new ItemStack(Items.SKULL, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("skullSkeleton", new ItemStack(Items.SKULL, 1, 0));
+		OreDictionary.registerOre("skullWitherSkeleton", new ItemStack(Items.SKULL, 1, 1));
+		OreDictionary.registerOre("skullZombie", new ItemStack(Items.SKULL, 1, 2));
+		OreDictionary.registerOre("skullPlayer", new ItemStack(Items.SKULL, 1, 3));
+		OreDictionary.registerOre("skullCreeper", new ItemStack(Items.SKULL, 1, 4));
+		OreDictionary.registerOre("skullEnderDragon", new ItemStack(Items.SKULL, 1, 5));
 
-	if (enableHumanMobs) {
-	    EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "Human"), EntityHuman.class,
-		    "Human", 0, instance, 512, 1, true, 0xFFF144, 0x69DFDA);
-	    VIPHandler.init();
-	}
-
-	proxy.registerEntityRenderers();
-    }
-
-    @EventHandler
-    public void init(FMLInitializationEvent event) {
-	proxy.registerRenderers();
-	proxy.registerEvents();
-	proxy.registerTileEntities();
-
-	FMLInterModComms.sendMessage("Waila", "register", "ganymedes01.headcrumbs.waila.WailaRegistrar.wailaCallback");
-
-	if (Loader.isModLoaded("ganysend"))
-	    addEnderFurnaceRecipe(new ItemStack(Items.NETHER_STAR), "skullWither");
-
-	if (enablePlayerStatues) {
-	    GameRegistry.addRecipe(StatueRecipe.getRecipe(new ItemStack(ModBlocks.player), "x", "y", "y", 'x',
-		    new ItemStack(Items.SKULL, 1, 3), 'y', new ItemStack(Blocks.CLAY)));
-	    RecipeSorter.register("statue", StatueRecipe.class, Category.SHAPED, "after:minecraft:shaped");
-	}
-    }
-
-    private void addEnderFurnaceRecipe(ItemStack output, Object... input) {
-	NBTTagCompound nbt = new NBTTagCompound();
-
-	NBTTagCompound out = new NBTTagCompound();
-	output.writeToNBT(out);
-	nbt.setTag("output", out);
-
-	for (int i = 0; i < input.length; i++)
-	    if (input[i] != null)
-		if (input[i] instanceof ItemStack) {
-		    NBTTagCompound in = new NBTTagCompound();
-		    ((ItemStack) input[i]).writeToNBT(in);
-		    nbt.setTag("input" + i, in);
-		} else
-		    nbt.setString("input" + i, (String) input[i]);
-
-	FMLInterModComms.sendMessage("ganysend", "enderFurnaceRecipe", nbt);
-    }
-
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
-	HeadDropHelper.register(new LaserCreepersHelper());
-	HeadDropHelper.register(new TwilightForestHelper());
-	HeadDropHelper.register(new TEHelper());
-	HeadDropHelper.register(new NaturaHelper());
-	HeadDropHelper.register(new ThaumcraftHelper());
-	HeadDropHelper.register(new EnderZooHelper());
-	HeadDropHelper.register(new PrimitiveMobsHelper());
-	HeadDropHelper.register(new GrimoireOfGaiaHelper());
-	HeadDropHelper.register(new ElementalCreepersHelper());
-	HeadDropHelper.register(new VanillaHelper());
-
-	if (enableHumanMobs)
-	    addHumanSpawns();
-
-	if (Loader.isModLoaded("TwilightForest")) {
-	    Item tropy = Item.REGISTRY.getObject(new ResourceLocation("TwilightForest", "item.trophy"));
-	    addConvertionRecipe(SkullTypes.hydra.getStack(), new ItemStack(tropy, 1, 0));
-	    addConvertionRecipe(SkullTypes.nagaTF.getStack(), new ItemStack(tropy, 1, 1));
-	    addConvertionRecipe(SkullTypes.lich.getStack(), new ItemStack(tropy, 1, 2));
-	    addConvertionRecipe(SkullTypes.urGhast.getStack(), new ItemStack(tropy, 1, 3));
-	    addConvertionRecipe(SkullTypes.snowQueen.getStack(), new ItemStack(tropy, 1, 4));
-	}
-    }
-
-    private void addConvertionRecipe(ItemStack output, ItemStack input) {
-	GameRegistry.addShapelessRecipe(output, input);
-	GameRegistry.addShapelessRecipe(input, output);
-    }
-
-    @EventHandler
-    public void imcEvent(IMCEvent event) {
-	Logger logger = LogManager.getLogger(Reference.MOD_ID);
-	for (IMCMessage message : event.getMessages())
-	    if (message.key.equals("add-username")) {
-		if (!enableModSent) {
-		    logger.info(String.format(
-			    "%s tried to add %s to the username list, but the feature has been disabled by the user.",
-			    message.getSender(), message.getStringValue()));
-		    continue;
+		if (enableHumanMobs) {
+			EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "Human"), EntityHuman.class, "Human", 0, instance, 512, 1, true, 0xFFF144, 0x69DFDA);
+			VIPHandler.init();
 		}
-		if (message.isStringMessage()) {
-		    String username = message.getStringValue();
-		    if (!getAllNames().contains(username)) {
-			modsent.add(username);
-			logger.info(String.format("%s added %s to the username list", message.getSender(),
-				message.getStringValue()));
-		    } else
-			logger.info(String.format("%s tried to add %s to the username list, but it was already present",
-				message.getSender(), message.getStringValue()));
-		} else
-		    logger.error(String.format("Invalid message type sent from %s", message.getSender()));
-	    } else
-		logger.error(String.format("Invalid message key sent from %s: %s", message.getSender(), message.key));
-    }
 
-    public static List<String> getAllNames() {
-	Set<String> names = new HashSet<String>();
-	names.addAll(Arrays.asList(others));
-	names.addAll(Arrays.asList(modders));
-	names.addAll(Arrays.asList(youtubers));
-	names.addAll(Arrays.asList(mojang));
-	names.addAll(Arrays.asList(mindCrack));
-	names.addAll(Arrays.asList(hermitcraft));
-	names.addAll(Arrays.asList(forgeCraft));
-	names.addAll(Arrays.asList(ftb));
-	names.addAll(Arrays.asList(technic));
-	if (enableModSent)
-	    names.addAll(modsent);
-	return new ArrayList<String>(names);
-    }
+		proxy.registerEntityRenderers();
+	}
 
-    private static void addHumanSpawns() {
-	List<BiomeDictionary.Type> blacklistedBiomes = Arrays.asList(BiomeDictionary.Type.MUSHROOM);
-	List<String> blacklistedBiomeNames = Arrays.asList("Tainted Land");
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
+		proxy.registerRenderers();
+		proxy.registerEvents();
+		proxy.registerTileEntities();
 
-	List<Biome> biomes = new LinkedList<Biome>();
-	label: for (Biome biome : Biome.REGISTRY)
-	    if (biome != null) {
-		// Check if the biome name is blacklisted
-		if (blacklistedBiomeNames.contains(biome.getBiomeName()))
-		    continue;
+		FMLInterModComms.sendMessage("Waila", "register", "ganymedes01.headcrumbs.waila.WailaRegistrar.wailaCallback");
 
-		// Check if the biome type is blacklisted
-		for (BiomeDictionary.Type type : BiomeDictionary.getTypes(biome))
-		    if (blacklistedBiomes.contains(type))
-			continue label;
+		if (Loader.isModLoaded("ganysend"))
+			addEnderFurnaceRecipe(new ItemStack(Items.NETHER_STAR), "skullWither");
 
-		// Check if zombies can spawn on this biome
-		for (Object obj : biome.getSpawnableList(EnumCreatureType.MONSTER))
-		    if (obj instanceof SpawnListEntry) {
-			SpawnListEntry entry = (SpawnListEntry) obj;
-			try {
+		if (enablePlayerStatues) {
+			GameRegistry.addRecipe(StatueRecipe.getRecipe(new ItemStack(ModBlocks.player), "x", "y", "y", 'x', new ItemStack(Items.SKULL, 1, 3), 'y', new ItemStack(Blocks.CLAY)));
+			RecipeSorter.register("statue", StatueRecipe.class, Category.SHAPED, "after:minecraft:shaped");
+		}
+	}
 
-			    boolean isSpecialMobsZombie = Loader.isModLoaded("SpecialMobs")
-				    && Class.forName("toast.specialMobs.entity.zombie.Entity_SpecialZombie")
-					    .isAssignableFrom(entry.entityClass);
-			    if (entry.entityClass == EntityZombie.class || isSpecialMobsZombie) {
-				biomes.add(biome);
-				continue label;
-			    }
+	private void addEnderFurnaceRecipe(ItemStack output, Object... input) {
+		NBTTagCompound nbt = new NBTTagCompound();
 
-			} catch (ClassNotFoundException e) {
-			    e.printStackTrace();
+		NBTTagCompound out = new NBTTagCompound();
+		output.writeToNBT(out);
+		nbt.setTag("output", out);
+
+		for (int i = 0; i < input.length; i++)
+			if (input[i] != null)
+				if (input[i] instanceof ItemStack) {
+					NBTTagCompound in = new NBTTagCompound();
+					((ItemStack) input[i]).writeToNBT(in);
+					nbt.setTag("input" + i, in);
+				} else
+					nbt.setString("input" + i, (String) input[i]);
+
+		FMLInterModComms.sendMessage("ganysend", "enderFurnaceRecipe", nbt);
+	}
+
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
+		HeadDropHelper.register(new LaserCreepersHelper());
+		HeadDropHelper.register(new TwilightForestHelper());
+		HeadDropHelper.register(new TEHelper());
+		HeadDropHelper.register(new NaturaHelper());
+		HeadDropHelper.register(new ThaumcraftHelper());
+		HeadDropHelper.register(new EnderZooHelper());
+		HeadDropHelper.register(new PrimitiveMobsHelper());
+		HeadDropHelper.register(new GrimoireOfGaiaHelper());
+		HeadDropHelper.register(new ElementalCreepersHelper());
+		HeadDropHelper.register(new VanillaHelper());
+
+		if (enableHumanMobs)
+			addHumanSpawns();
+
+		if (Loader.isModLoaded("TwilightForest")) {
+			Item tropy = Item.REGISTRY.getObject(new ResourceLocation("TwilightForest", "item.trophy"));
+			addConvertionRecipe(SkullTypes.hydra.getStack(), new ItemStack(tropy, 1, 0));
+			addConvertionRecipe(SkullTypes.nagaTF.getStack(), new ItemStack(tropy, 1, 1));
+			addConvertionRecipe(SkullTypes.lich.getStack(), new ItemStack(tropy, 1, 2));
+			addConvertionRecipe(SkullTypes.urGhast.getStack(), new ItemStack(tropy, 1, 3));
+			addConvertionRecipe(SkullTypes.snowQueen.getStack(), new ItemStack(tropy, 1, 4));
+		}
+	}
+
+	private void addConvertionRecipe(ItemStack output, ItemStack input) {
+		GameRegistry.addShapelessRecipe(output, input);
+		GameRegistry.addShapelessRecipe(input, output);
+	}
+
+	@EventHandler
+	public void imcEvent(IMCEvent event) {
+		Logger logger = LogManager.getLogger(Reference.MOD_ID);
+		for (IMCMessage message : event.getMessages())
+			if (message.key.equals("add-username")) {
+				if (!enableModSent) {
+					logger.info(String.format("%s tried to add %s to the username list, but the feature has been disabled by the user.", message.getSender(), message.getStringValue()));
+					continue;
+				}
+				if (message.isStringMessage()) {
+					String username = message.getStringValue();
+					if (!getAllNames().contains(username)) {
+						modsent.add(username);
+						logger.info(String.format("%s added %s to the username list", message.getSender(), message.getStringValue()));
+					} else
+						logger.info(String.format("%s tried to add %s to the username list, but it was already present", message.getSender(), message.getStringValue()));
+				} else
+					logger.error(String.format("Invalid message type sent from %s", message.getSender()));
+			} else
+				logger.error(String.format("Invalid message key sent from %s: %s", message.getSender(), message.key));
+	}
+
+	public static List<String> getAllNames() {
+		Set<String> names = new HashSet<String>();
+		names.addAll(Arrays.asList(others));
+		names.addAll(Arrays.asList(modders));
+		names.addAll(Arrays.asList(youtubers));
+		names.addAll(Arrays.asList(mojang));
+		names.addAll(Arrays.asList(mindCrack));
+		names.addAll(Arrays.asList(hermitcraft));
+		names.addAll(Arrays.asList(forgeCraft));
+		names.addAll(Arrays.asList(ftb));
+		names.addAll(Arrays.asList(technic));
+		if (enableModSent)
+			names.addAll(modsent);
+		return new ArrayList<String>(names);
+	}
+
+	private static void addHumanSpawns() {
+		List<BiomeDictionary.Type> blacklistedBiomes = Arrays.asList(BiomeDictionary.Type.MUSHROOM);
+		List<String> blacklistedBiomeNames = Arrays.asList("Tainted Land");
+
+		List<Biome> biomes = new LinkedList<Biome>();
+		label: for (Biome biome : Biome.REGISTRY)
+			if (biome != null) {
+				// Check if the biome name is blacklisted
+				if (blacklistedBiomeNames.contains(biome.getBiomeName()))
+					continue;
+
+				// Check if the biome type is blacklisted
+				for (BiomeDictionary.Type type : BiomeDictionary.getTypes(biome))
+					if (blacklistedBiomes.contains(type))
+						continue label;
+
+				// Check if zombies can spawn on this biome
+				for (Object obj : biome.getSpawnableList(EnumCreatureType.MONSTER))
+					if (obj instanceof SpawnListEntry) {
+						SpawnListEntry entry = (SpawnListEntry) obj;
+						try {
+
+							boolean isSpecialMobsZombie = Loader.isModLoaded("SpecialMobs") && Class.forName("toast.specialMobs.entity.zombie.Entity_SpecialZombie").isAssignableFrom(entry.entityClass);
+							if (entry.entityClass == EntityZombie.class || isSpecialMobsZombie) {
+								biomes.add(biome);
+								continue label;
+							}
+
+						} catch (ClassNotFoundException e) {
+							e.printStackTrace();
+						}
+					}
 			}
-		    }
-	    }
 
-	EntityRegistry.addSpawn(EntityHuman.class, celebrityProb, celebrityMin, celebrityMax, EnumCreatureType.MONSTER,
-		biomes.toArray(new Biome[biomes.size()]));
-    }
+		EntityRegistry.addSpawn(EntityHuman.class, celebrityProb, celebrityMin, celebrityMax, EnumCreatureType.MONSTER, biomes.toArray(new Biome[biomes.size()]));
+	}
 }

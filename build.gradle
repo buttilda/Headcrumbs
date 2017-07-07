@@ -10,9 +10,11 @@ buildscript {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
     }
 }
-apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "${mod_version}"
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'maven-publish'
+
+version = "${mc_version}-${mod_version}"
 group = "ganymedes01.headcrumbs"
 archivesBaseName = "Headcrumbs"
 
@@ -44,3 +46,26 @@ processResources {
           exclude 'mcmod.info'
      }
 }
+
+build.dependsOn sourceJar
+  
+  publishing {
+     tasks.publish.dependsOn 'build'
+     publications {
+         mavenJava(MavenPublication) {
+         	artifactId 'Headcrumbs'
+             from components.java
+  
+             artifact sourceJar
+         }
+     }
+ 
+     repositories {
+        if (project.hasProperty('mavendir')) {
+            maven { url mavendir }
+        }
+        else{
+         	logger.error('Failed to find maven directory')
+         }
+     }
+ }
