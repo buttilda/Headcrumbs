@@ -26,7 +26,7 @@ public class ModBlocks {
 
 	@SubscribeEvent
 	public void onItemRegistry(RegistryEvent.Register<Item> e) {
-		e.getRegistry().register(new ItemHeadcrumbsSkull(skull).setRegistryName(Reference.MOD_ID, "skull").setUnlocalizedName(Reference.MOD_ID + "." + "skull"));
-		e.getRegistry().register(new ItemStatue(player).setRegistryName(Reference.MOD_ID, "player").setUnlocalizedName(Reference.MOD_ID + "." + "player"));
+		e.getRegistry().register(new ItemHeadcrumbsSkull(skull).setRegistryName(skull.getRegistryName()).setUnlocalizedName(skull.getUnlocalizedName()));
+		e.getRegistry().register(new ItemStatue(player).setRegistryName(player.getRegistryName()).setUnlocalizedName(player.getUnlocalizedName()));
 	}
 }

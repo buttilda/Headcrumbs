@@ -11,7 +11,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -26,15 +25,19 @@ public class ItemHeadcrumbsSkull extends FixedItemBlock {
 
 	public ItemHeadcrumbsSkull(Block block) {
 		super(block);
-		setMaxDamage(0);
+		this.setMaxDamage(0);
 		setHasSubtypes(true);
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
+	public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> tab) {
+		System.out.println("here -----------------------------------");
 		for (SkullTypes skull : SkullTypes.values())
 			if (skull.canShow())
-				subItems.add(skull.getStack());
+			{
+				System.out.println("her -----------------------------------");
+				tab.add(skull.getStack());
+			}
 	}
 
 	@Override

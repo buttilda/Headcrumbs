@@ -6,9 +6,18 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import com.mojang.authlib.GameProfile;
+
 import ganymedes01.headcrumbs.Headcrumbs;
+import ganymedes01.headcrumbs.ModBlocks;
 import ganymedes01.headcrumbs.entity.EntityHuman;
+import ganymedes01.headcrumbs.tileentities.TileEntityBlockPlayer;
 import ganymedes01.headcrumbs.utils.HeadUtils;
+import ganymedes01.headcrumbs.utils.Utils;
+import net.minecraft.block.state.BlockWorldState;
+import net.minecraft.block.state.pattern.BlockPattern;
+import net.minecraft.block.state.pattern.BlockStateMatcher;
+import net.minecraft.block.state.pattern.FactoryBlockPattern;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -17,18 +26,25 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.event.world.BlockEvent.PlaceEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -171,5 +187,44 @@ public class HandlerEvents {
 				return ((EntityPlayer) entity).getActiveItemStack();
 		}
 		return null;
+	}
+
+	private BlockPattern statuePattern;
+
+	@SubscribeEvent
+	public void onSkullPlacedEvent(PlaceEvent event) {
+		if (event.getState().getBlock() != Blocks.SKULL) {
+			return;
+		}
+
+		World world = event.getWorld();
+		BlockPos pos = event.getPos();
+		TileEntity tileEntity = world.getTileEntity(pos);
+		if (tileEntity instanceof TileEntitySkull) {
+			TileEntitySkull tileSkull = (TileEntitySkull) tileEntity;
+			if (tileSkull.getSkullType() == 3 && pos.getY() >= 2 && world.getDifficulty() != EnumDifficulty.PEACEFUL && !world.isRemote) {
+				if (statuePattern == null)
+					statuePattern = FactoryBlockPattern.start().aisle(new String[] { "^", "#", "#" }).where('#', BlockWorldState.hasState(BlockStateMatcher.forBlock(Blocks.CLAY))).where('^', BlockWorldState.hasState(BlockStateMatcher.forBlock(Blocks.SKULL))).build();
+				BlockPattern.PatternHelper patternHelper = statuePattern.match(world, pos);
+				if (patternHelper != null) {
+					GameProfile profile = tileSkull.getPlayerProfile();
+					for (int i = 0; i < 3; i++) {
+						BlockWorldState blockWorldState = patternHelper.translateOffset(0, -i, 0);
+						world.setBlockState(blockWorldState.getPos(), Blocks.AIR.getDefaultState(), 2);
+					}
+					world.setBlockState(pos.add(0, -1, 0), ModBlocks.player.getDefaultState());
+					Utils.doBreakParticles(world, pos.add(0, -1, 0), Blocks.SOUL_SAND, 0);
+					world.setBlockState(pos.add(0, -2, 0), ModBlocks.empty.getDefaultState());
+					Utils.doBreakParticles(world, pos.add(0, -2, 0), Blocks.SOUL_SAND, 0);
+
+					TileEntityBlockPlayer tile = Utils.getTileEntity(world, pos.add(0, -1, 0), TileEntityBlockPlayer.class);
+					if (tile != null) {
+						tile.setPlayerProfile(profile);
+						tile.setSkullRotation(MathHelper.floor(event.getPlayer().rotationYaw * 16.0F / 360.0F + 0.5D) & 15);
+						world.notifyNeighborsOfStateChange(pos, ModBlocks.player, true);
+					}
+				}
+			}
+		}
 	}
 }
