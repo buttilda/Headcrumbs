@@ -187,13 +187,13 @@ public class Headcrumbs {
 		}
 
 		proxy.registerEntityRenderers();
+		proxy.registerEvents();
+		proxy.registerTileEntities();
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		proxy.registerRenderers();
-		proxy.registerEvents();
-		proxy.registerTileEntities();
 
 		FMLInterModComms.sendMessage("Waila", "register", "ganymedes01.headcrumbs.waila.WailaRegistrar.wailaCallback");
 

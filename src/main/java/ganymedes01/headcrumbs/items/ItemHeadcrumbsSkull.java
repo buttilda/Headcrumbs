@@ -31,11 +31,9 @@ public class ItemHeadcrumbsSkull extends FixedItemBlock {
 
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> tab) {
-		System.out.println("here -----------------------------------");
 		for (SkullTypes skull : SkullTypes.values())
 			if (skull.canShow())
 			{
-				System.out.println("her -----------------------------------");
 				tab.add(skull.getStack());
 			}
 	}

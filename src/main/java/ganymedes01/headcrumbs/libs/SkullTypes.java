@@ -355,7 +355,6 @@ public enum SkullTypes {
 
 	public ItemStack getStack(int size) {
 		ItemStack stack = new ItemStack(ModBlocks.skull, size);
-		System.out.println(stack.toString());
 		NBTTagCompound nbt = new NBTTagCompound();
 		stack.setTagCompound(nbt);
 		nbt.setString(HeadUtils.MODEL_TAG, name());
