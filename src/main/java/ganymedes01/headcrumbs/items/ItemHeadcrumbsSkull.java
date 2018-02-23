@@ -1,5 +1,6 @@
 package ganymedes01.headcrumbs.items;
 
+import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
 import ganymedes01.headcrumbs.utils.HeadUtils;
@@ -27,34 +28,35 @@ public class ItemHeadcrumbsSkull extends FixedItemBlock {
 		super(block);
 		this.setMaxDamage(0);
 		setHasSubtypes(true);
+		super.setCreativeTab(Headcrumbs.tab);
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(CreativeTabs itemIn, NonNullList<ItemStack> tab) {
-		for (SkullTypes skull : SkullTypes.values())
-			if (skull.canShow())
-			{
-				tab.add(skull.getStack());
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		for(SkullTypes skull : SkullTypes.values()){
+			if(skull.canShow()){
+				items.add(skull.getStack());
 			}
+		}
 	}
 
 	@Override
 	public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState) {
-		if (side == EnumFacing.DOWN)
+		if(side == EnumFacing.DOWN)
 			return false;
-		else {
+		else{
 			BlockPos clickedPos = pos.offset(side.getOpposite());
 			IBlockState clickedState = world.getBlockState(clickedPos);
-			if (!clickedState.getMaterial().isSolid() || !world.isSideSolid(clickedPos, side, true))
+			if(!clickedState.getMaterial().isSolid() || !world.isSideSolid(clickedPos, side, true))
 				return false;
 
-			if (!player.canPlayerEdit(pos, side, stack))
+			if(!player.canPlayerEdit(pos, side, stack))
 				return false;
-			else if (!block.canPlaceBlockAt(world, pos))
+			else if(!block.canPlaceBlockAt(world, pos))
 				return false;
-			else {
-				if (!world.isRemote) {
-					if (!block.canPlaceBlockOnSide(world, pos, side))
+			else{
+				if(!world.isRemote){
+					if(!block.canPlaceBlockOnSide(world, pos, side))
 						return false;
 					world.setBlockState(pos, block.getDefaultState().withProperty(BlockSkull.FACING, side), 3);
 
@@ -68,14 +70,14 @@ public class ItemHeadcrumbsSkull extends FixedItemBlock {
 	}
 
 	protected void populateTile(ItemStack stack, EnumFacing side, EntityPlayer player, TileEntity tile) {
-		if (tile instanceof TileEntityBlockSkull) {
+		if(tile instanceof TileEntityBlockSkull){
 			TileEntityBlockSkull tileSkull = (TileEntityBlockSkull) tile;
 			SkullTypes model = HeadUtils.getModel(stack);
 			tileSkull.setType(stack.getMetadata());
 			tileSkull.setSkullModel(model);
 
 			int rotation = 0;
-			if (side == EnumFacing.UP)
+			if(side == EnumFacing.UP)
 				rotation = MathHelper.floor(player.rotationYaw * 16.0F / 360.0F + 0.5D) & 15;
 			tileSkull.setSkullRotation(rotation);
 		}

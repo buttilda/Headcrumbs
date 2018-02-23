@@ -82,11 +82,11 @@ public class Headcrumbs {
 		@Override
 		@SideOnly(Side.CLIENT)
 		public ItemStack getIconItemStack() {
-			if (displayStack == null) {
+			if(displayStack == null){
 				Random rand = new Random();
 				List<SkullTypes> types = new ArrayList<SkullTypes>();
-				for (SkullTypes type : SkullTypes.values())
-					if (type.canShow())
+				for(SkullTypes type : SkullTypes.values())
+					if(type.canShow())
 						types.add(type);
 				displayStack = types.isEmpty() ? new ItemStack(Items.SKULL, 1, rand.nextInt(3)) : types.get(rand.nextInt(types.size())).getStack();
 			}
@@ -94,7 +94,7 @@ public class Headcrumbs {
 		}
 	};
 
-    // @formatter:off
+	// @formatter:off
     public static String[] others = { "ez", "saukawolf", "Fullapple1991", "Cindric", "wiiv", "deadmau5", "muted79",
 	    "DrummingFish", "Kyrinon", "KingPurpleRaptor", "DylanGK", "sadris", "Herobrine", "kehaan" };
 
@@ -104,7 +104,7 @@ public class Headcrumbs {
 	    "AbrarSyed", "sdkillen", "Taelnia", "Lycanite", "asiekierka", "GregoriusT", "skyboy", "Flaxbeard",
 	    "Emasher", "joshiejack", "Reika", "ganymedes01", "Pokefenn", "chylex", "vadis365", "jakimfett", "Lunatrius",
 	    "copygirl", "amadornes", "DrZhark", "KeldonSlayer", "KarelMikie3", "Mfernflower", "LuckyLucyF", "Tristaric",
-	    "fry_", "Turkey2349", "Funwayguy"};
+	    "fry_", "Turkey2349", "Funwayguy" };
 
     public static String[] youtubers = { "wyld", "SkythekidRS", "Bashur", "Straymaverick", "SOTMead", "Nerdcubed",
 	    "Kleetho", "DanTDM", "ashzification", "Runew0lf", "GiantWaffle", "Bacon_Donut", "Heph", "ChimneySwift",
@@ -142,7 +142,7 @@ public class Headcrumbs {
 	    "MrFlamegoat" };
 
     public static String[] ftb = { "eyamaz", "slowpoke101", "progwml6", "Captainnana", "Gideonseymour", "Watchful11",
-	    "SnowShock35", "Darkosto"};
+	    "SnowShock35", "Darkosto" };
 
     public static String[] technic = { "GenPage", "Slink730", "sct", "KakerMix", "Skuli_Steinulf", "Talonos" };
     // @formatter:on
@@ -181,7 +181,7 @@ public class Headcrumbs {
 		OreDictionary.registerOre("skullCreeper", new ItemStack(Items.SKULL, 1, 4));
 		OreDictionary.registerOre("skullEnderDragon", new ItemStack(Items.SKULL, 1, 5));
 
-		if (enableHumanMobs) {
+		if(enableHumanMobs){
 			EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "Human"), EntityHuman.class, "Human", 0, instance, 512, 1, true, 0xFFF144, 0x69DFDA);
 			VIPHandler.init();
 		}
@@ -197,10 +197,10 @@ public class Headcrumbs {
 
 		FMLInterModComms.sendMessage("Waila", "register", "ganymedes01.headcrumbs.waila.WailaRegistrar.wailaCallback");
 
-		if (Loader.isModLoaded("ganysend"))
+		if(Loader.isModLoaded("ganysend"))
 			addEnderFurnaceRecipe(new ItemStack(Items.NETHER_STAR), "skullWither");
 
-		if (enablePlayerStatues) {
+		if(enablePlayerStatues){
 			GameData.register_impl(StatueRecipe.getRecipe("Statue recipe", new ItemStack(ModBlocks.player), "x", "y", "y", 'x', new ItemStack(Items.SKULL, 1, 3), 'y', new ItemStack(Blocks.CLAY)));
 			// RecipeSorter.register("statue", StatueRecipe.class,
 			// Category.SHAPED, "after:minecraft:shaped");
@@ -214,13 +214,14 @@ public class Headcrumbs {
 		output.writeToNBT(out);
 		nbt.setTag("output", out);
 
-		for (int i = 0; i < input.length; i++)
-			if (input[i] != null)
-				if (input[i] instanceof ItemStack) {
+		for(int i = 0; i < input.length; i++)
+			if(input[i] != null)
+				if(input[i] instanceof ItemStack){
 					NBTTagCompound in = new NBTTagCompound();
 					((ItemStack) input[i]).writeToNBT(in);
 					nbt.setTag("input" + i, in);
-				} else
+				}
+				else
 					nbt.setString("input" + i, (String) input[i]);
 
 		FMLInterModComms.sendMessage("ganysend", "enderFurnaceRecipe", nbt);
@@ -239,10 +240,10 @@ public class Headcrumbs {
 		HeadDropHelper.register(new ElementalCreepersHelper());
 		HeadDropHelper.register(new VanillaHelper());
 
-		if (enableHumanMobs)
+		if(enableHumanMobs)
 			addHumanSpawns();
 
-		if (Loader.isModLoaded("TwilightForest")) {
+		if(Loader.isModLoaded("TwilightForest")){
 			Item tropy = Item.REGISTRY.getObject(new ResourceLocation("TwilightForest", "item.trophy"));
 			addConvertionRecipe("Hydra recipe", SkullTypes.hydra.getStack(), new ItemStack(tropy, 1, 0));
 			addConvertionRecipe("Naga recipe", SkullTypes.nagaTF.getStack(), new ItemStack(tropy, 1, 1));
@@ -260,22 +261,25 @@ public class Headcrumbs {
 	@EventHandler
 	public void imcEvent(IMCEvent event) {
 		Logger logger = LogManager.getLogger(Reference.MOD_ID);
-		for (IMCMessage message : event.getMessages())
-			if (message.key.equals("add-username")) {
-				if (!enableModSent) {
+		for(IMCMessage message : event.getMessages())
+			if(message.key.equals("add-username")){
+				if(!enableModSent){
 					logger.info(String.format("%s tried to add %s to the username list, but the feature has been disabled by the user.", message.getSender(), message.getStringValue()));
 					continue;
 				}
-				if (message.isStringMessage()) {
+				if(message.isStringMessage()){
 					String username = message.getStringValue();
-					if (!getAllNames().contains(username)) {
+					if(!getAllNames().contains(username)){
 						modsent.add(username);
 						logger.info(String.format("%s added %s to the username list", message.getSender(), message.getStringValue()));
-					} else
+					}
+					else
 						logger.info(String.format("%s tried to add %s to the username list, but it was already present", message.getSender(), message.getStringValue()));
-				} else
+				}
+				else
 					logger.error(String.format("Invalid message type sent from %s", message.getSender()));
-			} else
+			}
+			else
 				logger.error(String.format("Invalid message key sent from %s: %s", message.getSender(), message.key));
 	}
 
@@ -290,7 +294,7 @@ public class Headcrumbs {
 		names.addAll(Arrays.asList(forgeCraft));
 		names.addAll(Arrays.asList(ftb));
 		names.addAll(Arrays.asList(technic));
-		if (enableModSent)
+		if(enableModSent)
 			names.addAll(modsent);
 		return new ArrayList<String>(names);
 	}
@@ -300,30 +304,30 @@ public class Headcrumbs {
 		List<String> blacklistedBiomeNames = Arrays.asList("Tainted Land");
 
 		List<Biome> biomes = new LinkedList<Biome>();
-		label: for (Biome biome : Biome.REGISTRY)
-			if (biome != null) {
+		label: for(Biome biome : Biome.REGISTRY)
+			if(biome != null){
 				// Check if the biome name is blacklisted
-				if (blacklistedBiomeNames.contains(biome.getBiomeName()))
+				if(blacklistedBiomeNames.contains(biome.getRegistryName().getResourcePath()))
 					continue;
 
 				// Check if the biome type is blacklisted
-				for (BiomeDictionary.Type type : BiomeDictionary.getTypes(biome))
-					if (blacklistedBiomes.contains(type))
+				for(BiomeDictionary.Type type : BiomeDictionary.getTypes(biome))
+					if(blacklistedBiomes.contains(type))
 						continue label;
 
 				// Check if zombies can spawn on this biome
-				for (Object obj : biome.getSpawnableList(EnumCreatureType.MONSTER))
-					if (obj instanceof SpawnListEntry) {
+				for(Object obj : biome.getSpawnableList(EnumCreatureType.MONSTER))
+					if(obj instanceof SpawnListEntry){
 						SpawnListEntry entry = (SpawnListEntry) obj;
-						try {
+						try{
 
 							boolean isSpecialMobsZombie = Loader.isModLoaded("SpecialMobs") && Class.forName("toast.specialMobs.entity.zombie.Entity_SpecialZombie").isAssignableFrom(entry.entityClass);
-							if (entry.entityClass == EntityZombie.class || isSpecialMobsZombie) {
+							if(entry.entityClass == EntityZombie.class || isSpecialMobsZombie){
 								biomes.add(biome);
 								continue label;
 							}
 
-						} catch (ClassNotFoundException e) {
+						} catch(ClassNotFoundException e){
 							e.printStackTrace();
 						}
 					}
