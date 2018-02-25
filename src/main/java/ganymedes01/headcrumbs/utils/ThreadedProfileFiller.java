@@ -14,14 +14,15 @@ public class ThreadedProfileFiller {
 	public static void updateProfile(IHumanEntity human) {
 		humans.add(human);
 
-		if (thread == null || thread.getState() == Thread.State.TERMINATED) {
+		if(thread == null || thread.getState() == Thread.State.TERMINATED){
 			thread = new Thread(new Runnable() {
 
 				@Override
 				public void run() {
-					while (!humans.isEmpty()) {
+					while(!humans.isEmpty()){
 						IHumanEntity human = humans.get(0);
-						human.setProfile(TileEntitySkull.updateGameprofile(human.getProfile()));
+						if(human != null)
+							human.setProfile(TileEntitySkull.updateGameprofile(human.getProfile()));
 						humans.remove(0);
 					}
 				}

@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
@@ -55,8 +54,6 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.GameData;
 
@@ -71,26 +68,9 @@ public class Headcrumbs {
 
 	public static CreativeTabs tab = new CreativeTabs(Reference.MOD_ID) {
 
-		@SideOnly(Side.CLIENT)
-		private ItemStack displayStack;
-
 		@Override
 		public ItemStack getTabIconItem() {
 			return new ItemStack(Items.SKULL);
-		}
-
-		@Override
-		@SideOnly(Side.CLIENT)
-		public ItemStack getIconItemStack() {
-			if(displayStack == null){
-				Random rand = new Random();
-				List<SkullTypes> types = new ArrayList<SkullTypes>();
-				for(SkullTypes type : SkullTypes.values())
-					if(type.canShow())
-						types.add(type);
-				displayStack = types.isEmpty() ? new ItemStack(Items.SKULL, 1, rand.nextInt(3)) : types.get(rand.nextInt(types.size())).getStack();
-			}
-			return displayStack;
 		}
 	};
 
