@@ -99,7 +99,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		super(world);
 		((PathNavigateGround) getNavigator()).setBreakDoors(true);
 		tasks.addTask(0, new EntityAISwimming(this));
-		if (world.getDifficulty() == EnumDifficulty.HARD)
+		if(world.getDifficulty() == EnumDifficulty.HARD)
 			tasks.addTask(1, new EntityAIOpenDoor(this, true));
 		tasks.addTask(2, new EntityAIAttackMelee(this, 1.0D, false));
 		tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
@@ -133,29 +133,29 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		double z = posZ - capeZ;
 		double maxCapeAngle = 10.0;
 
-		if (x > maxCapeAngle)
+		if(x > maxCapeAngle)
 			prevCapeX = capeX = posX;
-		if (z > maxCapeAngle)
+		if(z > maxCapeAngle)
 			prevCapeZ = capeZ = posZ;
-		if (y > maxCapeAngle)
+		if(y > maxCapeAngle)
 			prevCapeY = capeY = posY;
-		if (x < -maxCapeAngle)
+		if(x < -maxCapeAngle)
 			prevCapeX = capeX = posX;
-		if (z < -maxCapeAngle)
+		if(z < -maxCapeAngle)
 			prevCapeZ = capeZ = posZ;
-		if (y < -maxCapeAngle)
+		if(y < -maxCapeAngle)
 			prevCapeY = capeY = posY;
 
 		capeX += x * 0.25;
 		capeZ += z * 0.25;
 		capeY += y * 0.25;
 
-		if (world.isRemote) {
+		if(world.isRemote){
 			float w = dataManager.get(WIDTH);
-			if (w != width)
+			if(w != width)
 				width = w;
 			float h = dataManager.get(HEIGHT);
-			if (h != height)
+			if(h != height)
 				height = h;
 		}
 
@@ -212,20 +212,21 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 	protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
 		super.setEquipmentBasedOnDifficulty(difficulty);
 
-		if (rand.nextFloat() < (world.getDifficulty() == EnumDifficulty.HARD ? 0.1F : 0.05F)) {
+		if(rand.nextFloat() < (world.getDifficulty() == EnumDifficulty.HARD ? 0.1F : 0.05F)){
 			int i = rand.nextInt(3);
 
-			if (i == 0) {
+			if(i == 0){
 				setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD));
-				if (world.getDifficulty() == EnumDifficulty.HARD)
-					if (rand.nextFloat() > 0.5F) {
+				if(world.getDifficulty() == EnumDifficulty.HARD)
+					if(rand.nextFloat() > 0.5F){
 						setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(Items.SHIELD));
 						getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).applyModifier(new AttributeModifier("Shield Bonus", rand.nextDouble() * 3.0 + 1.0, 2));
 					}
-			} else if (i == 1) {
+			}
+			else if(i == 1){
 				setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
-				if (world.getDifficulty() == EnumDifficulty.HARD)
-					if (rand.nextFloat() > 0.5F) {
+				if(world.getDifficulty() == EnumDifficulty.HARD)
+					if(rand.nextFloat() > 0.5F){
 						List<ResourceLocation> keys = new ArrayList<ResourceLocation>(PotionType.REGISTRY.getKeys());
 						ResourceLocation key = keys.get(rand.nextInt(keys.size()));
 						PotionType potion = PotionType.REGISTRY.getObject(key);
@@ -261,22 +262,22 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).applyModifier(new AttributeModifier("Knockback Resistance Bonus", rand.nextDouble() * 0.05, 0));
 
 		double rangeBonus = rand.nextDouble() * 1.5 * additionalDifficulty;
-		if (rangeBonus > 1.0)
+		if(rangeBonus > 1.0)
 			getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).applyModifier(new AttributeModifier("Range Bonus", rangeBonus, 2));
 
-		if (rand.nextFloat() < additionalDifficulty * 0.05F)
+		if(rand.nextFloat() < additionalDifficulty * 0.05F)
 			getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).applyModifier(new AttributeModifier("Health Bonus", rand.nextDouble() * 3.0 + 1.0, 2));
 
-		if (rand.nextFloat() < additionalDifficulty * 0.15F)
+		if(rand.nextFloat() < additionalDifficulty * 0.15F)
 			getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).applyModifier(new AttributeModifier("Damage Bonus", rand.nextDouble() + 0.5, 2));
 
-		if (rand.nextFloat() < additionalDifficulty * 0.2F)
+		if(rand.nextFloat() < additionalDifficulty * 0.2F)
 			getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).applyModifier(new AttributeModifier("Speed Bonus", rand.nextDouble() * 2.0 * 0.24 + 0.01, 2));
 
-		if (rand.nextDouble() < Headcrumbs.babyHumanChance)
+		if(rand.nextDouble() < Headcrumbs.babyHumanChance)
 			setChild(true);
 
-		if (rand.nextFloat() < additionalDifficulty * 0.1F)
+		if(rand.nextFloat() < additionalDifficulty * 0.1F)
 			tasks.addTask(1, breakDoorAI);
 
 		getVIPHandler().onSpawn(this, difficulty);
@@ -288,7 +289,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 	protected void despawnEntity() {
 		super.despawnEntity();
 		Entity ridingEntity = getRidingEntity();
-		if (isDead && ridingEntity != null)
+		if(isDead && ridingEntity != null)
 			ridingEntity.setDead();
 	}
 
@@ -306,10 +307,10 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		super.writeEntityToNBT(nbt);
 
 		String username = getUsername();
-		if (!StringUtils.isBlank(username))
+		if(!StringUtils.isBlank(username))
 			nbt.setString("Username", username);
 
-		if (isChild())
+		if(isChild())
 			nbt.setBoolean("IsBaby", true);
 	}
 
@@ -318,14 +319,15 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		super.readEntityFromNBT(nbt);
 
 		String username;
-		if (nbt.hasKey("Username")) {
+		if(nbt.hasKey("Username")){
 			username = nbt.getString("Username");
 			getNames().remove(username);
-		} else
+		}
+		else
 			username = getRandomUsername(rand);
 		setUsername(username);
 
-		if (nbt.getBoolean("IsBaby"))
+		if(nbt.getBoolean("IsBaby"))
 			setChild(true);
 
 		setCombatAI();
@@ -336,19 +338,19 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 	@Override
 	public boolean attackEntityAsMob(Entity target) {
 		boolean result = super.attackEntityAsMob(target);
-		if (result)
+		if(result)
 			swingArm(EnumHand.MAIN_HAND);
 		return result;
 	}
 
 	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float damage) {
-		if (!hasBow())
+		if(!hasBow())
 			return;
 
 		EntityTippedArrow arrow = new EntityTippedArrow(world, this);
 		ItemStack offHandStack = getItemStackFromSlot(EntityEquipmentSlot.OFFHAND);
-		if (offHandStack != null && offHandStack.getItem() == Items.TIPPED_ARROW)
+		if(offHandStack != null && offHandStack.getItem() == Items.TIPPED_ARROW)
 			arrow.setPotionEffect(offHandStack);
 
 		double x = target.posX - posX;
@@ -360,13 +362,13 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		int punch = EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.PUNCH, this);
 		arrow.setDamage(damage * 2.0F + rand.nextGaussian() * 0.25 + world.getDifficulty().getDifficultyId() * 0.11F);
 
-		if (power > 0)
+		if(power > 0)
 			arrow.setDamage(arrow.getDamage() + power * 0.5 + 0.5);
 
-		if (punch > 0)
+		if(punch > 0)
 			arrow.setKnockbackStrength(punch);
 
-		if (EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.FLAME, this) > 0)
+		if(EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.FLAME, this) > 0)
 			arrow.setFire(100);
 
 		playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (getRNG().nextFloat() * 0.4F + 0.8F));
@@ -379,7 +381,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 	}
 
 	private void setCombatAI() {
-		if (hasBow())
+		if(hasBow())
 			tasks.addTask(1, arrowAI);
 		else
 			tasks.removeTask(arrowAI);
@@ -423,7 +425,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 
 			@Override
 			public Style getStyle() {
-				if (style == null) {
+				if(style == null){
 					style = new Style() {
 
 						@Override
@@ -435,7 +437,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 					};
 					Iterator<ITextComponent> iterator = siblings.iterator();
 
-					while (iterator.hasNext()) {
+					while(iterator.hasNext()){
 						ITextComponent ichatcomponent = iterator.next();
 						ichatcomponent.getStyle().setParentStyle(style);
 					}
@@ -461,7 +463,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 	private static List<String> names = new LinkedList<String>();
 
 	public static List<String> getNames() {
-		if (names.isEmpty())
+		if(names.isEmpty())
 			names.addAll(Headcrumbs.getAllNames());
 		return names;
 	}
@@ -470,7 +472,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 
 	@Override
 	public GameProfile getProfile() {
-		if (profile == null) {
+		if(profile == null && !getUsername().equals("")){
 			profile = new GameProfile(null, getUsername());
 			ThreadedProfileFiller.updateProfile(this);
 		}
@@ -492,7 +494,7 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 	public void setUsername(String name) {
 		dataManager.set(NAME, name);
 
-		if ("Herobrine".equals(name)) {
+		if("Herobrine".equals(name)){
 			getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).applyModifier(new AttributeModifier("Herobrine Damage Bonus", 1, 2));
 			getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).applyModifier(new AttributeModifier("Herobrine Speed Bonus", 0.5, 2));
 		}
@@ -522,14 +524,14 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 
 			@Override
 			public void skinAvailable(MinecraftProfileTexture.Type type, ResourceLocation location, MinecraftProfileTexture profileTexture) {
-				switch (type) {
-				case CAPE:
-					cape = location;
-					break;
-				case SKIN:
-				default:
-					skin = location;
-					break;
+				switch(type) {
+					case CAPE:
+						cape = location;
+						break;
+					case SKIN:
+					default:
+						skin = location;
+						break;
 				}
 				setTextureAvailable(type);
 			}
@@ -539,37 +541,37 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean isTextureAvailable(MinecraftProfileTexture.Type type) {
-		switch (type) {
-		case CAPE:
-			return capeAvailable;
-		case SKIN:
-		default:
-			return skinAvailable;
+		switch(type) {
+			case CAPE:
+				return capeAvailable;
+			case SKIN:
+			default:
+				return skinAvailable;
 		}
 	}
 
 	@SideOnly(Side.CLIENT)
 	private void setTextureAvailable(MinecraftProfileTexture.Type type) {
-		switch (type) {
-		case CAPE:
-			capeAvailable = true;
-			break;
-		case SKIN:
-		default:
-			skinAvailable = true;
-			break;
+		switch(type) {
+			case CAPE:
+				capeAvailable = true;
+				break;
+			case SKIN:
+			default:
+				skinAvailable = true;
+				break;
 		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ResourceLocation getTexture(MinecraftProfileTexture.Type type) {
-		switch (type) {
-		case CAPE:
-			return cape;
-		case SKIN:
-		default:
-			return skin;
+		switch(type) {
+			case CAPE:
+				return cape;
+			case SKIN:
+			default:
+				return skin;
 		}
 	}
 
@@ -589,14 +591,14 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 	public void setChild(boolean isChild) {
 		dataManager.set(CHILD, isChild);
 
-		if (world != null && !world.isRemote) {
+		if(world != null && !world.isRemote){
 			IAttributeInstance speed = getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
 			speed.removeModifier(babySpeedBoostModifier);
-			if (isChild)
+			if(isChild)
 				speed.applyModifier(babySpeedBoostModifier);
 		}
 
-		if (isChild)
+		if(isChild)
 			setSize(width * 0.5F, height * 0.5F);
 	}
 
