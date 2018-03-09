@@ -83,7 +83,6 @@ import ganymedes01.headcrumbs.renderers.heads.lasercreeper.LaserCreeperHead;
 import ganymedes01.headcrumbs.renderers.heads.lasercreeper.RoboDinoHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.BehemothHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.BelphHead;
-import ganymedes01.headcrumbs.renderers.heads.lycanites.LycaniteHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.PinkyHead;
 import ganymedes01.headcrumbs.renderers.heads.natura.ImpHead;
 import ganymedes01.headcrumbs.renderers.heads.primitivemobs.JuggernautHead;
@@ -113,7 +112,6 @@ import ganymedes01.headcrumbs.renderers.heads.twilightforest.TowerGolemHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.WildBoarHead;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.Utils;
-import ganymedes01.headcrumbs.utils.helpers.LycanitesHelperClient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -228,7 +226,7 @@ public enum SkullTypes {
 	cultist				(Strings.TC_PREFIX + "cultist", 						"Thaumcraft", 				CultistHead.INSTANCE),
 	eldritchCrab			(Strings.TC_PREFIX + "crab",			 				"Thaumcraft", 				EldrichCrabHead.INSTANCE),
 
-	lycanites			("", 										"lycanitesmobs", 			LycaniteHead.INSTANCE),
+	//lycanites			("", 										"lycanitesmobs", 			LycaniteHead.INSTANCE),
 	pinky				(Strings.LY_PREFIX + "pinky", 							"lycanitesmobs", 			PinkyHead.INSTANCE),
 	behemoth			(Strings.LY_PREFIX + "behemoth", 						"lycanitesmobs", 			BehemothHead.INSTANCE),
 	belph				(Strings.LY_PREFIX + "belph", 							"lycanitesmobs", 			BelphHead.INSTANCE),
@@ -342,7 +340,7 @@ public enum SkullTypes {
 	}
 
 	public boolean usesProfile() {
-		return this == lycanites;
+		return false; // this == lycanites;
 	}
 
 	public boolean canShow() {
@@ -350,8 +348,8 @@ public enum SkullTypes {
 	}
 
 	public ResourceLocation getTexture(GameProfile profile) {
-		if(this == lycanites)
-			return LycanitesHelperClient.getTexture(profile.getName());
+		// if(this == lycanites)
+		// return LycanitesHelperClient.getTexture(profile.getName());
 		return texture;
 	}
 

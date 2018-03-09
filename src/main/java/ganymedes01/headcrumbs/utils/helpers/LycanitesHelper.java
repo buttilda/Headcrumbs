@@ -33,7 +33,7 @@ public class LycanitesHelper extends HeadDropHelper {
 
 	private static ItemStack getStackFor(String mob) {
 		ItemStack stack = HeadUtils.createHeadFor(mob);
-		stack.setItemDamage(SkullTypes.lycanites.ordinal());
+		//stack.setItemDamage(SkullTypes.lycanites.ordinal());
 		return stack;
 	}
 }

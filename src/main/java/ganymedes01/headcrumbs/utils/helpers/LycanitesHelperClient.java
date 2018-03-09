@@ -20,8 +20,8 @@ public class LycanitesHelperClient {
 	}
 
 	public static ResourceLocation getTexture(String name) {
-		if(!SkullTypes.lycanites.canShow())
-			return null;
+		//if(!SkullTypes.lycanites.canShow())
+		//	return null;
 		ResourceLocation tex = map.get(name);
 		/*
 		 * if (tex == null) { MobInfo info = ObjectManager.getMobInfo(name); if (info != null) { GroupInfo group = info.group; if (group != null) { tex = new ResourceLocation(group.filename, "textures/entity/" + name + ".png"); map.put(name, tex); } } }
@@ -40,7 +40,7 @@ public class LycanitesHelperClient {
 
 	private static ItemStack getStackFor(String mob) {
 		ItemStack stack = HeadUtils.createHeadFor(mob);
-		stack.setItemDamage(SkullTypes.lycanites.ordinal());
+		//stack.setItemDamage(SkullTypes.lycanites.ordinal());
 		return stack;
 	}
 }

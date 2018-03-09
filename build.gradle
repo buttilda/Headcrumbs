@@ -14,7 +14,13 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'maven-publish'
 
-version = "${mc_version}-${mod_version}"
+ext.buildnumber = 0
+if (System.getenv('BUILD_NUMBER') != null)
+    project.buildnumber = System.getenv('BUILD_NUMBER')
+else
+    logger.lifecycle "No build number detected, setting to 0"
+
+version= "${mc_version}-${mod_version}.${buildnumber}"
 group = "ganymedes01.headcrumbs"
 archivesBaseName = "Headcrumbs"
 
