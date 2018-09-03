@@ -14,17 +14,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraftforge.registries.GameData;
 
 public class direwolf20 extends VIPHandler {
 
-	private static SoundEvent takeItEasy;
-	static {
-		ResourceLocation resLoc = Utils.getResource(Reference.MOD_ID, "takeiteasy");
-		takeItEasy = new SoundEvent(resLoc);
-		takeItEasy.setRegistryName(resLoc);
-		GameData.register_impl(takeItEasy);
-	}
+	private static final ResourceLocation resLoc = Utils.getResource(Reference.MOD_ID, "takeiteasy");
+	public static final SoundEvent takeItEasy = new SoundEvent(resLoc).setRegistryName(resLoc);
 
 	@Override
 	public void onSpawn(EntityHuman entity, DifficultyInstance difficulty) {

@@ -3,6 +3,7 @@ package ganymedes01.headcrumbs.proxy;
 import ganymedes01.headcrumbs.ModBlocks;
 import ganymedes01.headcrumbs.configs.ConfigHandler;
 import ganymedes01.headcrumbs.eventHandlers.HandlerEvents;
+import ganymedes01.headcrumbs.libs.Reference;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockPlayer;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
 import ganymedes01.headcrumbs.utils.Utils;
@@ -18,8 +19,8 @@ public class CommonProxy {
 	}
 
 	public void registerTileEntities() {
-		GameRegistry.registerTileEntity(TileEntityBlockSkull.class, Utils.getUnlocalisedName("head"));
-		GameRegistry.registerTileEntity(TileEntityBlockPlayer.class, Utils.getUnlocalisedName("player"));
+		GameRegistry.registerTileEntity(TileEntityBlockSkull.class, Utils.getResource(Reference.MOD_ID, Utils.getUnlocalisedName("head")));
+		GameRegistry.registerTileEntity(TileEntityBlockPlayer.class, Utils.getResource(Reference.MOD_ID, Utils.getUnlocalisedName("player")));
 	}
 
 	public void registerEntityRenderers() {

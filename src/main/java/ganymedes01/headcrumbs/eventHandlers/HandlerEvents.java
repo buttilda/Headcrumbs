@@ -11,6 +11,7 @@ import com.mojang.authlib.GameProfile;
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.ModBlocks;
 import ganymedes01.headcrumbs.entity.EntityHuman;
+import ganymedes01.headcrumbs.entity.vip.direwolf20;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockPlayer;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.Utils;
@@ -35,12 +36,14 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
@@ -55,6 +58,11 @@ public class HandlerEvents {
 
 	private static List<String> hardcodedBlacklist = Arrays.asList("Twilight Forest", "Erebus", "The Outer Lands");
 	private static Item cleaver;
+
+	@SubscribeEvent
+	public static void registerSoundEvents(RegistryEvent.Register<SoundEvent> event) {
+		event.getRegistry().register(direwolf20.takeItEasy);
+	}
 
 	@SubscribeEvent
 	public void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
@@ -80,12 +88,14 @@ public class HandlerEvents {
 			ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
 
 			ItemStack weapon = getWeapon(event.getSource());
-			int looting = EnchantmentHelper.getEnchantmentLevel(Enchantment.getEnchantmentByLocation("looting"), weapon);
-			drop(event.getEntityLiving(), event.getSource(), looting, drops);
+			if(weapon != null){
+				int looting = EnchantmentHelper.getEnchantmentLevel(Enchantment.getEnchantmentByLocation("looting"), weapon);
+				drop(event.getEntityLiving(), event.getSource(), looting, drops);
 
-			if(!drops.isEmpty())
-				for(ItemStack item : drops)
-					((EntityPlayerMP) entity).dropItem(item, true);
+				if(!drops.isEmpty())
+					for(ItemStack item : drops)
+						((EntityPlayerMP) entity).dropItem(item, true);
+			}
 		}
 	}
 
@@ -121,7 +131,6 @@ public class HandlerEvents {
 					// TiCon
 
 			NBTTagCompound nbt = stack.writeToNBT(new NBTTagCompound());
-			System.out.println(nbt.toString());
 			if(stack.getItem() != Items.SKULL || Headcrumbs.enableVanillaHeadsDrop)
 				if(isPlayerHead(stack) || Headcrumbs.enableMobsAndAnimalHeads)
 					drops.add(stack);
