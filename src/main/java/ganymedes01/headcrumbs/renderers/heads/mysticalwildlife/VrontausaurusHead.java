@@ -16,11 +16,7 @@ public class VrontausaurusHead extends ModelHead {
 	public void init() {
 		head = new ModelRenderer(this, 0, 0);
 		head.addBox(-6, -10, -4, 12, 10, 8, 0.0F);
-
-		ModelRenderer snout = new ModelRenderer(this, 0, 18);
-		snout.addBox(-4, -7, -12, 8, 6, 8);
-		head.addChild(snout);
-		
+		head.setTextureOffset(0, 18).addBox(-4, -7, -12, 8, 6, 8, 0.0F);
 		hideOverlay();
 	}
 }
