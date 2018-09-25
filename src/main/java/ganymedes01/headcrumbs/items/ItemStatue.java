@@ -92,6 +92,10 @@ public class ItemStatue extends FixedItemBlock {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		return HeadUtils.getName(stack);
+		String name = HeadUtils.getName(stack);
+		if (name == null) {
+			name = "(null)";
+		}
+		return name;
 	}
 }
