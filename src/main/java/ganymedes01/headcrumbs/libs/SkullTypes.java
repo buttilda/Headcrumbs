@@ -84,6 +84,7 @@ import ganymedes01.headcrumbs.renderers.heads.lasercreeper.RoboDinoHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.BehemothHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.BelphHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.PinkyHead;
+import ganymedes01.headcrumbs.renderers.heads.mysticalwildlife.VrontausaurusHead;
 import ganymedes01.headcrumbs.renderers.heads.natura.ImpHead;
 import ganymedes01.headcrumbs.renderers.heads.primitivemobs.JuggernautHead;
 import ganymedes01.headcrumbs.renderers.heads.primitivemobs.LilyLurkerHead;
@@ -323,7 +324,9 @@ public enum SkullTypes {
 	
 	laserCreeper			(Strings.LC_PREFIX + "laserCreeper",			 			"lasercreepers", 			LaserCreeperHead.INSTANCE),
 	roboDino			(Strings.LC_PREFIX + "roboDino",			 			"lasercreepers", 			RoboDinoHead.INSTANCE),
-	jetPackSpider			(Strings.LC_PREFIX + "jetPackSpider",			 			"lasercreepers", 			JetPackSpiderHead.INSTANCE);
+	jetPackSpider			(Strings.LC_PREFIX + "jetPackSpider",			 			"lasercreepers", 			JetPackSpiderHead.INSTANCE),
+	
+	vrontausaurus			(Strings.MWL_PREFIX + "vrontausaurus",			 			"mysticalwildlife", 			VrontausaurusHead.INSTANCE);
 	// @formatter:on
 
 	private final String mod;

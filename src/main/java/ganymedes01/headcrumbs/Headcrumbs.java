@@ -22,6 +22,7 @@ import ganymedes01.headcrumbs.utils.helpers.EnderZooHelper;
 import ganymedes01.headcrumbs.utils.helpers.GrimoireOfGaiaHelper;
 import ganymedes01.headcrumbs.utils.helpers.HeadDropHelper;
 import ganymedes01.headcrumbs.utils.helpers.LaserCreepersHelper;
+import ganymedes01.headcrumbs.utils.helpers.MysticalWildlifeHelper;
 import ganymedes01.headcrumbs.utils.helpers.NaturaHelper;
 import ganymedes01.headcrumbs.utils.helpers.PrimitiveMobsHelper;
 import ganymedes01.headcrumbs.utils.helpers.TEHelper;
@@ -84,7 +85,7 @@ public class Headcrumbs {
 	    "AbrarSyed", "sdkillen", "Taelnia", "Lycanite", "asiekierka", "GregoriusT", "skyboy", "Flaxbeard",
 	    "Emasher", "joshiejack", "Reika", "ganymedes01", "Pokefenn", "chylex", "vadis365", "jakimfett", "Lunatrius",
 	    "copygirl", "amadornes", "DrZhark", "KeldonSlayer", "KarelMikie3", "Mfernflower", "LuckyLucyF", "Tristaric",
-	    "fry_", "Turkey2349", "Funwayguy" };
+	    "fry_", "Turkey2349", "Funwayguy", "Lykrast" };
 
     public static String[] youtubers = { "wyld", "SkythekidRS", "Bashur", "Straymaverick", "SOTMead", "Nerdcubed",
 	    "Kleetho", "DanTDM", "ashzification", "Runew0lf", "GiantWaffle", "Bacon_Donut", "Heph", "ChimneySwift",
@@ -218,6 +219,7 @@ public class Headcrumbs {
 		HeadDropHelper.register(new PrimitiveMobsHelper());
 		HeadDropHelper.register(new GrimoireOfGaiaHelper());
 		HeadDropHelper.register(new ElementalCreepersHelper());
+		HeadDropHelper.register(new MysticalWildlifeHelper());
 		HeadDropHelper.register(new VanillaHelper());
 
 		if(enableHumanMobs)
