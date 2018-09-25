@@ -84,6 +84,12 @@ import ganymedes01.headcrumbs.renderers.heads.lasercreeper.RoboDinoHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.BehemothHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.BelphHead;
 import ganymedes01.headcrumbs.renderers.heads.lycanites.PinkyHead;
+import ganymedes01.headcrumbs.renderers.heads.mysticalwildlife.CicapteraHead;
+import ganymedes01.headcrumbs.renderers.heads.mysticalwildlife.DuskLurkerHead;
+import ganymedes01.headcrumbs.renderers.heads.mysticalwildlife.KrillHead;
+import ganymedes01.headcrumbs.renderers.heads.mysticalwildlife.PlumperHead;
+import ganymedes01.headcrumbs.renderers.heads.mysticalwildlife.VrontausaurusHead;
+import ganymedes01.headcrumbs.renderers.heads.mysticalwildlife.YagaHogHead;
 import ganymedes01.headcrumbs.renderers.heads.natura.ImpHead;
 import ganymedes01.headcrumbs.renderers.heads.primitivemobs.JuggernautHead;
 import ganymedes01.headcrumbs.renderers.heads.primitivemobs.LilyLurkerHead;
@@ -323,7 +329,18 @@ public enum SkullTypes {
 	
 	laserCreeper			(Strings.LC_PREFIX + "laserCreeper",			 			"lasercreepers", 			LaserCreeperHead.INSTANCE),
 	roboDino			(Strings.LC_PREFIX + "roboDino",			 			"lasercreepers", 			RoboDinoHead.INSTANCE),
-	jetPackSpider			(Strings.LC_PREFIX + "jetPackSpider",			 			"lasercreepers", 			JetPackSpiderHead.INSTANCE);
+	jetPackSpider			(Strings.LC_PREFIX + "jetPackSpider",			 			"lasercreepers", 			JetPackSpiderHead.INSTANCE),
+	
+	vrontausaurus			(Strings.MWL_PREFIX + "vrontausaurus",			 			"mysticalwildlife", 			VrontausaurusHead.INSTANCE),
+	yagaHog			(Strings.MWL_PREFIX + "yaga_hog_dirt",			 			"mysticalwildlife", 			YagaHogHead.INSTANCE),
+	duskLurker			(Strings.MWL_PREFIX + "dusk_lurker",			 			"mysticalwildlife", 			DuskLurkerHead.INSTANCE),
+	cicapteraAzure			(Strings.MWL_PREFIX + "cicaptera_azure",			 			"mysticalwildlife", 			CicapteraHead.INSTANCE),
+	cicapteraVerdant			(Strings.MWL_PREFIX + "cicaptera_verdant",			 			"mysticalwildlife", 			CicapteraHead.INSTANCE),
+	cicapteraCrimson			(Strings.MWL_PREFIX + "cicaptera_crimson",			 			"mysticalwildlife", 			CicapteraHead.INSTANCE),
+	cicapteraSandy			(Strings.MWL_PREFIX + "cicaptera_sandy",			 			"mysticalwildlife", 			CicapteraHead.INSTANCE),
+	cicapteraWintry			(Strings.MWL_PREFIX + "cicaptera_wintry",			 			"mysticalwildlife", 			CicapteraHead.INSTANCE),
+	plumper			(Strings.MWL_PREFIX + "plumper",			 			"mysticalwildlife", 			PlumperHead.INSTANCE),
+	krill			(Strings.MWL_PREFIX + "krill",			 			"mysticalwildlife", 			KrillHead.INSTANCE);
 	// @formatter:on
 
 	private final String mod;
