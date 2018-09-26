@@ -15,6 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer<TileEntityBlockSkull> {
 
+	public static final TileEntityBlockSkullRenderer INSTANCE = new TileEntityBlockSkullRenderer();
 	private ModelHead model;
 
 	@Override

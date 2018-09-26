@@ -1,5 +1,7 @@
 package ganymedes01.headcrumbs.items;
 
+import javax.annotation.Nullable;
+
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.tileentities.TileEntityBlockSkull;
@@ -8,8 +10,11 @@ import ganymedes01.headcrumbs.utils.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSkull;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -94,5 +99,12 @@ public class ItemHeadcrumbsSkull extends FixedItemBlock {
 	@Override
 	public boolean isValidArmor(ItemStack stack, EntityEquipmentSlot armorType, Entity entity) {
 		return armorType == EntityEquipmentSlot.HEAD;
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Nullable
+	@Override
+	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, net.minecraft.client.model.ModelBiped _default) {
+		return HeadUtils.getModel(itemStack).model();
 	}
 }

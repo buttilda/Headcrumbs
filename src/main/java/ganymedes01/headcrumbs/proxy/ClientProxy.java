@@ -32,7 +32,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerTileEntities() {
 		super.registerTileEntities();
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBlockSkull.class, new TileEntityBlockSkullRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBlockSkull.class, TileEntityBlockSkullRenderer.INSTANCE);
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBlockPlayer.class, new TileEntityBlockPlayerRenderer());
 	}
 
