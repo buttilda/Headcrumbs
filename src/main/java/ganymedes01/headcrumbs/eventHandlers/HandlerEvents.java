@@ -130,7 +130,7 @@ public class HandlerEvents {
 				return; // Vanilla head drops will be handled by
 					// TiCon
 
-			NBTTagCompound nbt = stack.writeToNBT(new NBTTagCompound());
+			stack.writeToNBT(new NBTTagCompound());
 			if(stack.getItem() != Items.SKULL || Headcrumbs.enableVanillaHeadsDrop)
 				if(isPlayerHead(stack) || Headcrumbs.enableMobsAndAnimalHeads)
 					drops.add(stack);

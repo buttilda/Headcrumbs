@@ -28,7 +28,8 @@ public class BlockHeadcrumbsSkull extends BlockSkull/* , IInfusionStabiliser */ 
 	}
 
 	@Override
-	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos,
+			EntityPlayer player) {
 		TileEntityBlockSkull tile = Utils.getTileEntity(world, pos, TileEntityBlockSkull.class);
 		if (tile != null) {
 			SkullTypes model = tile.getModel();
@@ -40,10 +41,9 @@ public class BlockHeadcrumbsSkull extends BlockSkull/* , IInfusionStabiliser */ 
 	/*
 	 * @Override
 	 * 
-	 * @SideOnly(Side.CLIENT) public void getSubBlocks(Item item,
-	 * CreativeTabs tab, List<ItemStack> list) { for (SkullTypes skull :
-	 * SkullTypes.values()) if (skull.canShow()) list.add(skull.getStack());
-	 * }
+	 * @SideOnly(Side.CLIENT) public void getSubBlocks(Item item, CreativeTabs tab,
+	 * List<ItemStack> list) { for (SkullTypes skull : SkullTypes.values()) if
+	 * (skull.canShow()) list.add(skull.getStack()); }
 	 */
 
 	@Override
