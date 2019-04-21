@@ -9,31 +9,31 @@ import net.minecraft.item.ItemStack;
 public class TwilightForestHelper extends HeadDropHelper {
 
 	public TwilightForestHelper() {
-		super("TwilightForest");
+		super("twilightforest");
 
-		typesMap.put("TwilightForest.Penguin", SkullTypes.penguin);
-		typesMap.put("TwilightForest.Bighorn Sheep", SkullTypes.bighorn);
-		typesMap.put("TwilightForest.Wild Deer", SkullTypes.wildDeer);
-		typesMap.put("TwilightForest.Wild Boar", SkullTypes.wildBoar);
-		typesMap.put("TwilightForest.Redcap", SkullTypes.redcap);
-		typesMap.put("TwilightForest.Redcap Sapper", SkullTypes.redcap);
-		typesMap.put("TwilightForest.Skeleton Druid", SkullTypes.druid);
-		typesMap.put("TwilightForest.Hedge Spider", SkullTypes.hedgeSpider);
-		typesMap.put("TwilightForest.Mist Wolf", SkullTypes.mistWolf);
-		typesMap.put("TwilightForest.Mini Ghast", SkullTypes.miniGhast);
-		typesMap.put("TwilightForest.Tower Ghast", SkullTypes.guardGhast);
-		typesMap.put("TwilightForest.King Spider", SkullTypes.kingSpider);
-		typesMap.put("TwilightForest.Twilight Kobold", SkullTypes.kobold);
-		typesMap.put("TwilightForest.Fire Beetle", SkullTypes.fireBeetle);
-		typesMap.put("TwilightForest.Slime Beetle", SkullTypes.slimeBeetle);
-		typesMap.put("TwilightForest.Pinch Beetle", SkullTypes.pinchBeetle);
-		typesMap.put("TwilightForest.Tower Golem", SkullTypes.towerGolem);
-		typesMap.put("TwilightForest.Hostile Wolf", SkullTypes.hostileWolf);
-		typesMap.put("TwilightForest.Forest Squirrel", SkullTypes.squirrel);
-		typesMap.put("TwilightForest.Swarm Spider", SkullTypes.swarmSpider);
-		typesMap.put("TwilightForest.Redscale Broodling", SkullTypes.towerBroodling);
-		typesMap.put("TwilightForest.WinterWolf", SkullTypes.winterWolf);
-		typesMap.put("TwilightForest.Tower Termite", SkullTypes.towerwoodBorer);
+		typesMap.put("twilightforest.Penguin", SkullTypes.penguin);
+		typesMap.put("twilightforest.Bighorn Sheep", SkullTypes.bighorn);
+		typesMap.put("twilightforest.Wild Deer", SkullTypes.wildDeer);
+		typesMap.put("twilightforest.Wild Boar", SkullTypes.wildBoar);
+		typesMap.put("twilightforest.Redcap", SkullTypes.redcap);
+		typesMap.put("twilightforest.Redcap Sapper", SkullTypes.redcap);
+		typesMap.put("twilightforest.Skeleton Druid", SkullTypes.druid);
+		typesMap.put("twilightforest.Hedge Spider", SkullTypes.hedgeSpider);
+		typesMap.put("twilightforest.Mist Wolf", SkullTypes.mistWolf);
+		typesMap.put("twilightforest.Mini Ghast", SkullTypes.miniGhast);
+		typesMap.put("twilightforest.Tower Ghast", SkullTypes.guardGhast);
+		typesMap.put("twilightforest.King Spider", SkullTypes.kingSpider);
+		typesMap.put("twilightforest.Twilight Kobold", SkullTypes.kobold);
+		typesMap.put("twilightforest.Fire Beetle", SkullTypes.fireBeetle);
+		typesMap.put("twilightforest.Slime Beetle", SkullTypes.slimeBeetle);
+		typesMap.put("twilightforest.Pinch Beetle", SkullTypes.pinchBeetle);
+		typesMap.put("twilightforest.Tower Golem", SkullTypes.towerGolem);
+		typesMap.put("twilightforest.Hostile Wolf", SkullTypes.hostileWolf);
+		typesMap.put("twilightforest.Forest Squirrel", SkullTypes.squirrel);
+		typesMap.put("twilightforest.Swarm Spider", SkullTypes.swarmSpider);
+		typesMap.put("twilightforest.Redscale Broodling", SkullTypes.towerBroodling);
+		typesMap.put("twilightforest.WinterWolf", SkullTypes.winterWolf);
+		typesMap.put("twilightforest.Tower Termite", SkullTypes.towerwoodBorer);
 	}
 
 	@Override

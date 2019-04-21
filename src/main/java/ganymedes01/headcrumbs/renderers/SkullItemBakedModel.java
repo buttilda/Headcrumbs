@@ -16,10 +16,6 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.EnumFacing;
 
-/**
- * Created by TheGreyGhost on 19/04/2015. This class is used to customise the
- * rendering of the camouflage block, based on the block it is copying.
- */
 public class SkullItemBakedModel implements IBakedModel {
 
 	public static final ModelResourceLocation RES_LOC = new ModelResourceLocation(Reference.MOD_ID + ":skull", "inventory");

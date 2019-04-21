@@ -66,17 +66,17 @@ public class HandlerEvents {
 
 	@SubscribeEvent
 	public void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
-		if(event.getEntityLiving() instanceof EntityHuman){
+		if (event.getEntityLiving() instanceof EntityHuman) {
 			World world = event.getWorld();
 			DimensionType dimType = world.provider.getDimensionType();
-			if(hardcodedBlacklist.contains(dimType.getName()) || isDimensionBlackListed(dimType.getId()))
+			if (hardcodedBlacklist.contains(dimType.getName()) || isDimensionBlackListed(dimType.getId()))
 				event.setResult(Result.DENY);
 		}
 	}
 
 	private static boolean isDimensionBlackListed(int dimensionId) {
-		for(int id : Headcrumbs.blacklistedDimensions)
-			if(dimensionId == id)
+		for (int id : Headcrumbs.blacklistedDimensions)
+			if (dimensionId == id)
 				return true;
 		return false;
 	}
@@ -84,16 +84,17 @@ public class HandlerEvents {
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void playerDrop(LivingDeathEvent event) {
 		EntityLivingBase entity = event.getEntityLiving();
-		if(entity.world.getGameRules().getBoolean("keepInventory") && entity instanceof EntityPlayerMP){
+		if (entity.world.getGameRules().getBoolean("keepInventory") && entity instanceof EntityPlayerMP) {
 			ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
 
 			ItemStack weapon = getWeapon(event.getSource());
-			if(weapon != null){
-				int looting = EnchantmentHelper.getEnchantmentLevel(Enchantment.getEnchantmentByLocation("looting"), weapon);
+			if (weapon != null) {
+				int looting = EnchantmentHelper.getEnchantmentLevel(Enchantment.getEnchantmentByLocation("looting"),
+						weapon);
 				drop(event.getEntityLiving(), event.getSource(), looting, drops);
 
-				if(!drops.isEmpty())
-					for(ItemStack item : drops)
+				if (!drops.isEmpty())
+					for (ItemStack item : drops)
 						((EntityPlayerMP) entity).dropItem(item, true);
 			}
 		}
@@ -105,9 +106,9 @@ public class HandlerEvents {
 
 		drop(event.getEntityLiving(), event.getSource(), event.getLootingLevel(), drops);
 
-		if(!drops.isEmpty()){
+		if (!drops.isEmpty()) {
 			Entity ent = event.getEntity();
-			for(ItemStack item : drops)
+			for (ItemStack item : drops)
 				event.getDrops().add(new EntityItem(ent.world, ent.posX, ent.posY, ent.posZ, item));
 		}
 	}
@@ -131,16 +132,15 @@ public class HandlerEvents {
 					// TiCon
 
 			stack.writeToNBT(new NBTTagCompound());
-			if(stack.getItem() != Items.SKULL || Headcrumbs.enableVanillaHeadsDrop)
-				if(isPlayerHead(stack) || Headcrumbs.enableMobsAndAnimalHeads)
+			if((isPlayerHead(stack) && Headcrumbs.enablePlayerHeadsDrop) || (stack.getItem() != Items.SKULL && Headcrumbs.enableMobsAndAnimalHeads))
 					drops.add(stack);
 		}
 	}
 
 	private boolean isPoweredCreeper(DamageSource source) {
-		if(source.isExplosion() && source instanceof EntityDamageSource){
+		if (source.isExplosion() && source instanceof EntityDamageSource) {
 			Entity entity = ((EntityDamageSource) source).getEntity();
-			if(entity != null && entity instanceof EntityCreeper)
+			if (entity != null && entity instanceof EntityCreeper)
 				return ((EntityCreeper) entity).getPowered();
 		}
 
@@ -152,32 +152,32 @@ public class HandlerEvents {
 	}
 
 	private boolean shouldDoRandomDrop(Random rand, int beheading, int looting) {
-		if(beheading > 0)
+		if (beheading > 0)
 			return rand.nextInt(100) < beheading * 10;
 
 		int chance = Math.max(1, Headcrumbs.headDropChance / Math.max(looting + 1, 1));
-		return Headcrumbs.enableRandomHeadDrop && rand.nextInt(chance) == 0;
+		return (Headcrumbs.enablePlayerHeadsDrop || Headcrumbs.enableMobsAndAnimalHeads) && rand.nextInt(chance) == 0;
 	}
 
 	private int getBeaheadingLevel(ItemStack weapon) {
-		if(Headcrumbs.isTinkersConstructLoaded){
-			if(cleaver == null)
-				try{
+		if (Headcrumbs.isTinkersConstructLoaded) {
+			if (cleaver == null)
+				try {
 					Class<?> TinkerTools = Class.forName("tconstruct.tools.TinkerTools");
 					Field field = TinkerTools.getDeclaredField("cleaver");
 					field.setAccessible(true);
 					cleaver = (Item) field.get(null);
-				} catch(Exception e){
+				} catch (Exception e) {
 				}
 
-			if(weapon == null || !weapon.hasTagCompound())
+			if (weapon == null || !weapon.hasTagCompound())
 				return 0;
 
-			if(weapon.getTagCompound().hasKey("InfiTool", Constants.NBT.TAG_COMPOUND)){
+			if (weapon.getTagCompound().hasKey("InfiTool", Constants.NBT.TAG_COMPOUND)) {
 				NBTTagCompound infiTool = weapon.getTagCompound().getCompoundTag("InfiTool");
-				if(infiTool.hasKey("Beheading", Constants.NBT.TAG_INT)){
+				if (infiTool.hasKey("Beheading", Constants.NBT.TAG_INT)) {
 					int beheading = infiTool.getInteger("Beheading");
-					if(cleaver == weapon.getItem())
+					if (cleaver == weapon.getItem())
 						beheading += 2;
 					return beheading;
 				}
@@ -188,9 +188,9 @@ public class HandlerEvents {
 	}
 
 	private ItemStack getWeapon(DamageSource source) {
-		if(source instanceof EntityDamageSource){
+		if (source instanceof EntityDamageSource) {
 			Entity entity = ((EntityDamageSource) source).getEntity();
-			if(entity instanceof EntityPlayer)
+			if (entity instanceof EntityPlayer)
 				return ((EntityPlayer) entity).getActiveItemStack();
 		}
 		return null;
@@ -200,22 +200,25 @@ public class HandlerEvents {
 
 	@SubscribeEvent
 	public void onSkullPlacedEvent(PlaceEvent event) {
-		if(event.getState().getBlock() != Blocks.SKULL){
+		if (event.getState().getBlock() != Blocks.SKULL) {
 			return;
 		}
 
 		World world = event.getWorld();
 		BlockPos pos = event.getPos();
 		TileEntity tileEntity = world.getTileEntity(pos);
-		if(tileEntity instanceof TileEntitySkull){
+		if (tileEntity instanceof TileEntitySkull) {
 			TileEntitySkull tileSkull = (TileEntitySkull) tileEntity;
-			if(tileSkull.getSkullType() == 3 && pos.getY() >= 2 && world.getDifficulty() != EnumDifficulty.PEACEFUL && !world.isRemote){
-				if(statuePattern == null)
-					statuePattern = FactoryBlockPattern.start().aisle(new String[] { "^", "#", "#" }).where('#', BlockWorldState.hasState(BlockStateMatcher.forBlock(Blocks.CLAY))).where('^', BlockWorldState.hasState(BlockStateMatcher.forBlock(Blocks.SKULL))).build();
+			if (tileSkull.getSkullType() == 3 && pos.getY() >= 2 && world.getDifficulty() != EnumDifficulty.PEACEFUL
+					&& !world.isRemote) {
+				if (statuePattern == null)
+					statuePattern = FactoryBlockPattern.start().aisle(new String[] { "^", "#", "#" })
+							.where('#', BlockWorldState.hasState(BlockStateMatcher.forBlock(Blocks.CLAY)))
+							.where('^', BlockWorldState.hasState(BlockStateMatcher.forBlock(Blocks.SKULL))).build();
 				BlockPattern.PatternHelper patternHelper = statuePattern.match(world, pos);
-				if(patternHelper != null){
+				if (patternHelper != null) {
 					GameProfile profile = tileSkull.getPlayerProfile();
-					for(int i = 0; i < 3; i++){
+					for (int i = 0; i < 3; i++) {
 						BlockWorldState blockWorldState = patternHelper.translateOffset(0, -i, 0);
 						world.setBlockState(blockWorldState.getPos(), Blocks.AIR.getDefaultState(), 2);
 					}
@@ -224,10 +227,12 @@ public class HandlerEvents {
 					world.setBlockState(pos.add(0, -2, 0), ModBlocks.empty.getDefaultState());
 					Utils.doBreakParticles(world, pos.add(0, -2, 0), Blocks.SOUL_SAND, 0);
 
-					TileEntityBlockPlayer tile = Utils.getTileEntity(world, pos.add(0, -1, 0), TileEntityBlockPlayer.class);
-					if(tile != null){
+					TileEntityBlockPlayer tile = Utils.getTileEntity(world, pos.add(0, -1, 0),
+							TileEntityBlockPlayer.class);
+					if (tile != null) {
 						tile.setPlayerProfile(profile);
-						tile.setSkullRotation(MathHelper.floor(event.getPlayer().rotationYaw * 16.0F / 360.0F + 0.5D) & 15);
+						tile.setSkullRotation(
+								MathHelper.floor(event.getPlayer().rotationYaw * 16.0F / 360.0F + 0.5D) & 15);
 						world.notifyNeighborsOfStateChange(pos, ModBlocks.player, true);
 					}
 				}
