@@ -116,6 +116,7 @@ import ganymedes01.headcrumbs.utils.helpers.EnderZooHelper;
 import ganymedes01.headcrumbs.utils.helpers.GrimoireOfGaiaHelper;
 import ganymedes01.headcrumbs.utils.helpers.LaserCreepersHelper;
 import ganymedes01.headcrumbs.utils.helpers.MysticalWildlifeHelper;
+import ganymedes01.headcrumbs.utils.helpers.NaturaHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -271,6 +272,10 @@ public enum SkullTypes
 	plumper				(Strings.MWL_PREFIX + "plumper",			 			MysticalWildlifeHelper.MOD_ID, 				PlumperHead.INSTANCE),
 	krill				(Strings.MWL_PREFIX + "krill",			 				MysticalWildlifeHelper.MOD_ID, 				KrillHead.INSTANCE),
 	
+	imp					(Strings.NA_PREFIX + "imp", 							NaturaHelper.MOD_ID, 						ImpHead.INSTANCE),
+	nitroCreeper		(Strings.NA_PREFIX + "creeperunstable", 				NaturaHelper.MOD_ID, 						ModelHead.INSTANCE_NO_OVERLAY),
+	heatscarSpider		(Strings.NA_PREFIX + "flamespider", 					NaturaHelper.MOD_ID, 						SpiderHead.INSTANCE),
+	
 	blizz				(Strings.TE_PREFIX + "Blizz", 							"ThermalFoundation",		ModelHead.INSTANCE),
 	blitz				(Strings.TE_PREFIX + "Blitz", 							"ThermalFoundation",		ModelHead.INSTANCE),
 	basalz				(Strings.TE_PREFIX + "Basalz", 							"ThermalFoundation",		ModelHead.INSTANCE),
@@ -306,10 +311,6 @@ public enum SkullTypes
 	lich				(Strings.TF_PREFIX + "twilightlich64", 					"twilightforest", 			LichHead.INSTANCE),
 	snowQueen			(Strings.TF_PREFIX + "snowqueen", 						"twilightforest", 			SnowQueenHead.INSTANCE),
 	urGhast				(Strings.TF_PREFIX + "towerboss", 						"twilightforest", 			GhastHead.INSTANCE),
-
-	imp					(Strings.NA_PREFIX + "imp", 							"Natura", 					ImpHead.INSTANCE),
-	nitroCreeper		(Strings.NA_PREFIX + "creeperunstable", 				"Natura", 					ModelHead.INSTANCE_NO_OVERLAY),
-	heatscarSpider		(Strings.NA_PREFIX + "flamespider", 					"Natura", 					SpiderHead.INSTANCE),
 
 	angryZombie			(Strings.TC_PREFIX + "bzombievil", 						"Thaumcraft", 				WitherHead.INSTANCE),
 	fireBat				(Strings.TC_PREFIX + "firebat", 						"Thaumcraft", 				BatHead.INSTANCE),

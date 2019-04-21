@@ -2,13 +2,17 @@ package ganymedes01.headcrumbs.utils.helpers;
 
 import ganymedes01.headcrumbs.libs.SkullTypes;
 
-public class NaturaHelper extends HeadDropHelper {
+public class NaturaHelper extends HeadDropHelper
+{
 
-	public NaturaHelper() {
-		super("Natura");
+	public static String MOD_ID = "natura";
 
-		typesMap.put("Natura.Imp", SkullTypes.imp);
-		typesMap.put("Natura.NitroCreeper", SkullTypes.nitroCreeper);
-		typesMap.put("Natura.FlameSpiderBaby", SkullTypes.heatscarSpider);
+	public NaturaHelper()
+	{
+		super(MOD_ID);
+
+		typesMap.put(MOD_ID + ".Imp", SkullTypes.imp);
+		typesMap.put(MOD_ID + ".NitroCreeper", SkullTypes.nitroCreeper);
+		typesMap.put(MOD_ID + ".FlameSpiderBaby", SkullTypes.heatscarSpider);
 	}
 }
