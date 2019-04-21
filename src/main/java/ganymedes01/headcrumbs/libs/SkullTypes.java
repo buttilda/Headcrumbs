@@ -118,6 +118,7 @@ import ganymedes01.headcrumbs.utils.helpers.LaserCreepersHelper;
 import ganymedes01.headcrumbs.utils.helpers.MysticalWildlifeHelper;
 import ganymedes01.headcrumbs.utils.helpers.NaturaHelper;
 import ganymedes01.headcrumbs.utils.helpers.PrimitiveMobsHelper;
+import ganymedes01.headcrumbs.utils.helpers.TEHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -290,9 +291,9 @@ public enum SkullTypes
 	skeletonWarrior		(Strings.PM_PREFIX + "skeletonwarrior/skeletonwarrior",	PrimitiveMobsHelper.MOD_ID, 				ModelHead.INSTANCE_NO_OVERLAY),
 	brainSlime			(Strings.PM_PREFIX + "brainslime/brainslime",			PrimitiveMobsHelper.MOD_ID, 				SlimeHead.INSTANCE),
 	
-	blizz				(Strings.TE_PREFIX + "Blizz", 							"ThermalFoundation",		ModelHead.INSTANCE),
-	blitz				(Strings.TE_PREFIX + "Blitz", 							"ThermalFoundation",		ModelHead.INSTANCE),
-	basalz				(Strings.TE_PREFIX + "Basalz", 							"ThermalFoundation",		ModelHead.INSTANCE),
+	blizz				(Strings.TE_PREFIX + "Blizz", 							TEHelper.MOD_ID,							ModelHead.INSTANCE),
+	blitz				(Strings.TE_PREFIX + "Blitz", 							TEHelper.MOD_ID,							ModelHead.INSTANCE),
+	basalz				(Strings.TE_PREFIX + "Basalz", 							TEHelper.MOD_ID,							ModelHead.INSTANCE),
 
 	hostileWolf			(Strings.MC_PREFIX + "wolf/wolf_angry", 				"twilightforest", 			WolfHead.INSTANCE),
 	bunnyDutch			(Strings.TF_PREFIX + "bunnydutch", 						"twilightforest", 			BunnyHead.INSTANCE),

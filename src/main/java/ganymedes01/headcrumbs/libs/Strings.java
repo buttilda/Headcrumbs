@@ -6,6 +6,7 @@ import ganymedes01.headcrumbs.utils.helpers.LaserCreepersHelper;
 import ganymedes01.headcrumbs.utils.helpers.MysticalWildlifeHelper;
 import ganymedes01.headcrumbs.utils.helpers.NaturaHelper;
 import ganymedes01.headcrumbs.utils.helpers.PrimitiveMobsHelper;
+import ganymedes01.headcrumbs.utils.helpers.TEHelper;
 
 public class Strings
 {
@@ -19,7 +20,7 @@ public class Strings
 	public static final String MWL_PREFIX = MysticalWildlifeHelper.MOD_ID + DEFAULT_TEXTURE_LOC;
 	public static final String NA_PREFIX = NaturaHelper.MOD_ID + DEFAULT_TEXTURE_LOC;
 	public static final String PM_PREFIX = PrimitiveMobsHelper.MOD_ID + DEFAULT_TEXTURE_LOC;
-	public static final String TE_PREFIX = "thermalfoundation:textures/entity/";
+	public static final String TE_PREFIX = TEHelper.MOD_ID + DEFAULT_TEXTURE_LOC;
 	public static final String TC_PREFIX = "thaumcraft:textures/models/";
 	public static final String TF_PREFIX = "twilightforest:textures/model/";
 }
