@@ -8,6 +8,7 @@ import ganymedes01.headcrumbs.utils.helpers.NaturaHelper;
 import ganymedes01.headcrumbs.utils.helpers.PrimitiveMobsHelper;
 import ganymedes01.headcrumbs.utils.helpers.TEHelper;
 import ganymedes01.headcrumbs.utils.helpers.ThaumcraftHelper;
+import ganymedes01.headcrumbs.utils.helpers.TwilightForestHelper;
 
 public class Strings
 {
@@ -23,5 +24,5 @@ public class Strings
 	public static final String PM_PREFIX = PrimitiveMobsHelper.MOD_ID + DEFAULT_TEXTURE_LOC;
 	public static final String TE_PREFIX = TEHelper.MOD_ID + DEFAULT_TEXTURE_LOC;
 	public static final String TC_PREFIX = ThaumcraftHelper.MOD_ID + DEFAULT_TEXTURE_LOC;
-	public static final String TF_PREFIX = "twilightforest:textures/model/";
+	public static final String TF_PREFIX = TwilightForestHelper.MOD_ID + ":textures/model/";
 }

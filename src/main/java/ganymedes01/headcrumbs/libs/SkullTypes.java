@@ -120,6 +120,7 @@ import ganymedes01.headcrumbs.utils.helpers.NaturaHelper;
 import ganymedes01.headcrumbs.utils.helpers.PrimitiveMobsHelper;
 import ganymedes01.headcrumbs.utils.helpers.TEHelper;
 import ganymedes01.headcrumbs.utils.helpers.ThaumcraftHelper;
+import ganymedes01.headcrumbs.utils.helpers.TwilightForestHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -310,37 +311,37 @@ public enum SkullTypes
 	cultist				(Strings.TC_PREFIX + "cultist", 						ThaumcraftHelper.MOD_ID, 					CultistHead.INSTANCE),
 	eldritchCrab		(Strings.TC_PREFIX + "crab",			 				ThaumcraftHelper.MOD_ID, 					EldrichCrabHead.INSTANCE),
 	
-	hostileWolf			(Strings.MC_PREFIX + "wolf/wolf_angry", 				"twilightforest", 			WolfHead.INSTANCE),
-	bunnyDutch			(Strings.TF_PREFIX + "bunnydutch", 						"twilightforest", 			BunnyHead.INSTANCE),
-	penguin				(Strings.TF_PREFIX + "penguin", 						"twilightforest", 			PenguinHead.INSTANCE),
-	bighorn				(Strings.TF_PREFIX + "bighorn", 						"twilightforest", 			BighornHead.INSTANCE),
-	wildDeer			(Strings.TF_PREFIX + "wilddeer", 						"twilightforest", 			DeerHead.INSTANCE),
-	wildBoar			(Strings.TF_PREFIX + "wildboar", 						"twilightforest", 			WildBoarHead.INSTANCE),
-	redcap				(Strings.TF_PREFIX + "redcap", 							"twilightforest", 			RedcapHead.INSTANCE),
-	druid				(Strings.TF_PREFIX + "skeletondruid", 					"twilightforest", 			ModelHead.INSTANCE),
-	hedgeSpider			(Strings.TF_PREFIX + "hedgespider", 					"twilightforest", 			SpiderHead.INSTANCE),
-	mistWolf			(Strings.TF_PREFIX + "mistwolf", 						"twilightforest", 			MistWolfHead.INSTANCE),
-	miniGhast			(Strings.TF_PREFIX + "towerghast", 						"twilightforest",			GhastHead.INSTANCE),
-	guardGhast			(Strings.TF_PREFIX + "towerghast_openeyes", 			"twilightforest", 			GhastHead.INSTANCE),
-	kingSpider			(Strings.TF_PREFIX + "kingspider", 						"twilightforest", 			SpiderHead.INSTANCE),
-	kobold				(Strings.TF_PREFIX + "kobold", 							"twilightforest", 			KoboldHead.INSTANCE),
-	slimeBeetle			(Strings.TF_PREFIX + "slimebeetle", 					"twilightforest", 			SlimeBeetleHead.INSTANCE),
-	fireBeetle			(Strings.TF_PREFIX + "firebeetle", 						"twilightforest", 			FireBeetleHead.INSTANCE),
-	pinchBeetle			(Strings.TF_PREFIX + "pinchbeetle", 					"twilightforest", 			PinchBeetle.INSTANCE),
-	towerGolem			(Strings.TF_PREFIX + "carminitegolem", 					"twilightforest", 			TowerGolemHead.INSTANCE),
-	bunnyBrown			(Strings.TF_PREFIX + "bunnybrown", 						"twilightforest", 			BunnyHead.INSTANCE),
-	bunnyWhite			(Strings.TF_PREFIX + "bunnywhite", 						"twilightforest", 			BunnyHead.INSTANCE),
-	squirrel			(Strings.TF_PREFIX + "squirrel2", 						"twilightforest", 			SquirrelHead.INSTANCE),
-	swarmSpider			(Strings.TF_PREFIX + "swarmspider", 					"twilightforest", 			SpiderHead.INSTANCE),
-	towerBroodling		(Strings.TF_PREFIX + "towerbroodling", 					"twilightforest", 			SpiderHead.INSTANCE),
-	winterWolf			(Strings.TF_PREFIX + "winterwolf", 						"twilightforest", 			MistWolfHead.INSTANCE),
-	mazeSlime			(Strings.TF_PREFIX + "mazeslime", 						"twilightforest", 			SlimeHead.INSTANCE),
-	towerwoodBorer		(Strings.TF_PREFIX + "towertermite", 					"twilightforest", 			SilverfishHead.INSTANCE),
-	hydra				(Strings.TF_PREFIX + "hydra4", 							"twilightforest", 			HydraHead.INSTANCE),
-	nagaTF				(Strings.TF_PREFIX + "nagahead", 						"twilightforest", 			NagaTFHead.INSTANCE),
-	lich				(Strings.TF_PREFIX + "twilightlich64", 					"twilightforest", 			LichHead.INSTANCE),
-	snowQueen			(Strings.TF_PREFIX + "snowqueen", 						"twilightforest", 			SnowQueenHead.INSTANCE),
-	urGhast				(Strings.TF_PREFIX + "towerboss", 						"twilightforest", 			GhastHead.INSTANCE);
+	hostileWolf			(Strings.MC_PREFIX + "wolf/wolf_angry", 				TwilightForestHelper.MOD_ID, 				WolfHead.INSTANCE),
+	bunnyDutch			(Strings.TF_PREFIX + "bunnydutch", 						TwilightForestHelper.MOD_ID, 				BunnyHead.INSTANCE),
+	penguin				(Strings.TF_PREFIX + "penguin", 						TwilightForestHelper.MOD_ID, 				PenguinHead.INSTANCE),
+	bighorn				(Strings.TF_PREFIX + "bighorn", 						TwilightForestHelper.MOD_ID, 				BighornHead.INSTANCE),
+	wildDeer			(Strings.TF_PREFIX + "wilddeer", 						TwilightForestHelper.MOD_ID, 				DeerHead.INSTANCE),
+	wildBoar			(Strings.TF_PREFIX + "wildboar", 						TwilightForestHelper.MOD_ID, 				WildBoarHead.INSTANCE),
+	redcap				(Strings.TF_PREFIX + "redcap", 							TwilightForestHelper.MOD_ID, 				RedcapHead.INSTANCE),
+	druid				(Strings.TF_PREFIX + "skeletondruid", 					TwilightForestHelper.MOD_ID, 				ModelHead.INSTANCE),
+	hedgeSpider			(Strings.TF_PREFIX + "hedgespider", 					TwilightForestHelper.MOD_ID, 				SpiderHead.INSTANCE),
+	mistWolf			(Strings.TF_PREFIX + "mistwolf", 						TwilightForestHelper.MOD_ID, 				MistWolfHead.INSTANCE),
+	miniGhast			(Strings.TF_PREFIX + "towerghast", 						TwilightForestHelper.MOD_ID,				GhastHead.INSTANCE),
+	guardGhast			(Strings.TF_PREFIX + "towerghast_openeyes", 			TwilightForestHelper.MOD_ID, 				GhastHead.INSTANCE),
+	kingSpider			(Strings.TF_PREFIX + "kingspider", 						TwilightForestHelper.MOD_ID, 				SpiderHead.INSTANCE),
+	kobold				(Strings.TF_PREFIX + "kobold", 							TwilightForestHelper.MOD_ID, 				KoboldHead.INSTANCE),
+	slimeBeetle			(Strings.TF_PREFIX + "slimebeetle", 					TwilightForestHelper.MOD_ID, 				SlimeBeetleHead.INSTANCE),
+	fireBeetle			(Strings.TF_PREFIX + "firebeetle", 						TwilightForestHelper.MOD_ID, 				FireBeetleHead.INSTANCE),
+	pinchBeetle			(Strings.TF_PREFIX + "pinchbeetle", 					TwilightForestHelper.MOD_ID, 				PinchBeetle.INSTANCE),
+	towerGolem			(Strings.TF_PREFIX + "carminitegolem", 					TwilightForestHelper.MOD_ID, 				TowerGolemHead.INSTANCE),
+	bunnyBrown			(Strings.TF_PREFIX + "bunnybrown", 						TwilightForestHelper.MOD_ID, 				BunnyHead.INSTANCE),
+	bunnyWhite			(Strings.TF_PREFIX + "bunnywhite", 						TwilightForestHelper.MOD_ID, 				BunnyHead.INSTANCE),
+	squirrel			(Strings.TF_PREFIX + "squirrel2", 						TwilightForestHelper.MOD_ID, 				SquirrelHead.INSTANCE),
+	swarmSpider			(Strings.TF_PREFIX + "swarmspider", 					TwilightForestHelper.MOD_ID, 				SpiderHead.INSTANCE),
+	towerBroodling		(Strings.TF_PREFIX + "towerbroodling", 					TwilightForestHelper.MOD_ID, 				SpiderHead.INSTANCE),
+	winterWolf			(Strings.TF_PREFIX + "winterwolf", 						TwilightForestHelper.MOD_ID, 				MistWolfHead.INSTANCE),
+	mazeSlime			(Strings.TF_PREFIX + "mazeslime", 						TwilightForestHelper.MOD_ID, 				SlimeHead.INSTANCE),
+	towerwoodBorer		(Strings.TF_PREFIX + "towertermite", 					TwilightForestHelper.MOD_ID, 				SilverfishHead.INSTANCE),
+	hydra				(Strings.TF_PREFIX + "hydra4", 							TwilightForestHelper.MOD_ID, 				HydraHead.INSTANCE),
+	nagaTF				(Strings.TF_PREFIX + "nagahead", 						TwilightForestHelper.MOD_ID, 				NagaTFHead.INSTANCE),
+	lich				(Strings.TF_PREFIX + "twilightlich64", 					TwilightForestHelper.MOD_ID, 				LichHead.INSTANCE),
+	snowQueen			(Strings.TF_PREFIX + "snowqueen", 						TwilightForestHelper.MOD_ID, 				SnowQueenHead.INSTANCE),
+	urGhast				(Strings.TF_PREFIX + "towerboss", 						TwilightForestHelper.MOD_ID, 				GhastHead.INSTANCE);
 	// @formatter:on
 
 	private final String mod;
