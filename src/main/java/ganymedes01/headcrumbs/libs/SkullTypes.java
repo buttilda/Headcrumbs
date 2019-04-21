@@ -117,6 +117,7 @@ import ganymedes01.headcrumbs.utils.helpers.GrimoireOfGaiaHelper;
 import ganymedes01.headcrumbs.utils.helpers.LaserCreepersHelper;
 import ganymedes01.headcrumbs.utils.helpers.MysticalWildlifeHelper;
 import ganymedes01.headcrumbs.utils.helpers.NaturaHelper;
+import ganymedes01.headcrumbs.utils.helpers.PrimitiveMobsHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -276,6 +277,19 @@ public enum SkullTypes
 	nitroCreeper		(Strings.NA_PREFIX + "creeperunstable", 				NaturaHelper.MOD_ID, 						ModelHead.INSTANCE_NO_OVERLAY),
 	heatscarSpider		(Strings.NA_PREFIX + "flamespider", 					NaturaHelper.MOD_ID, 						SpiderHead.INSTANCE),
 	
+	rocketCreeper		(Strings.PM_PREFIX + "rocketcreeper/rocketcreeper", 	PrimitiveMobsHelper.MOD_ID, 				ModelHead.INSTANCE_NO_OVERLAY),
+	festiveCreeper		(Strings.PM_PREFIX + "festivecreeper/festivecreeper", 	PrimitiveMobsHelper.MOD_ID, 				ModelHead.INSTANCE_NO_OVERLAY),
+	supportCreeper		(Strings.PM_PREFIX + "supportcreeper/supportcreeper", 	PrimitiveMobsHelper.MOD_ID, 				ModelHead.INSTANCE_NO_OVERLAY),
+	lostMiner			(Strings.PM_PREFIX + "villager/lostminer", 				PrimitiveMobsHelper.MOD_ID, 				VillagerHead.INSTANCE128x64),
+	sheepman			(Strings.PM_PREFIX + "villager/sheepman", 				PrimitiveMobsHelper.MOD_ID, 				SheepmanHead.INSTANCE),
+	summoner			(Strings.PM_PREFIX + "summoner/summoner", 				PrimitiveMobsHelper.MOD_ID, 				VillagerHead.INSTANCE64),
+	blazingJuggernaut	(Strings.PM_PREFIX + "blazingjuggernaut/blazingjuggernaut",		PrimitiveMobsHelper.MOD_ID,			JuggernautHead.INSTANCE),
+	lilyLurker			(Strings.PM_PREFIX + "lilylurker/lilylurker",			PrimitiveMobsHelper.MOD_ID, 				LilyLurkerHead.INSTANCE),
+	motherSpider		(Strings.PM_PREFIX + "spiderfamily/motherspider",		PrimitiveMobsHelper.MOD_ID, 				SpiderHead.INSTANCE),
+	babySpider			(Strings.PM_PREFIX + "spiderfamily/babyspider",			PrimitiveMobsHelper.MOD_ID, 				SpiderHead.INSTANCE),
+	skeletonWarrior		(Strings.PM_PREFIX + "skeletonwarrior/skeletonwarrior",	PrimitiveMobsHelper.MOD_ID, 				ModelHead.INSTANCE_NO_OVERLAY),
+	brainSlime			(Strings.PM_PREFIX + "brainslime/brainslime",			PrimitiveMobsHelper.MOD_ID, 				SlimeHead.INSTANCE),
+	
 	blizz				(Strings.TE_PREFIX + "Blizz", 							"ThermalFoundation",		ModelHead.INSTANCE),
 	blitz				(Strings.TE_PREFIX + "Blitz", 							"ThermalFoundation",		ModelHead.INSTANCE),
 	basalz				(Strings.TE_PREFIX + "Basalz", 							"ThermalFoundation",		ModelHead.INSTANCE),
@@ -324,20 +338,7 @@ public enum SkullTypes
 	pech				(Strings.TC_PREFIX + "pech_forage", 					"Thaumcraft", 				PechHead.INSTANCE),
 	eldritchGuardian	(Strings.TC_PREFIX + "eldritch_guardian", 				"Thaumcraft", 				EldrichGuardianHead.INSTANCE),
 	cultist				(Strings.TC_PREFIX + "cultist", 						"Thaumcraft", 				CultistHead.INSTANCE),
-	eldritchCrab		(Strings.TC_PREFIX + "crab",			 				"Thaumcraft", 				EldrichCrabHead.INSTANCE),
-
-	rocketCreeper		(Strings.PM_PREFIX + "rocketcreeper/rocketcreeper", 	"primitivemobs", 			ModelHead.INSTANCE_NO_OVERLAY),
-	festiveCreeper		(Strings.PM_PREFIX + "festivecreeper/festivecreeper", 	"primitivemobs", 			ModelHead.INSTANCE_NO_OVERLAY),
-	supportCreeper		(Strings.PM_PREFIX + "supportcreeper/supportcreeper", 	"primitivemobs", 			ModelHead.INSTANCE_NO_OVERLAY),
-	lostMiner			(Strings.PM_PREFIX + "villager/lostminer", 				"primitivemobs", 			VillagerHead.INSTANCE128x64),
-	sheepman			(Strings.PM_PREFIX + "villager/sheepman", 				"primitivemobs", 			SheepmanHead.INSTANCE),
-	summoner			(Strings.PM_PREFIX + "summoner/summoner", 				"primitivemobs", 			VillagerHead.INSTANCE64),
-	blazingJuggernaut	(Strings.PM_PREFIX + "blazingjuggernaut/blazingjuggernaut",		"primitivemobs",	JuggernautHead.INSTANCE),
-	lilyLurker			(Strings.PM_PREFIX + "lilylurker/lilylurker",			"primitivemobs", 			LilyLurkerHead.INSTANCE),
-	motherSpider		(Strings.PM_PREFIX + "spiderfamily/motherspider",		"primitivemobs", 			SpiderHead.INSTANCE),
-	babySpider			(Strings.PM_PREFIX + "spiderfamily/babyspider",			"primitivemobs", 			SpiderHead.INSTANCE),
-	skeletonWarrior		(Strings.PM_PREFIX + "skeletonwarrior/skeletonwarrior",	"primitivemobs", 			ModelHead.INSTANCE_NO_OVERLAY),
-	brainSlime			(Strings.PM_PREFIX + "brainslime/brainslime",			"primitivemobs", 			SlimeHead.INSTANCE);
+	eldritchCrab		(Strings.TC_PREFIX + "crab",			 				"Thaumcraft", 				EldrichCrabHead.INSTANCE);
 	// @formatter:on
 
 	private final String mod;
