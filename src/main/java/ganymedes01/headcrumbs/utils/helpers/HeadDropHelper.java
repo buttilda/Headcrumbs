@@ -44,7 +44,7 @@ public abstract class HeadDropHelper implements Comparable<HeadDropHelper> {
 
 	protected ItemStack getHeadForEntity(Entity entity) {
 		String mobName = EntityList.getEntityString(entity);
-
+		
 		if (mobName == null)
 			return null;
 		SkullTypes type = typesMap.get(mobName);

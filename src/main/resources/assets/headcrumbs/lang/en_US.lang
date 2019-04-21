@@ -56,6 +56,35 @@ item.headcrumbs.rabbitSplotched.name=Rabbit Head (White Splotched)
 item.headcrumbs.rabbitWhite.name=Rabbit Head (White)
 item.headcrumbs.polarBear.name=Polar Bear
 
+# Elemental Creepers
+item.headcrumbs.cakeCreeper.name=Cake Creeper Head
+item.headcrumbs.cookieCreeper.name=Cookie Creeper Head
+item.headcrumbs.darkCreeper.name=Dark Creeper Head
+item.headcrumbs.earthCreeper.name=Earth Creeper Head
+item.headcrumbs.enderCreeper.name=Ender Creeper Head
+item.headcrumbs.euCreeper.name=EU Creeper Head
+item.headcrumbs.fireCreeper.name=Fire Creeper Head
+item.headcrumbs.fireworkCreeper.name=Firework Creeper Head
+item.headcrumbs.friendlyCreeper.name=Friendly Creeper Head
+item.headcrumbs.furnaceCreeper.name=Furnace Creeper Head
+item.headcrumbs.hydrogenCreeper.name=Hydrogen Creeper Head
+item.headcrumbs.iceCreeper.name=Ice Creeper Head
+item.headcrumbs.illusionCreeper.name=Illusion Creeper Head
+item.headcrumbs.lightCreeper.name=Light Creeper Head
+item.headcrumbs.lightningCreeper.name=Lightning Creeper Head
+item.headcrumbs.magmaCreeper.name=Magma Creeper Head
+item.headcrumbs.psychicCreeper.name=Psychic Creeper Head
+item.headcrumbs.reverseCreeper.name=Reverse Creeper Head
+item.headcrumbs.rfCreeper.name=RF Creeper Head
+item.headcrumbs.sandstoneCreeper.name=Sandstone Creeper Head
+item.headcrumbs.spiderCreeper.name=Spider Creeper Head
+item.headcrumbs.springCreeper.name=Spring Creeper Head
+item.headcrumbs.stoneCreeper.name=Stone Creeper Head
+item.headcrumbs.warpCreeper.name=Warp Creeper Head
+item.headcrumbs.windCreeper.name=Wind Creeper Head
+item.headcrumbs.waterCreeper.name=Water Creeper Head
+item.headcrumbs.zombieCreeper.name=Zombie Creeper Head
+
 # Twilight Forest
 item.headcrumbs.mistWolf.name=Mist Wolf Head
 item.headcrumbs.miniGhast.name=Carminite Ghastling Head
@@ -140,31 +169,6 @@ item.headcrumbs.motherSpider.name=Mother Spider Head
 item.headcrumbs.babySpider.name=Baby Spider Head
 item.headcrumbs.skeletonWarrior.name=Skeleton Warrior Head
 item.headcrumbs.brainSlime.name=Brain Slime Head
-
-# Elemental Creepers
-item.headcrumbs.fireCreeper.name=Fire Creeper Head
-item.headcrumbs.waterCreeper.name=Water Creeper Head
-item.headcrumbs.electricCreeper.name=Electric Creeper Head
-item.headcrumbs.ghostCreeper.name=Ghost Creeper Head
-item.headcrumbs.cookieCreeper.name=Cookie Creeper Head
-item.headcrumbs.darkCreeper.name=Dark Creeper Head
-item.headcrumbs.lightCreeper.name=Light Creeper Head
-item.headcrumbs.earthCreeper.name=Earth Creeper Head
-item.headcrumbs.magmaCreeper.name=Magma Creeper Head
-item.headcrumbs.reverseCreeper.name=Reverse Creeper Head
-item.headcrumbs.iceCreeper.name=Ice Creeper Head
-item.headcrumbs.friendlyCreeper.name=Friendly Creeper Head
-item.headcrumbs.illusionCreeper.name=Illusion Creeper Head
-item.headcrumbs.psychicCreeper.name=Psychic Creeper Head
-item.headcrumbs.spiderCreeper.name=Spider Creeper Head
-item.headcrumbs.windCreeper.name=Wind Creeper Head
-item.headcrumbs.hydrogenCreeper.name=Hydrogen Creeper Head
-item.headcrumbs.enderCreeper.name=Ender Creeper Head
-item.headcrumbs.stoneCreeper.name=Stone Creeper Head
-item.headcrumbs.solarCreeper.name=Solar Creeper Head
-item.headcrumbs.cakeCreeper.name=Cake Creeper Head
-item.headcrumbs.fireworkCreeper.name=Firework Creeper Head
-item.headcrumbs.springCreeper.name=Spring Creeper Head
 
 # Grimoire of Gaia
 item.headcrumbs.anubis.name=Anubis Head
