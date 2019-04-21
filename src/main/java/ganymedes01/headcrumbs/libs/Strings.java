@@ -18,7 +18,7 @@ public class Strings
 	public static final String EZ_PREFIX = "enderio:entity/";
 	public static final String GOG_PREFIX = GrimoireOfGaiaHelper.MOD_ID + DEFAULT_TEXTURE_LOC;
 	public static final String LC_PREFIX = LaserCreepersHelper.MOD_ID + DEFAULT_TEXTURE_LOC;
-	public static final String LY_PREFIX = "demonmobs:textures/entity/";
+	public static final String LY_PREFIX = "demonmobs" + DEFAULT_TEXTURE_LOC;
 	public static final String MWL_PREFIX = MysticalWildlifeHelper.MOD_ID + DEFAULT_TEXTURE_LOC;
 	public static final String NA_PREFIX = NaturaHelper.MOD_ID + DEFAULT_TEXTURE_LOC;
 	public static final String PM_PREFIX = PrimitiveMobsHelper.MOD_ID + DEFAULT_TEXTURE_LOC;

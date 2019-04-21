@@ -73,9 +73,6 @@ import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.YukiOnnaHead;
 import ganymedes01.headcrumbs.renderers.heads.lasercreeper.JetPackSpiderHead;
 import ganymedes01.headcrumbs.renderers.heads.lasercreeper.LaserCreeperHead;
 import ganymedes01.headcrumbs.renderers.heads.lasercreeper.RoboDinoHead;
-import ganymedes01.headcrumbs.renderers.heads.lycanites.BehemothHead;
-import ganymedes01.headcrumbs.renderers.heads.lycanites.BelphHead;
-import ganymedes01.headcrumbs.renderers.heads.lycanites.PinkyHead;
 import ganymedes01.headcrumbs.renderers.heads.mysticalwildlife.CicapteraHead;
 import ganymedes01.headcrumbs.renderers.heads.mysticalwildlife.DuskLurkerHead;
 import ganymedes01.headcrumbs.renderers.heads.mysticalwildlife.KrillHead;
@@ -90,7 +87,6 @@ import ganymedes01.headcrumbs.renderers.heads.thaumcraft.CultistHead;
 import ganymedes01.headcrumbs.renderers.heads.thaumcraft.EldrichCrabHead;
 import ganymedes01.headcrumbs.renderers.heads.thaumcraft.EldrichGuardianHead;
 import ganymedes01.headcrumbs.renderers.heads.thaumcraft.PechHead;
-import ganymedes01.headcrumbs.renderers.heads.thaumcraft.TaintedSheepHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.BighornHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.BunnyHead;
 import ganymedes01.headcrumbs.renderers.heads.twilightforest.DeerHead;
@@ -257,10 +253,10 @@ public enum SkullTypes
 	roboDino			(Strings.LC_PREFIX + "robo_dino",			 			LaserCreepersHelper.MOD_ID, 				RoboDinoHead.INSTANCE),
 	jetPackSpider		(Strings.LC_PREFIX + "jet_pack_spider",			 		LaserCreepersHelper.MOD_ID, 				JetPackSpiderHead.INSTANCE),
 
-	//lycanites			("", 										"lycanitesmobs", 			LycaniteHead.INSTANCE),
-	pinky				(Strings.LY_PREFIX + "pinky", 							"lycanitesmobs", 							PinkyHead.INSTANCE),
-	behemoth			(Strings.LY_PREFIX + "behemoth", 						"lycanitesmobs", 							BehemothHead.INSTANCE),
-	belph				(Strings.LY_PREFIX + "belph", 							"lycanitesmobs", 							BelphHead.INSTANCE),
+//	lycanites			("", 													LycanitesHelper.MOD_ID, 							LycaniteHead.INSTANCE),
+//	pinky				(Strings.LY_PREFIX + "pinky", 							LycanitesHelper.MOD_ID, 							PinkyHead.INSTANCE),
+//	behemoth			(Strings.LY_PREFIX + "behemoth", 						LycanitesHelper.MOD_ID, 							BehemothHead.INSTANCE),
+//	belph				(Strings.LY_PREFIX + "belph", 							LycanitesHelper.MOD_ID, 							BelphHead.INSTANCE),
 	
 	vrontausaurus		(Strings.MWL_PREFIX + "vrontausaurus",			 		MysticalWildlifeHelper.MOD_ID, 				VrontausaurusHead.INSTANCE),
 	yagaHog				(Strings.MWL_PREFIX + "yaga_hog_dirt",			 		MysticalWildlifeHelper.MOD_ID, 				YagaHogHead.INSTANCE),
