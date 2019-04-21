@@ -39,20 +39,16 @@ import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.BaphometHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.CentaurHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.CobbleGolemHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.CobblestoneGolemHead;
-import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.CockatriceHead;
-import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.CyclopsHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.DhampirHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.DryadHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.DullahanHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.EnderDragonGirlHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.EnderEyeHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.FleshLichHead;
-import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.FutakuchiOnnaHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.GoGWitchHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.GryphonHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.HarpyHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.HunterHead;
-import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.JorogumoHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.MandragoraHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.MermaidHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.MimicHead;
@@ -60,7 +56,6 @@ import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.MinotaurHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.MinotaurusHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.NagaHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.NineTailsHead;
-import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SahuaginHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SatyrHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SelkieHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.ShamanHead;
@@ -70,7 +65,6 @@ import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SludgeGirlHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SphinxHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SprigganHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SuccubusHead;
-import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.SwamperHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.ValkyrieHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.VampireHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.WerecatHead;
@@ -118,6 +112,8 @@ import ganymedes01.headcrumbs.renderers.heads.twilightforest.WildBoarHead;
 import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.Utils;
 import ganymedes01.headcrumbs.utils.helpers.ElementalCreepersHelper;
+import ganymedes01.headcrumbs.utils.helpers.EnderZooHelper;
+import ganymedes01.headcrumbs.utils.helpers.GrimoireOfGaiaHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -175,6 +171,81 @@ public enum SkullTypes {
 	wolf				(Strings.MC_PREFIX + "wolf/wolf", 						null, 						WolfHead.INSTANCE),
 	zombieVillager		(Strings.MC_PREFIX + "zombie/zombie_villager",			null, 						ZombieVillagerHead.INSTANCE),
 	pigman				(Strings.MC_PREFIX + "zombie_pigman", 					null, 						PigmanHead.INSTANCE),
+	
+	cakeCreeper			(Strings.EC_PREFIX + "cakecreeper",			 			ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	cookieCreeper		(Strings.EC_PREFIX + "cookiecreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	darkCreeper			(Strings.EC_PREFIX + "darkcreeper",			 			ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	earthCreeper		(Strings.EC_PREFIX + "earthcreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	enderCreeper		(Strings.EC_PREFIX + "endercreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	euCreeper			(Strings.EC_PREFIX + "eucreeper",			 			ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	fireCreeper			(Strings.EC_PREFIX + "firecreeper",			 			ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	fireworkCreeper		(Strings.EC_PREFIX + "fireworkcreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	friendlyCreeper		(Strings.EC_PREFIX + "friendlycreeper0",				ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	furnaceCreeper		(Strings.EC_PREFIX + "furnacecreeper",					ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	hydrogenCreeper		(Strings.EC_PREFIX + "hydrogencreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	iceCreeper			(Strings.EC_PREFIX + "icecreeper",			 			ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	illusionCreeper		(Strings.EC_PREFIX + "illusioncreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	lightCreeper		(Strings.EC_PREFIX + "lightcreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	lightningCreeper	(Strings.EC_PREFIX + "lightningcreeper",		 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	magmaCreeper		(Strings.EC_PREFIX + "magmacreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	psychicCreeper		(Strings.EC_PREFIX + "psychiccreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	reverseCreeper		(Strings.EC_PREFIX + "reversecreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	rfCreeper			(Strings.EC_PREFIX + "rfcreeper",			 			ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	sandstoneCreeper	(Strings.EC_PREFIX + "sandstonecreeper",			 	ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	spiderCreeper		(Strings.EC_PREFIX + "spidercreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	springCreeper		(Strings.EC_PREFIX + "springcreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	stoneCreeper		(Strings.EC_PREFIX + "stonecreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	warpCreeper			(Strings.EC_PREFIX + "warpcreeper",			 			ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	windCreeper			(Strings.EC_PREFIX + "windcreeper",			 			ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	waterCreeper		(Strings.EC_PREFIX + "watercreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	zombieCreeper		(Strings.EC_PREFIX + "zombiecreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
+	
+	concussionCreeper	(Strings.EZ_PREFIX + "concussionCreeper", 				EnderZooHelper.MOD_ID, 						ModelHead.INSTANCE_NO_OVERLAY),
+	enderminy			(Strings.EZ_PREFIX + "enderminy", 						EnderZooHelper.MOD_ID, 						EnderminyHead.INSTANCE),
+	fallenKnight		(Strings.EZ_PREFIX + "fallen_knight", 					EnderZooHelper.MOD_ID, 						ModelHead.INSTANCE_NO_OVERLAY),
+	witherWitch			(Strings.EZ_PREFIX + "wither_witch", 					EnderZooHelper.MOD_ID, 						WitchHead.INSTANCE),
+	direWolf			(Strings.EZ_PREFIX + "dire_wolf", 						EnderZooHelper.MOD_ID, 						DireWolfHead.INSTANCE),
+	witherCat			(Strings.EZ_PREFIX + "wither_cat_angry", 				EnderZooHelper.MOD_ID, 						OcelotHead.INSTANCE),
+	
+	anubis				(Strings.GOG_PREFIX + "anubis",							GrimoireOfGaiaHelper.MOD_ID, 				AnubisHead.INSTANCE),
+	banshee				(Strings.GOG_PREFIX + "banshee",						GrimoireOfGaiaHelper.MOD_ID, 				BansheeHead.INSTANCE),
+	baphomet			(Strings.GOG_PREFIX + "baphomet",						GrimoireOfGaiaHelper.MOD_ID, 				BaphometHead.INSTANCE),
+	centaur				(Strings.GOG_PREFIX + "centaur01",						GrimoireOfGaiaHelper.MOD_ID, 				CentaurHead.INSTANCE),
+	cobbleGolem			(Strings.GOG_PREFIX + "cobble_golem",					GrimoireOfGaiaHelper.MOD_ID, 				CobbleGolemHead.INSTANCE),
+	cobblestoneGolem	(Strings.GOG_PREFIX + "cobblestone_golem",				GrimoireOfGaiaHelper.MOD_ID, 				CobblestoneGolemHead.INSTANCE),
+	dhampir				(Strings.GOG_PREFIX + "dhampir",						GrimoireOfGaiaHelper.MOD_ID, 				DhampirHead.INSTANCE),
+	dryad				(Strings.GOG_PREFIX + "dryad01",						GrimoireOfGaiaHelper.MOD_ID, 				DryadHead.INSTANCE),
+	dullahan			(Strings.GOG_PREFIX + "dullahan",						GrimoireOfGaiaHelper.MOD_ID, 				DullahanHead.INSTANCE),
+	enderDragonGirl		(Strings.GOG_PREFIX + "ender_dragon_girl",				GrimoireOfGaiaHelper.MOD_ID, 				EnderDragonGirlHead.INSTANCE),
+	enderEye			(Strings.GOG_PREFIX + "ender_eye",						GrimoireOfGaiaHelper.MOD_ID, 				EnderEyeHead.INSTANCE),
+	fleshLich			(Strings.GOG_PREFIX + "flesh_lich",						GrimoireOfGaiaHelper.MOD_ID, 				FleshLichHead.INSTANCE),
+	gryphon				(Strings.GOG_PREFIX + "gryphon",						GrimoireOfGaiaHelper.MOD_ID, 				GryphonHead.INSTANCE),
+	harpy				(Strings.GOG_PREFIX + "harpy01",						GrimoireOfGaiaHelper.MOD_ID, 				HarpyHead.INSTANCE),
+	hunter				(Strings.GOG_PREFIX + "hunter",							GrimoireOfGaiaHelper.MOD_ID, 				HunterHead.INSTANCE),
+	mandragora			(Strings.GOG_PREFIX + "mandragora",						GrimoireOfGaiaHelper.MOD_ID, 				MandragoraHead.INSTANCE),
+	mermaid				(Strings.GOG_PREFIX + "mermaid",						GrimoireOfGaiaHelper.MOD_ID, 				MermaidHead.INSTANCE),
+	mimic				(Strings.GOG_PREFIX + "mimic",							GrimoireOfGaiaHelper.MOD_ID, 				MimicHead.INSTANCE),
+	minotaur			(Strings.GOG_PREFIX + "minotaur",						GrimoireOfGaiaHelper.MOD_ID, 				MinotaurHead.INSTANCE),
+	minotaurus			(Strings.GOG_PREFIX + "minotaurus01",					GrimoireOfGaiaHelper.MOD_ID, 				MinotaurusHead.INSTANCE),
+	naga				(Strings.GOG_PREFIX + "naga",							GrimoireOfGaiaHelper.MOD_ID, 				NagaHead.INSTANCE),
+	nineTails			(Strings.GOG_PREFIX + "nine_tails",						GrimoireOfGaiaHelper.MOD_ID, 				NineTailsHead.INSTANCE),
+	satyress			(Strings.GOG_PREFIX + "satyress01",						GrimoireOfGaiaHelper.MOD_ID, 				SatyrHead.INSTANCE),
+	selkie				(Strings.GOG_PREFIX + "selkie",							GrimoireOfGaiaHelper.MOD_ID, 				SelkieHead.INSTANCE),
+	shaman				(Strings.GOG_PREFIX + "shaman",							GrimoireOfGaiaHelper.MOD_ID, 				ShamanHead.INSTANCE),
+	sharko				(Strings.GOG_PREFIX + "sharko",							GrimoireOfGaiaHelper.MOD_ID, 				SharkoHead.INSTANCE),
+	siren				(Strings.GOG_PREFIX + "siren",							GrimoireOfGaiaHelper.MOD_ID, 				SirenHead.INSTANCE),
+	sludgeGirl			(Strings.GOG_PREFIX + "sludge_girl01",					GrimoireOfGaiaHelper.MOD_ID, 				SludgeGirlHead.INSTANCE),
+	sphinx				(Strings.GOG_PREFIX + "sphinx",							GrimoireOfGaiaHelper.MOD_ID, 				SphinxHead.INSTANCE),
+	spriggan			(Strings.GOG_PREFIX + "spriggan",						GrimoireOfGaiaHelper.MOD_ID, 				SprigganHead.INSTANCE),
+	succubus			(Strings.GOG_PREFIX + "succubus",						GrimoireOfGaiaHelper.MOD_ID, 				SuccubusHead.INSTANCE),
+	valkyrie			(Strings.GOG_PREFIX + "valkyrie",						GrimoireOfGaiaHelper.MOD_ID, 				ValkyrieHead.INSTANCE),
+	vampire				(Strings.GOG_PREFIX + "vampire",						GrimoireOfGaiaHelper.MOD_ID, 				VampireHead.INSTANCE),
+	werecat				(Strings.GOG_PREFIX + "werecat01",						GrimoireOfGaiaHelper.MOD_ID, 				WerecatHead.INSTANCE),
+	gogWitch			(Strings.GOG_PREFIX + "witch01",						GrimoireOfGaiaHelper.MOD_ID, 				GoGWitchHead.INSTANCE),
+	witherCow			(Strings.GOG_PREFIX + "wither_cow",						GrimoireOfGaiaHelper.MOD_ID, 				WitherCowHead.INSTANCE),
+	yeti				(Strings.GOG_PREFIX + "yeti",							GrimoireOfGaiaHelper.MOD_ID, 				YetiHead.INSTANCE),
+	yukiOnna			(Strings.GOG_PREFIX + "yuki_onna",						GrimoireOfGaiaHelper.MOD_ID, 				YukiOnnaHead.INSTANCE),
+
 	
 	shulker				(Strings.MC_PREFIX + "shulker/endergolem",			 	"etfuturum",				ShulkerHead.INSTANCE),
 
@@ -236,13 +307,6 @@ public enum SkullTypes {
 	pinky				(Strings.LY_PREFIX + "pinky", 							"lycanitesmobs", 			PinkyHead.INSTANCE),
 	behemoth			(Strings.LY_PREFIX + "behemoth", 						"lycanitesmobs", 			BehemothHead.INSTANCE),
 	belph				(Strings.LY_PREFIX + "belph", 							"lycanitesmobs", 			BelphHead.INSTANCE),
-	
-	concussionCreeper	(Strings.EZ_PREFIX + "concussionCreeper", 				"EnderZoo", 				ModelHead.INSTANCE_NO_OVERLAY),
-	enderminy			(Strings.EZ_PREFIX + "enderminy", 						"EnderZoo", 				EnderminyHead.INSTANCE),
-	fallenKnight		(Strings.EZ_PREFIX + "fallen_knight", 					"EnderZoo", 				ModelHead.INSTANCE_NO_OVERLAY),
-	witherWitch			(Strings.EZ_PREFIX + "wither_witch", 					"EnderZoo", 				WitchHead.INSTANCE),
-	direWolf			(Strings.EZ_PREFIX + "dire_wolf", 						"EnderZoo", 				DireWolfHead.INSTANCE),
-	witherCat			(Strings.EZ_PREFIX + "wither_cat_angry", 				"EnderZoo", 				OcelotHead.INSTANCE),
 
 	rocketCreeper		(Strings.PM_PREFIX + "rocketcreeper/rocketcreeper", 	"primitivemobs", 			ModelHead.INSTANCE_NO_OVERLAY),
 	festiveCreeper		(Strings.PM_PREFIX + "festivecreeper/festivecreeper", 	"primitivemobs", 			ModelHead.INSTANCE_NO_OVERLAY),
@@ -256,80 +320,6 @@ public enum SkullTypes {
 	babySpider			(Strings.PM_PREFIX + "spiderfamily/babyspider",			"primitivemobs", 			SpiderHead.INSTANCE),
 	skeletonWarrior		(Strings.PM_PREFIX + "skeletonwarrior/skeletonwarrior",	"primitivemobs", 			ModelHead.INSTANCE_NO_OVERLAY),
 	brainSlime			(Strings.PM_PREFIX + "brainslime/brainslime",			"primitivemobs", 			SlimeHead.INSTANCE),
-
-	anubis				(Strings.GOG_PREFIX + "Anubis",							"GrimoireOfGaia", 			AnubisHead.INSTANCE),
-	banshee				(Strings.GOG_PREFIX + "Banshee",						"GrimoireOfGaia", 			BansheeHead.INSTANCE),
-	baphomet			(Strings.GOG_PREFIX + "Baphomet",						"GrimoireOfGaia", 			BaphometHead.INSTANCE),
-	centaur				(Strings.GOG_PREFIX + "Centaur",						"GrimoireOfGaia", 			CentaurHead.INSTANCE),
-	cobbleGolem			(Strings.GOG_PREFIX + "Cobble_Golem",					"GrimoireOfGaia", 			CobbleGolemHead.INSTANCE),
-	cobblestoneGolem	(Strings.GOG_PREFIX + "Cobblestone_Golem",				"GrimoireOfGaia", 			CobblestoneGolemHead.INSTANCE),
-	cockatrice			(Strings.GOG_PREFIX + "Cockatrice",						"GrimoireOfGaia", 			CockatriceHead.INSTANCE),
-	cyclops				(Strings.GOG_PREFIX + "Cyclops",						"GrimoireOfGaia", 			CyclopsHead.INSTANCE),
-	dhampir				(Strings.GOG_PREFIX + "Dhampir",						"GrimoireOfGaia", 			DhampirHead.INSTANCE),
-	dryad				(Strings.GOG_PREFIX + "Dryad01",						"GrimoireOfGaia", 			DryadHead.INSTANCE),
-	dullahan			(Strings.GOG_PREFIX + "Dullahan",						"GrimoireOfGaia", 			DullahanHead.INSTANCE),
-	enderDragonGirl		(Strings.GOG_PREFIX + "Ender_Dragon_Girl",				"GrimoireOfGaia", 			EnderDragonGirlHead.INSTANCE),
-	enderEye			(Strings.GOG_PREFIX + "Ender_Eye",						"GrimoireOfGaia", 			EnderEyeHead.INSTANCE),
-	fleshLich			(Strings.GOG_PREFIX + "Flesh_Lich",						"GrimoireOfGaia", 			FleshLichHead.INSTANCE),
-	futakuchiOnna		(Strings.GOG_PREFIX + "Futakuchi_Onna",					"GrimoireOfGaia", 			FutakuchiOnnaHead.INSTANCE),
-	gryphon				(Strings.GOG_PREFIX + "Gryphon",						"GrimoireOfGaia", 			GryphonHead.INSTANCE),
-	harpy				(Strings.GOG_PREFIX + "Harpy01",						"GrimoireOfGaia", 			HarpyHead.INSTANCE),
-	hunter				(Strings.GOG_PREFIX + "Hunter",							"GrimoireOfGaia", 			HunterHead.INSTANCE),
-	jorogumo			(Strings.GOG_PREFIX + "Jorogumo",						"GrimoireOfGaia", 			JorogumoHead.INSTANCE),
-	mandragora			(Strings.GOG_PREFIX + "Mandragora",						"GrimoireOfGaia", 			MandragoraHead.INSTANCE),
-	mermaid				(Strings.GOG_PREFIX + "Mermaid",						"GrimoireOfGaia", 			MermaidHead.INSTANCE),
-	mimic				(Strings.GOG_PREFIX + "Mimic",							"GrimoireOfGaia", 			MimicHead.INSTANCE),
-	minotaur			(Strings.GOG_PREFIX + "Minotaur",						"GrimoireOfGaia", 			MinotaurHead.INSTANCE),
-	minotaurus			(Strings.GOG_PREFIX + "Minotaurus01",					"GrimoireOfGaia", 			MinotaurusHead.INSTANCE),
-	naga				(Strings.GOG_PREFIX + "Naga",							"GrimoireOfGaia", 			NagaHead.INSTANCE),
-	nineTails			(Strings.GOG_PREFIX + "Nine_Tails",						"GrimoireOfGaia", 			NineTailsHead.INSTANCE),
-	sahuagin			(Strings.GOG_PREFIX + "Sahuagin",						"GrimoireOfGaia", 			SahuaginHead.INSTANCE),
-	satyr				(Strings.GOG_PREFIX + "Satyr",							"GrimoireOfGaia", 			SatyrHead.INSTANCE),
-	selkie				(Strings.GOG_PREFIX + "Selkie",							"GrimoireOfGaia", 			SelkieHead.INSTANCE),
-	shaman				(Strings.GOG_PREFIX + "Shaman",							"GrimoireOfGaia", 			ShamanHead.INSTANCE),
-	sharko				(Strings.GOG_PREFIX + "Sharko",							"GrimoireOfGaia", 			SharkoHead.INSTANCE),
-	siren				(Strings.GOG_PREFIX + "Siren",							"GrimoireOfGaia", 			SirenHead.INSTANCE),
-	sludgeGirl			(Strings.GOG_PREFIX + "Sludge_Girl",					"GrimoireOfGaia", 			SludgeGirlHead.INSTANCE),
-	sphinx				(Strings.GOG_PREFIX + "Sphinx",							"GrimoireOfGaia", 			SphinxHead.INSTANCE),
-	spriggan			(Strings.GOG_PREFIX + "Spriggan",						"GrimoireOfGaia", 			SprigganHead.INSTANCE),
-	succubus			(Strings.GOG_PREFIX + "Succubus",						"GrimoireOfGaia", 			SuccubusHead.INSTANCE),
-	butler				(Strings.GOG_PREFIX + "Summon_Butler",					"GrimoireOfGaia", 			ModelHead.INSTANCE),
-	swamper				(Strings.GOG_PREFIX + "Swamper",						"GrimoireOfGaia", 			SwamperHead.INSTANCE),
-	valkyrie			(Strings.GOG_PREFIX + "Valkyrie",						"GrimoireOfGaia", 			ValkyrieHead.INSTANCE),
-	vampire				(Strings.GOG_PREFIX + "Vampire",						"GrimoireOfGaia", 			VampireHead.INSTANCE),
-	werecat				(Strings.GOG_PREFIX + "Werecat01",						"GrimoireOfGaia", 			WerecatHead.INSTANCE),
-	gogWitch			(Strings.GOG_PREFIX + "Witch",							"GrimoireOfGaia", 			GoGWitchHead.INSTANCE),
-	witherCow			(Strings.GOG_PREFIX + "Wither_Cow",						"GrimoireOfGaia", 			WitherCowHead.INSTANCE),
-	yeti				(Strings.GOG_PREFIX + "Yeti",							"GrimoireOfGaia", 			YetiHead.INSTANCE),
-	yukiOnna			(Strings.GOG_PREFIX + "Yuki_Onna",						"GrimoireOfGaia", 			YukiOnnaHead.INSTANCE),
-	
-	cakeCreeper			(Strings.EC_PREFIX + "cakecreeper",			 			ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	cookieCreeper		(Strings.EC_PREFIX + "cookiecreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	darkCreeper			(Strings.EC_PREFIX + "darkcreeper",			 			ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	earthCreeper		(Strings.EC_PREFIX + "earthcreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	enderCreeper		(Strings.EC_PREFIX + "endercreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	euCreeper			(Strings.EC_PREFIX + "eucreeper",			 			ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	fireCreeper			(Strings.EC_PREFIX + "firecreeper",			 			ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	fireworkCreeper		(Strings.EC_PREFIX + "fireworkcreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	friendlyCreeper		(Strings.EC_PREFIX + "friendlycreeper0",				ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	furnaceCreeper		(Strings.EC_PREFIX + "furnacecreeper",					ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	hydrogenCreeper		(Strings.EC_PREFIX + "hydrogencreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	iceCreeper			(Strings.EC_PREFIX + "icecreeper",			 			ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	illusionCreeper		(Strings.EC_PREFIX + "illusioncreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	lightCreeper		(Strings.EC_PREFIX + "lightcreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	lightningCreeper	(Strings.EC_PREFIX + "lightningcreeper",		 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	magmaCreeper		(Strings.EC_PREFIX + "magmacreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	psychicCreeper		(Strings.EC_PREFIX + "psychiccreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	reverseCreeper		(Strings.EC_PREFIX + "reversecreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	rfCreeper			(Strings.EC_PREFIX + "rfcreeper",			 			ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	sandstoneCreeper	(Strings.EC_PREFIX + "sandstonecreeper",			 	ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	spiderCreeper		(Strings.EC_PREFIX + "spidercreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	springCreeper		(Strings.EC_PREFIX + "springcreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	stoneCreeper		(Strings.EC_PREFIX + "stonecreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	warpCreeper			(Strings.EC_PREFIX + "warpcreeper",			 			ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	windCreeper			(Strings.EC_PREFIX + "windcreeper",			 			ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	waterCreeper		(Strings.EC_PREFIX + "watercreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
-	zombieCreeper		(Strings.EC_PREFIX + "zombiecreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
 	
 	laserCreeper		(Strings.LC_PREFIX + "laserCreeper",			 		"lasercreepers", 				LaserCreeperHead.INSTANCE),
 	roboDino			(Strings.LC_PREFIX + "roboDino",			 			"lasercreepers", 				RoboDinoHead.INSTANCE),

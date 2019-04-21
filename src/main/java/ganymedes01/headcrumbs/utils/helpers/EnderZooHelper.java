@@ -4,14 +4,15 @@ import ganymedes01.headcrumbs.libs.SkullTypes;
 
 public class EnderZooHelper extends HeadDropHelper {
 
+	public static String MOD_ID = "enderiozoo";
 	public EnderZooHelper() {
-		super("EnderZoo");
+		super(MOD_ID);
 
-		typesMap.put("enderzoo.ConcussionCreeper", SkullTypes.concussionCreeper);
-		typesMap.put("enderzoo.Enderminy", SkullTypes.enderminy);
-		typesMap.put("enderzoo.FallenKnight", SkullTypes.fallenKnight);
-		typesMap.put("enderzoo.WitherWitch", SkullTypes.witherWitch);
-		typesMap.put("enderzoo.WitherCat", SkullTypes.witherCat);
-		typesMap.put("enderzoo.DireWolf", SkullTypes.direWolf);
+		typesMap.put(MOD_ID + ".ConcussionCreeper", SkullTypes.concussionCreeper);
+		typesMap.put(MOD_ID + ".Enderminy", SkullTypes.enderminy);
+		typesMap.put(MOD_ID + ".FallenKnight", SkullTypes.fallenKnight);
+		typesMap.put(MOD_ID + ".WitherWitch", SkullTypes.witherWitch);
+		typesMap.put(MOD_ID + ".WitherCat", SkullTypes.witherCat);
+		typesMap.put(MOD_ID + ".DireWolf", SkullTypes.direWolf);
 	}
 }
