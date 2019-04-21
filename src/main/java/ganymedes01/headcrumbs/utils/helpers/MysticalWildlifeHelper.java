@@ -4,18 +4,20 @@ import ganymedes01.headcrumbs.libs.SkullTypes;
 
 public class MysticalWildlifeHelper extends HeadDropHelper {
 
+	public static String MOD_ID = "mysticalwildlife";
+	
 	public MysticalWildlifeHelper() {
 		super("mysticalwildlife");
 
-		typesMap.put("mysticalwildlife.vrontausaurus", SkullTypes.vrontausaurus);
-		typesMap.put("mysticalwildlife.yaga_hog", SkullTypes.yagaHog);
-		typesMap.put("mysticalwildlife.dusk_lurker", SkullTypes.duskLurker);
-		typesMap.put("mysticalwildlife.cicaptera_azure", SkullTypes.cicapteraAzure);
-		typesMap.put("mysticalwildlife.cicaptera_verdant", SkullTypes.cicapteraVerdant);
-		typesMap.put("mysticalwildlife.cicaptera_crimson", SkullTypes.cicapteraCrimson);
-		typesMap.put("mysticalwildlife.cicaptera_sandy", SkullTypes.cicapteraSandy);
-		typesMap.put("mysticalwildlife.cicaptera_wintry", SkullTypes.cicapteraWintry);
-		typesMap.put("mysticalwildlife.plumper", SkullTypes.plumper);
-		typesMap.put("mysticalwildlife.krill", SkullTypes.krill);
+		typesMap.put(MOD_ID + ".vrontausaurus", SkullTypes.vrontausaurus);
+		typesMap.put(MOD_ID + ".yaga_hog", SkullTypes.yagaHog);
+		typesMap.put(MOD_ID + ".dusk_lurker", SkullTypes.duskLurker);
+		typesMap.put(MOD_ID + ".cicaptera_azure", SkullTypes.cicapteraAzure);
+		typesMap.put(MOD_ID + ".cicaptera_verdant", SkullTypes.cicapteraVerdant);
+		typesMap.put(MOD_ID + ".cicaptera_crimson", SkullTypes.cicapteraCrimson);
+		typesMap.put(MOD_ID + ".cicaptera_sandy", SkullTypes.cicapteraSandy);
+		typesMap.put(MOD_ID + ".cicaptera_wintry", SkullTypes.cicapteraWintry);
+		typesMap.put(MOD_ID + ".plumper", SkullTypes.plumper);
+		typesMap.put(MOD_ID + ".krill", SkullTypes.krill);
 	}
 }
