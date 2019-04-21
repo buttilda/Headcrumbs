@@ -15,7 +15,7 @@ public class Strings
 	public static final String DEFAULT_TEXTURE_LOC = ":textures/entity/";
 	public static final String MC_PREFIX = "textures/entity/";
 	public static final String EC_PREFIX = ElementalCreepersHelper.MOD_ID + ":textures/entities/";
-	public static final String EZ_PREFIX = "enderzoo:entity/";
+	public static final String EZ_PREFIX = "enderio:entity/";
 	public static final String GOG_PREFIX = GrimoireOfGaiaHelper.MOD_ID + DEFAULT_TEXTURE_LOC;
 	public static final String LC_PREFIX = LaserCreepersHelper.MOD_ID + DEFAULT_TEXTURE_LOC;
 	public static final String LY_PREFIX = "demonmobs:textures/entity/";

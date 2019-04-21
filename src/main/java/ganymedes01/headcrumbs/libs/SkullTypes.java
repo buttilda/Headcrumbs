@@ -20,7 +20,6 @@ import ganymedes01.headcrumbs.renderers.heads.PigmanHead;
 import ganymedes01.headcrumbs.renderers.heads.PolarBearHead;
 import ganymedes01.headcrumbs.renderers.heads.RabbitHead;
 import ganymedes01.headcrumbs.renderers.heads.SheepHead;
-import ganymedes01.headcrumbs.renderers.heads.ShulkerHead;
 import ganymedes01.headcrumbs.renderers.heads.SilverfishHead;
 import ganymedes01.headcrumbs.renderers.heads.SlimeHead;
 import ganymedes01.headcrumbs.renderers.heads.SnowmanHead;
@@ -208,14 +207,12 @@ public enum SkullTypes
 	waterCreeper		(Strings.EC_PREFIX + "watercreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
 	zombieCreeper		(Strings.EC_PREFIX + "zombiecreeper",			 		ElementalCreepersHelper.MOD_ID, 			ModelHead.INSTANCE_NO_OVERLAY),
 	
-	concussionCreeper	(Strings.EZ_PREFIX + "concussionCreeper", 				EnderZooHelper.MOD_ID, 						ModelHead.INSTANCE_NO_OVERLAY),
+	concussionCreeper	(Strings.EZ_PREFIX + "concussioncreeper", 				EnderZooHelper.MOD_ID, 						ModelHead.INSTANCE_NO_OVERLAY),
 	enderminy			(Strings.EZ_PREFIX + "enderminy", 						EnderZooHelper.MOD_ID, 						EnderminyHead.INSTANCE),
 	fallenKnight		(Strings.EZ_PREFIX + "fallen_knight", 					EnderZooHelper.MOD_ID, 						ModelHead.INSTANCE_NO_OVERLAY),
 	witherWitch			(Strings.EZ_PREFIX + "wither_witch", 					EnderZooHelper.MOD_ID, 						WitchHead.INSTANCE),
 	direWolf			(Strings.EZ_PREFIX + "dire_wolf", 						EnderZooHelper.MOD_ID, 						DireWolfHead.INSTANCE),
 	witherCat			(Strings.EZ_PREFIX + "wither_cat_angry", 				EnderZooHelper.MOD_ID, 						OcelotHead.INSTANCE),
-	
-	shulker				(Strings.MC_PREFIX + "shulker/endergolem",			 	"etfuturum",								ShulkerHead.INSTANCE),
 	
 	anubis				(Strings.GOG_PREFIX + "anubis",							GrimoireOfGaiaHelper.MOD_ID, 				AnubisHead.INSTANCE),
 	banshee				(Strings.GOG_PREFIX + "banshee",						GrimoireOfGaiaHelper.MOD_ID, 				BansheeHead.INSTANCE),
@@ -277,21 +274,21 @@ public enum SkullTypes
 	krill				(Strings.MWL_PREFIX + "krill",			 				MysticalWildlifeHelper.MOD_ID, 				KrillHead.INSTANCE),
 	
 	imp					(Strings.NA_PREFIX + "imp", 							NaturaHelper.MOD_ID, 						ImpHead.INSTANCE),
-	nitroCreeper		(Strings.NA_PREFIX + "creeperunstable", 				NaturaHelper.MOD_ID, 						ModelHead.INSTANCE_NO_OVERLAY),
-	heatscarSpider		(Strings.NA_PREFIX + "flamespider", 					NaturaHelper.MOD_ID, 						SpiderHead.INSTANCE),
+	nitroCreeper		(Strings.NA_PREFIX + "nitrocreeper", 					NaturaHelper.MOD_ID, 						ModelHead.INSTANCE_NO_OVERLAY),
+	heatscarSpider		(Strings.NA_PREFIX + "heatscarspider", 					NaturaHelper.MOD_ID, 						SpiderHead.INSTANCE),
 	
 	rocketCreeper		(Strings.PM_PREFIX + "rocketcreeper/rocketcreeper", 	PrimitiveMobsHelper.MOD_ID, 				ModelHead.INSTANCE_NO_OVERLAY),
 	festiveCreeper		(Strings.PM_PREFIX + "festivecreeper/festivecreeper", 	PrimitiveMobsHelper.MOD_ID, 				ModelHead.INSTANCE_NO_OVERLAY),
 	supportCreeper		(Strings.PM_PREFIX + "supportcreeper/supportcreeper", 	PrimitiveMobsHelper.MOD_ID, 				ModelHead.INSTANCE_NO_OVERLAY),
 	lostMiner			(Strings.PM_PREFIX + "villager/lostminer", 				PrimitiveMobsHelper.MOD_ID, 				VillagerHead.INSTANCE128x64),
 	sheepman			(Strings.PM_PREFIX + "villager/sheepman", 				PrimitiveMobsHelper.MOD_ID, 				SheepmanHead.INSTANCE),
-	summoner			(Strings.PM_PREFIX + "summoner/summoner", 				PrimitiveMobsHelper.MOD_ID, 				VillagerHead.INSTANCE64),
+	wizard				(Strings.PM_PREFIX + "villager/wizard", 				PrimitiveMobsHelper.MOD_ID, 				VillagerHead.INSTANCE64),
 	blazingJuggernaut	(Strings.PM_PREFIX + "blazingjuggernaut/blazingjuggernaut",		PrimitiveMobsHelper.MOD_ID,			JuggernautHead.INSTANCE),
 	lilyLurker			(Strings.PM_PREFIX + "lilylurker/lilylurker",			PrimitiveMobsHelper.MOD_ID, 				LilyLurkerHead.INSTANCE),
 	motherSpider		(Strings.PM_PREFIX + "spiderfamily/motherspider",		PrimitiveMobsHelper.MOD_ID, 				SpiderHead.INSTANCE),
 	babySpider			(Strings.PM_PREFIX + "spiderfamily/babyspider",			PrimitiveMobsHelper.MOD_ID, 				SpiderHead.INSTANCE),
 	skeletonWarrior		(Strings.PM_PREFIX + "skeletonwarrior/skeletonwarrior",	PrimitiveMobsHelper.MOD_ID, 				ModelHead.INSTANCE_NO_OVERLAY),
-	brainSlime			(Strings.PM_PREFIX + "brainslime/brainslime",			PrimitiveMobsHelper.MOD_ID, 				SlimeHead.INSTANCE),
+	brainSlime			(Strings.PM_PREFIX + "brainslime/slime_brain",			PrimitiveMobsHelper.MOD_ID, 				SlimeHead.INSTANCE),
 	
 	blizz				(Strings.TE_PREFIX + "Blizz", 							TEHelper.MOD_ID,							ModelHead.INSTANCE),
 	blitz				(Strings.TE_PREFIX + "Blitz", 							TEHelper.MOD_ID,							ModelHead.INSTANCE),
@@ -300,12 +297,6 @@ public enum SkullTypes
 	angryZombie			(Strings.TC_PREFIX + "bzombievil", 						ThaumcraftHelper.MOD_ID, 					WitherHead.INSTANCE),
 	fireBat				(Strings.TC_PREFIX + "firebat", 						ThaumcraftHelper.MOD_ID, 					BatHead.INSTANCE),
 	thaumicSlime		(Strings.TC_PREFIX + "tslime", 							ThaumcraftHelper.MOD_ID, 					SlimeHead.INSTANCE),
-	taintedChicken		(Strings.TC_PREFIX + "chicken", 						ThaumcraftHelper.MOD_ID, 					ChickenHead.INSTANCE),
-	taintedCow			(Strings.TC_PREFIX + "cow", 							ThaumcraftHelper.MOD_ID, 					CowHead.INSTANCE),
-	taintedPig			(Strings.TC_PREFIX + "pig", 							ThaumcraftHelper.MOD_ID, 					PigHead.INSTANCE),
-	taintedCreeper		(Strings.TC_PREFIX + "creeper", 						ThaumcraftHelper.MOD_ID, 					ModelHead.INSTANCE),
-	taintedVillager		(Strings.TC_PREFIX + "villager", 						ThaumcraftHelper.MOD_ID, 					VillagerHead.INSTANCE64),
-	taintedSheep		(Strings.TC_PREFIX + "sheep", 							ThaumcraftHelper.MOD_ID, 					TaintedSheepHead.INSTANCE),
 	pech				(Strings.TC_PREFIX + "pech_forage", 					ThaumcraftHelper.MOD_ID, 					PechHead.INSTANCE),
 	eldritchGuardian	(Strings.TC_PREFIX + "eldritch_guardian", 				ThaumcraftHelper.MOD_ID, 					EldrichGuardianHead.INSTANCE),
 	cultist				(Strings.TC_PREFIX + "cultist", 						ThaumcraftHelper.MOD_ID, 					CultistHead.INSTANCE),

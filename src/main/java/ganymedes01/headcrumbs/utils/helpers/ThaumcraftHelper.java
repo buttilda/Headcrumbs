@@ -17,12 +17,6 @@ public class ThaumcraftHelper extends HeadDropHelper
 		typesMap.put(MOD_ID + ".BrainyZombie", SkullTypes.angryZombie);
 		typesMap.put(MOD_ID + ".GiantBrainyZombie", SkullTypes.angryZombie);
 		typesMap.put(MOD_ID + ".Firebat", SkullTypes.fireBat);
-		typesMap.put(MOD_ID + ".TaintedChicken", SkullTypes.taintedChicken);
-		typesMap.put(MOD_ID + ".TaintedCow", SkullTypes.taintedCow);
-		typesMap.put(MOD_ID + ".TaintedPig", SkullTypes.taintedPig);
-		typesMap.put(MOD_ID + ".TaintedCreeper", SkullTypes.taintedCreeper);
-		typesMap.put(MOD_ID + ".TaintedVillager", SkullTypes.taintedVillager);
-		typesMap.put(MOD_ID + ".TaintedSheep", SkullTypes.taintedSheep);
 		typesMap.put(MOD_ID + ".Pech", SkullTypes.pech);
 		typesMap.put(MOD_ID + ".EldritchGuardian", SkullTypes.eldritchGuardian);
 		typesMap.put(MOD_ID + ".CultistKnight", SkullTypes.cultist);

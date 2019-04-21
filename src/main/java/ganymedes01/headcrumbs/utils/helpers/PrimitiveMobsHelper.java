@@ -10,7 +10,7 @@ public class PrimitiveMobsHelper extends HeadDropHelper
 	{
 		super(MOD_ID);
 
-		typesMap.put(MOD_ID + ".Summoner", SkullTypes.summoner);
+		typesMap.put(MOD_ID + ".wizard", SkullTypes.wizard);
 		typesMap.put(MOD_ID + ".LilyLurker", SkullTypes.lilyLurker);
 		typesMap.put(MOD_ID + ".SheepmanSmith", SkullTypes.sheepman);
 		typesMap.put(MOD_ID + ".Sheepman", SkullTypes.sheepman);
