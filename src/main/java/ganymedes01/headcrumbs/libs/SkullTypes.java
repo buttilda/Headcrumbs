@@ -114,12 +114,14 @@ import ganymedes01.headcrumbs.utils.Utils;
 import ganymedes01.headcrumbs.utils.helpers.ElementalCreepersHelper;
 import ganymedes01.headcrumbs.utils.helpers.EnderZooHelper;
 import ganymedes01.headcrumbs.utils.helpers.GrimoireOfGaiaHelper;
+import ganymedes01.headcrumbs.utils.helpers.LaserCreepersHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Loader;
 
-public enum SkullTypes {
+public enum SkullTypes
+{
 
 	// @formatter:off
 	bat					(Strings.MC_PREFIX + "bat", 							null, 						BatHead.INSTANCE),
@@ -207,6 +209,8 @@ public enum SkullTypes {
 	direWolf			(Strings.EZ_PREFIX + "dire_wolf", 						EnderZooHelper.MOD_ID, 						DireWolfHead.INSTANCE),
 	witherCat			(Strings.EZ_PREFIX + "wither_cat_angry", 				EnderZooHelper.MOD_ID, 						OcelotHead.INSTANCE),
 	
+	shulker				(Strings.MC_PREFIX + "shulker/endergolem",			 	"etfuturum",								ShulkerHead.INSTANCE),
+	
 	anubis				(Strings.GOG_PREFIX + "anubis",							GrimoireOfGaiaHelper.MOD_ID, 				AnubisHead.INSTANCE),
 	banshee				(Strings.GOG_PREFIX + "banshee",						GrimoireOfGaiaHelper.MOD_ID, 				BansheeHead.INSTANCE),
 	baphomet			(Strings.GOG_PREFIX + "baphomet",						GrimoireOfGaiaHelper.MOD_ID, 				BaphometHead.INSTANCE),
@@ -245,9 +249,10 @@ public enum SkullTypes {
 	witherCow			(Strings.GOG_PREFIX + "wither_cow",						GrimoireOfGaiaHelper.MOD_ID, 				WitherCowHead.INSTANCE),
 	yeti				(Strings.GOG_PREFIX + "yeti",							GrimoireOfGaiaHelper.MOD_ID, 				YetiHead.INSTANCE),
 	yukiOnna			(Strings.GOG_PREFIX + "yuki_onna",						GrimoireOfGaiaHelper.MOD_ID, 				YukiOnnaHead.INSTANCE),
-
 	
-	shulker				(Strings.MC_PREFIX + "shulker/endergolem",			 	"etfuturum",				ShulkerHead.INSTANCE),
+	laserCreeper		(Strings.LC_PREFIX + "laser_creeper",			 		LaserCreepersHelper.MOD_ID, 				LaserCreeperHead.INSTANCE),
+	roboDino			(Strings.LC_PREFIX + "robo_dino",			 			LaserCreepersHelper.MOD_ID, 				RoboDinoHead.INSTANCE),
+	jetPackSpider		(Strings.LC_PREFIX + "jet_pack_spider",			 		LaserCreepersHelper.MOD_ID, 				JetPackSpiderHead.INSTANCE),
 
 	blizz				(Strings.TE_PREFIX + "Blizz", 							"ThermalFoundation",		ModelHead.INSTANCE),
 	blitz				(Strings.TE_PREFIX + "Blitz", 							"ThermalFoundation",		ModelHead.INSTANCE),
@@ -321,10 +326,6 @@ public enum SkullTypes {
 	skeletonWarrior		(Strings.PM_PREFIX + "skeletonwarrior/skeletonwarrior",	"primitivemobs", 			ModelHead.INSTANCE_NO_OVERLAY),
 	brainSlime			(Strings.PM_PREFIX + "brainslime/brainslime",			"primitivemobs", 			SlimeHead.INSTANCE),
 	
-	laserCreeper		(Strings.LC_PREFIX + "laserCreeper",			 		"lasercreepers", 				LaserCreeperHead.INSTANCE),
-	roboDino			(Strings.LC_PREFIX + "roboDino",			 			"lasercreepers", 				RoboDinoHead.INSTANCE),
-	jetPackSpider		(Strings.LC_PREFIX + "jetPackSpider",			 		"lasercreepers", 				JetPackSpiderHead.INSTANCE),
-	
 	vrontausaurus		(Strings.MWL_PREFIX + "vrontausaurus",			 		"mysticalwildlife", 			VrontausaurusHead.INSTANCE),
 	yagaHog				(Strings.MWL_PREFIX + "yaga_hog_dirt",			 		"mysticalwildlife", 			YagaHogHead.INSTANCE),
 	duskLurker			(Strings.MWL_PREFIX + "dusk_lurker",			 		"mysticalwildlife", 			DuskLurkerHead.INSTANCE),
@@ -342,7 +343,8 @@ public enum SkullTypes {
 	private final ModelHead model;
 	private Boolean isActive = null;
 
-	SkullTypes(String texture, String mod, ModelHead model) {
+	SkullTypes(String texture, String mod, ModelHead model)
+	{
 		this.mod = mod;
 		this.texture = Utils.getResource(texture + ".png");
 		this.model = model;
@@ -350,35 +352,42 @@ public enum SkullTypes {
 			throw new IllegalArgumentException("Head model for " + this + " cannot be null!");
 	}
 
-	public boolean usesProfile() {
+	public boolean usesProfile()
+	{
 		return false; // this == lycanites;
 	}
 
-	public boolean canShow() {
+	public boolean canShow()
+	{
 		return isModLoaded();
 	}
 
-	public ResourceLocation getTexture(GameProfile profile) {
+	public ResourceLocation getTexture(GameProfile profile)
+	{
 		// if(this == lycanites)
 		// return LycanitesHelperClient.getTexture(profile.getName());
 		return texture;
 	}
 
-	public ModelHead model() {
+	public ModelHead model()
+	{
 		return isModLoaded() ? model : ModelHead.INSTANCE;
 	}
 
-	private boolean isModLoaded() {
+	private boolean isModLoaded()
+	{
 		if(isActive == null)
 			isActive = mod == null || Loader.isModLoaded(mod);
 		return isActive;
 	}
 
-	public ItemStack getStack() {
+	public ItemStack getStack()
+	{
 		return getStack(1);
 	}
 
-	public ItemStack getStack(int size) {
+	public ItemStack getStack(int size)
+	{
 		ItemStack stack = new ItemStack(ModBlocks.skull, size);
 		NBTTagCompound nbt = new NBTTagCompound();
 		stack.setTagCompound(nbt);

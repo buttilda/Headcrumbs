@@ -2,13 +2,17 @@ package ganymedes01.headcrumbs.utils.helpers;
 
 import ganymedes01.headcrumbs.libs.SkullTypes;
 
-public class LaserCreepersHelper extends HeadDropHelper {
+public class LaserCreepersHelper extends HeadDropHelper
+{
 
-	public LaserCreepersHelper() {
-		super("lasercreepers");
+	public static String MOD_ID = "lcrdrfs";
 
-		typesMap.put("lasercreepers.laserCreeper", SkullTypes.laserCreeper);
-		typesMap.put("lasercreepers.roboDino", SkullTypes.roboDino);
-		typesMap.put("lasercreepers.jetPackSpider", SkullTypes.jetPackSpider);
+	public LaserCreepersHelper()
+	{
+		super(MOD_ID);
+
+		typesMap.put(MOD_ID + ".laserCreeper", SkullTypes.laserCreeper);
+		typesMap.put(MOD_ID + ".roboDino", SkullTypes.roboDino);
+		typesMap.put(MOD_ID + ".jetPackSpider", SkullTypes.jetPackSpider);
 	}
 }
