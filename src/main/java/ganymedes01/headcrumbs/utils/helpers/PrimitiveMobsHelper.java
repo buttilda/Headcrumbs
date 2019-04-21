@@ -4,7 +4,7 @@ import ganymedes01.headcrumbs.libs.SkullTypes;
 
 public class PrimitiveMobsHelper extends HeadDropHelper
 {
-	public static String MOD_ID = "primitivemobs";
+	public static final String MOD_ID = "primitivemobs";
 
 	public PrimitiveMobsHelper()
 	{

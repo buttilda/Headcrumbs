@@ -4,7 +4,7 @@ import ganymedes01.headcrumbs.libs.SkullTypes;
 
 public class ElementalCreepersHelper extends HeadDropHelper {
 
-	public static String MOD_ID = "elementalcreepers";
+	public static final String MOD_ID = "elementalcreepers";
 	public ElementalCreepersHelper() {
 		super(MOD_ID);
 

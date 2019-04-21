@@ -4,7 +4,7 @@ import ganymedes01.headcrumbs.libs.SkullTypes;
 
 public class MysticalWildlifeHelper extends HeadDropHelper {
 
-	public static String MOD_ID = "mysticalwildlife";
+	public static final String MOD_ID = "mysticalwildlife";
 	
 	public MysticalWildlifeHelper() {
 		super("mysticalwildlife");

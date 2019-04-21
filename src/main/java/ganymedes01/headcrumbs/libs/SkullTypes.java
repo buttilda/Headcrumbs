@@ -119,6 +119,7 @@ import ganymedes01.headcrumbs.utils.helpers.MysticalWildlifeHelper;
 import ganymedes01.headcrumbs.utils.helpers.NaturaHelper;
 import ganymedes01.headcrumbs.utils.helpers.PrimitiveMobsHelper;
 import ganymedes01.headcrumbs.utils.helpers.TEHelper;
+import ganymedes01.headcrumbs.utils.helpers.ThaumcraftHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -295,6 +296,20 @@ public enum SkullTypes
 	blitz				(Strings.TE_PREFIX + "Blitz", 							TEHelper.MOD_ID,							ModelHead.INSTANCE),
 	basalz				(Strings.TE_PREFIX + "Basalz", 							TEHelper.MOD_ID,							ModelHead.INSTANCE),
 
+	angryZombie			(Strings.TC_PREFIX + "bzombievil", 						ThaumcraftHelper.MOD_ID, 					WitherHead.INSTANCE),
+	fireBat				(Strings.TC_PREFIX + "firebat", 						ThaumcraftHelper.MOD_ID, 					BatHead.INSTANCE),
+	thaumicSlime		(Strings.TC_PREFIX + "tslime", 							ThaumcraftHelper.MOD_ID, 					SlimeHead.INSTANCE),
+	taintedChicken		(Strings.TC_PREFIX + "chicken", 						ThaumcraftHelper.MOD_ID, 					ChickenHead.INSTANCE),
+	taintedCow			(Strings.TC_PREFIX + "cow", 							ThaumcraftHelper.MOD_ID, 					CowHead.INSTANCE),
+	taintedPig			(Strings.TC_PREFIX + "pig", 							ThaumcraftHelper.MOD_ID, 					PigHead.INSTANCE),
+	taintedCreeper		(Strings.TC_PREFIX + "creeper", 						ThaumcraftHelper.MOD_ID, 					ModelHead.INSTANCE),
+	taintedVillager		(Strings.TC_PREFIX + "villager", 						ThaumcraftHelper.MOD_ID, 					VillagerHead.INSTANCE64),
+	taintedSheep		(Strings.TC_PREFIX + "sheep", 							ThaumcraftHelper.MOD_ID, 					TaintedSheepHead.INSTANCE),
+	pech				(Strings.TC_PREFIX + "pech_forage", 					ThaumcraftHelper.MOD_ID, 					PechHead.INSTANCE),
+	eldritchGuardian	(Strings.TC_PREFIX + "eldritch_guardian", 				ThaumcraftHelper.MOD_ID, 					EldrichGuardianHead.INSTANCE),
+	cultist				(Strings.TC_PREFIX + "cultist", 						ThaumcraftHelper.MOD_ID, 					CultistHead.INSTANCE),
+	eldritchCrab		(Strings.TC_PREFIX + "crab",			 				ThaumcraftHelper.MOD_ID, 					EldrichCrabHead.INSTANCE),
+	
 	hostileWolf			(Strings.MC_PREFIX + "wolf/wolf_angry", 				"twilightforest", 			WolfHead.INSTANCE),
 	bunnyDutch			(Strings.TF_PREFIX + "bunnydutch", 						"twilightforest", 			BunnyHead.INSTANCE),
 	penguin				(Strings.TF_PREFIX + "penguin", 						"twilightforest", 			PenguinHead.INSTANCE),
@@ -325,21 +340,7 @@ public enum SkullTypes
 	nagaTF				(Strings.TF_PREFIX + "nagahead", 						"twilightforest", 			NagaTFHead.INSTANCE),
 	lich				(Strings.TF_PREFIX + "twilightlich64", 					"twilightforest", 			LichHead.INSTANCE),
 	snowQueen			(Strings.TF_PREFIX + "snowqueen", 						"twilightforest", 			SnowQueenHead.INSTANCE),
-	urGhast				(Strings.TF_PREFIX + "towerboss", 						"twilightforest", 			GhastHead.INSTANCE),
-
-	angryZombie			(Strings.TC_PREFIX + "bzombievil", 						"Thaumcraft", 				WitherHead.INSTANCE),
-	fireBat				(Strings.TC_PREFIX + "firebat", 						"Thaumcraft", 				BatHead.INSTANCE),
-	thaumicSlime		(Strings.TC_PREFIX + "tslime", 							"Thaumcraft", 				SlimeHead.INSTANCE),
-	taintedChicken		(Strings.TC_PREFIX + "chicken", 						"Thaumcraft", 				ChickenHead.INSTANCE),
-	taintedCow			(Strings.TC_PREFIX + "cow", 							"Thaumcraft", 				CowHead.INSTANCE),
-	taintedPig			(Strings.TC_PREFIX + "pig", 							"Thaumcraft", 				PigHead.INSTANCE),
-	taintedCreeper		(Strings.TC_PREFIX + "creeper", 						"Thaumcraft", 				ModelHead.INSTANCE),
-	taintedVillager		(Strings.TC_PREFIX + "villager", 						"Thaumcraft", 				VillagerHead.INSTANCE64),
-	taintedSheep		(Strings.TC_PREFIX + "sheep", 							"Thaumcraft", 				TaintedSheepHead.INSTANCE),
-	pech				(Strings.TC_PREFIX + "pech_forage", 					"Thaumcraft", 				PechHead.INSTANCE),
-	eldritchGuardian	(Strings.TC_PREFIX + "eldritch_guardian", 				"Thaumcraft", 				EldrichGuardianHead.INSTANCE),
-	cultist				(Strings.TC_PREFIX + "cultist", 						"Thaumcraft", 				CultistHead.INSTANCE),
-	eldritchCrab		(Strings.TC_PREFIX + "crab",			 				"Thaumcraft", 				EldrichCrabHead.INSTANCE);
+	urGhast				(Strings.TF_PREFIX + "towerboss", 						"twilightforest", 			GhastHead.INSTANCE);
 	// @formatter:on
 
 	private final String mod;

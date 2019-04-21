@@ -6,50 +6,56 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional;
 
-public class ThaumcraftHelper extends HeadDropHelper {
+public class ThaumcraftHelper extends HeadDropHelper
+{
+	public static final String MOD_ID = "thaumcraft";
 
-	public ThaumcraftHelper() {
-		super("Thaumcraft");
+	public ThaumcraftHelper()
+	{
+		super(MOD_ID);
 
-		typesMap.put("Thaumcraft.BrainyZombie", SkullTypes.angryZombie);
-		typesMap.put("Thaumcraft.GiantBrainyZombie", SkullTypes.angryZombie);
-		typesMap.put("Thaumcraft.Firebat", SkullTypes.fireBat);
-		typesMap.put("Thaumcraft.TaintedChicken", SkullTypes.taintedChicken);
-		typesMap.put("Thaumcraft.TaintedCow", SkullTypes.taintedCow);
-		typesMap.put("Thaumcraft.TaintedPig", SkullTypes.taintedPig);
-		typesMap.put("Thaumcraft.TaintedCreeper", SkullTypes.taintedCreeper);
-		typesMap.put("Thaumcraft.TaintedVillager", SkullTypes.taintedVillager);
-		typesMap.put("Thaumcraft.TaintedSheep", SkullTypes.taintedSheep);
-		typesMap.put("Thaumcraft.Pech", SkullTypes.pech);
-		typesMap.put("Thaumcraft.EldritchGuardian", SkullTypes.eldritchGuardian);
-		typesMap.put("Thaumcraft.CultistKnight", SkullTypes.cultist);
-		typesMap.put("Thaumcraft.CultistCleric", SkullTypes.cultist);
-		typesMap.put("Thaumcraft.EldritchCrab", SkullTypes.eldritchCrab);
+		typesMap.put(MOD_ID + ".BrainyZombie", SkullTypes.angryZombie);
+		typesMap.put(MOD_ID + ".GiantBrainyZombie", SkullTypes.angryZombie);
+		typesMap.put(MOD_ID + ".Firebat", SkullTypes.fireBat);
+		typesMap.put(MOD_ID + ".TaintedChicken", SkullTypes.taintedChicken);
+		typesMap.put(MOD_ID + ".TaintedCow", SkullTypes.taintedCow);
+		typesMap.put(MOD_ID + ".TaintedPig", SkullTypes.taintedPig);
+		typesMap.put(MOD_ID + ".TaintedCreeper", SkullTypes.taintedCreeper);
+		typesMap.put(MOD_ID + ".TaintedVillager", SkullTypes.taintedVillager);
+		typesMap.put(MOD_ID + ".TaintedSheep", SkullTypes.taintedSheep);
+		typesMap.put(MOD_ID + ".Pech", SkullTypes.pech);
+		typesMap.put(MOD_ID + ".EldritchGuardian", SkullTypes.eldritchGuardian);
+		typesMap.put(MOD_ID + ".CultistKnight", SkullTypes.cultist);
+		typesMap.put(MOD_ID + ".CultistCleric", SkullTypes.cultist);
+		typesMap.put(MOD_ID + ".EldritchCrab", SkullTypes.eldritchCrab);
 
-		if (Loader.isModLoaded("Thaumcraft"))
+		if(Loader.isModLoaded(MOD_ID))
 			addAspects();
 	}
 
-	@Optional.Method(modid = "Thaumcraft")
-	private void addAspects() {
+	@Optional.Method(modid = MOD_ID)
+	private void addAspects()
+	{
 		//		AspectList aspects = new AspectList().add(Aspect.MAN, 4).add(Aspect.DEATH, 4).add(Aspect.SOUL, 4);
 		//		ThaumcraftApi.registerObjectTag(new ItemStack(ModBlocks.player, 1, OreDictionary.WILDCARD_VALUE), aspects);
 		//		ThaumcraftApi.registerObjectTag(new ItemStack(ModBlocks.skull, 1, OreDictionary.WILDCARD_VALUE), aspects);
 	}
 
 	@Override
-	protected ItemStack getHeadForEntity(Entity entity) {
+	protected ItemStack getHeadForEntity(Entity entity)
+	{
 		ItemStack head = super.getHeadForEntity(entity);
-		if (head != null)
+		if(head != null)
 			return head;
 
-		if (getThaumicSlimeSize(entity) == 1)
+		if(getThaumicSlimeSize(entity) == 1)
 			return SkullTypes.thaumicSlime.getStack();
 
 		return null;
 	}
 
-	private static int getThaumicSlimeSize(Entity entity) {
+	private static int getThaumicSlimeSize(Entity entity)
+	{
 		//		if (entity instanceof EntityThaumicSlime)
 		//			return ((EntityThaumicSlime) entity).getSlimeSize();
 		return -1;

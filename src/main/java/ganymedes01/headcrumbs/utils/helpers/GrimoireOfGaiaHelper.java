@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 
 public class GrimoireOfGaiaHelper extends HeadDropHelper {
 
-	public static String MOD_ID = "grimoireofgaia";
+	public static final String MOD_ID = "grimoireofgaia";
 	public GrimoireOfGaiaHelper() {
 		super(MOD_ID);
 

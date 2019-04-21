@@ -4,7 +4,7 @@ import ganymedes01.headcrumbs.libs.SkullTypes;
 
 public class EnderZooHelper extends HeadDropHelper {
 
-	public static String MOD_ID = "enderiozoo";
+	public static final String MOD_ID = "enderiozoo";
 	public EnderZooHelper() {
 		super(MOD_ID);
 

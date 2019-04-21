@@ -5,7 +5,7 @@ import ganymedes01.headcrumbs.libs.SkullTypes;
 public class NaturaHelper extends HeadDropHelper
 {
 
-	public static String MOD_ID = "natura";
+	public static final String MOD_ID = "natura";
 
 	public NaturaHelper()
 	{

@@ -5,7 +5,7 @@ import ganymedes01.headcrumbs.libs.SkullTypes;
 public class LaserCreepersHelper extends HeadDropHelper
 {
 
-	public static String MOD_ID = "lcrdrfs";
+	public static final String MOD_ID = "lcrdrfs";
 
 	public LaserCreepersHelper()
 	{

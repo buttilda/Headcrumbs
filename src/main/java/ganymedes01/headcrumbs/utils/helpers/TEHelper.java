@@ -4,7 +4,7 @@ import ganymedes01.headcrumbs.libs.SkullTypes;
 
 public class TEHelper extends HeadDropHelper
 {
-	public static String MOD_ID = "thermalfoundation";
+	public static final String MOD_ID = "thermalfoundation";
 
 	public TEHelper()
 	{
