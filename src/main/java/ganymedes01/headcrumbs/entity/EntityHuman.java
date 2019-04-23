@@ -357,10 +357,10 @@ public class EntityHuman extends EntityMob implements IRangedAttackMob, IHumanEn
 		double y = target.getEntityBoundingBox().minY + target.height / 3.0F - arrow.posY;
 		double z = target.posZ - posZ;
 		double d0 = MathHelper.sqrt(x * x + z * z);
-		arrow.setThrowableHeading(x, y + d0 * 0.2, z, 1.6F, 14 - world.getDifficulty().getDifficultyId() * 4);
+		arrow.shoot(x, y + d0 * 0.2, z, 1.6F, 14 - world.getDifficulty().getId() * 4);
 		int power = EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.POWER, this);
 		int punch = EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.PUNCH, this);
-		arrow.setDamage(damage * 2.0F + rand.nextGaussian() * 0.25 + world.getDifficulty().getDifficultyId() * 0.11F);
+		arrow.setDamage(damage * 2.0F + rand.nextGaussian() * 0.25 + world.getDifficulty().getId() * 0.11F);
 
 		if(power > 0)
 			arrow.setDamage(arrow.getDamage() + power * 0.5 + 0.5);

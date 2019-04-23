@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class TileEntityBlockPlayerRenderer extends TileEntitySpecialRenderer<TileEntityBlockPlayer> {
 
 	@Override
-	public void func_192841_a(TileEntityBlockPlayer tile, double x, double y, double z, float partialTickTime, int destroyStage, float p_192841_10_) {
+	public void render(TileEntityBlockPlayer tile, double x, double y, double z, float partialTickTime, int destroyStage, float p_192841_10_) {
 		GameProfile profile = tile.getPlayerProfile();
 
 		if (profile == null)

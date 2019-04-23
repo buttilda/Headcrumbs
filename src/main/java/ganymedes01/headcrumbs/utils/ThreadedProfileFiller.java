@@ -22,7 +22,7 @@ public class ThreadedProfileFiller {
 					while(!humans.isEmpty()){
 						IHumanEntity human = humans.get(0);
 						if(human != null)
-							human.setProfile(TileEntitySkull.updateGameprofile(human.getProfile()));
+							human.setProfile(TileEntitySkull.updateGameProfile(human.getProfile()));
 						humans.remove(0);
 					}
 				}

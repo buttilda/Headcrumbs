@@ -1,23 +1,29 @@
 package ganymedes01.headcrumbs.utils.helpers;
 
-import ganymedes01.headcrumbs.libs.SkullTypes;
+import ganymedes01.headcrumbs.renderers.heads.mysticalwildlife.CicapteraHead;
+import ganymedes01.headcrumbs.renderers.heads.mysticalwildlife.DuskLurkerHead;
+import ganymedes01.headcrumbs.renderers.heads.mysticalwildlife.KrillHead;
+import ganymedes01.headcrumbs.renderers.heads.mysticalwildlife.PlumperHead;
+import ganymedes01.headcrumbs.renderers.heads.mysticalwildlife.VrontausaurusHead;
 
-public class MysticalWildlifeHelper extends HeadDropHelper {
+public class MysticalWildlifeHelper extends HeadDropHelper
+{
 
 	public static final String MOD_ID = "mysticalwildlife";
-	
-	public MysticalWildlifeHelper() {
+
+	public MysticalWildlifeHelper()
+	{
 		super("mysticalwildlife");
 
-		typesMap.put(MOD_ID + ".vrontausaurus", SkullTypes.vrontausaurus);
-		typesMap.put(MOD_ID + ".yaga_hog", SkullTypes.yagaHog);
-		typesMap.put(MOD_ID + ".dusk_lurker", SkullTypes.duskLurker);
-		typesMap.put(MOD_ID + ".cicaptera_azure", SkullTypes.cicapteraAzure);
-		typesMap.put(MOD_ID + ".cicaptera_verdant", SkullTypes.cicapteraVerdant);
-		typesMap.put(MOD_ID + ".cicaptera_crimson", SkullTypes.cicapteraCrimson);
-		typesMap.put(MOD_ID + ".cicaptera_sandy", SkullTypes.cicapteraSandy);
-		typesMap.put(MOD_ID + ".cicaptera_wintry", SkullTypes.cicapteraWintry);
-		typesMap.put(MOD_ID + ".plumper", SkullTypes.plumper);
-		typesMap.put(MOD_ID + ".krill", SkullTypes.krill);
+		super.registerMobHead("vrontausaurus", VrontausaurusHead.INSTANCE);
+		super.registerMobHead("yaga_hog", "yaga_hog_dirt", VrontausaurusHead.INSTANCE);
+		super.registerMobHead("dusk_lurker", DuskLurkerHead.INSTANCE);
+		super.registerMobHead("cicaptera_azure", CicapteraHead.INSTANCE);
+		super.registerMobHead("cicaptera_verdant", CicapteraHead.INSTANCE);
+		super.registerMobHead("cicaptera_crimson", CicapteraHead.INSTANCE);
+		super.registerMobHead("cicaptera_sandy", CicapteraHead.INSTANCE);
+		super.registerMobHead("cicaptera_wintry", CicapteraHead.INSTANCE);
+		super.registerMobHead("plumper", PlumperHead.INSTANCE);
+		super.registerMobHead("krill", KrillHead.INSTANCE);
 	}
 }

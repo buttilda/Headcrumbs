@@ -8,9 +8,9 @@ import com.mojang.authlib.GameProfile;
 
 import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.entity.EntityHuman;
+import ganymedes01.headcrumbs.libs.HeadDrop;
+import ganymedes01.headcrumbs.libs.HeadDropRegistry;
 import ganymedes01.headcrumbs.libs.Reference;
-import ganymedes01.headcrumbs.libs.SkullTypes;
-import ganymedes01.headcrumbs.utils.helpers.HeadDropHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -27,7 +27,8 @@ import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.LootTableLoadEvent;
 
-public class HeadUtils {
+public class HeadUtils
+{
 
 	public static final String OWNER_TAG = "SkullOwner";
 	public static final String MODEL_TAG = "SkullModel";
@@ -35,17 +36,20 @@ public class HeadUtils {
 	private static final List<ResourceLocation> overworldLoot = Arrays.asList(LootTableList.CHESTS_SIMPLE_DUNGEON, LootTableList.CHESTS_ABANDONED_MINESHAFT, LootTableList.CHESTS_DESERT_PYRAMID, LootTableList.CHESTS_JUNGLE_TEMPLE, LootTableList.CHESTS_IGLOO_CHEST);
 	private static final List<ResourceLocation> specialLoot = Arrays.asList(LootTableList.CHESTS_NETHER_BRIDGE, LootTableList.CHESTS_STRONGHOLD_LIBRARY, LootTableList.CHESTS_STRONGHOLD_CROSSING, LootTableList.CHESTS_STRONGHOLD_CORRIDOR, LootTableList.CHESTS_END_CITY_TREASURE);
 
-	private static class HeadLootFunction extends LootFunction {
+	private static class HeadLootFunction extends LootFunction
+	{
 
 		private static List<String> allNames = null;
 
-		protected HeadLootFunction() {
+		protected HeadLootFunction()
+		{
 			super(null);
 		}
 
 		@Override
-		public ItemStack apply(ItemStack stack, Random rand, LootContext context) {
-			if (allNames == null || allNames.isEmpty())
+		public ItemStack apply(ItemStack stack, Random rand, LootContext context)
+		{
+			if(allNames == null || allNames.isEmpty())
 				allNames = Headcrumbs.getAllNames();
 
 			String name = allNames.get(rand.nextInt(allNames.size()));
@@ -54,19 +58,22 @@ public class HeadUtils {
 		}
 	}
 
-	public static void onRegisterLootTable(LootTableLoadEvent event) {
-		if (Headcrumbs.addPlayerHeadsAsDungeonLoot) {
+	public static void onRegisterLootTable(LootTableLoadEvent event)
+	{
+		if(Headcrumbs.addPlayerHeadsAsDungeonLoot)
+		{
 			LootPool main = event.getTable().getPool("main");
-			if (main == null)
+			if(main == null)
 				return;
 
 			int weight = -1;
-			if (specialLoot.contains(event.getName()))
+			if(specialLoot.contains(event.getName()))
 				weight = Headcrumbs.headsDungeonLootWeight + 1;
-			else if (overworldLoot.contains(event.getName()))
+			else if(overworldLoot.contains(event.getName()))
 				weight = Headcrumbs.headsDungeonLootWeight;
 
-			if (weight > 0) {
+			if(weight > 0)
+			{
 				main.addEntry(new LootEntryItem(Items.SKULL, weight, 0, new LootFunction[] { new HeadLootFunction() }, new LootCondition[0], Reference.MOD_ID + ":player_heads0"));
 				main.addEntry(new LootEntryItem(Items.SKULL, weight, 0, new LootFunction[] { new HeadLootFunction() }, new LootCondition[0], Reference.MOD_ID + ":player_heads1"));
 				main.addEntry(new LootEntryItem(Items.SKULL, weight, 0, new LootFunction[] { new HeadLootFunction() }, new LootCondition[0], Reference.MOD_ID + ":player_heads2"));
@@ -74,28 +81,32 @@ public class HeadUtils {
 		}
 	}
 
-	public static ItemStack getHeadfromEntity(EntityLivingBase target) {
-		if (target.isChild())
+	public static ItemStack getHeadfromEntity(EntityLivingBase target)
+	{
+		if(target.isChild())
 			return null;
 
-		if (target instanceof EntityHuman)
+		if(target instanceof EntityHuman)
 			return createHeadFor(((EntityHuman) target).getProfile());
 
-		if (target instanceof EntityPlayer)
+		if(target instanceof EntityPlayer)
 			return createHeadFor((EntityPlayer) target);
 
-		return HeadDropHelper.getHead(target);
+		return HeadDropRegistry.getHead(target);
 	}
 
-	public static ItemStack createHeadFor(String username) {
+	public static ItemStack createHeadFor(String username)
+	{
 		return createHeadFor(new GameProfile(null, username));
 	}
 
-	public static ItemStack createHeadFor(EntityPlayer player) {
+	public static ItemStack createHeadFor(EntityPlayer player)
+	{
 		return createHeadFor(player.getGameProfile());
 	}
 
-	public static ItemStack createHeadFor(GameProfile profile) {
+	public static ItemStack createHeadFor(GameProfile profile)
+	{
 		ItemStack stack = new ItemStack(Items.SKULL, 1, 3);
 		stack.setTagCompound(new NBTTagCompound());
 		NBTTagCompound profileData = new NBTTagCompound();
@@ -104,45 +115,60 @@ public class HeadUtils {
 		return stack;
 	}
 
-	public static GameProfile getGameProfile(ItemStack stack) {
+	public static GameProfile getGameProfile(ItemStack stack)
+	{
 		GameProfile profile = null;
 
-		try {
-			if (stack.hasTagCompound()) {
+		try
+		{
+			if(stack.hasTagCompound())
+			{
 				NBTTagCompound nbt = stack.getTagCompound();
-				if (nbt.hasKey(OWNER_TAG, Constants.NBT.TAG_COMPOUND))
+				if(nbt.hasKey(OWNER_TAG, Constants.NBT.TAG_COMPOUND))
 					profile = NBTUtil.readGameProfileFromNBT(nbt.getCompoundTag(OWNER_TAG));
-				else if (nbt.hasKey(OWNER_TAG, Constants.NBT.TAG_STRING))
+				else if(nbt.hasKey(OWNER_TAG, Constants.NBT.TAG_STRING))
 					profile = new GameProfile(null, nbt.getString(OWNER_TAG));
 			}
-		} catch (IllegalArgumentException e) {
+		} catch(IllegalArgumentException e)
+		{
 		}
 
 		return profile;
 	}
 
-	public static String getName(ItemStack stack) {
-		if (stack.hasTagCompound()) {
+	public static String getName(ItemStack stack)
+	{
+		if(stack.hasTagCompound())
+		{
 			NBTTagCompound nbt = stack.getTagCompound();
-			if (nbt.hasKey(OWNER_TAG, Constants.NBT.TAG_COMPOUND)) {
+			if(nbt.hasKey(OWNER_TAG, Constants.NBT.TAG_COMPOUND))
+			{
 				GameProfile profile = NBTUtil.readGameProfileFromNBT(nbt.getCompoundTag(OWNER_TAG));
-				if (profile != null)
+				if(profile != null)
 					return profile.getName();
-			} else if (nbt.hasKey(OWNER_TAG, Constants.NBT.TAG_STRING))
+			}
+			else if(nbt.hasKey(OWNER_TAG, Constants.NBT.TAG_STRING))
 				return nbt.getString(OWNER_TAG);
 		}
 		return null;
 	}
 
-	public static SkullTypes getModel(ItemStack stack) {
-		return stack.hasTagCompound() ? getModel(stack.getTagCompound().getString(MODEL_TAG)) : SkullTypes.blaze;
+	public static HeadDrop getModel(ItemStack stack)
+	{
+		return stack.hasTagCompound() ? getModel(stack.getTagCompound().getString(MODEL_TAG)) : HeadDrop.DEFAULT;
 	}
 
-	public static SkullTypes getModel(String str) {
-		try {
-			return SkullTypes.valueOf(str);
-		} catch (Exception e) {
-			return SkullTypes.blaze;
-		}
+	public static String getModelName(ItemStack stack)
+	{
+		return stack.hasTagCompound() ? stack.getTagCompound().getString(MODEL_TAG) : "minecraft:blaze";
+	}
+
+	public static HeadDrop getModel(String str)
+	{
+		String parts[] = str.split(":");
+		if(parts.length == 2)
+			return HeadDropRegistry.getHeadDrop(parts[0], parts[1]);
+		else
+			return HeadDrop.DEFAULT;
 	}
 }

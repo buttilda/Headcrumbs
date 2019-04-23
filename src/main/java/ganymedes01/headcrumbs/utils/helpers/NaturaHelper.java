@@ -1,6 +1,8 @@
 package ganymedes01.headcrumbs.utils.helpers;
 
-import ganymedes01.headcrumbs.libs.SkullTypes;
+import ganymedes01.headcrumbs.renderers.ModelHead;
+import ganymedes01.headcrumbs.renderers.heads.SpiderHead;
+import ganymedes01.headcrumbs.renderers.heads.natura.ImpHead;
 
 public class NaturaHelper extends HeadDropHelper
 {
@@ -11,8 +13,8 @@ public class NaturaHelper extends HeadDropHelper
 	{
 		super(MOD_ID);
 
-		typesMap.put(MOD_ID + ".Imp", SkullTypes.imp);
-		typesMap.put(MOD_ID + ".NitroCreeper", SkullTypes.nitroCreeper);
-		typesMap.put(MOD_ID + ".FlameSpiderBaby", SkullTypes.heatscarSpider);
+		super.registerMobHead("imp", ImpHead.INSTANCE);
+		super.registerMobHead("nitrocreeper", ModelHead.INSTANCE_NO_OVERLAY);
+		super.registerMobHead("flamespiderbaby", "heatscarspider", SpiderHead.INSTANCE);
 	}
 }

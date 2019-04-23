@@ -1,6 +1,6 @@
 package ganymedes01.headcrumbs.utils.helpers;
 
-import ganymedes01.headcrumbs.libs.SkullTypes;
+import ganymedes01.headcrumbs.renderers.ModelHead;
 
 public class TEHelper extends HeadDropHelper
 {
@@ -10,8 +10,8 @@ public class TEHelper extends HeadDropHelper
 	{
 		super(MOD_ID);
 
-		typesMap.put("Blizz", SkullTypes.blizz);
-		typesMap.put("Blitz", SkullTypes.blitz);
-		typesMap.put("Basalz", SkullTypes.basalz);
+		super.registerMobHead("blizz", ModelHead.INSTANCE);
+		super.registerMobHead("blitz", ModelHead.INSTANCE);
+		super.registerMobHead("basalz", ModelHead.INSTANCE);
 	}
 }

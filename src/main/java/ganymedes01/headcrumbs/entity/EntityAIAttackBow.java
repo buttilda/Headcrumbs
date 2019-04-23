@@ -43,7 +43,7 @@ public class EntityAIAttackBow extends EntityAIBase {
 	}
 
 	@Override
-	public boolean continueExecuting() {
+	public boolean shouldContinueExecuting() {
 		return (shouldExecute() || !entity.getNavigator().noPath()) && isBowInMainhand();
 	}
 
@@ -80,7 +80,7 @@ public class EntityAIAttackBow extends EntityAIBase {
 				--seeTime;
 
 			if (d0 <= maxAttackDistance && seeTime >= 20) {
-				entity.getNavigator().clearPathEntity();
+				entity.getNavigator().clearPath();
 				++strafingTime;
 			} else {
 				entity.getNavigator().tryMoveToEntityLiving(entitylivingbase, moveSpeedAmp);

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
@@ -13,14 +14,13 @@ import org.apache.logging.log4j.Logger;
 import ganymedes01.headcrumbs.configs.ConfigHandler;
 import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.entity.VIPHandler;
+import ganymedes01.headcrumbs.libs.HeadDropRegistry;
 import ganymedes01.headcrumbs.libs.Reference;
-import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.proxy.CommonProxy;
 import ganymedes01.headcrumbs.recipes.StatueRecipe;
 import ganymedes01.headcrumbs.utils.helpers.ElementalCreepersHelper;
 import ganymedes01.headcrumbs.utils.helpers.EnderZooHelper;
 import ganymedes01.headcrumbs.utils.helpers.GrimoireOfGaiaHelper;
-import ganymedes01.headcrumbs.utils.helpers.HeadDropHelper;
 import ganymedes01.headcrumbs.utils.helpers.LaserCreepersHelper;
 import ganymedes01.headcrumbs.utils.helpers.MysticalWildlifeHelper;
 import ganymedes01.headcrumbs.utils.helpers.NaturaHelper;
@@ -59,7 +59,9 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.GameData;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, guiFactory = Reference.GUI_FACTORY_CLASS)
-public class Headcrumbs {
+public class Headcrumbs
+{
+	public static final Random rand = new Random();
 
 	@Instance(Reference.MOD_ID)
 	public static Headcrumbs instance;
@@ -67,10 +69,11 @@ public class Headcrumbs {
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
 	public static CommonProxy proxy;
 
-	public static CreativeTabs tab = new CreativeTabs(Reference.MOD_ID) {
-
+	public static CreativeTabs tab = new CreativeTabs(Reference.MOD_ID)
+	{
 		@Override
-		public ItemStack getTabIconItem() {
+		public ItemStack createIcon()
+		{
 			return new ItemStack(Items.SKULL);
 		}
 	};
@@ -133,7 +136,7 @@ public class Headcrumbs {
 
 	public static boolean enablePlayerHeadsDrop = false;
 	public static boolean enableMobsAndAnimalHeads = false;
-	
+
 	public static int headDropChance = 200;
 	public static boolean addPlayerHeadsAsDungeonLoot = true;
 	public static int headsDungeonLootWeight = 1;
@@ -151,7 +154,8 @@ public class Headcrumbs {
 	public static boolean isTinkersConstructLoaded = false;
 
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
+	public void preInit(FMLPreInitializationEvent event)
+	{
 		ConfigHandler.INSTANCE.init(event.getSuggestedConfigurationFile());
 
 		OreDictionary.registerOre("itemSkull", new ItemStack(Items.SKULL, 1, OreDictionary.WILDCARD_VALUE));
@@ -162,10 +166,23 @@ public class Headcrumbs {
 		OreDictionary.registerOre("skullCreeper", new ItemStack(Items.SKULL, 1, 4));
 		OreDictionary.registerOre("skullEnderDragon", new ItemStack(Items.SKULL, 1, 5));
 
-		if(enableHumanMobs){
+		if(enableHumanMobs)
+		{
 			EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "Human"), EntityHuman.class, "Human", 0, instance, 512, 1, true, 0xFFF144, 0x69DFDA);
 			VIPHandler.init();
 		}
+		
+		HeadDropRegistry.register(new VanillaHelper());
+		HeadDropRegistry.register(new LaserCreepersHelper());
+		HeadDropRegistry.register(new TwilightForestHelper());
+		HeadDropRegistry.register(new TEHelper());
+		HeadDropRegistry.register(new NaturaHelper());
+		HeadDropRegistry.register(new ThaumcraftHelper());
+		HeadDropRegistry.register(new EnderZooHelper());
+		HeadDropRegistry.register(new PrimitiveMobsHelper());
+		HeadDropRegistry.register(new GrimoireOfGaiaHelper());
+		HeadDropRegistry.register(new ElementalCreepersHelper());
+		HeadDropRegistry.register(new MysticalWildlifeHelper());
 
 		proxy.registerEntityRenderers();
 		proxy.registerEvents();
@@ -173,7 +190,8 @@ public class Headcrumbs {
 	}
 
 	@EventHandler
-	public void init(FMLInitializationEvent event) {
+	public void init(FMLInitializationEvent event)
+	{
 		proxy.registerRenderers();
 
 		FMLInterModComms.sendMessage("Waila", "register", "ganymedes01.headcrumbs.waila.WailaRegistrar.wailaCallback");
@@ -181,14 +199,16 @@ public class Headcrumbs {
 		if(Loader.isModLoaded("ganysend"))
 			addEnderFurnaceRecipe(new ItemStack(Items.NETHER_STAR), "skullWither");
 
-		if(enablePlayerStatues){
+		if(enablePlayerStatues)
+		{
 			GameData.register_impl(StatueRecipe.getRecipe("Statue recipe", new ItemStack(ModBlocks.player), "x", "y", "y", 'x', new ItemStack(Items.SKULL, 1, 3), 'y', new ItemStack(Blocks.CLAY)));
 			// RecipeSorter.register("statue", StatueRecipe.class,
 			// Category.SHAPED, "after:minecraft:shaped");
 		}
 	}
 
-	private void addEnderFurnaceRecipe(ItemStack output, Object... input) {
+	private void addEnderFurnaceRecipe(ItemStack output, Object... input)
+	{
 		NBTTagCompound nbt = new NBTTagCompound();
 
 		NBTTagCompound out = new NBTTagCompound();
@@ -197,7 +217,8 @@ public class Headcrumbs {
 
 		for(int i = 0; i < input.length; i++)
 			if(input[i] != null)
-				if(input[i] instanceof ItemStack){
+				if(input[i] instanceof ItemStack)
+				{
 					NBTTagCompound in = new NBTTagCompound();
 					((ItemStack) input[i]).writeToNBT(in);
 					nbt.setTag("input" + i, in);
@@ -209,49 +230,56 @@ public class Headcrumbs {
 	}
 
 	@EventHandler
-	public void postInit(FMLPostInitializationEvent event) {
-		HeadDropHelper.register(new LaserCreepersHelper());
-		HeadDropHelper.register(new TwilightForestHelper());
-		HeadDropHelper.register(new TEHelper());
-		HeadDropHelper.register(new NaturaHelper());
-		HeadDropHelper.register(new ThaumcraftHelper());
-		HeadDropHelper.register(new EnderZooHelper());
-		HeadDropHelper.register(new PrimitiveMobsHelper());
-		HeadDropHelper.register(new GrimoireOfGaiaHelper());
-		HeadDropHelper.register(new ElementalCreepersHelper());
-		HeadDropHelper.register(new MysticalWildlifeHelper());
-		HeadDropHelper.register(new VanillaHelper());
-
+	public void postInit(FMLPostInitializationEvent event)
+	{
 		if(enableHumanMobs)
 			addHumanSpawns();
 
-		if(Loader.isModLoaded("TwilightForest")){
+		if(Loader.isModLoaded("TwilightForest"))
+		{
 			Item tropy = Item.REGISTRY.getObject(new ResourceLocation("TwilightForest", "item.trophy"));
-			addConvertionRecipe("Hydra recipe", SkullTypes.hydra.getStack(), new ItemStack(tropy, 1, 0));
-			addConvertionRecipe("Naga recipe", SkullTypes.nagaTF.getStack(), new ItemStack(tropy, 1, 1));
-			addConvertionRecipe("Lich recipe", SkullTypes.lich.getStack(), new ItemStack(tropy, 1, 2));
-			addConvertionRecipe("Ur Ghast recipe", SkullTypes.urGhast.getStack(), new ItemStack(tropy, 1, 3));
-			addConvertionRecipe("Snow Queen recipe", SkullTypes.snowQueen.getStack(), new ItemStack(tropy, 1, 4));
+			addConvertionRecipe("Hydra recipe", HeadDropRegistry.getHead(TwilightForestHelper.MOD_ID, "hydra"), new ItemStack(tropy, 1, 0));
+			addConvertionRecipe("Naga recipe", HeadDropRegistry.getHead(TwilightForestHelper.MOD_ID, "nagaTF"), new ItemStack(tropy, 1, 1));
+			addConvertionRecipe("Lich recipe", HeadDropRegistry.getHead(TwilightForestHelper.MOD_ID, "lich"), new ItemStack(tropy, 1, 2));
+			addConvertionRecipe("Ur Ghast recipe", HeadDropRegistry.getHead(TwilightForestHelper.MOD_ID, "urGhast"), new ItemStack(tropy, 1, 3));
+			addConvertionRecipe("Snow Queen recipe", HeadDropRegistry.getHead(TwilightForestHelper.MOD_ID, "snowQueen"), new ItemStack(tropy, 1, 4));
+		}
+
+		if(Loader.isModLoaded("tconstruct"))
+		{
+			//			TinkerRegistry.registerHeadDrop(EntityPlayerMP.class, (entity) -> {
+			//			      ItemStack head = new ItemStack(Items.SKULL, 1, 3);
+			//			      if(entity instanceof EntityPlayer) {
+			//			        NBTUtil.writeGameProfile(head.getOrCreateSubCompound("SkullOwner"), ((EntityPlayer) entity).getGameProfile());
+			//			      }
+			//			      return head;
+			//			    });
 		}
 	}
 
-	private void addConvertionRecipe(String name, ItemStack output, ItemStack input) {
-		GameRegistry.addShapelessRecipe(new ResourceLocation(Reference.MOD_ID, "Recipes"), new ResourceLocation(Reference.MOD_ID, name), output, Ingredient.func_193369_a(input));
-		GameRegistry.addShapelessRecipe(new ResourceLocation(Reference.MOD_ID, "Recipes"), new ResourceLocation(Reference.MOD_ID, name + " reversed"), input, Ingredient.func_193369_a(output));
+	private void addConvertionRecipe(String name, ItemStack output, ItemStack input)
+	{
+		GameRegistry.addShapelessRecipe(new ResourceLocation(Reference.MOD_ID, "Recipes"), new ResourceLocation(Reference.MOD_ID, name), output, Ingredient.fromStacks(input));
+		GameRegistry.addShapelessRecipe(new ResourceLocation(Reference.MOD_ID, "Recipes"), new ResourceLocation(Reference.MOD_ID, name + " reversed"), input, Ingredient.fromStacks(output));
 	}
 
 	@EventHandler
-	public void imcEvent(IMCEvent event) {
+	public void imcEvent(IMCEvent event)
+	{
 		Logger logger = LogManager.getLogger(Reference.MOD_ID);
 		for(IMCMessage message : event.getMessages())
-			if(message.key.equals("add-username")){
-				if(!enableModSent){
+			if(message.key.equals("add-username"))
+			{
+				if(!enableModSent)
+				{
 					logger.info(String.format("%s tried to add %s to the username list, but the feature has been disabled by the user.", message.getSender(), message.getStringValue()));
 					continue;
 				}
-				if(message.isStringMessage()){
+				if(message.isStringMessage())
+				{
 					String username = message.getStringValue();
-					if(!getAllNames().contains(username)){
+					if(!getAllNames().contains(username))
+					{
 						modsent.add(username);
 						logger.info(String.format("%s added %s to the username list", message.getSender(), message.getStringValue()));
 					}
@@ -265,7 +293,8 @@ public class Headcrumbs {
 				logger.error(String.format("Invalid message key sent from %s: %s", message.getSender(), message.key));
 	}
 
-	public static List<String> getAllNames() {
+	public static List<String> getAllNames()
+	{
 		Set<String> names = new HashSet<String>();
 		names.addAll(Arrays.asList(others));
 		names.addAll(Arrays.asList(modders));
@@ -281,15 +310,17 @@ public class Headcrumbs {
 		return new ArrayList<String>(names);
 	}
 
-	private static void addHumanSpawns() {
+	private static void addHumanSpawns()
+	{
 		List<BiomeDictionary.Type> blacklistedBiomes = Arrays.asList(BiomeDictionary.Type.MUSHROOM);
 		List<String> blacklistedBiomeNames = Arrays.asList("Tainted Land");
 
 		List<Biome> biomes = new LinkedList<Biome>();
 		label: for(Biome biome : Biome.REGISTRY)
-			if(biome != null){
+			if(biome != null)
+			{
 				// Check if the biome name is blacklisted
-				if(blacklistedBiomeNames.contains(biome.getRegistryName().getResourcePath()))
+				if(blacklistedBiomeNames.contains(biome.getRegistryName().getPath()))
 					continue;
 
 				// Check if the biome type is blacklisted
@@ -299,17 +330,21 @@ public class Headcrumbs {
 
 				// Check if zombies can spawn on this biome
 				for(Object obj : biome.getSpawnableList(EnumCreatureType.MONSTER))
-					if(obj instanceof SpawnListEntry){
+					if(obj instanceof SpawnListEntry)
+					{
 						SpawnListEntry entry = (SpawnListEntry) obj;
-						try{
+						try
+						{
 
 							boolean isSpecialMobsZombie = Loader.isModLoaded("SpecialMobs") && Class.forName("toast.specialMobs.entity.zombie.Entity_SpecialZombie").isAssignableFrom(entry.entityClass);
-							if(entry.entityClass == EntityZombie.class || isSpecialMobsZombie){
+							if(entry.entityClass == EntityZombie.class || isSpecialMobsZombie)
+							{
 								biomes.add(biome);
 								continue label;
 							}
 
-						} catch(ClassNotFoundException e){
+						} catch(ClassNotFoundException e)
+						{
 							e.printStackTrace();
 						}
 					}

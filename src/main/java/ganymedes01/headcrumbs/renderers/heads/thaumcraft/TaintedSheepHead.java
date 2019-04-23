@@ -4,15 +4,18 @@ import ganymedes01.headcrumbs.libs.Strings;
 import ganymedes01.headcrumbs.renderers.heads.SheepHead;
 import ganymedes01.headcrumbs.utils.Utils;
 
-public class TaintedSheepHead extends SheepHead {
+public class TaintedSheepHead extends SheepHead
+{
 
 	public static final TaintedSheepHead INSTANCE = new TaintedSheepHead();
 
-	protected TaintedSheepHead() {
+	protected TaintedSheepHead()
+	{
 	}
 
 	@Override
-	public void init() {
+	public void init()
+	{
 		super.init();
 		setSecondTexture(Utils.getResource(Strings.TC_PREFIX + "sheep_fur.png"));
 	}

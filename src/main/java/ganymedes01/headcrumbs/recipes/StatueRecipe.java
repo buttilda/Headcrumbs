@@ -81,7 +81,7 @@ public class StatueRecipe extends ShapedRecipes {
 			char c0 = s.charAt(i1);
 
 			if (map.containsKey(Character.valueOf(c0)))
-				ingredients.add(Ingredient.func_193369_a(map.get(Character.valueOf(c0)).copy()));
+				ingredients.add(Ingredient.fromStacks(map.get(Character.valueOf(c0)).copy()));
 		}
 
 		StatueRecipe recipe = new StatueRecipe(name, j, k, ingredients, stack);

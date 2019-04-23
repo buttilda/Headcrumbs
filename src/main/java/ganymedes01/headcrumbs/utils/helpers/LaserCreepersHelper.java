@@ -1,6 +1,8 @@
 package ganymedes01.headcrumbs.utils.helpers;
 
-import ganymedes01.headcrumbs.libs.SkullTypes;
+import ganymedes01.headcrumbs.renderers.heads.lasercreeper.JetPackSpiderHead;
+import ganymedes01.headcrumbs.renderers.heads.lasercreeper.LaserCreeperHead;
+import ganymedes01.headcrumbs.renderers.heads.lasercreeper.RoboDinoHead;
 
 public class LaserCreepersHelper extends HeadDropHelper
 {
@@ -11,8 +13,8 @@ public class LaserCreepersHelper extends HeadDropHelper
 	{
 		super(MOD_ID);
 
-		typesMap.put(MOD_ID + ".laserCreeper", SkullTypes.laserCreeper);
-		typesMap.put(MOD_ID + ".roboDino", SkullTypes.roboDino);
-		typesMap.put(MOD_ID + ".jetPackSpider", SkullTypes.jetPackSpider);
+		super.registerMobHead("laserCreeper", "laser_creeper", LaserCreeperHead.INSTANCE);
+		super.registerMobHead("roboDino", "robo_dino", RoboDinoHead.INSTANCE);
+		super.registerMobHead("jetPackSpider", "jet_pack_spider", JetPackSpiderHead.INSTANCE);
 	}
 }

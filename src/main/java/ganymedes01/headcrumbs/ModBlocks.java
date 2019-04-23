@@ -11,22 +11,25 @@ import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class ModBlocks {
+public class ModBlocks
+{
 
 	public static final Block skull = new BlockHeadcrumbsSkull();
 	public static final Block player = new BlockPlayer();
 	public static final Block empty = new BlockEmpty();
 
 	@SubscribeEvent
-	public void onBlockRegistry(RegistryEvent.Register<Block> e) {
-		e.getRegistry().register(skull.setRegistryName(Reference.MOD_ID, "skull").setUnlocalizedName(Reference.MOD_ID + "." + "skull"));
-		e.getRegistry().register(player.setRegistryName(Reference.MOD_ID, "player").setUnlocalizedName(Reference.MOD_ID + "." + "player"));
-		e.getRegistry().register(empty.setRegistryName(Reference.MOD_ID, "empty").setUnlocalizedName(Reference.MOD_ID + "." + "empty"));
+	public void onBlockRegistry(RegistryEvent.Register<Block> e)
+	{
+		e.getRegistry().register(skull.setRegistryName(Reference.MOD_ID, "skull").setTranslationKey(Reference.MOD_ID + "." + "skull"));
+		e.getRegistry().register(player.setRegistryName(Reference.MOD_ID, "player").setTranslationKey(Reference.MOD_ID + "." + "player"));
+		e.getRegistry().register(empty.setRegistryName(Reference.MOD_ID, "empty").setTranslationKey(Reference.MOD_ID + "." + "empty"));
 	}
 
 	@SubscribeEvent
-	public void onItemRegistry(RegistryEvent.Register<Item> e) {
-		e.getRegistry().register(new ItemHeadcrumbsSkull(skull).setRegistryName(skull.getRegistryName()).setUnlocalizedName(skull.getUnlocalizedName()));
-		e.getRegistry().register(new ItemStatue(player).setRegistryName(player.getRegistryName()).setUnlocalizedName(player.getUnlocalizedName()));
+	public void onItemRegistry(RegistryEvent.Register<Item> e)
+	{
+		e.getRegistry().register(new ItemHeadcrumbsSkull(skull).setRegistryName(skull.getRegistryName()).setTranslationKey(skull.getTranslationKey()));
+		e.getRegistry().register(new ItemStatue(player).setRegistryName(player.getRegistryName()).setTranslationKey(player.getTranslationKey()));
 	}
 }

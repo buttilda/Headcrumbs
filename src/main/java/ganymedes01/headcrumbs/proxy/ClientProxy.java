@@ -4,8 +4,8 @@ import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.ModBlocks;
 import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.eventHandlers.ModelBakeEventHandler;
+import ganymedes01.headcrumbs.libs.HeadDropRegistry;
 import ganymedes01.headcrumbs.libs.Reference;
-import ganymedes01.headcrumbs.libs.SkullTypes;
 import ganymedes01.headcrumbs.renderers.LayerCustomCape;
 import ganymedes01.headcrumbs.renderers.RenderHuman;
 import ganymedes01.headcrumbs.renderers.SkullItemBakedModel;
@@ -27,55 +27,57 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
-public class ClientProxy extends CommonProxy {
+public class ClientProxy extends CommonProxy
+{
 
 	@Override
-	public void registerEvents() {
+	public void registerEvents()
+	{
 		super.registerEvents();
 
 		MinecraftForge.EVENT_BUS.register(new ModelBakeEventHandler());
 	}
 
 	@Override
-	public void registerTileEntities() {
+	public void registerTileEntities()
+	{
 		super.registerTileEntities();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBlockSkull.class, TileEntityBlockSkullRenderer.INSTANCE);
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBlockPlayer.class, new TileEntityBlockPlayerRenderer());
 	}
 
 	@Override
-	public void registerEntityRenderers() {
-		if (Headcrumbs.enableHumanMobs)
-			RenderingRegistry.registerEntityRenderingHandler(EntityHuman.class, new IRenderFactory<EntityHuman>() {
+	public void registerEntityRenderers()
+	{
+		if(Headcrumbs.enableHumanMobs)
+			RenderingRegistry.registerEntityRenderingHandler(EntityHuman.class, new IRenderFactory<EntityHuman>()
+			{
 
 				@Override
-				public Render<? super EntityHuman> createRenderFor(RenderManager manager) {
+				public Render<? super EntityHuman> createRenderFor(RenderManager manager)
+				{
 					return new RenderHuman(manager);
 				}
 			});
 	}
 
 	@Override
-	public void registerRenderers() {
+	public void registerRenderers()
+	{
 
-		for (SkullTypes type : SkullTypes.values())
-			type.model().init();
+		HeadDropRegistry.initModels();
 
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.skull), 0,
-				SkullItemBakedModel.RES_LOC);
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.skull), 0, SkullItemBakedModel.RES_LOC);
 
 		ItemModelMesher mesher = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
-		mesher.register(Item.getItemFromBlock(ModBlocks.skull), 0,
-				SkullItemBakedModel.RES_LOC);
-		mesher.register(Item.getItemFromBlock(ModBlocks.empty), 0,
-				new ModelResourceLocation(Reference.MOD_ID + ":empty", "inventory"));
-		mesher.register(Item.getItemFromBlock(ModBlocks.player), 0,
-				new ModelResourceLocation(Reference.MOD_ID + ":player", "inventory"));
+		mesher.register(Item.getItemFromBlock(ModBlocks.skull), 0, SkullItemBakedModel.RES_LOC);
+		mesher.register(Item.getItemFromBlock(ModBlocks.empty), 0, new ModelResourceLocation(Reference.MOD_ID + ":empty", "inventory"));
+		mesher.register(Item.getItemFromBlock(ModBlocks.player), 0, new ModelResourceLocation(Reference.MOD_ID + ":player", "inventory"));
 
 		Item.getItemFromBlock(ModBlocks.skull).setTileEntityItemStackRenderer(new TileEntityItemStackSkullRenderer());
 
 		LayerCustomCape customCapeRenderer = new LayerCustomCape();
-		for (RenderPlayer renderer : Minecraft.getMinecraft().getRenderManager().getSkinMap().values())
+		for(RenderPlayer renderer : Minecraft.getMinecraft().getRenderManager().getSkinMap().values())
 			renderer.addLayer(customCapeRenderer);
 	}
 }

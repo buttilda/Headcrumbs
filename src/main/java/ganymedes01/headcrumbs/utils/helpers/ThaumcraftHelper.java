@@ -1,6 +1,10 @@
 package ganymedes01.headcrumbs.utils.helpers;
 
-import ganymedes01.headcrumbs.libs.SkullTypes;
+import ganymedes01.headcrumbs.renderers.heads.BatHead;
+import ganymedes01.headcrumbs.renderers.heads.SlimeHead;
+import ganymedes01.headcrumbs.renderers.heads.WitherHead;
+import ganymedes01.headcrumbs.renderers.heads.thaumcraft.EldrichGuardianHead;
+import ganymedes01.headcrumbs.renderers.heads.thaumcraft.PechHead;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
@@ -14,14 +18,16 @@ public class ThaumcraftHelper extends HeadDropHelper
 	{
 		super(MOD_ID);
 
-		typesMap.put(MOD_ID + ".BrainyZombie", SkullTypes.angryZombie);
-		typesMap.put(MOD_ID + ".GiantBrainyZombie", SkullTypes.angryZombie);
-		typesMap.put(MOD_ID + ".Firebat", SkullTypes.fireBat);
-		typesMap.put(MOD_ID + ".Pech", SkullTypes.pech);
-		typesMap.put(MOD_ID + ".EldritchGuardian", SkullTypes.eldritchGuardian);
-		typesMap.put(MOD_ID + ".CultistKnight", SkullTypes.cultist);
-		typesMap.put(MOD_ID + ".CultistCleric", SkullTypes.cultist);
-		typesMap.put(MOD_ID + ".EldritchCrab", SkullTypes.eldritchCrab);
+		super.registerMobHead("BrainyZombie", "bzombievil", WitherHead.INSTANCE);
+		super.registerMobHead("giantbrainyzombie", "bzombievil", WitherHead.INSTANCE);
+		super.registerMobHead("firebat", BatHead.INSTANCE);
+		super.registerMobHead("giantbrainyzombie", "bzombievil", WitherHead.INSTANCE);
+		super.registerMobHead("tslime", SlimeHead.INSTANCE);
+		super.registerMobHead("pech", "pech_forage", PechHead.INSTANCE);
+		super.registerMobHead("eldritchguardian", "eldritch_guardian", EldrichGuardianHead.INSTANCE);
+		super.registerMobHead("cultistknight", "cultist", EldrichGuardianHead.INSTANCE);
+		super.registerMobHead("cultistcleric", "cultist", EldrichGuardianHead.INSTANCE);
+		super.registerMobHead("eldritchcrab", "crab", EldrichGuardianHead.INSTANCE);
 
 		if(Loader.isModLoaded(MOD_ID))
 			addAspects();
@@ -36,14 +42,14 @@ public class ThaumcraftHelper extends HeadDropHelper
 	}
 
 	@Override
-	protected ItemStack getHeadForEntity(Entity entity)
+	public ItemStack getHeadForEntity(String entityName, Entity ent)
 	{
-		ItemStack head = super.getHeadForEntity(entity);
+		ItemStack head = super.getHeadForEntity(entityName, ent);
 		if(head != null)
 			return head;
 
-		if(getThaumicSlimeSize(entity) == 1)
-			return SkullTypes.thaumicSlime.getStack();
+		//if(getThaumicSlimeSize(ent) == 1)
+		//return this.getHeadForEntity("tslime");
 
 		return null;
 	}

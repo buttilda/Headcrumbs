@@ -1,6 +1,12 @@
 package ganymedes01.headcrumbs.utils.helpers;
 
-import ganymedes01.headcrumbs.libs.SkullTypes;
+import ganymedes01.headcrumbs.renderers.ModelHead;
+import ganymedes01.headcrumbs.renderers.heads.SlimeHead;
+import ganymedes01.headcrumbs.renderers.heads.SpiderHead;
+import ganymedes01.headcrumbs.renderers.heads.VillagerHead;
+import ganymedes01.headcrumbs.renderers.heads.primitivemobs.JuggernautHead;
+import ganymedes01.headcrumbs.renderers.heads.primitivemobs.LilyLurkerHead;
+import ganymedes01.headcrumbs.renderers.heads.primitivemobs.SheepmanHead;
 
 public class PrimitiveMobsHelper extends HeadDropHelper
 {
@@ -10,18 +16,18 @@ public class PrimitiveMobsHelper extends HeadDropHelper
 	{
 		super(MOD_ID);
 
-		typesMap.put(MOD_ID + ".wizard", SkullTypes.wizard);
-		typesMap.put(MOD_ID + ".LilyLurker", SkullTypes.lilyLurker);
-		typesMap.put(MOD_ID + ".SheepmanSmith", SkullTypes.sheepman);
-		typesMap.put(MOD_ID + ".Sheepman", SkullTypes.sheepman);
-		typesMap.put(MOD_ID + ".BlazingJuggernaut", SkullTypes.blazingJuggernaut);
-		typesMap.put(MOD_ID + ".MotherSpider", SkullTypes.motherSpider);
-		typesMap.put(MOD_ID + ".BabySpider", SkullTypes.babySpider);
-		typesMap.put(MOD_ID + ".SkeletonWarrior", SkullTypes.skeletonWarrior);
-		typesMap.put(MOD_ID + ".BrainSlime", SkullTypes.brainSlime);
-		typesMap.put(MOD_ID + ".LostMiner", SkullTypes.lostMiner);
-		typesMap.put(MOD_ID + ".SupportCreeper", SkullTypes.supportCreeper);
-		typesMap.put(MOD_ID + ".FestiveCreeper", SkullTypes.festiveCreeper);
-		typesMap.put(MOD_ID + ".RocketCreeper", SkullTypes.rocketCreeper);
+		super.registerMobHead("rocketcreeper", "rocketcreeper/rocketcreeper", ModelHead.INSTANCE_NO_OVERLAY);
+		super.registerMobHead("festivecreeper", "festivecreeper/festivecreeper", ModelHead.INSTANCE_NO_OVERLAY);
+		super.registerMobHead("supportcreeper", "supportcreeper/supportcreeper", ModelHead.INSTANCE_NO_OVERLAY);
+		super.registerMobHead("lostminer", "villager/lostminer", VillagerHead.INSTANCE128x64);
+		super.registerMobHead("sheepman", "villager/sheepman", SheepmanHead.INSTANCE);
+		super.registerMobHead("sheepmansmith", "villager/sheepman", SheepmanHead.INSTANCE);
+		super.registerMobHead("wizard", "villager/wizard", VillagerHead.INSTANCE64);
+		super.registerMobHead("blazingjuggernaut", "blazingjuggernaut/blazingjuggernaut", JuggernautHead.INSTANCE);
+		super.registerMobHead("lilylurker", "lilylurker/lilylurker", LilyLurkerHead.INSTANCE);
+		super.registerMobHead("motherspider", "spiderfamily/motherspider", SpiderHead.INSTANCE);
+		super.registerMobHead("babyspider", "spiderfamily/babyspider", SpiderHead.INSTANCE);
+		super.registerMobHead("skeletonwarrior", "skeletonwarrior/skeletonwarrior", ModelHead.INSTANCE);
+		super.registerMobHead("brainslime", "brainslime/slime_brain", SlimeHead.INSTANCE);
 	}
 }

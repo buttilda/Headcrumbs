@@ -1,61 +1,112 @@
 package ganymedes01.headcrumbs.utils.helpers;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import ganymedes01.headcrumbs.libs.SkullTypes;
+import ganymedes01.headcrumbs.ModBlocks;
+import ganymedes01.headcrumbs.libs.HeadDrop;
+import ganymedes01.headcrumbs.libs.Strings;
+import ganymedes01.headcrumbs.renderers.ModelHead;
+import ganymedes01.headcrumbs.utils.HeadUtils;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.Loader;
 
-public abstract class HeadDropHelper implements Comparable<HeadDropHelper> {
-
-	public static final List<HeadDropHelper> helpers = new LinkedList<HeadDropHelper>();
-
-	public static ItemStack getHead(Entity entity) {
-		for (HeadDropHelper helper : helpers)
-			if (helper.isEnabled()) {
-				ItemStack head = helper.getHeadForEntity(entity);
-				if (head != null)
-					return head;
-			}
-		return null;
-	}
-
-	public static void register(HeadDropHelper helper) {
-		helpers.add(helper);
-		Collections.sort(helpers);
-	}
-
+public abstract class HeadDropHelper
+{
 	protected final String modID;
-	protected final Map<String, SkullTypes> typesMap = new HashMap<String, SkullTypes>();
+	private final Map<String, HeadDrop> heads = new HashMap<String, HeadDrop>();
 
-	public HeadDropHelper(String modID) {
+	public HeadDropHelper(String modID)
+	{
 		this.modID = modID;
 	}
 
-	protected boolean isEnabled() {
+	public boolean isEnabled()
+	{
 		return Loader.isModLoaded(modID);
 	}
 
-	protected ItemStack getHeadForEntity(Entity entity) {
-		String mobName = EntityList.getEntityString(entity);
-		
-		if (mobName == null)
-			return null;
-		SkullTypes type = typesMap.get(mobName);
-		if (type != null)
-			return type.getStack();
-
-		return null;
+	public String getModID()
+	{
+		return this.modID;
 	}
 
-	@Override
-	public int compareTo(HeadDropHelper obj) {
-		return obj instanceof VanillaHelper ? -1 : 0;
+	public ItemStack getHeadForEntity(String entityName, Entity ent)
+	{
+		if(entityName == null)
+			return ItemStack.EMPTY;
+		if(heads.containsKey(entityName))
+			return getStack(modID, entityName);
+
+		return ItemStack.EMPTY;
+	}
+
+	public HeadDrop getHeadDropForEntity(String entityName)
+	{
+		if(entityName == null)
+			return HeadDrop.DEFAULT;
+		if(heads.containsKey(entityName))
+			return heads.get(entityName);
+
+		return HeadDrop.DEFAULT;
+	}
+
+	public String getTextureLocBase()
+	{
+		return modID + Strings.DEFAULT_TEXTURE_LOC;
+	}
+
+	public void registerMobHead(String entityName, ModelHead head)
+	{
+		this.registerMobHead(entityName, entityName, head);
+	}
+
+	public void registerMobHead(String entityName, String textureFile, ModelHead head)
+	{
+		heads.put(entityName, new HeadDrop(getTextureLocBase() + textureFile, head));
+	}
+
+	public void registerMobHeadDiffTextureBase(String entityName, String textureFile, ModelHead head)
+	{
+		heads.put(entityName, new HeadDrop(textureFile, head));
+	}
+
+	public void initModels()
+	{
+		for(HeadDrop head : heads.values())
+			head.getModel().init();
+	}
+
+	public List<ItemStack> getItemStacks()
+	{
+		List<ItemStack> headStacks = new ArrayList<ItemStack>();
+
+		for(String name : heads.keySet())
+			headStacks.add(getStack(this.modID, name));
+
+		return headStacks;
+	}
+
+	public static ItemStack getStack(String modID, String name)
+	{
+		return getStack(modID + ":" + name);
+	}
+
+	public static ItemStack getStack(String name)
+	{
+		return getStack(1, name);
+	}
+
+	public static ItemStack getStack(int size, String name)
+	{
+		ItemStack stack = new ItemStack(ModBlocks.skull, size);
+		NBTTagCompound nbt = new NBTTagCompound();
+		stack.setTagCompound(nbt);
+		nbt.setString(HeadUtils.MODEL_TAG, name);
+		return stack;
 	}
 }
