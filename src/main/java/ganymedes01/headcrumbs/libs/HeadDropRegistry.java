@@ -26,6 +26,8 @@ public class HeadDropRegistry
 	public static ItemStack getHead(Entity entity)
 	{
 		ResourceLocation entName = EntityList.getKey(entity);
+		System.out.println("Res: " + entName);
+		System.out.println("String: " + EntityList.getEntityString(entity));
 		return getHead(entName.getNamespace(), entName.getPath(), entity);
 	}
 

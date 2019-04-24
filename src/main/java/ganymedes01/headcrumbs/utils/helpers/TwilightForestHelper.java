@@ -36,39 +36,38 @@ public class TwilightForestHelper extends HeadDropHelper
 	{
 		super(MOD_ID);
 
-		super.registerMobHeadDiffTextureBase("hostile_wolf", Strings.MC_PREFIX + "wolf/wolf_angry", WolfHead.INSTANCE);
-		super.registerMobHead("bunnydutch", BunnyHead.INSTANCE);
-		super.registerMobHead("penguin", PenguinHead.INSTANCE);
 		super.registerMobHead("bighorn_sheep", "bighorn", BighornHead.INSTANCE);
-		super.registerMobHead("wild_deer", "wilddeer", DeerHead.INSTANCE);
-		super.registerMobHead("wild_boar", "wildboar", WildBoarHead.INSTANCE);
+		super.registerMobHead("bunny_dutch", BunnyHead.INSTANCE);
+		super.registerMobHead("bunny_brown", BunnyHead.INSTANCE);
+		super.registerMobHead("bunny_white", BunnyHead.INSTANCE);
+		super.registerMobHead("deer", "wilddeer", DeerHead.INSTANCE);
+		super.registerMobHead("fire_beetle", "firebeetle", FireBeetleHead.INSTANCE);
+		super.registerMobHead("hedge_spider", "hedgespider", SpiderHead.INSTANCE);
+		super.registerMobHeadDiffTextureBase("hostile_wolf", Strings.MC_PREFIX + "wolf/wolf_angry", WolfHead.INSTANCE);
+		super.registerMobHead("hydra", HydraHead.INSTANCE);
+		super.registerMobHead("king_spider", "kingspider", SpiderHead.INSTANCE);
+		super.registerMobHead("kobold", "kobold", KoboldHead.INSTANCE);
+		super.registerMobHead("lich", LichHead.INSTANCE);
+		super.registerMobHead("maze_slime", SlimeHead.INSTANCE);
+		super.registerMobHead("mini_ghast", "towerghast", GhastHead.INSTANCE);
+		super.registerMobHead("mist_wolf", "mistwolf", MistWolfHead.INSTANCE);
+		super.registerMobHead("naga", NagaTFHead.INSTANCE);
+		super.registerMobHead("penguin", PenguinHead.INSTANCE);
+		super.registerMobHead("pinch_beetle", "pinchbeetle", PinchBeetle.INSTANCE);
 		super.registerMobHead("redcap", RedcapHead.INSTANCE);
 		super.registerMobHead("redcap_snapper", "redcap", RedcapHead.INSTANCE);
 		super.registerMobHead("skeleton_druid", "skeletondruid", ModelHead.INSTANCE);
-		super.registerMobHead("hedge_spider", "hedgespider", SpiderHead.INSTANCE);
-		super.registerMobHead("mist_wolf", "mistwolf", MistWolfHead.INSTANCE);
-		super.registerMobHead("mini_ghast", "towerghast", GhastHead.INSTANCE);
-		super.registerMobHead("tower_ghast", "towerghast_openeyes", GhastHead.INSTANCE);
-		super.registerMobHead("king_spider", "kingspider", SpiderHead.INSTANCE);
-		super.registerMobHead("twilight_kobold", "kobold", KoboldHead.INSTANCE);
 		super.registerMobHead("slime_beetle", "slimebeetle", SlimeBeetleHead.INSTANCE);
-		super.registerMobHead("fire_beetle", "firebeetle", FireBeetleHead.INSTANCE);
-		super.registerMobHead("pinch_beetle", "pinchbeetle", PinchBeetle.INSTANCE);
-		super.registerMobHead("tower_golem", "carminitegolem", TowerGolemHead.INSTANCE);
-		super.registerMobHead("tower_golem", "carminitegolem", TowerGolemHead.INSTANCE);
-		super.registerMobHead("bunnybrown", BunnyHead.INSTANCE);
-		super.registerMobHead("bunnywhite", BunnyHead.INSTANCE);
-		super.registerMobHead("forest_squirrel", "squirrel2", SquirrelHead.INSTANCE);
+		super.registerMobHead("snow_queen", SnowQueenHead.INSTANCE);
+		super.registerMobHead("squirrel", "squirrel2", SquirrelHead.INSTANCE);
 		super.registerMobHead("swarm_spider", "swarmspider", SpiderHead.INSTANCE);
-		super.registerMobHead("redscale_broodling", "towerbroodling", SpiderHead.INSTANCE);
-		super.registerMobHead("winterwolf", "winterwolf", MistWolfHead.INSTANCE);
-		super.registerMobHead("mazeslime", SlimeHead.INSTANCE);
+		super.registerMobHead("tower_broodling", "towerbroodling", SpiderHead.INSTANCE);
+		super.registerMobHead("tower_ghast", "towerghast_openeyes", GhastHead.INSTANCE);
+		super.registerMobHead("tower_golem", "carminitegolem", TowerGolemHead.INSTANCE);
 		super.registerMobHead("tower_termite", "towertermite", SilverfishHead.INSTANCE);
-		super.registerMobHead("hydra", HydraHead.INSTANCE);
-		super.registerMobHead("nagaTF", NagaTFHead.INSTANCE);
-		super.registerMobHead("lich", LichHead.INSTANCE);
-		super.registerMobHead("snowQueen", SnowQueenHead.INSTANCE);
-		super.registerMobHead("urGhast", GhastHead.INSTANCE);
+		super.registerMobHead("ur_ghast", GhastHead.INSTANCE);
+		super.registerMobHead("wild_boar", "wildboar", WildBoarHead.INSTANCE);
+		super.registerMobHead("winter_wolf", "winterwolf", MistWolfHead.INSTANCE);
 	}
 
 	@Override
@@ -81,7 +80,7 @@ public class TwilightForestHelper extends HeadDropHelper
 		if(entityName == null)
 			return null;
 
-		if(entityName.equals("forest_bunny"))
+		if(entityName.equals("bunny"))
 		{
 			Integer type;
 			try
@@ -91,14 +90,14 @@ public class TwilightForestHelper extends HeadDropHelper
 			{
 				type = 0;
 			}
-			String mobNameToGet = "bunnydutch";
+			String mobNameToGet = "bunny_dutch";
 			switch(type)
 			{
 				case 3:
-					mobNameToGet = "bunnybrown";
+					mobNameToGet = "bunny_brown";
 					break;
 				case 2:
-					mobNameToGet = "bunnywhite";
+					mobNameToGet = "bunny_white";
 					break;
 			}
 			return getStack(modID, mobNameToGet);
