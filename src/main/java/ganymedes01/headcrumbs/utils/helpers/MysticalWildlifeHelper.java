@@ -15,15 +15,15 @@ public class MysticalWildlifeHelper extends HeadDropHelper
 	{
 		super("mysticalwildlife");
 
-		super.registerMobHead("vrontausaurus", VrontausaurusHead.INSTANCE);
-		super.registerMobHead("yaga_hog", "yaga_hog_dirt", VrontausaurusHead.INSTANCE);
-		super.registerMobHead("dusk_lurker", DuskLurkerHead.INSTANCE);
 		super.registerMobHead("cicaptera_azure", CicapteraHead.INSTANCE);
-		super.registerMobHead("cicaptera_verdant", CicapteraHead.INSTANCE);
 		super.registerMobHead("cicaptera_crimson", CicapteraHead.INSTANCE);
 		super.registerMobHead("cicaptera_sandy", CicapteraHead.INSTANCE);
+		super.registerMobHead("cicaptera_verdant", CicapteraHead.INSTANCE);
 		super.registerMobHead("cicaptera_wintry", CicapteraHead.INSTANCE);
-		super.registerMobHead("plumper", PlumperHead.INSTANCE);
+		super.registerMobHead("dusk_lurker", DuskLurkerHead.INSTANCE);
 		super.registerMobHead("krill", KrillHead.INSTANCE);
+		super.registerMobHead("plumper", PlumperHead.INSTANCE);
+		super.registerMobHead("vrontausaurus", VrontausaurusHead.INSTANCE);
+		super.registerMobHead("yaga_hog", "yaga_hog_dirt", VrontausaurusHead.INSTANCE);	
 	}
 }

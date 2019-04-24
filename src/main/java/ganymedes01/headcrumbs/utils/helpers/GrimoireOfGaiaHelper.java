@@ -88,7 +88,7 @@ public class GrimoireOfGaiaHelper extends HeadDropHelper
 		super.registerMobHead("witch", "witch01", GoGWitchHead.INSTANCE);
 		super.registerMobHead("wither_cow", WitherCowHead.INSTANCE);
 		super.registerMobHead("yeti", YetiHead.INSTANCE);
-		super.registerMobHead("yuki_onna", YukiOnnaHead.INSTANCE);
+		super.registerMobHead("yuki-onna", YukiOnnaHead.INSTANCE);
 	}
 
 	@Override
