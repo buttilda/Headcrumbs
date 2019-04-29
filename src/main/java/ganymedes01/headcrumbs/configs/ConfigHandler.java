@@ -8,26 +8,29 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class ConfigHandler {
+public class ConfigHandler
+{
 
 	public static ConfigHandler INSTANCE = new ConfigHandler();
 	public Configuration configFile;
 	public String[] usedCategories = { Configuration.CATEGORY_GENERAL, "heads", "mob" };
 
-	public void init(File file) {
+	public void init(File file)
+	{
 		configFile = new Configuration(file);
 
 		syncConfigs();
 	}
 
-	private void syncConfigs() {
+	private void syncConfigs()
+	{
 		Headcrumbs.enablePlayerHeadsDrop = configFile.get(Configuration.CATEGORY_GENERAL, "Headcrumb Player heads drop randomly", Headcrumbs.enablePlayerHeadsDrop, "Headcrumb player can drop randomly upon death").setRequiresMcRestart(false).getBoolean();
 		Headcrumbs.enableMobsAndAnimalHeads = configFile.get(Configuration.CATEGORY_GENERAL, "Enable mobs and animals heads", Headcrumbs.enableMobsAndAnimalHeads, "Setting this to false will cause only player heads to show in the creative tab and drop updon death").setRequiresMcRestart(false).getBoolean();
-		Headcrumbs.addPlayerHeadsAsDungeonLoot = configFile.get(Configuration.CATEGORY_GENERAL, "Add player heads as dungeon loot", Headcrumbs.addPlayerHeadsAsDungeonLoot).setRequiresMcRestart(false).getBoolean();
+		Headcrumbs.addPlayerHeadsAsDungeonLoot = configFile.get(Configuration.CATEGORY_GENERAL, "Add player heads as dungeon loot", Headcrumbs.addPlayerHeadsAsDungeonLoot, "Setting this to true will allow for heads to be spawned in dungeon loot chests").setRequiresMcRestart(false).getBoolean();
 		Headcrumbs.headsDungeonLootWeight = configFile.get(Configuration.CATEGORY_GENERAL, "Player heads loot weight", Headcrumbs.headsDungeonLootWeight, "The bigger this number the easier it will be to find heads in dungeons.\nSome heads will be rarer than others.\nExamples: Diamond is 1, Redstone is 10").setRequiresMcRestart(true).getInt();
 		Headcrumbs.enablePlayerStatues = configFile.get(Configuration.CATEGORY_GENERAL, "Enable player statues", Headcrumbs.enablePlayerStatues, "Setting this to true allow statues to be built (Turning this off won't destroy existing statues)").setRequiresMcRestart(false).getBoolean();
 
-		Headcrumbs.headDropChance = configFile.get(Configuration.CATEGORY_GENERAL, "Chance of random head drop", Headcrumbs.headDropChance, "Random.nextInt(X / (fortune+1)) == 0").setRequiresMcRestart(false).getInt();
+		Headcrumbs.headDropChance = configFile.get(Configuration.CATEGORY_GENERAL, "Chance of random head drop", Headcrumbs.headDropChance, "Random.nextInt(X / (looting+1)) == 0").setRequiresMcRestart(false).getInt();
 		Headcrumbs.enableTooltips = configFile.get(Configuration.CATEGORY_GENERAL, "Enable head item tooltips", Headcrumbs.enableTooltips, "Enables tooltips with informations about certain names (mod authors mostly)").setRequiresMcRestart(false).getBoolean();
 
 		Headcrumbs.others = configFile.get("heads", "others", Headcrumbs.others).setRequiresMcRestart(true).getStringList();
@@ -51,13 +54,14 @@ public class ConfigHandler {
 		Headcrumbs.babyHumanChance = configFile.get("mob", "Baby human chance", Headcrumbs.babyHumanChance, "Chance that a human mob will spawn as a baby. Set to -1 to disable.").setRequiresMcRestart(false).getDouble(Headcrumbs.babyHumanChance);
 		Headcrumbs.humansAttackTwins = configFile.get("mob", "Humans attack twins", Headcrumbs.humansAttackTwins, "Setting this to false will force humans to not attack players with the same name as themselves").setRequiresMcRestart(true).getBoolean();
 
-		if (configFile.hasChanged())
+		if(configFile.hasChanged())
 			configFile.save();
 	}
 
 	@SubscribeEvent
-	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) {
-		if (Reference.MOD_ID.equals(eventArgs.getModID()))
+	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs)
+	{
+		if(Reference.MOD_ID.equals(eventArgs.getModID()))
 			syncConfigs();
 	}
 }

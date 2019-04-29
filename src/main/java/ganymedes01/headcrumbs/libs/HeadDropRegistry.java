@@ -26,8 +26,6 @@ public class HeadDropRegistry
 	public static ItemStack getHead(Entity entity)
 	{
 		ResourceLocation entName = EntityList.getKey(entity);
-		System.out.println("Res: " + entName);
-		System.out.println("String: " + EntityList.getEntityString(entity));
 		return getHead(entName.getNamespace(), entName.getPath(), entity);
 	}
 
@@ -49,7 +47,6 @@ public class HeadDropRegistry
 
 	public static HeadDrop getHeadDrop(String modID, String entity)
 	{
-		System.out.println(entity);
 		for(HeadDropHelper helper : helpers)
 			if(helper.getModID().equals(modID) && helper.isEnabled())
 				return helper.getHeadDropForEntity(entity);

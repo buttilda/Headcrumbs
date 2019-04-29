@@ -53,11 +53,4 @@ public class ThaumcraftHelper extends HeadDropHelper
 
 		return null;
 	}
-
-	private static int getThaumicSlimeSize(Entity entity)
-	{
-		//		if (entity instanceof EntityThaumicSlime)
-		//			return ((EntityThaumicSlime) entity).getSlimeSize();
-		return -1;
-	}
 }

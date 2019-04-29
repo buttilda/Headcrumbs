@@ -13,8 +13,6 @@ public class ModelBakeEventHandler
 	{
 		Object object = event.getModelRegistry().getObject(SkullItemBakedModel.RES_LOC);
 		if(object instanceof IBakedModel)
-		{
 			event.getModelRegistry().putObject(SkullItemBakedModel.RES_LOC, new SkullItemBakedModel((IBakedModel) object));
-		}
 	}
 }

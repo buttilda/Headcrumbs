@@ -18,6 +18,7 @@ import ganymedes01.headcrumbs.libs.HeadDropRegistry;
 import ganymedes01.headcrumbs.libs.Reference;
 import ganymedes01.headcrumbs.proxy.CommonProxy;
 import ganymedes01.headcrumbs.recipes.StatueRecipe;
+import ganymedes01.headcrumbs.utils.HeadUtils;
 import ganymedes01.headcrumbs.utils.helpers.ElementalCreepersHelper;
 import ganymedes01.headcrumbs.utils.helpers.EnderZooHelper;
 import ganymedes01.headcrumbs.utils.helpers.GrimoireOfGaiaHelper;
@@ -57,8 +58,9 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.GameData;
+import slimeknights.tconstruct.library.TinkerRegistry;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, guiFactory = Reference.GUI_FACTORY_CLASS)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, guiFactory = Reference.GUI_FACTORY_CLASS, dependencies = "required-after:tconstruct@[1.12.2-2.12.0.149,);")
 public class Headcrumbs
 {
 	public static final Random rand = new Random();
@@ -151,8 +153,6 @@ public class Headcrumbs
 	public static String humanNamePrefix = "";
 	public static boolean humansAttackTwins = true;
 
-	public static boolean isTinkersConstructLoaded = false;
-
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
@@ -171,7 +171,7 @@ public class Headcrumbs
 			EntityRegistry.registerModEntity(new ResourceLocation(Reference.MOD_ID, "Human"), EntityHuman.class, "Human", 0, instance, 512, 1, true, 0xFFF144, 0x69DFDA);
 			VIPHandler.init();
 		}
-		
+
 		HeadDropRegistry.register(new VanillaHelper());
 		HeadDropRegistry.register(new LaserCreepersHelper());
 		HeadDropRegistry.register(new TwilightForestHelper());
@@ -247,13 +247,9 @@ public class Headcrumbs
 
 		if(Loader.isModLoaded("tconstruct"))
 		{
-			//			TinkerRegistry.registerHeadDrop(EntityPlayerMP.class, (entity) -> {
-			//			      ItemStack head = new ItemStack(Items.SKULL, 1, 3);
-			//			      if(entity instanceof EntityPlayer) {
-			//			        NBTUtil.writeGameProfile(head.getOrCreateSubCompound("SkullOwner"), ((EntityPlayer) entity).getGameProfile());
-			//			      }
-			//			      return head;
-			//			    });
+			TinkerRegistry.registerHeadDrop(EntityHuman.class, (entity) -> {
+				return HeadUtils.getHeadfromEntity(entity);
+			});
 		}
 	}
 

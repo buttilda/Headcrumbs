@@ -1,85 +1,23 @@
 package ganymedes01.headcrumbs.utils;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
 import com.mojang.authlib.GameProfile;
 
-import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.libs.HeadDrop;
 import ganymedes01.headcrumbs.libs.HeadDropRegistry;
-import ganymedes01.headcrumbs.libs.Reference;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.storage.loot.LootContext;
-import net.minecraft.world.storage.loot.LootEntryItem;
-import net.minecraft.world.storage.loot.LootPool;
-import net.minecraft.world.storage.loot.LootTableList;
-import net.minecraft.world.storage.loot.conditions.LootCondition;
-import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.event.LootTableLoadEvent;
 
 public class HeadUtils
 {
 
 	public static final String OWNER_TAG = "SkullOwner";
 	public static final String MODEL_TAG = "SkullModel";
-
-	private static final List<ResourceLocation> overworldLoot = Arrays.asList(LootTableList.CHESTS_SIMPLE_DUNGEON, LootTableList.CHESTS_ABANDONED_MINESHAFT, LootTableList.CHESTS_DESERT_PYRAMID, LootTableList.CHESTS_JUNGLE_TEMPLE, LootTableList.CHESTS_IGLOO_CHEST);
-	private static final List<ResourceLocation> specialLoot = Arrays.asList(LootTableList.CHESTS_NETHER_BRIDGE, LootTableList.CHESTS_STRONGHOLD_LIBRARY, LootTableList.CHESTS_STRONGHOLD_CROSSING, LootTableList.CHESTS_STRONGHOLD_CORRIDOR, LootTableList.CHESTS_END_CITY_TREASURE);
-
-	private static class HeadLootFunction extends LootFunction
-	{
-
-		private static List<String> allNames = null;
-
-		protected HeadLootFunction()
-		{
-			super(null);
-		}
-
-		@Override
-		public ItemStack apply(ItemStack stack, Random rand, LootContext context)
-		{
-			if(allNames == null || allNames.isEmpty())
-				allNames = Headcrumbs.getAllNames();
-
-			String name = allNames.get(rand.nextInt(allNames.size()));
-			allNames.remove(name);
-			return HeadUtils.createHeadFor(name);
-		}
-	}
-
-	public static void onRegisterLootTable(LootTableLoadEvent event)
-	{
-		if(Headcrumbs.addPlayerHeadsAsDungeonLoot)
-		{
-			LootPool main = event.getTable().getPool("main");
-			if(main == null)
-				return;
-
-			int weight = -1;
-			if(specialLoot.contains(event.getName()))
-				weight = Headcrumbs.headsDungeonLootWeight + 1;
-			else if(overworldLoot.contains(event.getName()))
-				weight = Headcrumbs.headsDungeonLootWeight;
-
-			if(weight > 0)
-			{
-				main.addEntry(new LootEntryItem(Items.SKULL, weight, 0, new LootFunction[] { new HeadLootFunction() }, new LootCondition[0], Reference.MOD_ID + ":player_heads0"));
-				main.addEntry(new LootEntryItem(Items.SKULL, weight, 0, new LootFunction[] { new HeadLootFunction() }, new LootCondition[0], Reference.MOD_ID + ":player_heads1"));
-				main.addEntry(new LootEntryItem(Items.SKULL, weight, 0, new LootFunction[] { new HeadLootFunction() }, new LootCondition[0], Reference.MOD_ID + ":player_heads2"));
-			}
-		}
-	}
 
 	public static ItemStack getHeadfromEntity(EntityLivingBase target)
 	{
