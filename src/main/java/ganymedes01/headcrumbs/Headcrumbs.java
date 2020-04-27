@@ -180,7 +180,15 @@ public class Headcrumbs
 			VIPHandler.init();
 		}
 
-		
+		registerHelpers();
+
+		proxy.registerEntityRenderers();
+		proxy.registerEvents();
+		proxy.registerTileEntities();
+	}
+
+	public static void registerHelpers() {
+		HeadDropRegistry.helpers.clear();
 		HeadDropRegistry.register(new VanillaHelper());
 		HeadDropRegistry.register(new LaserCreepersHelper());
 		HeadDropRegistry.register(new TwilightForestHelper());
@@ -193,12 +201,7 @@ public class Headcrumbs
 		HeadDropRegistry.register(new ElementalCreepersHelper());
 		HeadDropRegistry.register(new MysticalWildlifeHelper());
 		HeadDropRegistry.register(new BewitchmentHelper());
-
-		proxy.registerEntityRenderers();
-		proxy.registerEvents();
-		proxy.registerTileEntities();
 	}
-
 
 	@EventHandler
 	public static void onServerStart(FMLServerStartingEvent event) {

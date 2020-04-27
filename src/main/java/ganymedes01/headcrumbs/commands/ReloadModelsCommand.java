@@ -1,5 +1,6 @@
 package ganymedes01.headcrumbs.commands;
 
+import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.libs.HeadDropRegistry;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -28,6 +29,7 @@ public class ReloadModelsCommand extends CommandBase {
 		
 		if (sender instanceof EntityPlayerMP) {
 			HeadDropRegistry.initModels();
+			Headcrumbs.registerHelpers();
 		} else {
 			sender.sendMessage(new TextComponentString("This is a client-only command."));
 		}

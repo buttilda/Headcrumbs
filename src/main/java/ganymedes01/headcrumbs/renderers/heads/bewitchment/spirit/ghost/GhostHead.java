@@ -12,31 +12,28 @@ public class GhostHead extends ModelHead {
 	public static final GhostHead INSTANCE = new GhostHead();
 	
 	protected GhostHead() {
+		super(64);
 	}
-	
-	private ModelRenderer skull01;
 	
 	@Override
 	public void init() {
-		hideOverlay();		
 		this.textureWidth = 64;
 		this.textureHeight = 64;
-
 
 		head = new ModelRenderer(this, 0, 0);
 		head.setRotationPoint(0.0F, 0.0F, 0.0F);
 		head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
 
-		skull01 = new ModelRenderer(this, 34, 0);
-		skull01.setRotationPoint(0.0F, 0.0F, 0.0F);
-		skull01.addBox(-3.5F, -7.5F, -3.0F, 7, 5, 6, 0.0F);
+		overlay = new ModelRenderer(this, 34, 0);
+		overlay.setRotationPoint(0.0F, 0.0F, 0.0F);
+		overlay.addBox(-3.5F, -7.5F, -3.0F, 7, 5, 6, 0.0F);
 
 		ModelRenderer skullJaw = new ModelRenderer(this, 19, 30);
 		skullJaw.setRotationPoint(0.0F, -1.9F, 0.9F);
 		skullJaw.addBox(-2.5F, -1.0F, -3.5F, 5, 2, 5, 0.0F);
 		setRotateAngle(skullJaw, 0.17453292519943295F, 0.0F, 0.0F);
 
-		skull01.addChild(skullJaw);
+		overlay.addChild(skullJaw);
 	}
 	
 	@Override
@@ -45,25 +42,23 @@ public class GhostHead extends ModelHead {
 		GlStateManager.enableBlend();
 		
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 0.25F);
+		GlStateManager.depthMask(false);
+		
+		GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 	}
 	
 	@Override
-	public void render(float rotationX, float rotationY) {
-		head.rotateAngleY = rotationX / (180F / (float) Math.PI);
-		head.rotateAngleX = rotationY / (180F / (float) Math.PI);
-		skull01.rotateAngleY = rotationX / (180F / (float) Math.PI);
-		skull01.rotateAngleX = rotationY / (180F / (float) Math.PI);
-		head.render(0.0625F);
-		skull01.render(0.0625F);
-		
+	public void render(float rotationX, float rotationY) {		
 	}
 	
 	@Override
 	public void postRender() {
+		GlStateManager.depthMask(true);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1F);
 		
 		GlStateManager.disableAlpha();
 		GlStateManager.disableBlend();
+		
 	}
 	
 	@Override
