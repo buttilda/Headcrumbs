@@ -232,86 +232,86 @@ item.headcrumbs.mysticalwildlife:vrontausaurus.name=Vrontausaurus Head
 item.headcrumbs.mysticalwildlife:yaga_hog.name=Yaga Hog Head
 
 # Bewitchment
-item.headcrumbs.bewitchment:lizard.name:Lizard Head
-item.headcrumbs.bewitchment:lizard_1.name:Lizard Head
-item.headcrumbs.bewitchment:lizard_2.name:Lizard Head
-item.headcrumbs.bewitchment:lizard_3.name:Lizard Head
-item.headcrumbs.bewitchment:owl.name:Owl Head
-item.headcrumbs.bewitchment:owl_1.name:Owl Head
-item.headcrumbs.bewitchment:owl_2.name:Owl Head
-item.headcrumbs.bewitchment:owl_3.name:Owl Head
-item.headcrumbs.bewitchment:raven.name:Raven Head
-item.headcrumbs.bewitchment:snake.name:Snake Head
-item.headcrumbs.bewitchment:snake_1.name:Snake Head
-item.headcrumbs.bewitchment:snake_2.name:Snake Head
-item.headcrumbs.bewitchment:snake_3.name:Snake Head
-item.headcrumbs.bewitchment:snake_4.name:Snake Head
-item.headcrumbs.bewitchment:snake_5.name:Snake Head
-item.headcrumbs.bewitchment:toad.name:Toad Head
-item.headcrumbs.bewitchment:toad_1.name:Toad Head
-item.headcrumbs.bewitchment:toad_2.name:Toad Head
-item.headcrumbs.bewitchment:toad_3.name:Toad Head
-item.headcrumbs.bewitchment:werewolf.name:Brown Werewolf Head
-item.headcrumbs.bewitchment:werewolf_1.name:Arctic Werewolf Head
-item.headcrumbs.bewitchment:werewolf_2.name:Black Werewolf Head
-item.headcrumbs.bewitchment:werewolf_3.name:Red Werewolf Head
-item.headcrumbs.bewitchment:werewolf_4.name:Timber Werewolf Head
-item.headcrumbs.bewitchment:werewolf_5.name:Grey Werewolf Head
-item.headcrumbs.bewitchment:bafometyr.name:Bafometyr's Head
-item.headcrumbs.bewitchment:baphomet.name:Baphomet's Head
-item.headcrumbs.bewitchment:cambion.name:Cambion Head
-item.headcrumbs.bewitchment:cambion_1.name:Cambion Head
-item.headcrumbs.bewitchment:cambion_2.name:Cambion Head
-item.headcrumbs.bewitchment:cambion_3.name:Cambion Head
-item.headcrumbs.bewitchment:cleaver.name:Cleaver Head
-item.headcrumbs.bewitchment:demoness.name:Demoness Head
-item.headcrumbs.bewitchment:demoness_1.name:Demoness Head
-item.headcrumbs.bewitchment:demoness_2.name:Demoness Head
-item.headcrumbs.bewitchment:demoness_3.name:Demoness Head
-item.headcrumbs.bewitchment:demon.name:Demon Head
-item.headcrumbs.bewitchment:demon_1.name:Demon Head
-item.headcrumbs.bewitchment:demon_2.name:Demon Head
-item.headcrumbs.bewitchment:demon_3.name:Demon Head
-item.headcrumbs.bewitchment:druden.name:Druden Head
-item.headcrumbs.bewitchment:druden_1.name:Druden Head
-item.headcrumbs.bewitchment:druden_2.name:Druden Head
-item.headcrumbs.bewitchment:druden_3.name:Druden Head
-item.headcrumbs.bewitchment:feuerwurm.name:Feuerwurm Head
-item.headcrumbs.bewitchment:feuerwurm_1.name:Feuerwurm Head
-item.headcrumbs.bewitchment:feuerwurm_2.name:Feuerwurm Head
-item.headcrumbs.bewitchment:feuerwurm_3.name:Feuerwurm Head
-item.headcrumbs.bewitchment:feuerwurm_4.name:Feuerwurm Head
-item.headcrumbs.bewitchment:feuerwurm_5.name:Feuerwurm Head
-item.headcrumbs.bewitchment:feuerwurm_6.name:Feuerwurm Head
-item.headcrumbs.bewitchment:feuerwurm_7.name:Feuerwurm Head
-item.headcrumbs.bewitchment:feuerwurm_8.name:Feuerwurm Head
-item.headcrumbs.bewitchment:hellhound.name:Hellhound Head
-item.headcrumbs.bewitchment:hellhound_1.name:Hellhound Head
-item.headcrumbs.bewitchment:hellhound_2.name:Hellhound Head
-item.headcrumbs.bewitchment:hellhound_3.name:Hellhound Head
-item.headcrumbs.bewitchment:imp.name:Imp Head
-item.headcrumbs.bewitchment:imp_1.name:Imp Head
-item.headcrumbs.bewitchment:imp_2.name:Imp Head
-item.headcrumbs.bewitchment:imp_3.name:Imp Head
-item.headcrumbs.bewitchment:imp_4.name:Imp Head
-item.headcrumbs.bewitchment:imp_5.name:Imp Head
-item.headcrumbs.bewitchment:imp_6.name:Imp Head
-item.headcrumbs.bewitchment:leonard.name:Leonard's Head
-item.headcrumbs.bewitchment:shadow_person.name:Shadow Person's Head
-item.headcrumbs.bewitchment:shadow_person_1.name:Shadow Person's Head
-item.headcrumbs.bewitchment:shadow_person_2.name:Shadow Person's Head
-item.headcrumbs.bewitchment:shadow_person_3.name:Shadow Person's Head
-item.headcrumbs.bewitchment:black_dog.name:Black Dog Head
-item.headcrumbs.bewitchment:black_dog_1.name:Black Dog Head
-item.headcrumbs.bewitchment:black_dog_2.name:Black Dog Head
-item.headcrumbs.bewitchment:black_dog_3.name:Black Dog Head
-item.headcrumbs.bewitchment:black_dog_4.name:Black Dog Head
-item.headcrumbs.bewitchment:ghost.name:Ghost Head
-item.headcrumbs.bewitchment:ghost_1.name:Ghost Head
-item.headcrumbs.bewitchment:ghost_2.name:Ghost Head
-item.headcrumbs.bewitchment:ghost_3.name:Ghost Head
-item.headcrumbs.bewitchment:ghost_4.name:Ghost Head
-item.headcrumbs.bewitchment:ghost_5.name:Ghost Head
+item.headcrumbs.bewitchment:lizard.name=Lizard Head
+item.headcrumbs.bewitchment:lizard_1.name=Lizard Head
+item.headcrumbs.bewitchment:lizard_2.name=Lizard Head
+item.headcrumbs.bewitchment:lizard_3.name=Lizard Head
+item.headcrumbs.bewitchment:owl.name=Owl Head
+item.headcrumbs.bewitchment:owl_1.name=Owl Head
+item.headcrumbs.bewitchment:owl_2.name=Owl Head
+item.headcrumbs.bewitchment:owl_3.name=Owl Head
+item.headcrumbs.bewitchment:raven.name=Raven Head
+item.headcrumbs.bewitchment:snake.name=Snake Head
+item.headcrumbs.bewitchment:snake_1.name=Snake Head
+item.headcrumbs.bewitchment:snake_2.name=Snake Head
+item.headcrumbs.bewitchment:snake_3.name=Snake Head
+item.headcrumbs.bewitchment:snake_4.name=Snake Head
+item.headcrumbs.bewitchment:snake_5.name=Snake Head
+item.headcrumbs.bewitchment:toad.name=Toad Head
+item.headcrumbs.bewitchment:toad_1.name=Toad Head
+item.headcrumbs.bewitchment:toad_2.name=Toad Head
+item.headcrumbs.bewitchment:toad_3.name=Toad Head
+item.headcrumbs.bewitchment:werewolf.name=Brown Werewolf Head
+item.headcrumbs.bewitchment:werewolf_1.name=Arctic Werewolf Head
+item.headcrumbs.bewitchment:werewolf_2.name=Black Werewolf Head
+item.headcrumbs.bewitchment:werewolf_3.name=Red Werewolf Head
+item.headcrumbs.bewitchment:werewolf_4.name=Timber Werewolf Head
+item.headcrumbs.bewitchment:werewolf_5.name=Grey Werewolf Head
+item.headcrumbs.bewitchment:bafometyr.name=Bafometyr's Head
+item.headcrumbs.bewitchment:baphomet.name=Baphomet's Head
+item.headcrumbs.bewitchment:cambion.name=Cambion Head
+item.headcrumbs.bewitchment:cambion_1.name=Cambion Head
+item.headcrumbs.bewitchment:cambion_2.name=Cambion Head
+item.headcrumbs.bewitchment:cambion_3.name=Cambion Head
+item.headcrumbs.bewitchment:cleaver.name=Cleaver Head
+item.headcrumbs.bewitchment:demoness.name=Demoness Head
+item.headcrumbs.bewitchment:demoness_1.name=Demoness Head
+item.headcrumbs.bewitchment:demoness_2.name=Demoness Head
+item.headcrumbs.bewitchment:demoness_3.name=Demoness Head
+item.headcrumbs.bewitchment:demon.name=Demon Head
+item.headcrumbs.bewitchment:demon_1.name=Demon Head
+item.headcrumbs.bewitchment:demon_2.name=Demon Head
+item.headcrumbs.bewitchment:demon_3.name=Demon Head
+item.headcrumbs.bewitchment:druden.name=Druden Head
+item.headcrumbs.bewitchment:druden_1.name=Druden Head
+item.headcrumbs.bewitchment:druden_2.name=Druden Head
+item.headcrumbs.bewitchment:druden_3.name=Druden Head
+item.headcrumbs.bewitchment:feuerwurm.name=Feuerwurm Head
+item.headcrumbs.bewitchment:feuerwurm_1.name=Feuerwurm Head
+item.headcrumbs.bewitchment:feuerwurm_2.name=Feuerwurm Head
+item.headcrumbs.bewitchment:feuerwurm_3.name=Feuerwurm Head
+item.headcrumbs.bewitchment:feuerwurm_4.name=Feuerwurm Head
+item.headcrumbs.bewitchment:feuerwurm_5.name=Feuerwurm Head
+item.headcrumbs.bewitchment:feuerwurm_6.name=Feuerwurm Head
+item.headcrumbs.bewitchment:feuerwurm_7.name=Feuerwurm Head
+item.headcrumbs.bewitchment:feuerwurm_8.name=Feuerwurm Head
+item.headcrumbs.bewitchment:hellhound.name=Hellhound Head
+item.headcrumbs.bewitchment:hellhound_1.name=Hellhound Head
+item.headcrumbs.bewitchment:hellhound_2.name=Hellhound Head
+item.headcrumbs.bewitchment:hellhound_3.name=Hellhound Head
+item.headcrumbs.bewitchment:imp.name=Imp Head
+item.headcrumbs.bewitchment:imp_1.name=Imp Head
+item.headcrumbs.bewitchment:imp_2.name=Imp Head
+item.headcrumbs.bewitchment:imp_3.name=Imp Head
+item.headcrumbs.bewitchment:imp_4.name=Imp Head
+item.headcrumbs.bewitchment:imp_5.name=Imp Head
+item.headcrumbs.bewitchment:imp_6.name=Imp Head
+item.headcrumbs.bewitchment:leonard.name=Leonard's Head
+item.headcrumbs.bewitchment:shadow_person.name=Shadow Person's Head
+item.headcrumbs.bewitchment:shadow_person_1.name=Shadow Person's Head
+item.headcrumbs.bewitchment:shadow_person_2.name=Shadow Person's Head
+item.headcrumbs.bewitchment:shadow_person_3.name=Shadow Person's Head
+item.headcrumbs.bewitchment:black_dog.name=Black Dog Head
+item.headcrumbs.bewitchment:black_dog_1.name=Black Dog Head
+item.headcrumbs.bewitchment:black_dog_2.name=Black Dog Head
+item.headcrumbs.bewitchment:black_dog_3.name=Black Dog Head
+item.headcrumbs.bewitchment:black_dog_4.name=Black Dog Head
+item.headcrumbs.bewitchment:ghost.name=Ghost Head
+item.headcrumbs.bewitchment:ghost_1.name=Ghost Head
+item.headcrumbs.bewitchment:ghost_2.name=Ghost Head
+item.headcrumbs.bewitchment:ghost_3.name=Ghost Head
+item.headcrumbs.bewitchment:ghost_4.name=Ghost Head
+item.headcrumbs.bewitchment:ghost_5.name=Ghost Head
 
 ##########
 # Entity #
