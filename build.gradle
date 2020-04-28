@@ -33,7 +33,7 @@ minecraft {
     version = "${mc_version}-${forge_version}"
     runDir = "run-1.12"
 	
-     mappings = "stable_39"
+    mappings = "stable_39"
 }
 
 repositories {
@@ -41,11 +41,33 @@ repositories {
         name 'TinCon Maven'
         url 'https://dvs1.progwml6.com/files/maven'
     }
+    maven {
+        name 'jitpack.io'
+        url 'https://jitpack.io'
+    }
+    maven {
+        name 'Cofh'
+        url 'https://maven.covers1624.net'
+    }
+    maven {
+        name 'Curseforge Maven'
+        url 'http://minecraft.curseforge.com/api/maven/'
+    }
 }
 
 dependencies {
  	deobfCompile "slimeknights.mantle:Mantle:1.12-1.3.3.49"
     deobfCompile "slimeknights:TConstruct:1.12.2-2.12.0.149"
+    //implementation "com.github.SleepyTrousers:EnderCore:0.5.70"
+    //implementation "com.github.SleepyTrousers:EnderIO:5.0.50"
+    implementation "com.github.Silentine:GrimoireOfGaia:1.12.1-Dev-SNAPSHOT"
+    implementation "com.github.Lykrast:MysticalWildlife:1.12-SNAPSHOT"
+    deobfCompile "com.progwml6.natura:Natura-1.12:1.12-4.3.0.8"
+    // implementation "com.github.Daveyx0:PrimitiveMobs:master-SNAPSHOT" -- doesn't work...
+    deobfCompile "cofh:ThermalFoundation:1.12.2-2.6.3.27:deobf"
+    deobfCompile "thaumcraft:Thaumcraft:1.12.2:6.1.BETA26" 
+    implementation "com.github.TeamTwilight:twilightforest:1.12.x-SNAPSHOT"
+    implementation "com.github.Um-Mitternacht:Bewitchment:1.12.2-SNAPSHOT"
 }
 
 processResources {
