@@ -48,10 +48,6 @@ public class GhostHead extends ModelHead {
 	}
 	
 	@Override
-	public void render(float rotationX, float rotationY) {		
-	}
-	
-	@Override
 	public void postRender() {
 		GlStateManager.depthMask(true);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1F);
