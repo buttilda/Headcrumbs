@@ -30,4 +30,8 @@ public class PrimitiveMobsHelper extends HeadDropHelper
 		super.registerMobHead("skeletonwarrior", "skeletonwarrior/skeletonwarrior", ModelHead.INSTANCE);
 		super.registerMobHead("brainslime", "brainslime/slime_brain", SlimeHead.INSTANCE);
 	}
+
+	@Override
+	public void registerTinkersHeadDrops() {
+	}
 }
