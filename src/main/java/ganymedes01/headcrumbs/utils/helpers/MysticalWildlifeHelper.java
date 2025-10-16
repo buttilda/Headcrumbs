@@ -5,6 +5,12 @@ import ganymedes01.headcrumbs.renderers.heads.mysticalwildlife.DuskLurkerHead;
 import ganymedes01.headcrumbs.renderers.heads.mysticalwildlife.KrillHead;
 import ganymedes01.headcrumbs.renderers.heads.mysticalwildlife.PlumperHead;
 import ganymedes01.headcrumbs.renderers.heads.mysticalwildlife.VrontausaurusHead;
+import lykrast.mysticalwildlife.common.entity.EntityCicaptera;
+import lykrast.mysticalwildlife.common.entity.EntityDuskLurker;
+import lykrast.mysticalwildlife.common.entity.EntityKrill;
+import lykrast.mysticalwildlife.common.entity.EntityPlumper;
+import lykrast.mysticalwildlife.common.entity.EntityVrontausaurus;
+import lykrast.mysticalwildlife.common.entity.EntityYagaHog;
 
 public class MysticalWildlifeHelper extends HeadDropHelper
 {
@@ -25,5 +31,15 @@ public class MysticalWildlifeHelper extends HeadDropHelper
 		super.registerMobHead("plumper", PlumperHead.INSTANCE);
 		super.registerMobHead("vrontausaurus", VrontausaurusHead.INSTANCE);
 		super.registerMobHead("yaga_hog", "yaga_hog_dirt", VrontausaurusHead.INSTANCE);	
+	}
+
+	@Override
+	public void registerTinkersHeadDrops() {
+		TConstructHelper.registerHeadDrop(EntityCicaptera.class);
+		TConstructHelper.registerHeadDrop(EntityDuskLurker.class);
+		TConstructHelper.registerHeadDrop(EntityKrill.class);
+		TConstructHelper.registerHeadDrop(EntityPlumper.class);
+		TConstructHelper.registerHeadDrop(EntityVrontausaurus.class);
+		TConstructHelper.registerHeadDrop(EntityYagaHog.class);
 	}
 }

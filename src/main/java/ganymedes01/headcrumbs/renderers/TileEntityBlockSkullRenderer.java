@@ -52,6 +52,7 @@ public class TileEntityBlockSkullRenderer extends TileEntitySpecialRenderer<Tile
 		model.preRender(profile);
 		model.render(skullRotation);
 		renderSpecial(profile, skullRotation);
+		model.postRender();
 
 		if(GL11.glIsEnabled(GL11.GL_BLEND))
 			GlStateManager.enableBlend();

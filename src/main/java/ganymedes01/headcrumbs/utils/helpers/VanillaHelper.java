@@ -1,5 +1,6 @@
 package ganymedes01.headcrumbs.utils.helpers;
 
+import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.libs.Strings;
 import ganymedes01.headcrumbs.renderers.ModelHead;
 import ganymedes01.headcrumbs.renderers.heads.BatHead;
@@ -29,6 +30,8 @@ import ganymedes01.headcrumbs.renderers.heads.WitherHead;
 import ganymedes01.headcrumbs.renderers.heads.WolfHead;
 import ganymedes01.headcrumbs.renderers.heads.ZombieVillagerHead;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityCaveSpider;
@@ -53,16 +56,22 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityDonkey;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityMooshroom;
+import net.minecraft.entity.passive.EntityMule;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntityRabbit;
 import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.passive.EntitySkeletonHorse;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.entity.passive.EntityZombieHorse;
 import net.minecraft.item.ItemStack;
+import scala.actors.threadpool.Arrays;
+import slimeknights.tconstruct.library.TinkerRegistry;
 
 public class VanillaHelper extends HeadDropHelper
 {
@@ -173,6 +182,43 @@ public class VanillaHelper extends HeadDropHelper
 		super.registerMobHead(zombie_pigman, PigmanHead.INSTANCE);
 	}
 
+	@Override
+	public void registerTinkersHeadDrops() {
+		TConstructHelper.registerHeadDrop(EntityBat.class);
+		TConstructHelper.registerHeadDrop(EntityBlaze.class);
+		TConstructHelper.registerHeadDrop(EntityCaveSpider.class);
+		TConstructHelper.registerHeadDrop(EntityChicken.class);
+		TConstructHelper.registerHeadDrop(EntityCow.class);
+		TConstructHelper.registerHeadDrop(EntityDonkey.class);
+		TConstructHelper.registerHeadDrop(EntityEnderman.class);
+		TConstructHelper.registerHeadDrop(EntityEndermite.class);
+		TConstructHelper.registerHeadDrop(EntityElderGuardian.class);
+		TConstructHelper.registerHeadDrop(EntityGhast.class);
+		TConstructHelper.registerHeadDrop(EntityGuardian.class);
+		TConstructHelper.registerHeadDrop(EntityHorse.class);
+		TConstructHelper.registerHeadDrop(EntitySkeletonHorse.class);
+		TConstructHelper.registerHeadDrop(EntityZombieHorse.class);
+		TConstructHelper.registerHeadDrop(EntityIronGolem.class);
+		TConstructHelper.registerHeadDrop(EntityMagmaCube.class);
+		TConstructHelper.registerHeadDrop(EntityMooshroom.class);
+		TConstructHelper.registerHeadDrop(EntityMule.class);
+		TConstructHelper.registerHeadDrop(EntityOcelot.class);
+		TConstructHelper.registerHeadDrop(EntityPolarBear.class);
+		TConstructHelper.registerHeadDrop(EntityPig.class);
+		TConstructHelper.registerHeadDrop(EntityRabbit.class);
+		TConstructHelper.registerHeadDrop(EntitySheep.class);
+		TConstructHelper.registerHeadDrop(EntitySilverfish.class);
+		TConstructHelper.registerHeadDrop(EntitySlime.class);
+		TConstructHelper.registerHeadDrop(EntitySnowman.class);
+		TConstructHelper.registerHeadDrop(EntitySpider.class);
+		TConstructHelper.registerHeadDrop(EntityVillager.class);
+		TConstructHelper.registerHeadDrop(EntityWitch.class);
+		TConstructHelper.registerHeadDrop(EntityWither.class);
+		TConstructHelper.registerHeadDrop(EntityWolf.class);
+		TConstructHelper.registerHeadDrop(EntityZombieVillager.class);
+		TConstructHelper.registerHeadDrop(EntityPigZombie.class);
+	}
+	
 	@Override
 	public ItemStack getHeadForEntity(String entityName, Entity entity)
 	{

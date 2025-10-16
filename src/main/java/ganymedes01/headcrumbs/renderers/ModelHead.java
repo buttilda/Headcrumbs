@@ -21,6 +21,12 @@ public class ModelHead extends ModelBase {
 	private boolean renderOverlay;
 	private ResourceLocation secondTex = null;
 
+	private boolean translated = false;
+	private float dx;
+	private float dy;
+	private float dz;
+	private float dDist;
+	
 	public ModelHead() {
 		this(32);
 	}
@@ -48,6 +54,9 @@ public class ModelHead extends ModelBase {
 
 	public void preRenderItem(GameProfile profile, ItemRenderType type) {
 	}
+	
+	public void postRender() {
+	}
 
 	public final ResourceLocation getSecondTexture() {
 		return secondTex;
@@ -70,9 +79,38 @@ public class ModelHead extends ModelBase {
 		render(rotationX, 0.0F);
 	}
 
+	public void setTranslation(float dx, float dy, float dz) {
+		this.translated = true;
+		if (dx < 0) this.dx = -1;
+		else if (dx > 0) this.dx = 1;
+		this.dy = dy;
+		if (dz < 0) this.dz = -1;
+		else if (dz > 0) this.dz = 1;
+		this.dDist = (float) Math.sqrt(Math.pow(dx, 2) + Math.pow(dz, 2));
+	}
+	
+	public void applyTranslation() {
+		if (this.translated) {
+			float dx = (float) (Math.sin(head.rotateAngleY - Math.PI) * -this.dDist);
+			float dz = (float) (Math.cos(head.rotateAngleY - Math.PI) * -this.dDist);
+			
+			if ((head.rotateAngleY >= Math.PI/4.0d * 3.0d && Math.PI/4.0d * 5.0d  >= head.rotateAngleY)
+					|| (head.rotateAngleY >= Math.PI/4.0d * 7.0d || Math.PI/4.0d >= head.rotateAngleY)) {
+				dx *= this.dx;
+				dz *= this.dz;
+			} else {
+				dx *= this.dz;
+				dz *= this.dx;
+			}
+			
+			GlStateManager.translate(dx, dy, dz);
+		}
+	}
+	
 	public void render(float rotationX, float rotationY) {
 		head.rotateAngleY = rotationX / (180F / (float) Math.PI);
 		head.rotateAngleX = rotationY / (180F / (float) Math.PI);
+		applyTranslation();
 		head.render(0.0625F);
 		if (renderOverlay)
 			renderOverlay(rotationX, rotationY);

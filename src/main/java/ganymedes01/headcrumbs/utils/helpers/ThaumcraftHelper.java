@@ -6,9 +6,19 @@ import ganymedes01.headcrumbs.renderers.heads.WitherHead;
 import ganymedes01.headcrumbs.renderers.heads.thaumcraft.EldrichGuardianHead;
 import ganymedes01.headcrumbs.renderers.heads.thaumcraft.PechHead;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.monster.EntityElderGuardian;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional;
+import thaumcraft.common.entities.monster.EntityBrainyZombie;
+import thaumcraft.common.entities.monster.EntityEldritchCrab;
+import thaumcraft.common.entities.monster.EntityEldritchGuardian;
+import thaumcraft.common.entities.monster.EntityFireBat;
+import thaumcraft.common.entities.monster.EntityGiantBrainyZombie;
+import thaumcraft.common.entities.monster.EntityPech;
+import thaumcraft.common.entities.monster.EntityThaumicSlime;
+import thaumcraft.common.entities.monster.cult.EntityCultistCleric;
+import thaumcraft.common.entities.monster.cult.EntityCultistKnight;
 
 public class ThaumcraftHelper extends HeadDropHelper
 {
@@ -21,7 +31,6 @@ public class ThaumcraftHelper extends HeadDropHelper
 		super.registerMobHead("BrainyZombie", "bzombievil", WitherHead.INSTANCE);
 		super.registerMobHead("giantbrainyzombie", "bzombievil", WitherHead.INSTANCE);
 		super.registerMobHead("firebat", BatHead.INSTANCE);
-		super.registerMobHead("giantbrainyzombie", "bzombievil", WitherHead.INSTANCE);
 		super.registerMobHead("tslime", SlimeHead.INSTANCE);
 		super.registerMobHead("pech", "pech_forage", PechHead.INSTANCE);
 		super.registerMobHead("eldritchguardian", "eldritch_guardian", EldrichGuardianHead.INSTANCE);
@@ -33,6 +42,19 @@ public class ThaumcraftHelper extends HeadDropHelper
 			addAspects();
 	}
 
+	@Override
+	public void registerTinkersHeadDrops() {
+		TConstructHelper.registerHeadDrop(EntityBrainyZombie.class);
+		TConstructHelper.registerHeadDrop(EntityGiantBrainyZombie.class);
+		TConstructHelper.registerHeadDrop(EntityFireBat.class);
+		TConstructHelper.registerHeadDrop(EntityThaumicSlime.class);
+		TConstructHelper.registerHeadDrop(EntityPech.class);
+		TConstructHelper.registerHeadDrop(EntityEldritchGuardian.class);
+		TConstructHelper.registerHeadDrop(EntityCultistKnight.class);
+		TConstructHelper.registerHeadDrop(EntityCultistCleric.class);
+		TConstructHelper.registerHeadDrop(EntityEldritchCrab.class);
+	}
+	
 	@Optional.Method(modid = MOD_ID)
 	private void addAspects()
 	{

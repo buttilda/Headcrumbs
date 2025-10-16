@@ -11,6 +11,7 @@ import java.util.Set;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import ganymedes01.headcrumbs.commands.ReloadModelsCommand;
 import ganymedes01.headcrumbs.configs.ConfigHandler;
 import ganymedes01.headcrumbs.entity.EntityHuman;
 import ganymedes01.headcrumbs.entity.VIPHandler;
@@ -19,6 +20,7 @@ import ganymedes01.headcrumbs.libs.Reference;
 import ganymedes01.headcrumbs.proxy.CommonProxy;
 import ganymedes01.headcrumbs.recipes.StatueRecipe;
 import ganymedes01.headcrumbs.utils.HeadUtils;
+import ganymedes01.headcrumbs.utils.helpers.BewitchmentHelper;
 import ganymedes01.headcrumbs.utils.helpers.ElementalCreepersHelper;
 import ganymedes01.headcrumbs.utils.helpers.EnderZooHelper;
 import ganymedes01.headcrumbs.utils.helpers.GrimoireOfGaiaHelper;
@@ -26,6 +28,7 @@ import ganymedes01.headcrumbs.utils.helpers.LaserCreepersHelper;
 import ganymedes01.headcrumbs.utils.helpers.MysticalWildlifeHelper;
 import ganymedes01.headcrumbs.utils.helpers.NaturaHelper;
 import ganymedes01.headcrumbs.utils.helpers.PrimitiveMobsHelper;
+import ganymedes01.headcrumbs.utils.helpers.TConstructHelper;
 import ganymedes01.headcrumbs.utils.helpers.TEHelper;
 import ganymedes01.headcrumbs.utils.helpers.ThaumcraftHelper;
 import ganymedes01.headcrumbs.utils.helpers.TwilightForestHelper;
@@ -54,11 +57,11 @@ import net.minecraftforge.fml.common.event.FMLInterModComms.IMCEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms.IMCMessage;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.GameData;
-import slimeknights.tconstruct.library.TinkerRegistry;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, guiFactory = Reference.GUI_FACTORY_CLASS, dependencies = "required-after:tconstruct@[1.12.2-2.12.0.149,);")
 public class Headcrumbs
@@ -153,9 +156,14 @@ public class Headcrumbs
 	public static String humanNamePrefix = "";
 	public static boolean humansAttackTwins = true;
 
+	public static Logger LOGGER;
+	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		LOGGER = event.getModLog();
+		LOGGER.info("Enabling headcrumbs.");
+		
 		ConfigHandler.INSTANCE.init(event.getSuggestedConfigurationFile());
 
 		OreDictionary.registerOre("itemSkull", new ItemStack(Items.SKULL, 1, OreDictionary.WILDCARD_VALUE));
@@ -172,6 +180,15 @@ public class Headcrumbs
 			VIPHandler.init();
 		}
 
+		registerHelpers();
+
+		proxy.registerEntityRenderers();
+		proxy.registerEvents();
+		proxy.registerTileEntities();
+	}
+
+	public static void registerHelpers() {
+		HeadDropRegistry.helpers.clear();
 		HeadDropRegistry.register(new VanillaHelper());
 		HeadDropRegistry.register(new LaserCreepersHelper());
 		HeadDropRegistry.register(new TwilightForestHelper());
@@ -183,16 +200,21 @@ public class Headcrumbs
 		HeadDropRegistry.register(new GrimoireOfGaiaHelper());
 		HeadDropRegistry.register(new ElementalCreepersHelper());
 		HeadDropRegistry.register(new MysticalWildlifeHelper());
-
-		proxy.registerEntityRenderers();
-		proxy.registerEvents();
-		proxy.registerTileEntities();
+		HeadDropRegistry.register(new BewitchmentHelper());
 	}
 
+	@EventHandler
+	public static void onServerStart(FMLServerStartingEvent event) {
+		event.getServer().getCommandManager().getCommands().put("reloadmodels", new ReloadModelsCommand());
+		
+	}
+	
+	
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
 		proxy.registerRenderers();
+		
 
 		FMLInterModComms.sendMessage("Waila", "register", "ganymedes01.headcrumbs.waila.WailaRegistrar.wailaCallback");
 
@@ -245,9 +267,8 @@ public class Headcrumbs
 			addConvertionRecipe("Snow Queen recipe", HeadDropRegistry.getHead(TwilightForestHelper.MOD_ID, "snowQueen"), new ItemStack(tropy, 1, 4));
 		}
 
-		if(Loader.isModLoaded("tconstruct"))
-		{
-			TinkerRegistry.registerHeadDrop(EntityHuman.class, (entity) -> {
+		if(Loader.isModLoaded("tconstruct")) {
+			TConstructHelper.registerHeadDrop(EntityHuman.class, (entity) -> {
 				return HeadUtils.getHeadfromEntity(entity);
 			});
 		}

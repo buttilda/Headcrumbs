@@ -1,5 +1,43 @@
 package ganymedes01.headcrumbs.utils.helpers;
 
+import gaia.entity.monster.EntityGaiaAnubis;
+import gaia.entity.monster.EntityGaiaBanshee;
+import gaia.entity.monster.EntityGaiaBaphomet;
+import gaia.entity.monster.EntityGaiaCentaur;
+import gaia.entity.monster.EntityGaiaCobbleGolem;
+import gaia.entity.monster.EntityGaiaCobblestoneGolem;
+import gaia.entity.monster.EntityGaiaDhampir;
+import gaia.entity.monster.EntityGaiaDryad;
+import gaia.entity.monster.EntityGaiaDullahan;
+import gaia.entity.monster.EntityGaiaEnderDragonGirl;
+import gaia.entity.monster.EntityGaiaEnderEye;
+import gaia.entity.monster.EntityGaiaFleshLich;
+import gaia.entity.monster.EntityGaiaGryphon;
+import gaia.entity.monster.EntityGaiaHarpy;
+import gaia.entity.monster.EntityGaiaHunter;
+import gaia.entity.monster.EntityGaiaMandragora;
+import gaia.entity.monster.EntityGaiaMermaid;
+import gaia.entity.monster.EntityGaiaMimic;
+import gaia.entity.monster.EntityGaiaMinotaur;
+import gaia.entity.monster.EntityGaiaMinotaurus;
+import gaia.entity.monster.EntityGaiaNaga;
+import gaia.entity.monster.EntityGaiaNineTails;
+import gaia.entity.monster.EntityGaiaSatyress;
+import gaia.entity.monster.EntityGaiaSelkie;
+import gaia.entity.monster.EntityGaiaShaman;
+import gaia.entity.monster.EntityGaiaSharko;
+import gaia.entity.monster.EntityGaiaSiren;
+import gaia.entity.monster.EntityGaiaSludgeGirl;
+import gaia.entity.monster.EntityGaiaSphinx;
+import gaia.entity.monster.EntityGaiaSpriggan;
+import gaia.entity.monster.EntityGaiaSuccubus;
+import gaia.entity.monster.EntityGaiaValkyrie;
+import gaia.entity.monster.EntityGaiaVampire;
+import gaia.entity.monster.EntityGaiaWerecat;
+import gaia.entity.monster.EntityGaiaWitch;
+import gaia.entity.monster.EntityGaiaWitherCow;
+import gaia.entity.monster.EntityGaiaYeti;
+import gaia.entity.monster.EntityGaiaYukiOnna;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.AnubisHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.BansheeHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.BaphometHead;
@@ -39,6 +77,7 @@ import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.WitherCowHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.YetiHead;
 import ganymedes01.headcrumbs.renderers.heads.grimoireOfGaia.YukiOnnaHead;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
@@ -89,6 +128,48 @@ public class GrimoireOfGaiaHelper extends HeadDropHelper
 		super.registerMobHead("wither_cow", WitherCowHead.INSTANCE);
 		super.registerMobHead("yeti", YetiHead.INSTANCE);
 		super.registerMobHead("yuki-onna", YukiOnnaHead.INSTANCE);
+	}
+	
+	@Override
+	public void registerTinkersHeadDrops() {
+		TConstructHelper.registerHeadDrop(EntityGaiaAnubis.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaBanshee.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaBaphomet.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaCentaur.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaCobbleGolem.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaCobblestoneGolem.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaDhampir.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaDryad.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaDullahan.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaEnderDragonGirl.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaEnderEye.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaFleshLich.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaGryphon.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaHarpy.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaHunter.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaMandragora.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaMermaid.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaMimic.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaMinotaur.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaMinotaurus.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaNaga.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaNineTails.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaSatyress.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaSelkie.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaShaman.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaSharko.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaSiren.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaSludgeGirl.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaSphinx.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaSpriggan.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaSuccubus.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaValkyrie.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaVampire.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaWerecat.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaWitch.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaWitherCow.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaYeti.class);
+		TConstructHelper.registerHeadDrop(EntityGaiaYukiOnna.class);
 	}
 
 	@Override

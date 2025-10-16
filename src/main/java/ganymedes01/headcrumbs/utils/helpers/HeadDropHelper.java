@@ -23,13 +23,16 @@ public abstract class HeadDropHelper
 	public HeadDropHelper(String modID)
 	{
 		this.modID = modID;
+		if (Loader.isModLoaded("tconstruct")) {
+			registerTinkersHeadDrops();
+		}
 	}
 
 	public boolean isEnabled()
 	{
 		return Loader.isModLoaded(modID);
 	}
-
+	
 	public String getModID()
 	{
 		return this.modID;
@@ -75,6 +78,8 @@ public abstract class HeadDropHelper
 		heads.put(entityName, new HeadDrop(textureFile, head));
 	}
 
+	public abstract void registerTinkersHeadDrops();
+	
 	public void initModels()
 	{
 		for(HeadDrop head : heads.values())

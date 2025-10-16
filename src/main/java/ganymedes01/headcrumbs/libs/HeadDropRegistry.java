@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import ganymedes01.headcrumbs.Headcrumbs;
 import ganymedes01.headcrumbs.utils.helpers.HeadDropHelper;
 import ganymedes01.headcrumbs.utils.helpers.VanillaHelper;
 import net.minecraft.entity.Entity;
@@ -21,6 +22,8 @@ public class HeadDropRegistry
 			helpers.add(0, helper);
 		else
 			helpers.add(helper);
+		
+		Headcrumbs.LOGGER.info("Registered the head drop helper for " + helper.getModID());
 	}
 
 	public static ItemStack getHead(Entity entity)
@@ -56,8 +59,10 @@ public class HeadDropRegistry
 	public static void initModels()
 	{
 		for(HeadDropHelper helper : helpers)
-			if(helper.isEnabled())
+			if(helper.isEnabled()) {
 				helper.initModels();
+				Headcrumbs.LOGGER.info("Helper for " + helper.getModID() + " is enabled.");
+			}
 	}
 
 	public static List<ItemStack> getAllStacks()

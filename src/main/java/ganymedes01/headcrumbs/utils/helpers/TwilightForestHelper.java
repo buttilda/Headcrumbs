@@ -71,6 +71,11 @@ public class TwilightForestHelper extends HeadDropHelper
 	}
 
 	@Override
+	public void registerTinkersHeadDrops() {
+//		TConstructHelper.registerHeadDrop(TF);
+	}
+	
+	@Override
 	public ItemStack getHeadForEntity(String entityName, Entity entity)
 	{
 		ItemStack head = super.getHeadForEntity(entityName, entity);

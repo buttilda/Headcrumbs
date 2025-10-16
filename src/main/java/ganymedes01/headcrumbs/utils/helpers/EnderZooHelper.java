@@ -29,4 +29,9 @@ public class EnderZooHelper extends HeadDropHelper
 	{
 		return Strings.EZ_PREFIX;
 	}
+
+	@Override
+	public void registerTinkersHeadDrops() {
+//		TConstructHelper.registerHeadDrop(EntityCo);
+	}
 }

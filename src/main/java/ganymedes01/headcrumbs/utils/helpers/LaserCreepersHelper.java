@@ -17,4 +17,8 @@ public class LaserCreepersHelper extends HeadDropHelper
 		super.registerMobHead("roboDino", "robo_dino", RoboDinoHead.INSTANCE);
 		super.registerMobHead("jetPackSpider", "jet_pack_spider", JetPackSpiderHead.INSTANCE);
 	}
+
+	@Override
+	public void registerTinkersHeadDrops() {
+	}
 }

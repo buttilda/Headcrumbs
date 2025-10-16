@@ -45,4 +45,8 @@ public class ElementalCreepersHelper extends HeadDropHelper
 	{
 		return modID + ":textures/entities/";
 	}
+
+	@Override
+	public void registerTinkersHeadDrops() {
+	}
 }

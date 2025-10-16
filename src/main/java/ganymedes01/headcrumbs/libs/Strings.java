@@ -1,5 +1,6 @@
 package ganymedes01.headcrumbs.libs;
 
+import ganymedes01.headcrumbs.utils.helpers.BewitchmentHelper;
 import ganymedes01.headcrumbs.utils.helpers.ElementalCreepersHelper;
 import ganymedes01.headcrumbs.utils.helpers.GrimoireOfGaiaHelper;
 import ganymedes01.headcrumbs.utils.helpers.LaserCreepersHelper;
@@ -25,4 +26,6 @@ public class Strings
 	public static final String TE_PREFIX = TEHelper.MOD_ID + DEFAULT_TEXTURE_LOC;
 	public static final String TC_PREFIX = ThaumcraftHelper.MOD_ID + DEFAULT_TEXTURE_LOC;
 	public static final String TF_PREFIX = TwilightForestHelper.MOD_ID + ":textures/model/";
+	public static final String BW_PREFIX = BewitchmentHelper.MOD_ID + DEFAULT_TEXTURE_LOC;
+	
 }
